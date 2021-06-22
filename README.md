@@ -2,6 +2,8 @@
 
 This is a completely blank theme that gives you a blank canvas to start for Molton brown. 
 
+
+
 ## Create New Theme on Storefront
 
 - New themes need to be uploaded to Shopify via a zip file.
@@ -10,6 +12,8 @@ This is a completely blank theme that gives you a blank canvas to start for Molt
 - Run `npm run zip` to create a folder called molton-brown-starter-theme.
 - This command can be run with an extra argument for a custom name `npm run zip hello` will create hello.zip.
 - Then under themes within the Shopify admin click the Upload theme button and select the zip file you just created
+
+
 
 ## Setup Config
 
@@ -20,6 +24,7 @@ This is a completely blank theme that gives you a blank canvas to start for Molt
   - store (ex. store-name.myshopify.com)
 
   *This file is for your personal environment variables. Do not share with anyone and do not add to git repository.*
+
 
 
 ## Development Commands
@@ -34,6 +39,7 @@ This is a completely blank theme that gives you a blank canvas to start for Molt
 - `npm run watch`: Starts watching for file changes in /src
 - `npm run test`: Starts watching for file changes in /src
 - `npm run zip`: Creates a Zip file of your theme code in its current state.
+
 
 
 ## Developing Your Theme
