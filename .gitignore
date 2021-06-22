@@ -1,6 +1,9 @@
 # Configuration file for themekit
 config.yml
 
+# Test files 
+cypress 
+
 # Logs
 logs
 *.log

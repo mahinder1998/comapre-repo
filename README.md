@@ -37,7 +37,7 @@ This is a completely blank theme that gives you a blank canvas to start for Molt
 - `npm run static`: Builds /src/static files
 - `npm run svg`: Builds /src/svg files
 - `npm run watch`: Starts watching for file changes in /src
-- `npm run test`: Starts watching for file changes in /src
+- `npm run test`: Open cypress test suite in a electron app/browser
 - `npm run zip`: Creates a Zip file of your theme code in its current state.
 
 

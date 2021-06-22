@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Molton Brown Shopify Theme",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
@@ -12,6 +11,7 @@
     "@rollup/stream": "^1.1.0",
     "@shopify/themekit": "^1.1.6",
     "archiver": "^5.0.0",
+    "cypress": "^7.5.0",
     "del": "^6.0.0",
     "dotenv": "^8.2.0",
     "gulp": "^4.0.2",
@@ -36,6 +36,7 @@
     "static": "./node_modules/.bin/gulp static",
     "svg": "./node_modules/.bin/gulp svg",
     "watch": "./node_modules/.bin/gulp watch",
+    "test": "cypress open",
     "zip": "node -e \"require('./workflow/zip/zip.js').zip()\""
   }
 }
