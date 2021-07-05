@@ -1,0 +1,84 @@
+<nav class="mb-dt-nav-cont" role="navigation">
+  <ul class="container ul-reset text-center">
+    {%- for link in linklists.main-menu.links -%}
+    {%- if link.links != blank -%} 
+	   <li class="droppable lvl-li-one has-subs">
+    {%- else -%}
+       <li class="droppable lvl-li-one">
+    {%- endif -%}
+         
+        <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
+          {{ link.title }}
+        </a>
+
+        {%- if link.links != blank -%}
+        <div class='mega-menu'>
+         <div class="container cf">
+          <ul class="ul-reset sub-first-lvl">                       
+            {%- for child_link in link.links -%}
+            
+            
+             {%- if child_link.links != blank -%}
+              <li class="lvl-li-two lvl2-w-subs">
+                <a class="lvl-one-link" href="{{ child_link.url }}" {% if child_link.active %}aria-current="page"{% endif %}>
+                  <b>{{ child_link.title }}</b>
+                </a>
+                
+                  <ul class="sub-second-lvl">
+                    {%- for grandchild_link in child_link.links -%}
+                      <li class="lvl-li-three">
+                        <a class="lvl-two-link" href="{{ grandchild_link.url }}" {% if grandchild_link.active %}aria-current="page"{% endif %}>
+                          {{ grandchild_link.title }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+              
+
+              </li>
+             {%- else -%}
+            <li class="lvl-li-two lvl2-title">
+                <a class="lvl-one-link" href="{{ child_link.url }}" {% if child_link.active %}aria-current="page"{% endif %}>
+                  <b>{{ child_link.title }}</b>
+                </a>
+            </li>
+             {%- endif -%}      
+
+            {%- endfor -%}
+                             
+                       
+            
+            
+            {% if link.type == "collection_link" and link.object.image %}
+              {%- assign hero_img_url = link.url -%}
+              {% if link.links[0].url %}
+                {%- assign hero_img_url = link.links[0].url -%}
+              {% endif %} 
+               <li class="featured-block">
+                <div class="mg-mnu-ftimg-cont">
+                  <a href="{{ link.url }}">{{ link.object.image | img_url: '220x' | img_tag }}</a>
+                  <div class="mg-mnu-ftimg">
+                    <h4>ORANGE & BERGAMOT</h4>
+                    <p><span>Nuova edizione illustrata</span></p>
+                    <a class="collection-nav-url-link" href="{{ link.url }}"><span>{{ link.title | escape }}</span></a>
+                  </div>
+                </div>
+               </li>
+             
+            {% endif %}            
+            
+          </ul>
+           
+
+           
+         </div>
+          
+           
+          
+        </div>
+        {%- endif -%}
+
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
