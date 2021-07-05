@@ -1,6 +1,8 @@
 @media only screen and (max-width: 749px) {
 
-    .tb-right, .mb-account-flex, .mb-search-flex, .mb-logo-2, nav.mb-dt-nav-cont {
+    .tb-right, .mb-account-flex, .mb-search-flex, .mb-logo-2, nav.mb-dt-nav-cont, .cart-titles, .cart-title-dt, 
+      .cart-item-price
+    {
         display: none;
     }
       
@@ -48,6 +50,10 @@
     /* Mobile Nav update */
     html.overh {
         overflow: hidden;
+    }
+      
+    secion#mb-mob-nav-cont {
+        display: none;
     }
       
     .mobile-nav__dropdown {
@@ -174,5 +180,85 @@
     li.no-child-one {
         padding-left: 20px !important;
     }  
+     
+    /* Cart Page */
+    .cart-body {
+        padding: 20px;
+    }
+      
+    .cart-body, .cart-title-mob {
+        display: block;
+    }  
+      
+    .cart-main-data {
+        width: 100%;
+    }
+      
+    .cart-items-loop>div:nth-child(1), .cart-titles>div:nth-child(1) {
+        width: 25%;
+    }
+      
+    .cart-items-loop>div:nth-child(2), .cart-titles>div:nth-child(2) {
+        width: 80%;
+        text-align: left;
+    }  
+      
+    .cart-item-qty {
+        display: block;
+    }  
+      
+    .qty-txt-mob, .price-cart-mob{display: block;}  
+      
+    .qty-selc {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 20px;
+    }
+      
+    a.addqty, a.minusqty {
+        height: 22px;
+    }
+      
+    p.price-cart-mob {
+        font-size: 15px;
+        font-weight: bold;
+    }  
+      
+    p.qty-txt-mob {
+        margin-right: 10px;
+    }  
+        
+    a.addqty>img, a.minusqty>img {
+        max-width: 55%;
+        top: 2px;
+        left: 6px;
+    }  
+      
+    .cart-items-loop {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #f1f1f1;
+    }  
+      
+    .qty-slctor-arws {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }  
+      
+    .cart-main-prices {
+        width: 100%;
+        margin-left: 0;
+        padding: 0;
+    }
+      
+    .subtotal {
+        padding: 10px 20px;
+    }  
+      
+      
+      
+      
     
     }/* END MQ */

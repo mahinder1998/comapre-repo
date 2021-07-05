@@ -1,27 +1,58 @@
 <!-- Logo and Search -->
 <section class="mb-top-logo">
 	<div class="mb-tool-logo-flex">
-		<div class="tb-logo-left">
-			<a class="mb-logo-2" href="#"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232" alt=""></a>
-            <a class="mb-burger-icon" href="#"><img src="{{ 'mb-icon-mob-nav.svg' | asset_url }}" alt=""></a>
-		</div>
-		<div class="tb-logo-mid">
-			<a href="#"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/moltonbrown_logo_big-1_540x.png?v=1623487154" alt=""></a>
-		</div>
-		<div class="tb-logo-last">
-			<div class="mb-search-logo-flex">
-				<div class="mb-search-flex">
-					 <a href="#" class="mb-search-header">
-                       <span><img src="{{ 'mb-icon-search.svg' | asset_url }}" /></span>
-                     </a>
+	   <div class="tb-logo-left">
+		  <a class="mb-logo-2" href="#"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232" alt=""></a>
+			 <a class="mb-burger-icon" href="#"><img src="{{ 'mb-icon-mob-nav.svg' | asset_url }}" alt=""></a>
+	   </div>
+	   <div class="tb-logo-mid">
+		  <a href="#"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/moltonbrown_logo_big-1_540x.png?v=1623487154" alt=""></a>
+	   </div>
+	   <div class="tb-logo-last">
+		  <div class="mb-search-logo-flex">
+			 <div class="mb-search-flex">
+				 <a href="#" class="mb-search-header">
+						<span><img src="{{ 'mb-icon-search.svg' | asset_url }}" /></span>
+					  </a>
+			 </div>
+			 <div class="mb-account-flex">
+				<img style="max-height: 23px;" src="{{ 'mb-icon-account.png'| asset_url }}" alt="">
+			 </div>
+			 <div class="mb-cart-flex">
+			   <img style="max-height: 30px;" src="https://cdn.shopify.com/s/files/1/0580/2413/2776/files/cart-temp-icon.png?v=1625065785" alt=""><span class="mcart-count">{{ cart.item_count }}</span>
+			 </div>
+		  </div>
+ 
+		  <div class="mini-cart-content hide">
+			 <h3>Your cart</h3>
+ 
+			 <section class="mini-cart-list">
+ 
+			 {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
+			 <div class="single-mcart-item">
+				<div class="mcart-thumb">
+				   <a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> 
+				   {{ item.product.images.first | product_img_url: '200x200' | img_tag: item_title }}</a>
 				</div>
-				<div class="mb-account-flex">
-					<img style="max-height: 23px;" src="{{ 'mb-icon-account.png'| asset_url }}" alt="">
+				<div class="mcart-content">
+				   <p class="mcart-single-title"><a href="{{ item.product.url }}">{{ item.title }}</a></p>
+				   <p class="mcart-single-price"><b>{{ item.price | money }}</b></p>
 				</div>
-				<div class="mb-cart-flex">
-					<img style="max-height: 30px;" src="https://cdn.shopify.com/s/files/1/0580/2413/2776/files/cart-temp-icon.png?v=1625065785" alt="">
-				</div>
-			</div>	
-		</div>
+			 </div>
+			 {% endfor %}
+ 
+			 <div class="mcart-go-cart">
+				<a href="./cart">View cart</a>
+			 </div>
+ 
+			 </section>
+		  </div>
+ 
+	   </div>
 	</div>
-</section>
+ </section>
+ 
+ 
+ 
+ 
+ 

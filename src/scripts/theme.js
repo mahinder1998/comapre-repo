@@ -10,7 +10,8 @@ $(document).ready(function() {
           $(this).removeClass('link-is-active');
        }
     );
-        
+          
+    
      /* Mobile Nav */
   
       $('.mb-burger-icon').click(function(e) {
@@ -81,7 +82,37 @@ $(document).ready(function() {
   
    /* End Mobile Nav */  
     
+  
+  $(function(e)
+  {
+      $(".addqty").click(function()
+      {
+          var currentVal = parseInt($(this).prev(".qtycart").val());
+          if (currentVal != NaN)
+          {
+              $(this).prev(".qtycart").val(currentVal + 1);
+          }
+      });
+  
+      $(".minusqty").click(function()
+      {
+          var currentVal = parseInt($(this).next(".qtycart").val());
+          if (currentVal != NaN)
+          {
+              if(currentVal > 0){
+                      $(this).next(".qtycart").val(currentVal - 1);
+                  }
+  
+          }
+      });
+  });
     
+    
+    $('.mb-cart-flex').click(function(){
+    
+        $('.mini-cart-content').toggleClass('hide');
+    
+    });
     
   });/* End Doc ready */  
     
