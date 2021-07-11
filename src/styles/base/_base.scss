@@ -136,7 +136,7 @@ secion#mb-mob-nav-cont {
 .container.cf {
     max-width: 1200px;
     margin: 0 auto;
-    box-shadow: 0 0.42857rem 0.42857rem 0 rgb(0, 0, 0,0.15);
+    box-shadow: 0 0.42857rem 0.42857rem 0 rgba(0, 0, 0,0.15);
     background: #ffffff;
 }
 
@@ -347,7 +347,7 @@ section#cart-container {
 
 .cart-item-img {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -393,7 +393,7 @@ div#cart-right > input#checkout-button {
 
 .cart-item-img {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
 }
 
