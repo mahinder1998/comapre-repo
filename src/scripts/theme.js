@@ -8,15 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     MediaGallery.init();
 });
 
-
-
-
-
-
-
-
-
-
 $(document).ready(function() {
   
     $('li.has-subs').hover(
@@ -36,7 +27,7 @@ $(document).ready(function() {
       $('.mb-burger-icon').click(function(e) {
   
           $('html').toggleClass('overh');
-          $('#MobileNav').toggleClass('hide show');
+          $('#mb-mob-nav-cont').toggleClass('hide show');
           $('a[nav-lvl-three="ok"]').parent().parent().addClass('show');
           $('a[nav-lvl-three="ok"]').parent().parent().parent().find('.togglenewmob.lvltwomob span.mobile-nav__label').addClass('bold');
           $('a[nav-lvl-three="ok"]').parent().parent().parent().find('.togglenewmob.lvltwomob .mobile-nav__icon').addClass('mobchiv-up');
@@ -132,6 +123,177 @@ $(document).ready(function() {
         $('.mini-cart-content').toggleClass('hide');
     
     });
+  
+  
+    if($(window).width()<750){
+      $(".footer-header").click(function () {
+        
+        if($(this).parents(".footer-item").hasClass("active-item")) {
+          $(".footer-item").removeClass("active-item");
+          $(".footer-body").slideUp("slow");
+        } else {
+         
+          $(".footer-item").removeClass("active-item");
+          $(".footer-body").slideUp("slow");
+          $(this).parents(".footer-item").addClass("active-item");
+          $(this).next(".footer-body").slideDown("slow");
+  
+        }
+      });
+    }
+    
+    // Account address code here
+    $("#AddressNewButton").click(function () {
+          $("#AddressNewForm").toggle();
+    });
+  
+    $(".toggle-password").click(function() {
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      var input = $('.password-splash');
+      if (input.attr("type") == "password") {
+        input.attr("type", "text");
+      } else {
+        input.attr("type", "password");
+      }
+    });
+  
+  
+    $(".toggle-password-conf").click(function() {
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      var input = $('.password-splash-conf');
+      if (input.attr("type") == "password") {
+        input.attr("type", "text");
+      } else {
+        input.attr("type", "password");
+      }
+    });
+  
+  
+    var inputError=false;
+    $(".password-splash-conf").on('keyup',function(event){
+      if(event.target.value!=document.getElementById('RegisterForm-password').value){
+        console.log('ppp');
+        inputError=true;
+      } else{
+        inputError=false;
+        $('error-msg').hide();
+  
+      }
+    });
+  
+    $(document).on('click',function(event){
+  
+      if(inputError){
+        $('.error-msg').show();
+      }
+    });
+  
+  
+    // cart page cart note count
+    $("#CartSpecialInstructions").on('keyup', function() {
+      $("#countcharacter").text((250 - $(this).val().length) + " Characters");
+    });
+  
+  
+   
+    // search box toggle js
+      $("#searchbar .search-label").on("click", function (e) {
+          e.preventDefault();
+          $("#searchbar").toggleClass("collapsed");
+      });
+    
+    // product search js
+      $(".search-input").bind("keyup", function (e) {
+          if (this.value.length < 3) {
+              // console.log(this.value.length);
+              //$("#productData").html('');
+              //$("#viewResults").html('');
+              $(".search-result-weap").hide();
+          } else if (this.value.length >= 3) {
+              var searchKeyword = this.value;
+              //$(".search-result-weap").show();
+          }
+  
+          jQuery
+              .getJSON("/search/suggest.json", {
+                  q: searchKeyword,
+                  resources: {
+                      type: "product",
+                      options: {
+                          unavailable_products: "last",
+                          fields: "title,product_type,variants.title",
+                      },
+                  },
+              })
+              .done(function (response) {
+                  var productSuggestions = response.resources.results.products;
+                  var pro_length = productSuggestions.length;
+                  //var finalColldata = productSuggestionsColl[0];
+                  var notFoundmessage = 0;
+                  //console.log(finalColldata.id);
+                  if (productSuggestions.length > 0) {
+                      var str = "";
+                      var show_counter = 1;
+                      for (i = 0; i < pro_length; i++) {
+                          if (show_counter <= 3) {
+                            $(".search-result-weap").show();
+                              var firstProductSuggestion = productSuggestions[i];
+                              str +=
+                                  '<a href="' +
+                                  firstProductSuggestion.url +
+                                  '" class="search-result-items"><div class="get-product-image"><img src="' +
+                                  firstProductSuggestion.image +
+                                  '"></div>' +
+                                  '<div class="get-product-title">' +
+                                  firstProductSuggestion.title +
+                                  "</div>" +
+                                  '<div class="get-product-price">' +
+                                  firstProductSuggestion.price +
+                                  "</div></a>";
+                              //console.log("The title of the first product suggestion is: " + firstProductSuggestion.id);
+                              //console.log(firstProductSuggestion.title);
+                              show_counter = show_counter + 1;
+                          }
+                      }
+                      $(".productData").html(str);
+  
+                      if (pro_length > 3) {
+                          $(".viewResults").html("More Results");
+                      }
+                      $(".customSearchredirect").attr("href", "https://molton-dev.myshopify.com/search?q=" + searchKeyword + "&type=product");
+                  } else {
+                      notFoundmessage = notFoundmessage + 1;
+                      //$("#productData").html('Sorry no result found');
+                  }
+              });
+      });
+    
+     // account page tab js
+       $(".tabs-main li").click(function () {
+            var tab_id = $(this).attr("data-tab");
+  
+            $(".tabs-main li").removeClass("current");
+            $(".tabs-items").removeClass("current");
+            $(this).addClass("current");
+            $("." + tab_id).addClass("current");
+        });
+  
+        $(".template-customers-addresses .tabs-main li.current").click(function () {
+            $(".template-customers-addresses .my_address").addClass("current");
+        });
+  
+        // customer order tab
+        var url = window.location.href;
+        var pageURL = url.split("#").pop();
+        var splitvalue = pageURL.split("+");
+        //alert(pageURL);
+        if (pageURL == "my_order") {
+            $(".tab-link").removeClass("current");
+            $(".tabs-items").removeClass("current");
+            $("#my_order").parent().addClass("current");
+            $(".my_order").addClass("current");
+        }
+   
     
   });/* End Doc ready */  
     
