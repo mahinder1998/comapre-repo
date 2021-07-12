@@ -1,0 +1,78 @@
+<div class="padding-zero page-container">
+  <div class="collection-header">
+
+    <div class="collection-image">
+      {% if collection.image %}
+      <picture>
+        <source media="(min-width:759px)" srcset="{{ collection.image | img_url: '2048x600', crop: 'top' }}">
+        <img src="https://cdn.shopify.com/s/files/1/0580/2413/2776/files/Mask_Group_6_3x_765b7888-aff3-4050-9e77-c7b070897db4.jpg?v=1626002462">
+      </picture>
+      {%endif%}  
+      <h1 class="collection-hero__title">
+        {{ collection.title }}
+      </h1>
+    </div>
+
+    <div class="section-header">
+      <h1 class="collection-hero__title">
+        {{ collection.title }}
+      </h1>
+      {% if collection.description != blank %}
+      <div class="rte collection-description">
+        {{ collection.description }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="page-container">
+
+  <div class="flex-bet collection-wrapper">
+
+    <div class="side-bar-fillter">
+
+    </div>
+    
+    <div class="custom-product-data">
+      <div class="select-data">
+        <select name="slct" id="slct" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+          <option selected disabled>Sort By</option>
+          <option value="{{shop.url}}/{{collection.url}}?sort_by=featured">Featured Products</option>
+          <option value="{{shop.url}}/{{collection.url}}/latest-arrivals">Latest Arrivals</option>
+          <option value="{{shop.url}}/{{collection.url}}?sort_by=best-selling">Best Sellers</option>
+          <option value="{{shop.url}}/{{collection.url}}?sort_by=title-ascending">From A to Z</option>
+          <option value="{{shop.url}}/{{collection.url}}?sort_by=title-descending">From Z to A</option>
+          <option value="{{shop.url}}/{{collection.url}}?sort_by=price-ascending">From least expensive</option>
+          <option value="{{shop.url}}/{{collection.url}}?sort_by=price-descending">From most expensive</option>
+        </select>
+      </div>
+      {% if collection.products_count > 0 %}
+      <ul class="grid-four">
+        {% for product in collection.products %}
+        <li class="grid-items">
+
+          {% include 'product-card-grid' %}
+        </li>
+        {%endfor%}
+      </ul>
+      {%endif%}
+    </div>
+
+  </div>
+
+</div>
+
+
+{% schema %}
+{
+"name": "Section name",
+"settings": []
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

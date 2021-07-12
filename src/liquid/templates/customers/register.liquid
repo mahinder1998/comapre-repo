@@ -1,0 +1,224 @@
+<div class="page-container register-page">
+  <div class="login-wrap register-wrap">
+    <div class="comon-header">
+
+      <h1 class="page_title">{{ 'customer.register.title' | t }}</h1>
+      <p>Including easy checkout, tracking orders and more!</p>
+      {%- assign formId = 'RegisterForm' -%}
+      {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
+      {% include 'form-status', form: form, form_id: formId %}
+   
+    <div class="radio-group">
+      <label class="radio-label">Title*</label>
+      <input type="radio" id="{{ formId }}-ms" name="customer[note][gender]" value="ms" checked="checked" />
+      <label for="{{ formId }}-ms">Ms</label>
+      <input type="radio" id="{{ formId }}-mrs" name="customer[note][gender]" value="mrs"  />
+      <label for="{{ formId }}-mrs">Mrs</label>
+      <input type="radio" id="{{ formId }}-mr" name="customer[note][gender]" value="mr"  />    
+      <label for="{{ formId }}-mr">Mr</label>
+    </div>
+
+    <div class="form-group-row">
+      <div class="form-group">
+        <label for="{{ formId }}-FirstName">{{ 'customer.register.first_name' | t }}</label>
+        <input type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} required autocomplete="given-name">
+      </div>
+      <div class="form-group">
+        <label for="{{ formId }}-LastName">{{ 'customer.register.last_name' | t }}</label>
+        <input type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} required autocomplete="family-name">
+      </div>
+
+      <div class="form-group">
+        <label for="{{ formId }}-PhoneCode">Phone Number*</label>
+        <div class="code-phonenumber">
+          <select name="customer[note][phonecode]" id="{{ formId }}-PhoneCode">
+            <option value="+971">+971</option>
+          </select>
+          <input type="number" id="{{ formId}}-PhoneNumber" required name="customer[note][phonenumber]" placeholder="50 1234 567"/>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="{{ formId }}-email">{{ 'customer.register.email' | t }}</label>
+        <input
+               type="email"
+               name="customer[email]"
+               id="{{ formId }}-email"
+               class="{% if form.errors contains 'email' %} input--error{% endif %}"
+               {% if form.email %} value="{{ form.email }}"{% endif %}
+               autocorrect="off"
+               autocapitalize="off"
+               autocomplete="email"
+               aria-required="true"
+               {%- if form.errors contains 'email' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-email-error"
+               {%- endif -%}
+               >
+        {%- if form.errors contains 'email' -%}
+        <span id="{{ formId }}-email-error" class="input-error-message">
+          {% include 'icon-error' %}
+          <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+        </span>
+        {%- endif -%}
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="{{ formId }}-password">{{ 'customer.register.password' | t }}*</label>
+        <input
+               type="password"
+               name="customer[password]"
+               id="{{ formId }}-password"
+               class="{% if form.errors contains 'password' %} input--error{% endif %} password-splash"
+               aria-required="true"
+               required
+               {%- if form.errors contains 'password' -%}
+
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-password-error"
+               {%- endif -%}
+               >
+        {%- if form.errors contains 'password' -%}
+        <span id="{{ formId}}-password-error" class="input-error-message">
+          {% include 'icon-error' %}
+          <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
+        </span>
+        {%- endif -%}
+        <span toggle="#RegisterForm-password" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
+
+      </div> 
+
+      <div class="form-group">
+        <label for="{{ formId }}-password">Confirm Password*</label>
+        <input type="password" value=""  name="customer[confirm-password]" id="confirm-password" class="confirm password-splash-conf" />
+        <span toggle="#RegisterForm-passwords" class="fa fa-fw fa-eye-slash field-icon toggle-password-conf"></span>
+        <span class="error-msg" style="display:none">Your password not matched.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="birthday">Birthday</label>
+        <div class="custom-birthday">
+          <select name="customer[note][birthdate]" id="{{ formId }}-BirthDate">
+            <option value="select date">Select Date</option>
+            {% for i in (1..31) %}
+            <option value="{{i}}">{{i}}</option>
+            {%endfor%}
+          </select>
+          <select name="customer[note][birthmonth]" id="{{ formId }}-BirthMonth">
+            <option value="select Month">Select Month</option>
+            {% for i in (1..12) %}
+            <option value="{{i}}">{{i}}</option>
+            {%endfor%}
+          </select>
+          <select name="customer[note][year]" id="{{ formId }}-BirthYear">
+            <option value="select Year">Select Year</option>
+            {% for i in (1970..2020) %}
+            <option value="{{i}}">{{i}}</option>
+            {%endfor%}
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="register-footer">
+
+      <div class="form-footer term-list">
+        <p>Choose your preferred communication method</p>
+        <ul class="list-inline">
+          <li>
+            <input type="checkbox" name="customer[note][byemail]" id="{{ formId }}-by-email" />
+            <label for="{{ formId }}-by-email">Email</label>
+          </li>
+          <li>
+            <input type="checkbox" name="customer[note][bysms]" id="{{ formId }}-by-sms" />
+            <label for="{{ formId }}-by-sms">SMS</label>
+          </li>
+          <li>
+            <input type="checkbox" name="customer[note][bytelephone]" id="{{ formId }}-by-tel" />
+            <label for="{{ formId }}-by-tel">Telephone</label>
+          </li>
+          <li>
+            <input type="checkbox" name="customer[note][whatsapp]" id="{{ formId }}-by-whatsapp" />
+            <label for="{{ formId }}-by-whatsapp">WhatsApp</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-footer term-list recived-news">
+        <ul class="list-inline">
+          <li>
+            <input type="checkbox" name="customer[accepts_marketing]" value="true" id="marketing" />
+            <label for="marketing">Please sign me up to receive news on Molton Brown new product launches, exclusive in-store events and seasonal promotions.</label>
+          </li>
+          <li>
+            <input type="checkbox" id="by-agree" />
+            <label for="by-agree">I have read and agree to the <a href="{{shop.url}}/pages/terms-conditions">Terms & Conditions</a> and <a href="{{shop.url}}/pages/privacy-policy"> Privacy Policy</a>.</label>
+          </li>
+        </ul>
+      </div>
+      <p class="text-center">
+        <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+      </p>
+      {% endform %}
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Register popup-->
+
+<div class="register-overlay" style="display: none;"></div>
+<div class="model-content reg-modal" style="display: none;">
+  <div class="close-modal">
+    <svg width="15" height="15">
+      <path d="M.293 1L1 .293 14.707 14l-.707.707z"></path>
+      <path d="M1 14.707L.293 14 14 .293l.707.707z"></path>
+    </svg>
+  </div>
+  <div class="faq-section">
+    <h4>YOUR ACCOUNT HAS
+      BEEN CREATED!</h4>
+    <p>You can now enjoy features such as easy order tracking and returns!</p>
+    <p class="text-center">
+      <a href="#" class="btn">CONTINUE SHOPPING</a>
+    </p>
+  </div>
+</div>
+{% comment %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  /* Registration page */
+jQuery(function() {
+jQuery('#create_customer').submit(function(event) {
+  event.preventDefault();
+  var data = jQuery(this).serialize();
+console.log('data - '+data);
+ //create new account
+  jQuery.post('/account', data).done(function(data){
+    var logErrors = jQuery(data).find('.form-message--error').text();
+
+    //if there are errors show them in the html form
+    if (logErrors != "" && logErrors != 'undefined'){
+        jQuery('#create_customer .form-message--error').html(logErrors);
+        jQuery('#create_customer .form-message--error').show();
+
+    //if account creation is successful show checkout page
+    }else{
+       console.log('success');
+      alert('success');
+      //document.location.href = '/checkout';
+    }
+    }).fail(function(){
+    console.log('error');
+  });
+   return false;
+}); 
+});
+</script>
+{% endcomment %}

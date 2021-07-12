@@ -1,58 +1,130 @@
 <script type="text/javascript">
-    function remove_item(id){
-      document.getElementById('updates_' + id).value = 0;
-      document.getElementById('cartform').submit();
-    }
- </script>
- <section id="cart-container">
-   <h1 class="cart-title">Your Cart</h1>
-    <form action="/cart" method="post" id="cartform">
-       <div class="cart-body">
-          <div class="cart-main-data">
-             <div class="cart-titles">
-                <div class="cart-item-t">PRODUCTS</div>
-                <div class="cart-qty-t">QUANTITY</div>
-                <div class="cart-total-t">PRICE</div>
-             </div>
-             {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
-             <div class="cart-items-loop">
-                <div class="cart-item-img">
-                   <div><a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> {{ item.product.images.first | product_img_url: 'small' | img_tag: item_title }}</a></div>
-                  <div class="cart-title-dt"><p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p></div>
-                </div>
-                <div class="cart-item-qty">
-                  <div class="cart-title-mob"><p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p></div>
-                  <div class="qty-selc">
-                   
-                   <div class="qty-slctor-arws"> 
-                     <p class="qty-txt-mob">Qty</p>
-                       <a class="minusqty"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yMy4yNDUgNGwtMTEuMjQ1IDE0LjM3NC0xMS4yMTktMTQuMzc0LS43ODEuNjE5IDEyIDE1LjM4MSAxMi0xNS4zOTEtLjc1NS0uNjA5eiIvPjwvc3ZnPg=="></a>
-                       <input name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" onfocus="this.select();" value="{{ item.quantity }}" size="2"/>
-                       <a class="addqty"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yMy4yNDUgMjBsLTExLjI0NS0xNC4zNzQtMTEuMjE5IDE0LjM3NC0uNzgxLS42MTkgMTItMTUuMzgxIDEyIDE1LjM5MS0uNzU1LjYwOXoiLz48L3N2Zz4="></a>
-                   </div>
-                   <p class="price-cart-mob">{{ item.line_price | money }}</p>
-                  </div>	
-                    
-                </div>
-                <div class="cart-item-price">
-                   <p>{{ item.line_price | money }}</p>
-                </div>
-             </div>
-             {% endfor %}
+  function remove_item(id){
+    document.getElementById('updates_' + id).value = 0;
+    document.getElementById('cartform').submit();
+  }
+</script>
+
+{% if cart.item_count > 0 %}
+<section id="cart-container" class="padding_lg">
+  <h1 class="cart-title">Your Cart</h1>
+  <form action="/cart" method="post" id="cartform">
+    <div class="cart-body">
+      <div class="cart-main-data">
+        <div class="cart-titles">
+          <div class="cart-item-t">PRODUCTS</div>
+          <div class="cart-qty-t">QUANTITY</div>
+          <div class="cart-total-t">PRICE</div>
+        </div>
+        {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
+        <div class="cart-items-loop">
+          <div class="cart-item-img">
+            <div><a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> {{ item.product.images.first | product_img_url: 'small' | img_tag: item_title }}</a></div>
+            <div class="cart-title-dt"><p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p>
+              <p class="cart__remove">
+                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
+              </p>
+            </div>
+
           </div>
-          <div class="cart-main-prices">
-             <div colspan="5" class="subtotal">
-                <h4>Subtotal:   {{ cart.total_price | money }}</h4>
-             </div>
-             <div id="cart-right">
-                <input name="checkout" type="submit" class="button" id="checkout-button" value="PROCEED TO CHECKOUT">
-                {% if additional_checkout_buttons %}
-                <div class="additional-checkout-buttons">
-                   {{ content_for_additional_checkout_buttons }}
-                </div>
-                {% endif %}
-             </div>
+          <div class="cart-item-qty">
+            <div class="cart-title-mob"><p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p></div>
+            <div class="qty-selc">
+
+              <div class="qty-slctor-arws"> 
+                <p class="qty-txt-mob">Qty</p>
+                <a class="minusqty">{% include 'down-arrow' %}</a>
+                <input name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" onfocus="this.select();" value="{{ item.quantity }}" size="2"/>
+                <a class="addqty">{% include 'upper-arrow' %}</a>
+              </div>
+              <p class="price-cart-mob">{{ item.line_price | money }}</p>
+
+            </div>	
+            <p class="cart__remove">
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
+            </p>
           </div>
-       </div>
-    </form>
- </section>
+          <div class="cart-item-price">
+            <p>{{ item.line_price | money }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="right-side-cart cart-main-prices">
+
+        <div class="flex-bet shipping-free">
+          <span class="cart-subtotal__title">SHIPPING </span>
+          <span class="cart-subtotal__price">Free</span>
+        </div>
+        <div class="shipping-day">
+          <p>Free Shipping within 2-3 days</p>
+        </div>
+        <div colspan="5" class="subtotal">
+          <h4 class="flex-bet">
+            <span class="cart-subtotal__title">Subtotal:</span>
+            <span class="cart-subtotal__title">{{ cart.total_price | money }}</span>
+          </h4>
+        </div>
+        <div class="vat-shiping">
+          <p>(VAT included)</p>
+        </div>
+        <div id="cart-right">
+          <input name="checkout" type="submit" class="button" id="checkout-button" value="PROCEED TO CHECKOUT">
+          {% if additional_checkout_buttons %}
+          <div class="additional-checkout-buttons">
+            {{ content_for_additional_checkout_buttons }}
+          </div>
+          {% endif %}
+        </div>
+
+
+      </div>
+    </div>
+
+
+    <div class="cart__footer">
+      <div class="grid-wrapper">
+
+        <div class="col-sp-sm col-sp-md">
+          <label for="CartSpecialInstructions" class="cart-note__label small--text-center">Would you like a FREE gift box and gift message?</label>
+
+          <!-- Yes and No content goes here-->
+          <div class="login-wrap">
+            <div class="radio-group">
+              <input type="radio" id="{{ formId }}-ms" name="choice-radio" value="{{ cart.attributes["No"] }}" checked="checked" />
+              <label for="{{ formId }}-ms">No</label>
+              <input type="radio" id="{{ formId }}-mrs" name="choice-radio" value="{{ cart.attributes["Yes"] }}"  />
+              <label for="{{ formId }}-mrs">Yes</label>
+            </div>
+          </div>
+          <!-- Gift message option code goes here-->
+
+          <div class="login-wrap giftmessage ">
+            <div class="radio-group">
+              <input type="checkbox" id="{{ formId }}-ms" name="choice-giftmessage" value="{{ cart.attributes["No"] }}" checked="checked" />
+              <label for="{{ formId }}-ms">I would like to provide a gift message.</label>
+            </div>
+
+            <textarea name="note" id="CartSpecialInstructions" placeholder="Please enter a message up to 250 characters (including spaces)*" class="cart-note__input" data-cart-notes>{{ cart.note }}</textarea>
+            <span id="countcharacter"></span><br>
+          </div>
+
+          <span class="custom-cart-text">
+            Please note: To ensure flawless condition, Hand Refill Pouches cannot be gift-wrapped. Single and duo-bottle gifts arrive with assemble-at-home flat-packed boxes and tissue paper.
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</section>
+{%else%}
+<section class="empty-section">
+  <h1 class="cart-title">Your Cart</h1>
+  <div class="page-container">
+    <p>Your cart is empty!</p>
+    <a href="{{shop.url}}" class="btn">CONTINUE SHOPPING</a>
+  </div>
+</section>
+{%endif%}
