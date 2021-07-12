@@ -1,3 +1,22 @@
+import Currency from './money-format';
+
+import MediaGallery from './pdp/master-gallery-slider';
+import PDPListeners from './pdp/pdp-listeners';
+
+document.addEventListener('DOMContentLoaded', function() {
+    PDPListeners.init();
+    MediaGallery.init();
+});
+
+
+
+
+
+
+
+
+
+
 $(document).ready(function() {
   
     $('li.has-subs').hover(

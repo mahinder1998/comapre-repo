@@ -1,0 +1,9 @@
+<script>
+(function() {
+    window.objectData = window.objectData || {};
+    {% if product %}
+        window.objectData.product = {{ product | json }}
+    {% endif %}
+
+})();
+</script>

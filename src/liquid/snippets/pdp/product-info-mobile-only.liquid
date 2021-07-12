@@ -1,0 +1,6 @@
+<div class="pdp__info-mobile">
+    <div class="pdp__info-mobile__title">Limited Edition Orange & Bergamot Hand Wash</div>
+    {% unless product.has_only_default_variant %}
+        <div class="pdp__info-mobile__size">{{ product.options_with_values[0].selected_value }}</div>
+    {% endunless %}
+</div>
