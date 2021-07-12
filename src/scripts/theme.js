@@ -1,3 +1,5 @@
+import Currency from './money-format';
+
 import MediaGallery from './pdp/master-gallery-slider';
 import PDPListeners from './pdp/pdp-listeners';
 

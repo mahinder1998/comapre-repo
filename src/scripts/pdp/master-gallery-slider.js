@@ -5,7 +5,6 @@ const MediaGallery = (() => {
                 dots: false,
                 arrows: true,
                 fade: true,
-                asNavFor: '.pdp__media__thumbs__slider',
                 prevArrow: $('.pdp__media__master__slider__arrow.pdp__media__master__slider__arrow-prev'),
                 nextArrow: $('.pdp__media__master__slider__arrow.pdp__media__master__slider__arrow-next')
             });
@@ -16,7 +15,7 @@ const MediaGallery = (() => {
                 dots: false,
                 arrows: false,
                 asNavFor: '.pdp__media__master__slider',
-                focusOnSelect: true
+                focusOnSelect: true,
             });
         }
     }

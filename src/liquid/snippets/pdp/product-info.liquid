@@ -1,10 +1,31 @@
 <div class="pdp__content">
     <div class="pdp__content__title">Orange & Bergamot Shower Gel Illustrated Edition</div>
-    <div class="pdp__content__size">300ml</div>
-    <!-- <div class="pdp__content__review-info">REVIEWS</div> -->
-    <div class="pdp__content__price">145 AED</div>
-
     
+    {% unless product.has_only_default_variant %}
+        <div class="pdp__content__size">{{ product.options_with_values[0].selected_value }}</div>
+    {% endunless %}
+
+
+    <!-- <div class="pdp__content__review-info">REVIEWS</div> -->
+    <div class="pdp__content__price">{{ current_variant.price | money}}</div>
+
+    {% unless product.has_only_default_variant %}
+        <div class="pdp__content__swatches">
+            {% for value in product.options_with_values[0].values %}
+                <div 
+                    data-option="{{ value }}"
+                    {% if product.options_with_values[0].selected_value == value %}
+                        class="pdp__content__swatches__item active"
+                    {% else %}
+                        class="pdp__content__swatches__item"
+                    {% endif %}
+                >{{ value }}</div>
+            {% endfor %}
+        </div>
+    {% endunless %}
+
+
+
     <div class="pdp__content__control">
         <div class="pdp__content__control__qty">
             <div class="pdp__content__control__qty__prev">
@@ -21,8 +42,28 @@
                 </svg>         
             </div>
         </div>
-        <div class="pdp__content__control__add-to-cart-btn">Add to cart</div>
-        <div class="pdp__content__control__notify-me-btn">Notify Me</div>
+
+        {% if product.available %}
+            <div 
+                class="pdp__content__control__add-to-cart-btn"
+                data-id="{{ current_variant.id }}"
+            >Add to cart</div>
+            <div 
+                style="display: none;"
+                class="pdp__content__control__notify-me-btn"
+                data-id="{{ current_variant.id }}"
+            >Notify Me</div>
+        {% else %}
+            <div 
+                style="display: none;"
+                class="pdp__content__control__add-to-cart-btn"
+                data-id="{{ current_variant.id }}"
+            >Add to cart</div>
+            <div 
+                class="pdp__content__control__notify-me-btn"
+                data-id="{{ current_variant.id }}"
+            >Notify Me</div>
+        {% endif %}
     </div>
 
     <div class="pdp__content__wishlist">
