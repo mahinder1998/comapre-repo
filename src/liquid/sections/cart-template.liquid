@@ -17,7 +17,7 @@
           <div class="cart-total-t">PRICE</div>
         </div>
         {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
-        <div class="cart-items-loop">
+        <div class="cart-items-loop" item-loop="item-{{ forloop.index }}">
           <div class="cart-item-img">
             <div><a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> {{ item.product.images.first | product_img_url: 'small' | img_tag: item_title }}</a></div>
             <div class="cart-title-dt"><p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p>
@@ -33,9 +33,9 @@
 
               <div class="qty-slctor-arws"> 
                 <p class="qty-txt-mob">Qty</p>
-                <a class="minusqty">{% include 'down-arrow' %}</a>
+                <a class="minusqty updateqty" data-loop="" qty-index="{{ forloop.index }}">{% include 'down-arrow' %}</a>
                 <input name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" onfocus="this.select();" value="{{ item.quantity }}" size="2"/>
-                <a class="addqty">{% include 'upper-arrow' %}</a>
+                <a class="addqty updateqty" qty-index="{{ forloop.index }}">{% include 'upper-arrow' %}</a>
               </div>
               <p class="price-cart-mob">{{ item.line_price | money }}</p>
 
@@ -63,7 +63,7 @@
         <div colspan="5" class="subtotal">
           <h4 class="flex-bet">
             <span class="cart-subtotal__title">Subtotal:</span>
-            <span class="cart-subtotal__title">{{ cart.total_price | money }}</span>
+            <span class="cart-subtotal__title cart_subtotal">{{ cart.total_price | money }}</span>
           </h4>
         </div>
         <div class="vat-shiping">
@@ -128,3 +128,6 @@
   </div>
 </section>
 {%endif%}
+<style>
+  .mb-search-logo-flex .mb-cart-flex{pointer-events: none;}
+</style>

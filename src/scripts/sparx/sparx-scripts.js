@@ -86,28 +86,23 @@ const SparxScripts = (() => {
                /* End Mobile Nav */  
                 
               
-              $(function(e)
-              {
-                  $(".addqty").click(function()
-                  {
-                      var currentVal = parseInt($(this).prev(".qtycart").val());
-                      if (currentVal != NaN)
-                      {
-                          $(this).prev(".qtycart").val(currentVal + 1);
-                      }
-                  });
-              
-                  $(".minusqty").click(function()
-                  {
-                      var currentVal = parseInt($(this).next(".qtycart").val());
-                      if (currentVal != NaN)
-                      {
-                          if(currentVal > 0){
-                                  $(this).next(".qtycart").val(currentVal - 1);
-                              }
-              
-                      }
-                  });
+               $(function (e) {
+                $(".addqty").click(function () {
+                  var currentVal = parseInt($(this).prev(".qtycart").val());
+    
+                  if (currentVal != NaN) {
+                    $(this).prev(".qtycart").val(currentVal + 1);
+                  }
+                });
+                $(".minusqty").click(function () {
+                  var currentVal = parseInt($(this).next(".qtycart").val());
+    
+                  if (currentVal != NaN) {
+                    if (currentVal > 1) {
+                      $(this).next(".qtycart").val(currentVal - 1);
+                    }
+                  }
+                });
               });
                 
                 
@@ -117,7 +112,24 @@ const SparxScripts = (() => {
                 
                 });
                 
-              });/* End Doc ready */  
+                $('.mb-cart-flex').click(function () {
+                  if($('.mini-cart-content').hasClass("hide")) $('.mini-cart-content').removeClass('hide');
+                  else  $('.mini-cart-content').addClass('hide');
+                });
+                $(document).on("click",function() {
+                  jQuery(".mini-cart-content").addClass("hide");
+                });
+                $(document).on("click",".mb-cart-flex",function(event) {
+                  event.stopPropagation();
+                  event.stopImmediatePropagation();
+                  event.preventDefault();
+                });
+                $(".mb-dt-nav-cont li").hover(function() {
+                  jQuery(".mini-cart-content").addClass("hide");
+                });
+                
+
+            });/* End Doc ready */  
               
               
             
@@ -298,9 +310,7 @@ const SparxScripts = (() => {
                   if(inputError){
                     $('.error-msg').show();
                   }
-                });
-              
-              
+                });                            
                 // cart page cart note count
                 $("#CartSpecialInstructions").on('keyup', function() {
                   $("#countcharacter").text((250 - $(this).val().length) + " Characters");
@@ -308,6 +318,49 @@ const SparxScripts = (() => {
               
               
               });
+              window.Currency = window.Currency || {};
+
+              jQuery(document).on("click",".updateqty",function(event){
+                    var value = $(this).siblings('.cart-quantity').val();
+                    var itemIndex = $(this).attr('qty-index');
+                  _updateItemQuantity(itemIndex,value);
+              });
+              function _updateItemQuantity(itemIndex,value) {                            
+                  $.getJSON('/cart.js').then(function(cart) {
+                      $.ajax({
+                            type: 'POST',
+                            url: '/cart/change.js',
+                                  data: { quantity: value, line: itemIndex },
+                              dataType: 'json', 
+                                  success: function (item) {
+                                    console.log(JSON.stringify(item));
+                              $('.mcart-count').html(item.item_count);
+                                                var up_total_price = Currency.formatMoney( item.total_price);
+                                            var item_price = Currency.formatMoney( item.items[itemIndex-1].line_price);
+                                            $('.cart_subtotal').html(up_total_price);
+                                            $("[item-loop=item-"+itemIndex+"]").find('.cart-item-price p').html(item_price);
+                                            $("[item-loop=item-"+itemIndex+"]").find('.price-cart-mob').html(item_price);
+                                  } 
+                        }); 
+                });                 
+              }  
+
+              $(document).ready(function () {
+              // accordion js start
+              $(".accordion_header").click(function () {
+                    if($(this).parents(".accordion_items").hasClass("active-item")) {
+                      $(".accordion_items").removeClass("active-item");
+                      $(".accordion_body").slideUp("slow");
+                    } else {
+                      $(".accordion_items").removeClass("active-item");
+                      $(".accordion_body").slideUp("slow");
+                      $(this).parents(".accordion_items").addClass("active-item");
+                      $(this).next(".accordion_body").slideDown("slow");
+                    }
+                  });
+              });
+
+
               
               // jQuery(document).on("click",".register-footer .btn",function(event) {
               //   event.stopPropagation();
