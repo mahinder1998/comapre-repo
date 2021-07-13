@@ -283,35 +283,57 @@
             }
         }
 
-        &__wishlist {
+        &__error {
             margin: 10px 0;
             // background-color: blue;
-            display: flex;
+            display: none;
             justify-content: flex-end;
-            cursor: pointer;
 
             @media(max-width: 768px) {
                 justify-content: center;
             }
 
-            &__add-button {
+            &__text {
                 text-transform: uppercase;
                 display: inline-flex;
+                color: rgba(196, 10, 10, 1);
                 font-size: 14px;
-                border-bottom: .10px solid black;
+                // border-bottom: .10px solid rgba(196, 10, 10, 1);
+
                 // background-color: green;
                 justify-content: center;
             }
+
         }
 
-        &__description {
-            margin-top: 30px;
+        &__accordions {
+            margin-top: 40px;
+
+            &__item {
+                max-width: 100%;
+                padding-top: 20px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #cccccc;
+                cursor: pointer;
+    
+                &__heading {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+    
+                    &__title {
+                        font-size: 18px;
+                        text-transform: uppercase;
+                    }
+                }
+            }
         }
+
 
         &__accordion {
 
             &__header {
-                padding-left: 10px;
+                padding-left: 0px !important;
                 // background-color: #eee;
                 display: flex;
                 justify-content: space-between;
