@@ -12,9 +12,9 @@
     &__modal {
         position: fixed;
         z-index: 101;
-        padding: 1rem 2rem;
+        padding: 10px 20px;
         background-color: white;
-        width: 60rem;
+        width: 600px;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -22,12 +22,12 @@
         flex-direction: column;
 
         &__title {
-            padding-top: 4rem;
-            padding-bottom: 3rem;
+            padding-top: 40px;
+            padding-bottom: 30px;
             text-align: center;
             text-transform: uppercase;
             color: black;
-            font-size: 1.8rem;
+            font-size: 18px;
             line-height: 26px;
             font-weight: bold;
         }
@@ -35,25 +35,25 @@
         &__control {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-column-gap: 2rem;
+            grid-column-gap: 20px;
         }
         &__checkout {
-            font-size: 1.4rem;
+            font-size: 14px;
             text-transform: uppercase;
             color: white;
             background-color: black;
-            height: 4rem;
+            height: 40px;
             display: grid;
             place-items: center;
             cursor: pointer;
         }
         
         &__continue {
-            font-size: 1.4rem;
+            font-size: 14px;
             text-transform: uppercase;
             color: black;
             background-color: white;
-            height: 4rem;
+            height: 40px;
             display: grid;
             place-items: center;
             border: 1px solid black;
@@ -64,11 +64,11 @@
         &__body {
             display: flex;
             flex: 1;
-            margin-bottom: 2rem;
+            margin-bottom: 20px;
             
             &__media {
                 height: 100%;
-                background-color: red;
+                // background-color: red; 
                 flex: 1;
                 
                 
@@ -81,25 +81,25 @@
             }
             
             &__content {
-                margin-left: 2rem;
+                margin-left: 20px;
                 flex: 2;
                 height: 100%;
                 // background-color: yellow;
 
                 &__title {
                     // background-color: red;
-                    font-size: 1.7rem;
+                    font-size: 17px;
                     text-transform: uppercase;
-                    margin-bottom: 2.5rem;
+                    margin-bottom: 25px;
                 }
 
                 &__qty {
                     display: flex;
-                    margin-bottom: 1rem;
+                    margin-bottom: 10px;
                     &__label {
                     }
                     &__value {
-                        margin-left: 1rem;
+                        margin-left: 10px;
                     }
                 }
 
@@ -108,15 +108,15 @@
                     &__label {
                     }
                     &__value {
-                        margin-left: 1rem;
+                        margin-left: 10px;
                     }
 
                 }
 
                 &__price {
-                    font-size: 1.7rem;
+                    font-size: 17px;
                     font-weight: bold;
-                    margin-top: 1.5rem;
+                    margin-top: 15px;
                 }
             }
         }

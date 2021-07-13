@@ -38,5 +38,8 @@
     "watch": "./node_modules/.bin/gulp watch",
     "test": "cypress open",
     "zip": "node -e \"require('./workflow/zip/zip.js').zip()\""
+  },
+  "dependencies": {
+    "@shopify/theme-cart": "^4.1.1"
   }
 }
