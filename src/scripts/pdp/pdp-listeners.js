@@ -1,20 +1,172 @@
 const PDPListeners = (function (){
+    // Selectors
+    const selectors = {
+        headerCartBubble: ".mcart-count",
+        addToCartButtonLoading: ".pdp__content__control__add-to-cart-btn__loading",
+        addToCartButtonLabel: ".pdp__content__control__add-to-cart-btn__label",
+
+        qtyElem: ".pdp__content__control__qty__value",
+
+        accordionItem: ".pdp__content__accordions__item",
+        accordionBody: ".pdp__content__accordions__item__body",
+        accordionHeading: ".pdp__content__accordions__item__heading",
+        accordionArrow: ".pdp__content__list__heading__arrow",
+    }
+
+    // Update the variant
+    function resetCount() {
+        if(document.querySelector(selectors.qtyElem)) {
+            document.querySelector(selectors.qtyElem).innerHTML = 1;
+        }
+    }
+
+    //Update the header cart count.
+    function updateBubble(quantity) {
+        let currentCount = null;
+        if(document.querySelector(selectors.headerCartBubble)) {
+            currentCount = parseInt(document.querySelector(selectors.headerCartBubble).innerHTML)
+            console.log("current count " + currentCount)
+            if(quantity) {
+                const newCount = currentCount + quantity;
+                document.querySelector(selectors.headerCartBubble).innerHTML = newCount;
+            }else {
+                document.querySelector(selectors.headerCartBubble).innerHTML = currentCount;
+            }
+
+        }
+    }
+
+    // Show error message
+    function showError(message) {
+        const errorBox = document.querySelector('.pdp__content__error');
+        const errorText = document.querySelector('.pdp__content__error__text')
+
+        errorText.innerHTML = message || "There was an errro adding product to the cart."
+        errorBox.style.display = "flex";
+    }
+
+
+    // Hide error message 
+    function hideError() {
+        const errorBox = document.querySelector('.pdp__content__error');
+        errorBox.style.display = "none";
+    }
+
+    // Show Add to cart button laoder 
+    function showLoaderAddToCartButton() {
+        if(document.querySelector(selectors.addToCartButtonLabel)) {
+            document.querySelector(selectors.addToCartButtonLabel).style.display = "none";
+        }
+        if(document.querySelector(selectors.addToCartButtonLoading)) {
+            document.querySelector(selectors.addToCartButtonLoading).style.display = "block";
+        }
+    }
+
+    // Hide loader in add to cart button.
+    function hideLoaderAddToCartButton() {
+        if(document.querySelector(selectors.addToCartButtonLabel)) {
+            document.querySelector(selectors.addToCartButtonLabel).style.display = "block";
+        }
+
+        if(document.querySelector(selectors.addToCartButtonLoading)) {
+            document.querySelector(selectors.addToCartButtonLoading).style.display = "none";
+        }
+    }
+
+    // Open Added to cart modal.
+    function openAddedtoCartModal(title,image,quantity, price, size) {
+        if(title && document.querySelector('.pdpmodal-addedtocart__modal__body__content__title')) {
+            document.querySelector('.pdpmodal-addedtocart__modal__body__content__title').innerHTML = title;
+        }
+
+        if(image && document.querySelector('.pdpmodal-addedtocart__modal__body__media__img')) {
+            document.querySelector('.pdpmodal-addedtocart__modal__body__media__img').src = image;
+        }
+
+        if(quantity && document.querySelector('.pdpmodal-addedtocart__modal__body__content__qty__value')) {
+            document.querySelector('.pdpmodal-addedtocart__modal__body__content__qty__value').innerHTML = quantity;
+        }
+
+        if(price && document.querySelector('.pdpmodal-addedtocart__modal__body__content__price')) {
+            document.querySelector('.pdpmodal-addedtocart__modal__body__content__price').innerHTML = price;
+        }
+
+        if(size && document.querySelector('.pdpmodal-addedtocart__modal__body__content__size__value')) {
+            document.querySelector('.pdpmodal-addedtocart__modal__body__content__size__value').innerHTML = size;
+            document.querySelector('.pdpmodal-addedtocart__modal__body__content__siz').style.display = "block";
+        };
+        
+        document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "block"
+        document.querySelector('.pdpmodal-addedtocart__modal').style.display = "block"
+    }
+
+
+    
     function addToCart() {
-        document.querySelector('.pdp__content__control__add-to-cart-btn').addEventListener('click', function() {
-            document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "block"
-            document.querySelector('.pdpmodal-addedtocart__modal').style.display = "block"
+
+        // Add to cart button click
+        document.querySelector('.pdp__content__control__add-to-cart-btn').addEventListener('click', function(e) {
+                // Show loader
+                hideError();
+                showLoaderAddToCartButton();
+
+                //Get id and quantity
+                const variantIdString = e.target.dataset.id || e?.target?.closest('.pdp__content__control__add-to-cart-btn').dataset?.id;
+                const variantId = parseInt(variantIdString)
+                const quantityString = document.querySelector(selectors.qtyElem).innerHTML;
+                const quantity = quantityString ? parseInt(quantityString) : 1;
+
+                // Add item to the cart.
+                Cart.addItem(variantId, {quantity: quantity})
+                .then(res => {
+                    console.log(res);
+
+                    const title = res.product_title;
+                    const image = res.featured_image.url || res.image;
+                    const price = Currency.formatMoney(parseFloat(res.price) * parseFloat(quantity));
+                    const size = null;
+
+                    if(!res.product_has_only_default_variant) {
+                        size = res.variant_options[0];
+                    }
+
+                    // Reset counter 
+                    resetCount();
+                    
+                    // Update the bubble
+                    updateBubble(quantity);
+
+                    // Show added modal
+                    openAddedtoCartModal(title,image,quantity, price, size);
+                            
+                    // Hide loader 
+                    hideLoaderAddToCartButton();
+   
+                }).catch(err => {
+                    //Error
+                    console.log("Error adding the product.")
+                    console.log(err);
+
+                    // Hide loader 
+                    hideLoaderAddToCartButton();
+                    showError();
+                }); 
         })
 
+
+        // Added to cart overlay click - close
         document.querySelector('.pdpmodal-addedtocart__overlay').addEventListener('click', function() {
             document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "none"
             document.querySelector('.pdpmodal-addedtocart__modal').style.display = "none"
         })
 
+        // Disable click on modal from closing
         document.querySelector('.pdpmodal-addedtocart__modal').addEventListener('click', function() {})
     }
 
 
     function pdpAddedToCartModalListeners() {
+
         document.querySelector('.pdpmodal-addedtocart__modal__checkout').addEventListener('click', function() {
             location.assign('/cart')
         })
@@ -43,38 +195,12 @@ const PDPListeners = (function (){
         })
     }
 
-    function accordionListeners() {
-        const buttons = document.querySelectorAll('.pdp__content__accordion__header');
-        buttons.forEach(button => {
-            button.addEventListener('click', function() {
-                // remove is-open from all the bodies
-                document.querySelectorAll('.pdp__content__accordion__body').forEach(body => {
-                    body.classList.remove('is-open');
-                })
-                document.querySelectorAll('.pdp__content__accordion__icon').forEach(icon => {
-                    icon.classList.remove('is-open');
-                })
-
-
-                // add is-open to selected body
-                const body = this.nextElementSibling;
-                body && body.classList.add('is-open');
-
-                const cloestArrowIcon = this.querySelector('.pdp__content__accordion__icon');
-                cloestArrowIcon && cloestArrowIcon.classList.add('is-open')
-                
-            });
-        });
-    }
-
-    const masterGalleryHTMLString = `
-        <div class="pdp__media__master__slide">
-            <img src="{{ image | img_url: '500x', scale: 2 }}" alt="" class="pdp__media__master__slide__img">
-        </div>
-    `;
+    // const masterGalleryHTMLString = `
+    //     <div class="pdp__media__master__slide">
+    //         <img src="{{ image | img_url: '500x', scale: 2 }}" alt="" class="pdp__media__master__slide__img">
+    //     </div>
+    // `;
     
-
-
     function swatchListeners() {
         const swatches = document.querySelectorAll('.pdp__content__swatches__item');
         swatches && swatches.forEach(swatch => {
@@ -168,13 +294,35 @@ const PDPListeners = (function (){
         })
     }
 
+    // PDP accordion
+    function accordion() {
+
+        const customAccordions = document.querySelectorAll(selectors.accordionHeading);
+        console.log(customAccordions)
+
+        customAccordions && customAccordions.forEach(accordion => {
+            accordion.addEventListener('click', function(e) {
+                console.log(e.target);
+
+                const body = e.target.closest(selectors.accordionItem).querySelector(selectors.accordionBody);
+                if(body.classList.contains('active')) {
+                    body.classList.remove('active');
+                    gsap.to(body, {height: 0})
+                }else {
+                    body.classList.add('active');
+                    gsap.to(body, {height: "auto"})
+                }
+            })
+        })
+    }
+
     return {
         init: () => {
             countListeners();
-            accordionListeners();
             swatchListeners();
             pdpAddedToCartModalListeners();
             addToCart();
+            accordion();
         }
     }
 })();

@@ -1,0 +1,124 @@
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+}
+.footer-header .footer-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    margin: 0;
+}
+.footer-top {
+    padding-top: 30px;
+}
+.footer-body {
+    margin-top: 20px;
+}
+.footer-body ul {
+    margin: 0;
+    padding: 0;
+}
+.footer-body ul > li > a {
+    font-size: 14px;
+    line-height: 25px;
+    color: #000000;
+}
+
+.footer-header .footer-title span {
+    display: none;
+}
+
+.footer-bottom {
+    background: #000000;
+    text-align: right;
+    color: #ffffff;
+    padding: 13px 0;
+    font-size: 12px;
+    margin: 45px 0 0;
+}  
+
+
+@media all and (max-width: 1299px) {
+    .site-footer .page-width {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media all and (max-width: 1023px) {
+    .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 30px 10px;
+    }
+}
+
+@media all and (max-width: 749px) {
+    .footer-grid {
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 0 10px;
+    }
+    .footer-body {
+        display: none;
+        margin: 0;
+    }
+
+    .footer-item {
+        border-bottom: 1px solid #cccccc;
+        padding: 15px 0;
+    }
+    .footer-header .footer-title {
+        font-weight: normal;
+        position: relative;
+        padding-right: 30px;
+    }
+
+  
+    .footer-header .footer-title span.arrow-right {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 2px;
+    }
+    .site-footer .page-width {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+  .footer-header .footer-title span.arrow-right svg {
+      width: 6px;
+  }
+
+  .footer-body ul.footer-list {
+      padding-left: 20px;
+      padding-top: 20px;
+  }
+
+
+  .footer-item.active-item .footer-header .footer-title {
+      font-weight: bold;
+  }
+
+  .footer-header .footer-title span.arrow-down {
+      display: block;
+      position: absolute;
+      right: -4px;
+      top: 2px;
+      display: none;
+  }
+  .footer-header .footer-title span.arrow-down svg {
+      height: 6px;
+  }
+
+  .footer-item.active-item .footer-header .footer-title span.arrow-right {
+      display: none;
+  }
+
+  .footer-item.active-item .footer-header .footer-title span.arrow-down {
+      display: block;
+  }
+  .footer-bottom{
+  	text-align:center;
+  }
+}
+
+

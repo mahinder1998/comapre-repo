@@ -1,5 +1,11 @@
 @import './base/base';
-@import './base/responsive';
+
+@import './sparx/[ash]';
+@import './sparx/[ash-responsive]';
+@import './sparx/[and]';
+@import './sparx/[sah]';
+@import './sparx/[dpk]';
+@import './sparx/[har]';
 
 @import './components/example';
 @import './components/toolbar';

@@ -316,15 +316,28 @@
                 border-bottom: 1px solid #cccccc;
                 cursor: pointer;
     
+
                 &__heading {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    padding-bottom: 10px;
     
                     &__title {
                         font-size: 18px;
                         text-transform: uppercase;
                     }
+                }
+
+                &__body {
+                    & > * p {
+                        font-size: 16px;
+                        line-height: 2;
+                    }
+                }
+
+                &__body-inner {
+                    padding: 15px 5px;
                 }
             }
         }
