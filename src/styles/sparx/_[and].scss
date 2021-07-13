@@ -469,3 +469,279 @@
   
 /*media css end*/
    
+.cart-items-loop .cart-quantity{pointer-events: none;}
+
+
+
+/* support page css start  */
+.accordion_body {
+    display: none;
+}
+.accordion_items{
+	border-bottom: 1px solid #ccc;
+}
+
+.accordion_title {
+	padding: 14px 30px 14px 0;
+    margin: 0;
+    font-size: 14px;
+    position: relative;
+	cursor: pointer;
+}
+.accordion_items:first-child .accordion_title {
+    padding-top: 0;
+}  
+
+.accordion_title .icon-plus, 
+.accordion_title .icon-minus {
+    position: absolute;
+    right: 0;
+    width: 11px;
+}
+.accordion_title .icon-minus {
+    display: none;
+} 
+
+.active-item:first-child .accordion_title .icon-minus{
+    top: -5px;
+
+}
+
+.active-item .accordion_title .icon-minus {
+    display: block;
+    top: 9px;
+}
+
+
+.active-item .accordion_title .icon-plus{
+	display:none;
+}
+.accordion_body {
+    font-size: 14px;
+    line-height: 20px;
+}
+.accordion_body p {
+    padding: 10px 0 0;
+    margin-top: 0;
+}
+.active-item .accordion_title {
+    font-weight: 700;
+}
+
+
+
+/* support page css end */
+
+
+
+@media all and (max-width: 749px) {
+
+	.support_wrap .left-sidebar {
+        display: none;
+    }
+
+    .support_wrap .sidebar-content {
+        padding: 0;
+    }
+}
+
+/* about page css start */
+.about_banner {
+    margin-bottom: -180px;
+}
+.about_banner img {
+    width: 100%;
+}
+.about_cont {
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 0;
+    width: 878px;
+}
+.about_intro {
+    padding: 30px 48px 0;
+    text-align: center;
+}
+.about_intro .intro_title {
+    margin: 0;
+    font-size: 25px;
+}
+.intro_subtitle {
+    font-size: 22px;
+    margin: 8px 0 15px;
+    font-weight: normal;
+    font-style: italic;
+}
+.about-row {
+    display: flex;
+    margin-top: 25px;
+}
+.left_colm {
+    width: 50%;
+    padding-right: 15px;
+}
+
+.right_colm {
+    width: 50%;
+    padding-left: 15px;
+}
+.ab-blockcon {
+    margin-top: 24px;
+    padding: 0 16px;
+}
+.ab-blockcon .ab-title {
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+.ab-para {
+    margin: 15px 0;
+}
+
+.ab-para p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 18px;
+}
+.left_colm.ab_quote {
+    align-self: center;
+}
+
+blockquote p {
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    line-height: 36px;
+    font-weight: normal;
+}
+.quote_box blockquote {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+.quote_box blockquote hg3 {
+    padding: 0 87px 0 60px;
+}
+
+.quote_box blockquote h3 {
+    padding: 0 79px 0 60px;
+    font-size: 30px;
+    margin: 0;
+}
+.quote_btm {
+    padding: 10px 60px;
+}
+.quote_btm p {
+    font-size: 14px;
+    margin: 0;
+    line-height: 20px;
+}
+.quote_box blockquote:before {
+    content: "\f10d";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 60px;
+    font-style: italic;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    color: rgba(0, 0, 0, 0.2);
+    left: 0;
+}
+/* about page css end */
+
+
+
+
+
+
+
+@media all and (min-width: 750px) {
+  
+/* megamenu hover shadow   */
+  .nav-is-ready #shopify-section-header {
+      position: relative;
+      background: #cccccc;
+      opacity: 1;
+  }
+  .nav-is-ready #shopify-section-header:after {
+      content: '';
+      position: absolute;
+      left: calc(-50vw + 50%);
+      z-index: 9;
+      width: calc(100% + 8px); ;
+      height: 200vh;
+      background: #cccccc;
+      opacity: 1;
+  }
+  nav>ul>li.has-subs>a:hover {
+          box-shadow: 0 0.14286rem 0.28571rem 0 rgb(0 0 0 / 50%);
+  }  
+}	
+
+
+@media all and (max-width: 991px) {
+    /* about page css start*/
+    .about_banner {
+        margin-bottom: 0;
+    }
+    .about_cont {
+        width: auto;
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    blockquote p {
+        font-size: 26px;
+    }
+    /* about page css end */
+}
+
+
+@media all and (max-width:749px){
+	/* about page css start*/
+    .about_banner {
+        margin-bottom: 0;
+    }
+    .about_cont {
+        width: auto;
+        max-width: 100%;
+        padding: 0 21px;
+    }
+    .left_colm {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .right_colm {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .about-row {
+        flex-wrap: wrap;
+    }
+    .about_intro {
+        padding: 30px 0 0;
+    }
+    .ab-blockcon {
+        margin-bottom: 25px;
+    }
+    .quote_box blockquote h3 {
+        padding: 0 60px 0 60px;
+    }
+
+    .left_colm.ab_quote {
+        margin-bottom: 25px;
+    }
+    /* about page css end */
+
+}
+

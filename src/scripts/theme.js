@@ -12,4 +12,3 @@ document.addEventListener('DOMContentLoaded', function() {
   SparxScripts.init();
   PDPListeners.init();
 });
-
