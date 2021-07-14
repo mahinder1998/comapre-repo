@@ -683,7 +683,8 @@ blockquote p {
       opacity: 1;
   }
   nav>ul>li.has-subs>a:hover {
-          box-shadow: 0 0.14286rem 0.28571rem 0 rgb(0 0 0 / 50%);
+          box-shadow: 0 0.14286rem 0.28571rem 0 rgba(0, 0, 0, 0.492);
+
   }  
 }	
 
