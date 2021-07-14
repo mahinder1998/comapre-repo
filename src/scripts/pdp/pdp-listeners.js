@@ -11,7 +11,12 @@ const PDPListeners = (function (){
         accordionBody: ".pdp__content__accordions__item__body",
         accordionHeading: ".pdp__content__accordions__item__heading",
         accordionArrow: ".pdp__content__list__heading__arrow",
+
+        miniCartContainer: ".mini-cart-list",
+        miniCartItem: ".single-mcart-item"
     }
+
+
 
     // Update the variant
     function resetCount() {
@@ -25,7 +30,7 @@ const PDPListeners = (function (){
         let currentCount = null;
         if(document.querySelector(selectors.headerCartBubble)) {
             currentCount = parseInt(document.querySelector(selectors.headerCartBubble).innerHTML)
-            console.log("current count " + currentCount)
+            // console.log("current count " + currentCount)
             if(quantity) {
                 const newCount = currentCount + quantity;
                 document.querySelector(selectors.headerCartBubble).innerHTML = newCount;
@@ -101,7 +106,26 @@ const PDPListeners = (function (){
     }
 
 
-    
+    function renderItemtoMinicart(variant) {
+        if(document.querySelector(".mini-cart-list")) {
+            const minicartItemHTML = `
+                <div class="single-mcart-item">
+                    <div class="mcart-thumb">
+                        <a href="/products/${variant?.handle}"> 
+                        <img src="${ variant?.image || variant?.featured_image?.url}" alt="${variant?.featured_image?.alt}"></a>
+                    </div>
+                    <div class="mcart-content">
+                        <p class="mcart-single-title"><a href="/products/${variant?.handle}">${variant?.product_title}</a></p>
+                        <p class="mcart-single-price"><b>${Currency.formatMoney(variant?.final_line_price)}</b></p>
+
+                    </div>
+                </div>
+            `;
+            document.querySelector(".mini-cart-list").insertAdjacentHTML('beforeend', minicartItemHTML);
+        }
+    }
+
+
     function addToCart() {
 
         // Add to cart button click
@@ -120,7 +144,7 @@ const PDPListeners = (function (){
                     // Add item to the cart.
                     Cart.addItem(variantId, {quantity: quantity})
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
     
                         const title = res.product_title;
                         const image = res.featured_image.url || res.image;
@@ -134,12 +158,22 @@ const PDPListeners = (function (){
     
                         // Reset counter 
                         resetCount();
+
                         
                         // Update the bubble
                         updateBubble(quantity);
     
                         // Show added modal
                         openAddedtoCartModal(title,image,quantity, price, size);
+
+                        // Update the mincart.
+                        Cart.getState().then(cart => {
+                            document.querySelector(".mini-cart-list").innerHTML = "";
+                            cart?.items.forEach(item => renderItemtoMinicart(item))
+                        }).catch(error => {
+                            console.log("Error on current cart fetch.")
+                            console.log(error)
+                        })
                                 
                         // Hide loader 
                         hideLoaderAddToCartButton();
@@ -160,6 +194,15 @@ const PDPListeners = (function (){
         // Added to cart overlay click - close
         if(document.querySelector('.pdpmodal-addedtocart__overlay')) {
             document.querySelector('.pdpmodal-addedtocart__overlay').addEventListener('click', function() {
+                document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "none"
+                document.querySelector('.pdpmodal-addedtocart__modal').style.display = "none"
+            })
+        }
+
+        // Close button in the modal click.
+        if(document.querySelector('.pdpmodal-addedtocart__modal__close-btn')) {
+            document.querySelector('.pdpmodal-addedtocart__modal__close-btn').addEventListener('click', () => {
+                console.log('clicked')
                 document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "none"
                 document.querySelector('.pdpmodal-addedtocart__modal').style.display = "none"
             })
@@ -213,38 +256,44 @@ const PDPListeners = (function (){
     //     </div>
     // `;
 
-    function hideSliderArrow() {
-        console.log(document.querySelector('.pdp__media__master__slider__arrow-prev'))
-        if(document.querySelector('.pdp__media__master__slider__arrow-prev')) {
-            document.querySelector('.pdp__media__master__slider__arrow-prev').display = "none";
-        }
-        if(document.querySelector('.pdp__media__master__slider__arrow-next')) {
-            document.querySelector('.pdp__media__master__slider__arrow-next').display = "none";
-        }
+    function showShimmer() {
+        document.querySelector('.pdp__media__shimmer').style.opacity = 1;
+        document.querySelector('.pdp__media__shimmer').style.visibility = "visible";    }
+    function hideShimmer() {
+        document.querySelector('.pdp__media__shimmer').style.opacity = 0;
+        document.querySelector('.pdp__media__shimmer').style.visibility = "hidden";
     }
 
-    function showSliderArrow() {
-        if(document.querySelector('.pdp__media__master__slider__arrow-prev')) {
-            document.querySelector('.pdp__media__master__slider__arrow-prev').display = "flex";
-        }
-        if(document.querySelector('.pdp__media__master__slider__arrow-next')) {
-            document.querySelector('.pdp__media__master__slider__arrow-next').display = "flex";
-        }
+    function hideSlides() {
+        document.querySelector('.pdp__media__master').style.opacity = 0;
+        document.querySelector('.pdp__media__master').style.visibility = "hidden";
+        document.querySelector('.pdp__media__thumbs').style.opacity = 0;
+        document.querySelector('.pdp__media__thumbs').style.visibility = "hidden";
+    }
+
+    function showSlides() {
+        document.querySelector('.pdp__media__master').style.opacity = 1;
+        document.querySelector('.pdp__media__master').style.visibility = "visible";
+        document.querySelector('.pdp__media__thumbs').style.opacity = 1;
+        document.querySelector('.pdp__media__thumbs').style.visibility = "visible";
     }
     
     function swatchListeners() {
         const swatches = document.querySelectorAll('.pdp__content__swatches__item');
         swatches && swatches.forEach(swatch => {
             swatch.addEventListener('click', function(e) {
+                // Hide slides and show loader
+                hideSlides();
+                showShimmer();
 
                 const selectedOption = e.target.dataset.option
-                console.log("Selected Option is : " + selectedOption);
+                // console.log("Selected Option is : " + selectedOption);
 
                 // Get Selected Variant using data-option attribute.
                 const variants = window.objectData.product && window.objectData.product.variants;
                 const selectedVariant = variants.find(v => v.option1 == selectedOption);
-                console.log("Selected Varaint is ") 
-                console.log(selectedVariant);
+                // console.log("Selected Varaint is ") 
+                // console.log(selectedVariant);
 
                 //Change the swatch active.
                 swatches.forEach(swatch => {
@@ -266,14 +315,11 @@ const PDPListeners = (function (){
                 document.querySelector('.pdp__content__control__notify-me-btn') ? document.querySelector('.pdp__content__control__notify-me-btn').dataset.id = selectedVariant.id: null;
 
 
-                // Hide arrow icons 
-                hideSliderArrow();
-
                 //Update the Sliders.
                 const medias = window.objectData.product.media;
                 const meidaFilterText = `__${selectedOption}__`;
                 const selectedImages = medias.filter(item => item.alt && item.alt.includes(meidaFilterText))
-                console.log(selectedImages)
+                // console.log(selectedImages)
 
                 let masterGalleryHTMLString = "";
                 selectedImages.forEach(img => {
@@ -298,6 +344,7 @@ const PDPListeners = (function (){
                 })
 
 
+
                 if(masterGalleryHTMLString) {
                     $('.pdp__media__master__slider').slick('unslick');
                     $('.pdp__media__thumbs__slider').slick('unslick');
@@ -309,6 +356,7 @@ const PDPListeners = (function (){
                         dots: false,
                         arrows: true,
                         fade: true,
+                        rtl: true,
                         prevArrow: $('.pdp__media__master__slider__arrow.pdp__media__master__slider__arrow-prev'),
                         nextArrow: $('.pdp__media__master__slider__arrow.pdp__media__master__slider__arrow-next')
                     });
@@ -318,13 +366,14 @@ const PDPListeners = (function (){
                         slidesToScroll: 1,
                         dots: false,
                         arrows: false,
+                        rtl: true,
                         asNavFor: '.pdp__media__master__slider',
                         focusOnSelect: true,
                     
                     });
 
-                    // Show the arrow key
-                    showSliderArrow();
+                    showSlides();
+                    hideShimmer();
 
                 };
 
@@ -348,11 +397,11 @@ const PDPListeners = (function (){
     function accordion() {
 
         const customAccordions = document.querySelectorAll(selectors.accordionHeading);
-        console.log(customAccordions)
+        // console.log(customAccordions)
 
         customAccordions && customAccordions.forEach(accordion => {
             accordion.addEventListener('click', function(e) {
-                console.log(e.target);
+                // console.log(e.target);
 
                 const body = e.target.closest(selectors.accordionItem).querySelector(selectors.accordionBody);
                 if(body.classList.contains('active')) {

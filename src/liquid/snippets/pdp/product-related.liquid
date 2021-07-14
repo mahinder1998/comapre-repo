@@ -1,39 +1,60 @@
-<div class="pdp-like">
-    <div class="pdp-like__header">You might also like</div>
-    <div class="pdp-like__slider__wrapper">
-        <div class="pdp-like__slider__arrow pdp-like__slider__arrow-prev">                  
-            <svg class="pdp__media__master__slider__arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12.771" height="24.129" viewBox="0 0 12.771 24.129">
-                <path fill="none" stroke="#000" d="M-11902.357-18787.281l11.711 11.719-11.711 11.7" transform="translate(-11889.939 -18763.506) rotate(180)"/>
-            </svg>
-        </div>
-        <div class="pdp-like__slider__arrow pdp-like__slider__arrow-next">
-            <svg class="pdp__media__master__slider__arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12.771" height="24.129" viewBox="0 0 12.771 24.129">
-                <path fill="none" stroke="#000" d="M-11902.357-18787.281l11.711 11.719-11.711 11.7" transform="translate(11902.711 18787.635)"/>
-            </svg>   
-        </div>
+{% assign related_products_text = product.metafields.custom_fields.related-products %}
+{% if related_products_text %}
 
-        <div class="pdp-like__slider">
-            {% comment %} Slider Item  {% endcomment %}
-            <div class="pdp-like__slider__item">
-                <figure class="pdp-like__slider__item__imgbox">
-                    <img src="//cdn.shopify.com/s/files/1/0571/5791/0700/products/NJH009_uk_TD-orange-bergamot-hand-wash_image_01-5000x5000_500x@2x.jpg?v=1625689184" alt="" class="pdp-like__slider__item__img">
-                </figure>
+    <div class="pdp-like product-recommendations" data-product-id="{{ product.id }}" data-limit="8">
+            <div class="pdp-like__header">You might also like</div>
     
-                <div class="pdp-like__slider__item__title">Limited Edition Orange & Bergamot Hand Wash</div>
-                <div class="pdp-like__slider__item__price">200 AED</div>
-            </div>
+            <div class="pdp-like__slider__wrapper">
+    
+                <div class="pdp-like__slider__arrow pdp-like__slider__arrow-prev">                  
+                    <svg class="pdp__media__master__slider__arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12.771" height="24.129" viewBox="0 0 12.771 24.129">
+                        <path fill="none" stroke="#000" d="M-11902.357-18787.281l11.711 11.719-11.711 11.7" transform="translate(-11889.939 -18763.506) rotate(180)"/>
+                    </svg>
+                </div>
+        
+                <div class="pdp-like__slider__arrow pdp-like__slider__arrow-next">
+                    <svg class="pdp__media__master__slider__arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12.771" height="24.129" viewBox="0 0 12.771 24.129">
+                        <path fill="none" stroke="#000" d="M-11902.357-18787.281l11.711 11.719-11.711 11.7" transform="translate(11902.711 18787.635)"/>
+                    </svg>   
+                </div>
+        
+                {% assign related_products = related_products_text | split: ',' %}
+                {% if related_products %}
 
-            {% comment %} Slider Item  {% endcomment %}
-            <div class="pdp-like__slider__item">
-                <figure class="pdp-like__slider__item__imgbox">
-                    <img src="//cdn.shopify.com/s/files/1/0571/5791/0700/products/NJH009_uk_TD-orange-bergamot-hand-wash_image_01-5000x5000_500x@2x.jpg?v=1625689184" alt="" class="pdp-like__slider__item__img">
-                </figure>
-    
-                <div class="pdp-like__slider__item__title">Limited Edition Orange & Bergamot Hand Wash</div>
-                <div class="pdp-like__slider__item__price">200 AED</div>
+                    <div class="pdp-like__slider">
+                        {% for prod in related_products %}
+                            {% if all_products[prod] %}
+                                <a href="{{ all_products[prod].url }}" class="pdp-like__slider__item">
+                                    <figure class="pdp-like__slider__item__imgbox">
+                                        <img 
+                                            {% if all_products[prod] %}
+                                                src="{{ all_products[prod].featured_image | img_url: '300x300' }}"
+                                            {% else %}
+                                                src="www.google.com"
+                                            {% endif %}
+                                            alt="{{ all_products[prod].featured_image.alt }}" class="pdp-like__slider__item__img"
+                                        />
+                                    </figure>
+                        
+                                    <div class="pdp-like__slider__item__title">{{ all_products[prod].title }}</div>
+                                    <div class="pdp-like__slider__item__price">{{ all_products[prod].price | money}}</div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
-            
-        </div>
     </div>
 
-</div>
+
+{% endif %}
+
+    
+
+
+
+
+
+
+
+
