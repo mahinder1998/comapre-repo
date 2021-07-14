@@ -29,9 +29,9 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <!-- MB Styles  -->
       {{- 'theme.css' | asset_url | stylesheet_tag -}}
-      {{- 'deepak.css' | asset_url | stylesheet_tag -}}
+      {% comment %} {{- 'deepak.css' | asset_url | stylesheet_tag -}}
       {{- 'harshita.css' | asset_url | stylesheet_tag -}}
-      {{- 'andrew.css' | asset_url | stylesheet_tag -}}
+      {{- 'andrew.css' | asset_url | stylesheet_tag -}} {% endcomment %}
   
       {% comment %} Liquid to Javascript  {% endcomment %}
       {% render 'object-data' %}
@@ -60,7 +60,8 @@
   
       <!-- Molton Brown Script  -->
       <script src="{{ 'theme.js' | asset_url }}"></script>
+      {% comment %} 
       <script src="{{ 'deepak.js' | asset_url }}"></script>
-      <script src="{{ 'andrew.js' | asset_url }}"></script>
+      <script src="{{ 'andrew.js' | asset_url }}"></script> {% endcomment %}
     </body>
   </html>
