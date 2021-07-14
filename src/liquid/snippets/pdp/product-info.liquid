@@ -73,53 +73,7 @@
         <div class="pdp__content__error__text">There was an errro adding product to the cart.</div>
     </div>
 
-    <div class="pdp__content__accordions">
-        {% for value in product.metafields['custom_fields'] %}
-            <div class="pdp__content__accordions__item">
-                <div class="pdp__content__accordions__item__heading">
-                    {% assign title = value | split: '<br/>' %}
-                    <div class="pdp__content__accordions__item__heading__title">
-                        {% if forloop.index == 1 %}
-                            Description
-                        {% elsif forloop.index == 2 %}
-                            Benefits
-                        {% elsif forloop.index == 3 %}
-                            Editor notes
-                        {% endif %}
-                    </div>
-                    <svg width="15" height="10" viewBox="0 0 42 25">
-                        <path 
-                            d="M3 3L21 21L39 3"
-                            stroke="white"
-                            stroke-width="7"
-                            stroke-linecap="round"
-                        />
-                    </svg>
-                </div>
-                <div
-                    {% if forloop.index == 1 %}
-                        style="overflow:hidden"
-                        class="pdp__content__accordions__item__body active"
-                    {% else %}
-                        style="height: 0; overflow:hidden"
-                        class="pdp__content__accordions__item__body"
-                    {% endif %}
-                >
-                    <div class="pdp__content__accordions__item__body-inner">
-                        {% if forloop.index == 1 %}
-                            {{ product.metafields.custom_fields['benefits'] }}
-                        {% elsif forloop.index == 2 %}
-                            {{ product.metafields.custom_fields['details'] }}
-                        {% elsif forloop.index == 3 %}
-                            {{ product.metafields.custom_fields["editors_note"] }}
-                        {% endif %}
-                        
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-        
-    </div>
+    {% render 'product-info-accordion'%}
 
 
 
