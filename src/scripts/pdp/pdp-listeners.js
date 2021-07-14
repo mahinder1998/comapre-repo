@@ -212,6 +212,25 @@ const PDPListeners = (function (){
     //         <img src="{{ image | img_url: '500x', scale: 2 }}" alt="" class="pdp__media__master__slide__img">
     //     </div>
     // `;
+
+    function hideSliderArrow() {
+        console.log(document.querySelector('.pdp__media__master__slider__arrow-prev'))
+        if(document.querySelector('.pdp__media__master__slider__arrow-prev')) {
+            document.querySelector('.pdp__media__master__slider__arrow-prev').display = "none";
+        }
+        if(document.querySelector('.pdp__media__master__slider__arrow-next')) {
+            document.querySelector('.pdp__media__master__slider__arrow-next').display = "none";
+        }
+    }
+
+    function showSliderArrow() {
+        if(document.querySelector('.pdp__media__master__slider__arrow-prev')) {
+            document.querySelector('.pdp__media__master__slider__arrow-prev').display = "flex";
+        }
+        if(document.querySelector('.pdp__media__master__slider__arrow-next')) {
+            document.querySelector('.pdp__media__master__slider__arrow-next').display = "flex";
+        }
+    }
     
     function swatchListeners() {
         const swatches = document.querySelectorAll('.pdp__content__swatches__item');
@@ -246,6 +265,10 @@ const PDPListeners = (function (){
                 document.querySelector('.pdp__content__control__add-to-cart-btn') ? document.querySelector('.pdp__content__control__add-to-cart-btn').dataset.id = selectedVariant.id : null;
                 document.querySelector('.pdp__content__control__notify-me-btn') ? document.querySelector('.pdp__content__control__notify-me-btn').dataset.id = selectedVariant.id: null;
 
+
+                // Hide arrow icons 
+                hideSliderArrow();
+
                 //Update the Sliders.
                 const medias = window.objectData.product.media;
                 const meidaFilterText = `__${selectedOption}__`;
@@ -263,12 +286,24 @@ const PDPListeners = (function (){
                     masterGalleryHTMLString = masterGalleryHTMLString + htmlString;
                 })
 
+                let thumbsGalleryHTMLString = "";
+                selectedImages.forEach(img => {
+                    const htmlString = `
+                        <div class="pdp__media__thumbs__slide">
+                            <img src="${img?.src}" alt="" class="pdp__media__master__slide__img">
+                        </div>
+                    `;
+
+                    thumbsGalleryHTMLString = thumbsGalleryHTMLString + htmlString;
+                })
+
+
                 if(masterGalleryHTMLString) {
                     $('.pdp__media__master__slider').slick('unslick');
                     $('.pdp__media__thumbs__slider').slick('unslick');
 
                     document.querySelector('.pdp__media__master__slider').innerHTML = masterGalleryHTMLString;
-                    document.querySelector('.pdp__media__thumbs__slider').innerHTML = masterGalleryHTMLString;
+                    document.querySelector('.pdp__media__thumbs__slider').innerHTML = thumbsGalleryHTMLString;
 
                     $('.pdp__media__master__slider').slick({
                         dots: false,
@@ -287,6 +322,9 @@ const PDPListeners = (function (){
                         focusOnSelect: true,
                     
                     });
+
+                    // Show the arrow key
+                    showSliderArrow();
 
                 };
 

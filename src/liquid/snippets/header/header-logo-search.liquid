@@ -1,5 +1,5 @@
 
-<script type="text/javascript">
+{% comment %} <script type="text/javascript">
    
 {% layout none %}
 {% capture results %}
@@ -18,7 +18,7 @@
   "results": [{{ results }}]
 }
    
-</script>
+</script> {% endcomment %}
 
 <!-- Logo and Search -->
 <section class="mb-top-logo">
@@ -117,9 +117,10 @@
             {% endfor %}
 
             <div class="mcart-go-cart">
-               <a href="./cart">View cart</a>
+               <a href="/cart">View cart</a>
             </div>
 
+            
             </section>
          </div>
 

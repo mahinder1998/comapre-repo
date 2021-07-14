@@ -1,8 +1,9 @@
 const SparxScripts = (() => {
     return {
+
         init: function() {
+
             $(document).ready(function() {
-  
                 $('li.has-subs').hover(
                    function () {
                      $('html').addClass('nav-is-ready');
@@ -107,32 +108,31 @@ const SparxScripts = (() => {
                 
                 
                 $('.mb-cart-flex').click(function(){
+                    $('.mini-cart-content').toggleClass('hide'); 
+                });
+                  
+                // $('.mb-cart-flex').click(function () {
+                //     if($('.mini-cart-content').hasClass("hide")) {
+                //       $('.mini-cart-content').removeClass('hide');
+                //     } else {
+                //       $('.mini-cart-content').addClass('hide');
+                //     } 
+                // });
+                    
+                // $(document).on("click",".mb-cart-flex",function(event) {
+                //   event.stopPropagation();
+                //   event.stopImmediatePropagation();
+                //   event.preventDefault();
+                // });
+
+                // $(".mb-dt-nav-cont li").hover(function() {
+                //   jQuery(".mini-cart-content").addClass("hide");
+                // });
                 
-                    $('.mini-cart-content').toggleClass('hide');
-                
-                });
-                
-                $('.mb-cart-flex').click(function () {
-                  if($('.mini-cart-content').hasClass("hide")) $('.mini-cart-content').removeClass('hide');
-                  else  $('.mini-cart-content').addClass('hide');
-                });
-                $(document).on("click",function() {
-                  jQuery(".mini-cart-content").addClass("hide");
-                });
-                $(document).on("click",".mb-cart-flex",function(event) {
-                  event.stopPropagation();
-                  event.stopImmediatePropagation();
-                  event.preventDefault();
-                });
-                $(".mb-dt-nav-cont li").hover(function() {
-                  jQuery(".mini-cart-content").addClass("hide");
-                });
                 
 
             });/* End Doc ready */  
               
-              
-            
             
             // Sahid 
             $(document).ready(function(){
@@ -373,8 +373,7 @@ const SparxScripts = (() => {
                 event.stopPropagation();
                 jQuery(".register-overlay").hide().removeClass("open");
                 jQuery(".model-content.reg-modal").hide();
-              });
-              
+              });              
               
         }
      }
