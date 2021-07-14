@@ -103,25 +103,23 @@
 
             <section class="mini-cart-list">
 
-            {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
-            <div class="single-mcart-item">
-               <div class="mcart-thumb">
-                  <a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> 
-                  {{ item.product.images.first | product_img_url: '200x200' | img_tag: item_title }}</a>
+               {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
+               <div class="single-mcart-item">
+                  <div class="mcart-thumb">
+                     <a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> 
+                     {{ item.product.images.first | product_img_url: '200x200' | img_tag: item_title }}</a>
+                  </div>
+                  <div class="mcart-content">
+                     <p class="mcart-single-title"><a href="{{ item.product.url }}">{{ item.title }}</a></p>
+                     <p class="mcart-single-price"><b>{{ item.price | money }}</b></p>
+                  </div>
                </div>
-               <div class="mcart-content">
-                  <p class="mcart-single-title"><a href="{{ item.product.url }}">{{ item.title }}</a></p>
-                  <p class="mcart-single-price"><b>{{ item.price | money }}</b></p>
-               </div>
-            </div>
-            {% endfor %}
+               {% endfor %}
+            </section>
 
             <div class="mcart-go-cart">
                <a href="/cart">View cart</a>
             </div>
-
-            
-            </section>
          </div>
 
       </div>

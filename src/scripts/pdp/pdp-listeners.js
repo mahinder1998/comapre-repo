@@ -11,7 +11,12 @@ const PDPListeners = (function (){
         accordionBody: ".pdp__content__accordions__item__body",
         accordionHeading: ".pdp__content__accordions__item__heading",
         accordionArrow: ".pdp__content__list__heading__arrow",
+
+        miniCartContainer: ".mini-cart-list",
+        miniCartItem: ".single-mcart-item"
     }
+
+
 
     // Update the variant
     function resetCount() {
@@ -25,7 +30,7 @@ const PDPListeners = (function (){
         let currentCount = null;
         if(document.querySelector(selectors.headerCartBubble)) {
             currentCount = parseInt(document.querySelector(selectors.headerCartBubble).innerHTML)
-            console.log("current count " + currentCount)
+            // console.log("current count " + currentCount)
             if(quantity) {
                 const newCount = currentCount + quantity;
                 document.querySelector(selectors.headerCartBubble).innerHTML = newCount;
@@ -101,7 +106,26 @@ const PDPListeners = (function (){
     }
 
 
-    
+    function renderItemtoMinicart(variant) {
+        if(document.querySelector(".mini-cart-list")) {
+            const minicartItemHTML = `
+                <div class="single-mcart-item">
+                    <div class="mcart-thumb">
+                        <a href="/products/${variant?.handle}"> 
+                        <img src="${ variant?.image || variant?.featured_image?.url}" alt="${variant?.featured_image?.alt}"></a>
+                    </div>
+                    <div class="mcart-content">
+                        <p class="mcart-single-title"><a href="/products/${variant?.handle}">${variant?.product_title}</a></p>
+                        <p class="mcart-single-price"><b>${Currency.formatMoney(variant?.final_line_price)}</b></p>
+
+                    </div>
+                </div>
+            `;
+            document.querySelector(".mini-cart-list").insertAdjacentHTML('beforeend', minicartItemHTML);
+        }
+    }
+
+
     function addToCart() {
 
         // Add to cart button click
@@ -120,7 +144,7 @@ const PDPListeners = (function (){
                     // Add item to the cart.
                     Cart.addItem(variantId, {quantity: quantity})
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
     
                         const title = res.product_title;
                         const image = res.featured_image.url || res.image;
@@ -134,12 +158,22 @@ const PDPListeners = (function (){
     
                         // Reset counter 
                         resetCount();
+
                         
                         // Update the bubble
                         updateBubble(quantity);
     
                         // Show added modal
                         openAddedtoCartModal(title,image,quantity, price, size);
+
+                        // Update the mincart.
+                        Cart.getState().then(cart => {
+                            document.querySelector(".mini-cart-list").innerHTML = "";
+                            cart?.items.forEach(item => renderItemtoMinicart(item))
+                        }).catch(error => {
+                            console.log("Error on current cart fetch.")
+                            console.log(error)
+                        })
                                 
                         // Hide loader 
                         hideLoaderAddToCartButton();
@@ -214,7 +248,7 @@ const PDPListeners = (function (){
     // `;
 
     function hideSliderArrow() {
-        console.log(document.querySelector('.pdp__media__master__slider__arrow-prev'))
+        // console.log(document.querySelector('.pdp__media__master__slider__arrow-prev'))
         if(document.querySelector('.pdp__media__master__slider__arrow-prev')) {
             document.querySelector('.pdp__media__master__slider__arrow-prev').display = "none";
         }
@@ -238,13 +272,13 @@ const PDPListeners = (function (){
             swatch.addEventListener('click', function(e) {
 
                 const selectedOption = e.target.dataset.option
-                console.log("Selected Option is : " + selectedOption);
+                // console.log("Selected Option is : " + selectedOption);
 
                 // Get Selected Variant using data-option attribute.
                 const variants = window.objectData.product && window.objectData.product.variants;
                 const selectedVariant = variants.find(v => v.option1 == selectedOption);
-                console.log("Selected Varaint is ") 
-                console.log(selectedVariant);
+                // console.log("Selected Varaint is ") 
+                // console.log(selectedVariant);
 
                 //Change the swatch active.
                 swatches.forEach(swatch => {
@@ -273,7 +307,7 @@ const PDPListeners = (function (){
                 const medias = window.objectData.product.media;
                 const meidaFilterText = `__${selectedOption}__`;
                 const selectedImages = medias.filter(item => item.alt && item.alt.includes(meidaFilterText))
-                console.log(selectedImages)
+                // console.log(selectedImages)
 
                 let masterGalleryHTMLString = "";
                 selectedImages.forEach(img => {
@@ -348,11 +382,11 @@ const PDPListeners = (function (){
     function accordion() {
 
         const customAccordions = document.querySelectorAll(selectors.accordionHeading);
-        console.log(customAccordions)
+        // console.log(customAccordions)
 
         customAccordions && customAccordions.forEach(accordion => {
             accordion.addEventListener('click', function(e) {
-                console.log(e.target);
+                // console.log(e.target);
 
                 const body = e.target.closest(selectors.accordionItem).querySelector(selectors.accordionBody);
                 if(body.classList.contains('active')) {
