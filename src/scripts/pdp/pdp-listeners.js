@@ -199,6 +199,15 @@ const PDPListeners = (function (){
             })
         }
 
+        // Close button in the modal click.
+        if(document.querySelector('.pdpmodal-addedtocart__modal__close-btn')) {
+            document.querySelector('.pdpmodal-addedtocart__modal__close-btn').addEventListener('click', () => {
+                console.log('clicked')
+                document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "none"
+                document.querySelector('.pdpmodal-addedtocart__modal').style.display = "none"
+            })
+        }
+
         // Disable click on modal from closing
         if(document.querySelector('.pdpmodal-addedtocart__modal')) {
             document.querySelector('.pdpmodal-addedtocart__modal').addEventListener('click', function() {})
