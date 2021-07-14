@@ -40,6 +40,7 @@
     "zip": "node -e \"require('./workflow/zip/zip.js').zip()\""
   },
   "dependencies": {
-    "@shopify/theme-cart": "^4.1.1"
+    "@shopify/theme-cart": "^4.1.1",
+    "vanilla-lazyload": "^17.4.0"
   }
 }

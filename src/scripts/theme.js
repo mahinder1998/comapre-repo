@@ -1,4 +1,5 @@
 import * as cart from '@shopify/theme-cart';
+import lazyload from './lazyload';
 
 import Currency from './money-format';
 import MediaGallery from './pdp/master-gallery-slider';
@@ -10,6 +11,7 @@ import SparxScripts from './sparx/sparx-scripts'
 window.Cart = cart;
 
 document.addEventListener('DOMContentLoaded', function() {
+  lazyload();
   MediaGallery.init();
   RelatedProductSlider.init();
   SparxScripts.init();
