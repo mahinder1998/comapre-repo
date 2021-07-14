@@ -110,7 +110,7 @@ $(document).ready(function() {
     
     
     $('.mb-cart-flex').click(function(){
-    
+        alert('working')
         $('.mini-cart-content').toggleClass('hide');
     
     });
