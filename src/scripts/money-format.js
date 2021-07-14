@@ -16,7 +16,7 @@ const Currency = (function () {
         // } else {
         //     formatString = format || '{{amount}} ر.س';
         // }
-        formatString = format || 'Dhs. {{amount}}';
+        formatString = format || '{{amount}} AED';
 
         function formatWithDelimiters(number, precision, thousands, decimal) {
             thousands = thousands || ',';

@@ -93,7 +93,7 @@ const PDPListeners = (function (){
 
         if(size && document.querySelector('.pdpmodal-addedtocart__modal__body__content__size__value')) {
             document.querySelector('.pdpmodal-addedtocart__modal__body__content__size__value').innerHTML = size;
-            document.querySelector('.pdpmodal-addedtocart__modal__body__content__siz').style.display = "block";
+            document.querySelector('.pdpmodal-addedtocart__modal__body__content__size').style.display = "flex";
         };
         
         document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "block"
@@ -105,88 +105,100 @@ const PDPListeners = (function (){
     function addToCart() {
 
         // Add to cart button click
-        document.querySelector('.pdp__content__control__add-to-cart-btn').addEventListener('click', function(e) {
-                // Show loader
-                hideError();
-                showLoaderAddToCartButton();
-
-                //Get id and quantity
-                const variantIdString = e.target.dataset.id || e?.target?.closest('.pdp__content__control__add-to-cart-btn').dataset?.id;
-                const variantId = parseInt(variantIdString)
-                const quantityString = document.querySelector(selectors.qtyElem).innerHTML;
-                const quantity = quantityString ? parseInt(quantityString) : 1;
-
-                // Add item to the cart.
-                Cart.addItem(variantId, {quantity: quantity})
-                .then(res => {
-                    console.log(res);
-
-                    const title = res.product_title;
-                    const image = res.featured_image.url || res.image;
-                    const price = Currency.formatMoney(parseFloat(res.price) * parseFloat(quantity));
-                    const size = null;
-
-                    if(!res.product_has_only_default_variant) {
-                        size = res.variant_options[0];
-                    }
-
-                    // Reset counter 
-                    resetCount();
-                    
-                    // Update the bubble
-                    updateBubble(quantity);
-
-                    // Show added modal
-                    openAddedtoCartModal(title,image,quantity, price, size);
-                            
-                    // Hide loader 
-                    hideLoaderAddToCartButton();
-   
-                }).catch(err => {
-                    //Error
-                    console.log("Error adding the product.")
-                    console.log(err);
-
-                    // Hide loader 
-                    hideLoaderAddToCartButton();
-                    showError();
-                }); 
-        })
+        if(document.querySelector('.pdp__content__control__add-to-cart-btn')) {
+            document.querySelector('.pdp__content__control__add-to-cart-btn').addEventListener('click', function(e) {
+                    // Show loader
+                    hideError();
+                    showLoaderAddToCartButton();
+    
+                    //Get id and quantity
+                    const variantIdString = e.target.dataset.id || e?.target?.closest('.pdp__content__control__add-to-cart-btn').dataset?.id;
+                    const variantId = parseInt(variantIdString)
+                    const quantityString = document.querySelector(selectors.qtyElem).innerHTML;
+                    const quantity = quantityString ? parseInt(quantityString) : 1;
+    
+                    // Add item to the cart.
+                    Cart.addItem(variantId, {quantity: quantity})
+                    .then(res => {
+                        console.log(res);
+    
+                        const title = res.product_title;
+                        const image = res.featured_image.url || res.image;
+                        const price = Currency.formatMoney(parseFloat(res.price) * parseFloat(quantity));
+                        let size = null;
+    
+    
+                        if(!res.product_has_only_default_variant) {
+                            size = res.variant_options[0];
+                        }
+    
+                        // Reset counter 
+                        resetCount();
+                        
+                        // Update the bubble
+                        updateBubble(quantity);
+    
+                        // Show added modal
+                        openAddedtoCartModal(title,image,quantity, price, size);
+                                
+                        // Hide loader 
+                        hideLoaderAddToCartButton();
+       
+                    }).catch(err => {
+                        //Error
+                        console.log("Error adding the product.")
+                        console.log(err);
+    
+                        // Hide loader 
+                        hideLoaderAddToCartButton();
+                        showError();
+                    }); 
+            })
+        }
 
 
         // Added to cart overlay click - close
-        document.querySelector('.pdpmodal-addedtocart__overlay').addEventListener('click', function() {
-            document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "none"
-            document.querySelector('.pdpmodal-addedtocart__modal').style.display = "none"
-        })
+        if(document.querySelector('.pdpmodal-addedtocart__overlay')) {
+            document.querySelector('.pdpmodal-addedtocart__overlay').addEventListener('click', function() {
+                document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "none"
+                document.querySelector('.pdpmodal-addedtocart__modal').style.display = "none"
+            })
+        }
 
         // Disable click on modal from closing
-        document.querySelector('.pdpmodal-addedtocart__modal').addEventListener('click', function() {})
+        if(document.querySelector('.pdpmodal-addedtocart__modal')) {
+            document.querySelector('.pdpmodal-addedtocart__modal').addEventListener('click', function() {})
+        }
     }
 
 
     function pdpAddedToCartModalListeners() {
+        if(document.querySelector('.pdpmodal-addedtocart__modal__checkout')) {
+            document.querySelector('.pdpmodal-addedtocart__modal__checkout').addEventListener('click', function() {
+                location.assign('/cart')
+            })
+        }
 
-        document.querySelector('.pdpmodal-addedtocart__modal__checkout').addEventListener('click', function() {
-            location.assign('/cart')
-        })
-        document.querySelector('.pdpmodal-addedtocart__modal__continue').addEventListener('click', function() {
-            document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "none"
-            document.querySelector('.pdpmodal-addedtocart__modal').style.display = "none"
-        })
+        if(document.querySelector('.pdpmodal-addedtocart__modal__continue')) {
+            document.querySelector('.pdpmodal-addedtocart__modal__continue').addEventListener('click', function() {
+                document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "none"
+                document.querySelector('.pdpmodal-addedtocart__modal').style.display = "none"
+            })
+        }
     }
 
     function countListeners() {
+
         const countAdd = document.querySelector('.pdp__content__control__qty__next')
         const countRemove = document.querySelector('.pdp__content__control__qty__prev')
         const countValue = document.querySelector('.pdp__content__control__qty__value')
 
-        countAdd.addEventListener('click', function() {
+        countAdd && countAdd.addEventListener('click', function() {
             let currentCount = parseInt(countValue.innerHTML.slice())
             currentCount = currentCount + 1;
             countValue.innerHTML = currentCount;
         })
-        countRemove.addEventListener('click', function() {
+        countRemove && countRemove.addEventListener('click', function() {
             let currentCount = parseInt(countValue.innerHTML.slice())
             if(currentCount != 1) {
                 currentCount = currentCount - 1;

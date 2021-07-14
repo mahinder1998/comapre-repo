@@ -42,10 +42,32 @@
         flex: 1;
         overflow: hidden;
 
+        &__shimmer {
+            padding: 10px;
+
+            &__main {
+                padding-top: 100%;
+                background-color: #eee;
+            }
+            
+            &__thumbs {
+                margin-top: 10px;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 10px;
+            }
+            
+            &__thumb {
+                padding-top: 100%;
+                background-color: #eee;
+            }
+        }   
+
         
         &__master {
             // background-color: purple;
             padding: 10px;
+            display: none;
 
             &__inner {
                 position: relative;
@@ -92,6 +114,7 @@
         
         &__thumbs {
             padding: 10px;
+            display: none;
 
             &__slider {
                 margin-left: -5px;
@@ -101,7 +124,7 @@
                 margin-left: 5px;
 
                 &.slick-current > img {
-                    border: 5px solid #eee;
+                    // border: 5px solid #eee;
                 }
             }
 
