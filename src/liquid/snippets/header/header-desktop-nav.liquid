@@ -2,7 +2,7 @@
   <ul class="container ul-reset text-center">
     {%- for link in linklists.main-menu.links -%}
     {%- if link.links != blank -%} 
-	   <li class="droppable lvl-li-one has-subs">
+	   <li class="droppable lvl-li-one has-subs" data-handle="{{ link.handle }}">
     {%- else -%}
        <li class="droppable lvl-li-one">
     {%- endif -%}
@@ -45,28 +45,67 @@
              {%- endif -%}      
 
             {%- endfor -%}
-                             
-                       
-            
-            
-            {% if link.type == "collection_link" and link.object.image %}
-              {%- assign hero_img_url = link.url -%}
-              {% if link.links[0].url %}
-                {%- assign hero_img_url = link.links[0].url -%}
-              {% endif %} 
-               <li class="featured-block">
-                <div class="mg-mnu-ftimg-cont">
-                  <a href="{{ link.url }}">{{ link.object.image | img_url: '220x' | img_tag }}</a>
-                  <div class="mg-mnu-ftimg">
-                    <h4>ORANGE & BERGAMOT</h4>
-                    <p><span>Nuova edizione illustrata</span></p>
-                    <a class="collection-nav-url-link" href="{{ link.url }}"><span>{{ link.title | escape }}</span></a>
-                  </div>
-                </div>
-               </li>
-             
-            {% endif %}            
-            
+   <div class="right_img_desk">                          
+   {% for block in section.blocks %} 
+            {% assign block_menu = block.settings.navigation_text %}
+            {% if block_menu == link.handle %}
+            	{% if block.settings.imgepic %}
+                      <li class="featured-block">
+                        <div class="mg-mnu-ftimg-cont">
+                          <a href="{{ block.settings.link }}">
+                            <img src="{{ block.settings.imgepic | img_url: '220x' }}">
+                          </a>
+                          <div class="mg-mnu-ftimg">
+                            <h4>{{ block.settings.title }}</h4>
+                            {% if block.settings.description != blank %}
+                            <p><span>{{ block.settings.description }}</span></p>
+                            {% endif %}
+                            {% if block.settings.btn_label != blank %}
+                            <a class="collection-nav-url-link" href="{{ block.settings.link }}"><span>{{ block.settings.btn_label }}</span></a>
+                            {% endif %}
+                          </div>
+                        </div>
+                   	  </li>
+            	 {% endif %}
+            	 {% if block.settings.imgepic-2 %}
+                      <li class="featured-block">
+                        <div class="mg-mnu-ftimg-cont">
+                          <a href="{{ block.settings.link-2 }}">
+                            <img src="{{ block.settings.imgepic-2 | img_url: '220x' }}" />
+                          </a>
+                          <div class="mg-mnu-ftimg">
+                            <h4>{{ block.settings.title-2 }}</h4>
+                            {% if block.settings.description-2 != blank %}
+                            <p><span>{{ block.settings.description-2 }}</span></p>
+                            {% endif %}
+                           {% if block.settings.btn_label-2 != blank %}
+                            <a class="collection-nav-url-link" href="{{ block.settings.link-2 }}"><span>{{ block.settings.btn_label-2 }}</span></a>
+                            {% endif %}
+                          </div>
+                        </div>
+                   	  </li>
+            	 {% endif %}
+                 {% if block.settings.imgepic-3 %}
+                      <li class="featured-block">
+                        <div class="mg-mnu-ftimg-cont">
+                          <a href="{{ block.settings.link-3 }}">
+                            <img src="{{ block.settings.imgepic-3 | img_url: '220x' }}" />
+                          </a>
+                          <div class="mg-mnu-ftimg">
+                            <h4>{{ block.settings.title-3 }}</h4>
+                            {% if block.settings.description-3 != blank %}
+                            <p><span>{{ block.settings.description-3 }}</span></p>
+                            {% endif %}
+                            {% if block.settings.btn_label-3 != blank %}
+                            <a class="collection-nav-url-link" href="{{ block.settings.link-3 }}"><span>{{ block.settings.btn_label-3 }}</span></a>
+                            {% endif %}
+                          </div>
+                        </div>
+                   	  </li>
+            	 {% endif %}
+            {% endif %}  
+   {% endfor %}         
+ </div>          
           </ul>
            
 

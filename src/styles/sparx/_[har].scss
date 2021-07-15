@@ -257,6 +257,44 @@
   /*account page css  */
   
   
+  .mb-tool-bar-flex {
+    align-items: center;
+     padding: 10px 0;
+}
+.mb-tool-bar-flex .tb-right>ul {
+   padding: 0;
+   margin: 0;
+}
+.mb-tool-bar-flex .tb-left p {
+   margin: 0;
+}
+.mb-tool-logo-flex {
+   align-items: center;
+}
+.product_card .product-link{
+     z-index: 1;
+}
+.nav-is-ready span.mcart-count{
+ background:#cccccc;
+}
+
+@media all and (max-width: 1199px) {
+ .mb-tool-bar-flex{
+       padding: 10px;
+ }
+ .mb-tool-logo-flex {
+     padding-left: 15px;
+     padding-right: 15px;
+ }
+} 
+
+@media all and (max-width: 749px) {
+ .mb-tool-logo-flex {
+     padding-left: 10px;
+     padding-right: 10px;
+ }
+}
+
   /* Media css start  */
   @media all and (max-width:1199px){
     .page_container {
