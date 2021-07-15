@@ -26,14 +26,7 @@
                             {% if all_products[prod] %}
                                 <a href="{{ all_products[prod].url }}" class="pdp-like__slider__item">
                                     <figure class="pdp-like__slider__item__imgbox">
-                                        <img 
-                                            {% if all_products[prod] %}
-                                                src="{{ all_products[prod].featured_image | img_url: '300x300' }}"
-                                            {% else %}
-                                                src="www.google.com"
-                                            {% endif %}
-                                            alt="{{ all_products[prod].featured_image.alt }}" class="pdp-like__slider__item__img"
-                                        />
+                                        <img class="lazy" data-src="{{ all_products[prod].featured_image | img_url: '300x300' }}" alt="{{ all_products[prod].featured_image.alt }}" class="pdp-like__slider__item__img"/>
                                     </figure>
                         
                                     <div class="pdp-like__slider__item__title">{{ all_products[prod].title }}</div>
