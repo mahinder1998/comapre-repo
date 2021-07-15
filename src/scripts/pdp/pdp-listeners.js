@@ -356,7 +356,6 @@ const PDPListeners = (function (){
                         dots: false,
                         arrows: true,
                         fade: true,
-                        rtl: true,
                         prevArrow: $('.pdp__media__master__slider__arrow.pdp__media__master__slider__arrow-prev'),
                         nextArrow: $('.pdp__media__master__slider__arrow.pdp__media__master__slider__arrow-next')
                     });
@@ -366,7 +365,6 @@ const PDPListeners = (function (){
                         slidesToScroll: 1,
                         dots: false,
                         arrows: false,
-                        rtl: true,
                         asNavFor: '.pdp__media__master__slider',
                         focusOnSelect: true,
                     

@@ -12,7 +12,8 @@
             srcset="{{ section.settings.img_mbl | img_url:'original'}}"
         />
         <img
-            src="{{ section.settings.img_desk | img_url:'master'}}"
+            class="lazy"
+            {% comment %} src="{{ section.settings.img_desk | img_url:'master'}}" {% endcomment %}
             data-src="{{ section.settings.img_desk | img_url:'master'}}"
         />
     </picture>

@@ -17,7 +17,7 @@
                               media="(max-width: 749px)"
                               srcset="{{ block.settings.pic_mbl | img_url:'original' }}"
                           />
-                          <img src="{{ block.settings.pic_desk | img_url:'original' }}" data-src="{{ block.settings.pic_desk | img_url:'original' }}" />
+                          <img class="lazy" data-src="{{ block.settings.pic_desk | img_url:'original' }}" data-src="{{ block.settings.pic_desk | img_url:'original' }}" />
                       </picture>
                     </a>
                   </div>
