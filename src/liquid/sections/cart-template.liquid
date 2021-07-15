@@ -19,8 +19,32 @@
         {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
         <div class="cart-items-loop" item-loop="item-{{ forloop.index }}">
           <div class="cart-item-img">
-            <div><a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> {{ item.product.images.first | product_img_url: 'small' | img_tag: item_title }}</a></div>
-            <div class="cart-title-dt"><p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p>
+            <div>
+              <a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> 
+                 <img class="cart__image{% if item.image == null %} hide{% endif %}" src="{{ item | img_url: 'small' }}" alt="{{ item.image.alt | escape }}" data-cart-item-image>
+                 
+              </a>
+            </div>
+            <div class="cart-title-dt">
+              <p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p>
+               {%- assign variant_options = 'template ' | split: ' ' -%}
+                    {%- if item.product.has_only_default_variant != true -%}
+                      {%- assign variant_options = item.options_with_values -%}
+                    {%- endif -%}
+                    {%- assign property_size = item.properties | size -%}
+                    
+                    {%- assign variant_options_hide = false -%}
+                    {% if item.product.has_only_default_variant and property_size == 0 %}
+                    	{%- assign variant_options_hide = true -%}
+					{% elsif variant_options.size == 1 and variant_options[0].value == "Default title" %}
+                    	{%- assign variant_options_hide = true -%}
+                    {% endif %}
+                    
+                    <ul class="item-variant-details{% if variant_options_hide and property_size == 0 %} hide{% endif %}" >
+                      {%- for option in variant_options -%}
+                        <li class="product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>{{ option.name }}: {{ option.value }}</li>
+                      {%- endfor -%}
+              </ul>
               <p class="cart__remove">
                 <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
               </p>

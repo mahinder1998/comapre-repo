@@ -658,6 +658,50 @@ blockquote p {
 }
 /* about page css end */
 
+.item-variant-details{margin: 0px 0px 5px; padding: 0;}
+.item-variant-details .product-details__item--variant-option{font-size: 14px;font-weight: 400; line-height: 1.29;text-transform: none;}
+/* mega menu layout css  */
+.mega-menu ul.ul-reset.sub-first-lvl {
+    display: block;
+    float: none;
+    min-height: 370px;
+    position: relative;
+}
+
+.mega-menu li.lvl-li-two {
+    height: auto;
+    width: 200px;
+    float: left;
+    padding: 15px 0 0 15px;
+}
+
+.mega-menu .right_img_desk {
+    top: 0;
+    position: absolute;
+    right: 15px;
+    width: auto;
+    height: auto;
+    float: left;
+    padding: 15px 0 0 15px;
+    display: -ms-flexbox;
+    display: flex;
+}
+.mega-menu li.featured-block,
+li.lvl-li-two {
+    padding: 15px 0 0 15px;
+}
+
+.mega-menu li.featured-block {
+    width: 240px;
+}
+.mega-menu a.lvl-one-link {
+    text-transform: uppercase;
+}
+
+.mega-menu ul.sub-second-lvl li.lvl-li-three a {
+    padding: 4px 0;
+}
+/*megamenu laypout css  */
 
 
 
