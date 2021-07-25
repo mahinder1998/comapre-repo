@@ -203,26 +203,15 @@ const SparxScripts = (() => {
                               if (productSuggestions.length > 0) {
                                   var str = "";
                                   var show_counter = 1;
-                                  for (i = 0; i < pro_length; i++) {
-                                      if (show_counter <= 3) {
-                                        $(".search-result-weap").show();
-                                          var firstProductSuggestion = productSuggestions[i];
-                                          str +=
-                                              '<a href="' +
-                                              firstProductSuggestion.url +
-                                              '" class="search-result-items"><div class="get-product-image"><img src="' +
-                                              firstProductSuggestion.image +
-                                              '"></div>' +
-                                              '<div class="get-product-title">' +
-                                              firstProductSuggestion.title +
-                                              "</div>" +
-                                              '<div class="get-product-price">' +
-                                              firstProductSuggestion.price +
-                                              "</div></a>";
-                                          //console.log("The title of the first product suggestion is: " + firstProductSuggestion.id);
-                                          //console.log(firstProductSuggestion.title);
-                                          show_counter = show_counter + 1;
-                                      }
+                                  for (var i = 0; i < pro_length; i++) {
+                                    if (show_counter <= 3) {
+                                      $(".search-result-weap").show();
+                                      var firstProductSuggestion = productSuggestions[i];
+                                      str += '<a href="' + firstProductSuggestion.url + '" class="search-result-items"><div class="get-product-image"><img src="' + firstProductSuggestion.image + '"></div>' + '<div class="get-product-title">' + firstProductSuggestion.title + "</div>" + '<div class="get-product-price">' + firstProductSuggestion.price + "</div></a>"; //console.log("The title of the first product suggestion is: " + firstProductSuggestion.id);
+                                      //console.log(firstProductSuggestion.title);
+                  
+                                      show_counter = show_counter + 1;
+                                    }
                                   }
                                   $(".productData").html(str);
               

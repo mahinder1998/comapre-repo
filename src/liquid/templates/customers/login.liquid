@@ -11,13 +11,13 @@
         {{ 'customer.recover_password.success' | t }}
       </div>
 
-      <div class="form-wrapper">
+      <div class="form-wrapper" id="LoginForm">
 
         {% form 'customer_login', novalidate: 'novalidate' %}
 
         {%- if form.errors -%}
         <div class="message--error">
-          <h2 class="message_title">{{ 'contact.form.error_heading' | t }}</h2>
+          <h2 class="message_title" id="LoginHeading">{{ 'customer.form.error_heading' | t }}</h2>
           {{ form.errors | default_errors }}
         </div>
         {%- endif -%}
@@ -65,11 +65,11 @@
       <div id="recover_form" class="hide">
 
         <div class="text-center">
-          <h2>{{ 'customer.recover_password.title' | t }}</h2>
+          <h2 id="RecoverHeading">{{ 'customer.recover_password.title' | t }}</h2>
           <p>{{ 'customer.recover_password.subtext' | t }}</p>
         </div>
 
-        <div class="form-vertical">
+        <div class="form-vertical form-wrapper">
           {% form 'recover_customer_password' %}
 
           {% comment %}
