@@ -2,3 +2,132 @@
 {% render 'header-logo-search' %}
 {% include 'header-desktop-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
 {% render 'mob-nav' %}
+
+{% schema %}
+  {
+     "name": "Header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "announcement-bar",
+        "label": "Announcement Bar"
+      },
+	{
+        "type": "url",
+        "id": "announcement-link",
+        "label": "Announcement Bar link"
+      },
+	 {
+        "type": "link_list",
+        "id": "link_list_id",
+        "label": "Top menu",
+        "default": "main-menu"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Navigation",
+        "name": "Navigation",
+        "settings": [
+          {
+            "type": "text",
+            "id": "navigation_text",
+            "label": "Navigation Handle"
+          },
+		 {
+          "type":"header",
+          "content":"image 1"
+		},
+          {
+          "type":"image_picker",
+          "id":"imgepic",
+          "label":"image"
+          },
+			{
+          "type":"text",
+          "id":"title",
+          "label":"title"
+          },
+			{
+          "type":"textarea",
+          "id":"description",
+          "label":"Description"
+          },
+			{
+          "type":"text",
+          "id":"btn_label",
+          "label":"Button label"
+          },
+			{
+          "type":"url",
+          "id":"link",
+          "label":"Link"
+          },
+		 {
+          "type":"header",
+          "content":"image 2"
+		},
+          {
+          "type":"image_picker",
+          "id":"imgepic-2",
+          "label":"image"
+          },
+			{
+          "type":"text",
+          "id":"title-2",
+          "label":"title"
+          },
+			{
+          "type":"textarea",
+          "id":"description-2",
+          "label":"Description"
+          },
+			{
+          "type":"text",
+          "id":"btn_label-2",
+          "label":"Button label"
+          },
+			{
+          "type":"url",
+          "id":"link-2",
+          "label":"Link"
+          },
+
+		 {
+          "type":"header",
+          "content":"image 3"
+		},
+          {
+          "type":"image_picker",
+          "id":"imgepic-3",
+          "label":"image"
+          },
+			{
+          "type":"text",
+          "id":"title-3",
+          "label":"title"
+          },
+			{
+          "type":"textarea",
+          "id":"description-3",
+          "label":"Description"
+          },
+			{
+          "type":"text",
+          "id":"btn_label-3",
+          "label":"Button label"
+          },
+			{
+          "type":"url",
+          "id":"link-3",
+          "label":"Link"
+          }
+		   
+          
+        ]
+      }
+
+      
+    ]
+  }
+{% endschema %}
