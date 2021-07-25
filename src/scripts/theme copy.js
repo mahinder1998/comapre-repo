@@ -1,6 +1,4 @@
-
 import "regenerator-runtime/runtime";
-
 
 import * as cart from '@shopify/theme-cart';
 import lazyload from './lazyload';
