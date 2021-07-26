@@ -1,0 +1,13 @@
+{%- comment -%}Variables{%- endcomment -%}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% render 'product-info-mobile-only' %}
+
+<div class="pdp">
+    {% render 'product-media-gallery' %}
+    {% render 'product-info' with {
+        current_variant: current_variant
+    }%}
+</div>
+
+{% render 'product-related' %}

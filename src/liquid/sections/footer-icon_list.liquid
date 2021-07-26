@@ -1,0 +1,43 @@
+<section class="shipping-wrap">
+  <div class="shipping-grid"> 
+ {% for block in section.blocks %}   
+    <div class="shipping-items">
+      <div class="shipping-img">
+      	<img src="{{ block.settings.imgepic | img_url:'65px'}}"/>
+      </div>
+      <div class="shipping-des">{{ block.settings.title }} </div>
+    </div>
+  {% endfor %} 
+    
+    
+  </div>
+</section>
+
+
+
+{% schema %}
+  {
+     "name": "Footer Icon List",
+	 "blocks": [
+      {
+        "type": "icon",
+		"name": "icon",
+        "settings": [
+		{
+          "type":"image_picker",
+          "id":"imgepic",
+          "label":"icon"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "text"
+          }
+          
+        ]
+      }
+
+      
+    ]
+  }
+{% endschema %}

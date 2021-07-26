@@ -1,0 +1,131 @@
+<div class="page_container">
+  <div class="page_header">
+    <h1>MY ACCOUNT</h1>
+  </div>
+  <div class="account-wrap">
+    <div class="left-sidebar">
+    	<ul id="profile_tabs" class="tabs-main">
+            <li class="tab-link current" data-tab="my_profile">
+                <a>
+                    MY PROFILE
+                  	<span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+            <li class="tab-link" data-tab="my_order"> 
+				<a id="my_order">
+                    ORDER HISTORY
+                  	<span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+            <li >
+                 <a href="/account/addresses">
+                   ADDRESS BOOK
+                   <span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="sidebar-content">
+    	<div class="my_profile tabs-items current">
+          
+          <div class="profile_item">
+            <div class="profile-header">
+              <h3 class="title">My Details</h3>
+              <div class="header-action">
+                <a href="javascript:void(0)">Edit</a>
+              </div>
+            </div>
+            <div class="profile-body">
+              <div class="profile-row">
+                <div class="p-box">
+                  <ul>
+                    <!--<li><span class="p-label">Title</span>  <span class="p-value">Ms.</span> </li>-->
+                    <li><span class="p-label">First Name</span>  <span class="p-value">{{ customer.first_name }}</span> </li>
+                    <li><span class="p-label">Last Name</span>  <span class="p-value">{{customer.last_name}}</span> </li>
+                    <!--<li><span class="p-label">Mobile Number	</span>  <span class="p-value">+971 50 1234567</span> </li>-->
+                  </ul>
+                </div>
+                <div class="p-box">
+                   <ul>
+                    <li><span class="p-label">Email Address</span>  <span class="p-value">{{ customer.email }}</span> </li>
+                    <!--<li><span class="p-label">Date of Birth	</span>  <span class="p-value">13/02/1989</span> </li>-->
+                    <li>Subscribed to Molton Brown Newsletters </li>
+                  </ul>
+                </div>
+                
+                <div class="p-boxfooter">
+                	<a href="javascript:void(0)">Edit</a>
+                </div>
+                
+              </div>
+          </div>
+    	</div>
+          
+          <div class="profile_item">
+            <div class="profile-header">
+              <h3 class="title">MY ORDERS</h3>
+              <div class="header-action">
+                <a href="javascript:void(0)">View all</a>
+              </div>
+            </div>
+            <div class="profile-body">
+              <div class="profile-row">
+                <div class="p-box">
+                	<p>You haven’t placed an order yet!</p>
+                </div>
+                 <div class="p-boxfooter">
+                	<a href="javascript:void(0)">View all</a>
+                </div>
+              </div>
+          </div>
+          </div>
+            
+          
+          <div class="profile_item">
+            <div class="profile-header">
+              <h3 class="title">MY ADDRESSSES</h3>
+              <div class="header-action">
+                <a href="javascript:void(0)">View all</a>
+                <a href="javascript:void(0)" class="add_address">Add new address</a>
+              </div>
+            </div>
+            <div class="profile-body">
+              <div class="profile-row">
+                <div class="p-box">
+                	<p>You have no addresses saved.</p>
+                </div>
+                 <div class="p-boxfooter">
+                	<a href="javascript:void(0)">View all</a>
+                </div>
+              </div>
+          </div>
+    	</div>
+          
+          
+  </div>	
+      
+    	<div class="my_order tabs-items">
+          <div class="order-empty">
+            <div class="bucket-image">
+				<img src="{{"empty-bucket.PNG" | asset_img_url: "original"}}" alt="store-icon" style="width:auto;">
+            </div>
+            <p class="empty-cont">
+            	You haven’t placed an order yet!
+            </p>
+            <div class="cta-action">
+              <a href="#" class="btn-ctm"> SHOP BESTSELLERS </a>
+            </div>
+          </div>
+        </div>
+      
+      
+    </div>
+  </div>
+</div>

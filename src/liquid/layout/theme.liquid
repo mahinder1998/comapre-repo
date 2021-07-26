@@ -1,24 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="canonical" href="{{ canonical_url }}">
-    <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
+  <html lang="en">
 
-    {{ content_for_header }}
-
-    {{- 'theme.css' | asset_url | stylesheet_tag -}}
-  </head>
-
-  <body>
-    <main>
-      {% section 'header' %}
-      {{ content_for_layout }}
-      {% section 'footer' %}
-    </main>
-
-    <script src="{{ 'theme.js' | asset_url }}"></script>
-  </body>
-</html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="canonical" href="{{ canonical_url }}">
+      <link rel="shortcut icon" href="{{ 'mb-favicon.png' | asset_url }}">
+  
+      {% comment %} font  {% endcomment %}
+      <style type="text/css">
+        @font-face {
+          font-family: 'Century Gothic';
+          src: url({{ 'CenturyGothic.woff2' | asset_url }}) format('woff2'),
+            url({{ 'CenturyGothic.woff' | asset_url }}) format('woff');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+      </style>  
+  
+  
+      {{ content_for_header }}
+  
+      <!-- Slick styles  -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      {% comment %} Font Awesome  {% endcomment %}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- MB Styles  -->
+      {{- 'theme.css' | asset_url | stylesheet_tag -}}
+      {% comment %} {{- 'deepak.css' | asset_url | stylesheet_tag -}}
+      {{- 'harshita.css' | asset_url | stylesheet_tag -}}
+      {{- 'andrew.css' | asset_url | stylesheet_tag -}} {% endcomment %}
+  
+      {% comment %} Liquid to Javascript  {% endcomment %}
+      {% render 'object-data' %}
+    </head>
+  
+    <body>
+      <main>
+        {% section 'header' %}
+        {{ content_for_layout }}
+        {% section 'footer-icon_list' %}
+        {% section 'footernewsletter' %}
+        {% section 'footer' %}
+      </main>
+  
+  
+      {% render 'product-modal-addedtocart' %}
+  
+      <!-- JQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <!-- Axios  -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
+      <!-- Slick -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    <!-- Molton Brown script  -->
+      {% comment %} GSAP  {% endcomment %}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+  
+      <!-- Molton Brown Script  -->
+      <script src="{{ 'theme.js' | asset_url }}"></script>
+      {% comment %} 
+      <script src="{{ 'deepak.js' | asset_url }}"></script>
+      <script src="{{ 'andrew.js' | asset_url }}"></script> {% endcomment %}
+    </body>
+  </html>

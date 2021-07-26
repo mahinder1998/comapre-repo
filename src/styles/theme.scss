@@ -1,1 +1,15 @@
+@import './base/base';
+
+@import './sparx/[ash]';
+@import './sparx/[ash-responsive]';
+@import './sparx/[and]';
+@import './sparx/[sah]';
+@import './sparx/[dpk]';
+@import './sparx/[har]';
+
 @import './components/example';
+@import './components/toolbar';
+@import './components/homepage/hero';
+@import './components/pdppage/modal-addedtocart';
+
+@import './pages/pdp';

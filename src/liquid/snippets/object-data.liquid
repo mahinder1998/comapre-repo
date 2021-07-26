@@ -1,0 +1,11 @@
+<script>
+(function() {
+    window.objectData = window.objectData || {};
+
+    {% if product %}
+        window.objectData.product = {{ product | json }}
+        window.objectData.selectedVaraint = {{ product.first_available_variant | json }}
+        window.objectData.hasOnlyDefaultVariant = {{ product.has_only_default_variant }}
+    {% endif %}
+})();
+</script>
