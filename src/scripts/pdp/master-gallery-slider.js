@@ -1,7 +1,7 @@
 const MediaGallery = (() => {
 
     function renderSlide(slide) {
-        console.log(slide);
+        // console.log(slide);
         const slideHTML = `
             <div class="pdp__media__master__slide">
                 <img src="${slide?.src}" alt="" class="pdp__media__master__slide__img">
@@ -68,7 +68,7 @@ const MediaGallery = (() => {
                     const medias = objectData?.product?.media;
                     const currentAlt = objectData?.selectedVaraint?.featured_image?.alt;
                     const currentVariantImages = medias?.filter(media => media.alt == currentAlt);
-        
+
                     renderMasterSlides(currentVariantImages);
                     renderThumbSlides(currentVariantImages);
 
@@ -82,3 +82,4 @@ const MediaGallery = (() => {
 
 window.MediaGallery = MediaGallery;
 export default MediaGallery;
+
