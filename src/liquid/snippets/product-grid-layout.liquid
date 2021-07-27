@@ -1,0 +1,23 @@
+ <div class="product_card">
+   <a href="{{ product.url}}" class="product-link"></a>
+  <div class="product_img">
+  	<img class="lazy" data-src="{{ product.featured_image | product_img_url: 'original' }}" alt="{{ product.title | escape }}" />
+    {% if product.tags contains 'new' %}
+    <div class="product-tag">
+      <span>New</span>
+    </div>
+    {% endif %}
+  </div>
+  <div class="product_desc">
+  {% if product.tags contains 'new' %}
+    <div class="product-tag-mob">
+      <span>New</span>
+    </div>
+    {% endif %}
+    <h4 class="product_title">{{ product.title}}</h4>
+    <div class="product_reviews"></div>
+    <div class="product_price">
+    {% render 'price' , product: product %}
+    </div>
+  </div>
+</div>  

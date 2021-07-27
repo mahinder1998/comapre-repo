@@ -1,0 +1,128 @@
+
+<script type="text/javascript">
+   
+   {% layout none %}
+   {% capture results %}
+     {% for item in search.results %}
+       {% assign product = item %}
+       { 
+         "title"    : {{ product.title | json }},
+         "url"      : {{ product.url | within: product.collections.last | json }},
+         "thumbnail": {{ product.featured_image.src | product_img_url: 'thumb' | json }}
+       }
+       {% unless forloop.last %},{% endunless %}
+     {% endfor %}
+   {% endcapture %}
+   {
+     "results_count": {{ search.results_count }},
+     "results": [{{ results }}]
+   }
+      
+   </script>
+   
+   <!-- Logo and Search -->
+   <section class="mb-top-logo">
+      <div class="mb-tool-logo-flex">
+         <div class="tb-logo-left">
+            <a class="mb-logo-2" href="#"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232" alt=""></a>
+               <a class="mb-burger-icon" href="#"><img src="{{ 'mb-icon-mob-nav.svg' | asset_url }}" alt=""></a>
+         </div>
+         <div class="tb-logo-mid">
+            <a href="{{shop.url}}"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/moltonbrown_logo_big-1_540x.png?v=1623487154" alt=""></a>
+         </div>
+         <div class="tb-logo-last">
+            <div class="mb-search-logo-flex">
+               <div class="mb-search-flex">
+                   <div class="search-input>">
+                     <form style="display: none;" action="{{ routes.search_url }}"> <input type="text" placeholder="Search" name="q" value="{{ search.terms | escape }}" > </form>
+                    
+                     <div id="searchbar" class="collapsed">
+                       <div clsss="search-box">
+                           <div class="sliding-panel-outer">
+                               <div class="sliding-panel-inner">
+                                   <form action="{{ routes.search_url }}" method="get" role="search" class="search-form search-page-form">
+                                       
+                                     <input
+                                      type="search"
+                                      name="q"
+                                      value="{{ search.terms | escape }}"
+                                      placeholder="search"
+                                      role="combobox"
+                                      aria-autocomplete="list"
+                                      aria-owns="predictive-search-results"
+                                      aria-expanded="false"
+                                      aria-label="search"
+                                      aria-haspopup="listbox"
+                                      class="search-form__input search-input"
+                                      data-search-page-predictive-search-input
+                                      data-base-url="{{ routes.search_url }}"
+                                      />
+   
+                 <input type="hidden" name="options[prefix]" value="last" aria-hidden="true" />
+                                   </form>
+                               </div>
+                           </div>
+   
+                           <div class="search-result-weap">
+                               <div class="productData"></div>
+                               <a class="customSearchredirect" href="">
+                                   <div class="viewResults"></div>
+                               </a>
+                           </div>
+   
+                           <div class="search-label">
+                               <a href="#" class="mb-search-header">
+                                   <span><img src="{{ 'mb-icon-search.svg' | asset_url }}" /></span>
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+                     
+                 </div>
+             
+              </div>
+               <div class="mb-account-flex">
+                 {% if customer %}
+                 <a href="{{ routes.account_url }}" class="">
+                   <img style="max-height: 23px;" src="{{ 'mb-icon-account.png'| asset_url }}" alt="">
+                 </a>
+               {% else %}
+                 <a href="{{ routes.account_login_url }}" class="">
+                   <img style="max-height: 23px;" src="{{ 'mb-icon-account.png'| asset_url }}" alt="">
+                 </a>
+               {% endif %}
+                  
+               </div>
+               <div class="mb-cart-flex">
+                 <img style="max-height: 30px;" src="{{ 'cart.svg'| asset_url }}" alt=""><span class="mcart-count">{{ cart.item_count }}</span>
+               </div>
+            </div>
+   
+            <div class="mini-cart-content hide">
+               <h3>Your cart</h3>
+   
+               <section class="mini-cart-list">
+   
+               {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
+               <div class="single-mcart-item">
+                  <div class="mcart-thumb">
+                     <a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> 
+                     {{ item.product.images.first | product_img_url: '200x200' | img_tag: item_title }}</a>
+                  </div>
+                  <div class="mcart-content">
+                     <p class="mcart-single-title"><a href="{{ item.product.url }}">{{ item.title }}</a></p>
+                     <p class="mcart-single-price"><b>{{ item.price | money }}</b></p>
+                  </div>
+               </div>
+               {% endfor %}
+   
+               <div class="mcart-go-cart">
+                  <a href="./cart">View cart</a>
+               </div>
+   
+               </section>
+            </div>
+   
+         </div>
+      </div>
+   </section>
