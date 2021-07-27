@@ -11,6 +11,7 @@ import PDPListeners from './pdp/pdp-listeners';
 import HeaderListeners from './listeners/header-listeners';
 import RelatedProductSlider from './pdp/related-product-slider';
 import SparxScripts from './sparx/sparx-scripts'
+import HomeSliderSparx from "./sparx/homeSlider";
 
 import {state, getAllProductsWithType} from './model'
 
@@ -25,7 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
   SparxScripts.init();
   PDPListeners.init();
   HeaderListeners.init();
+  HomeSliderSparx.init();
 });
+
 
 const controlRelatedProducts = async () => {
   try {
