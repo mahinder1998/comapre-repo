@@ -433,4 +433,168 @@
   }
   
   
-  
+  /* 25-july-2021 css start */
+
+
+/* home banner with video  css*/
+.Home_slideshow {
+  height: auto;
+  margin-bottom: 0!important;
+}  
+.banner-img-wrap {
+  position: relative;
+}  
+
+.video-container {
+  overflow: hidden;
+  padding-bottom: 34.57%;
+  position: relative;
+  height: 0;
+}
+.vides-padding .responsive-iframe {
+  width: 100%;
+  background: #000;
+  display: none;
+}
+.video-containerss {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+button.videoPoster.show {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  cursor: pointer;
+  font-size: 0;
+  transform: translate(-50%,-50%);
+  background: 0 0;
+    border: none;
+  outline: none;
+} 
+.videoPoster:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  margin: -40px 0 0 -40px;
+  border: .125rem solid #fff;
+  border-radius: 100%;
+  -webkit-transition: border-color .3s;
+  -moz-transition: border-color .3s;
+  transition: border-color .3s;
+}
+.videoPoster:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin: -18px 0 0 -13px;
+  border-left: 15px solid #fff;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  -webkit-transition: border-color .3s;
+  -moz-transition: border-color .3s;
+  transition: border-color .3s;
+} 
+
+
+
+.Home_slideshow  .slick-dots li button:before {
+  font-size: 16px;
+}
+
+.Home_slideshow  ul.slick-dots {
+  bottom: 10px;
+}
+
+.Home_slideshow  .slick-dots li.slick-active button:before,
+.Home_slideshow   .slick-dots li button:before
+{
+  color: #ffffff;
+}
+
+
+
+.btn_custom #customer_register_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: normal !important;
+}
+
+
+
+@media all and (max-width:749px){
+.video-container.vides-padding {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+}
+
+.video-container.vides-padding video.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+.Home_slideshow  ul.slick-dots {
+    bottom: -30px;
+}
+
+.Home_slideshow  .slick-dots li.slick-active button:before,
+.Home_slideshow   .slick-dots li button:before
+{
+    color: #000;
+}
+
+}
+
+
+
+
+
+
+/* 27-july-2021 */ 
+
+.address-list {
+  margin: 0;
+  padding: 0;
+} 
+.addres_item {
+  background: #f1f1f1;
+  padding: 15px;
+margin-bottom: 15px;
+} 
+.address-block {
+  display: flex;
+  justify-content: space-between;
+}  
+.addres_item:last-child {
+  margin-bottom: 0;
+}
+.address-left p {
+  font-size: 14px;
+  line-height: 22px;
+margin: 0;
+} 
+.address-action .btn {
+  color: #000000; 
+  background: transparent;
+  padding: 0;
+  height: auto;
+  font-size: 13px;
+  text-decoration: underline;
+  margin-bottom: 14px;
+  text-align: right;
+}    
