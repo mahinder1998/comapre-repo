@@ -38,9 +38,9 @@ const controlRelatedProducts = async () => {
 }
 
 
-function init() {
-  console.log("Running from MVC")
+function init() {  
   controlRelatedProducts();
+  
 }
 
 init();
