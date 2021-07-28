@@ -37,6 +37,8 @@
       {% comment %} Liquid to Javascript  {% endcomment %}
       {% render 'object-data' %}
     </head>
+
+    {% render 'boost-pfs-style'%}
   
     <body>
       <!-- JQuery -->
@@ -72,6 +74,7 @@
             </span>
           </p>
         </div>
-      </div>      
+      </div>    
+      {% render 'boost-pfs' %}  
     </body>
   </html>
