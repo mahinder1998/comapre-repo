@@ -598,3 +598,384 @@ margin: 0;
   margin-bottom: 14px;
   text-align: right;
 }    
+
+/* 27-28-july-2021 */
+
+.address-list {
+  margin: 0;
+  padding: 0;
+}
+/* .addres_item {
+  background: #f1f1f1;
+  padding: 15px;
+margin-bottom: 15px;
+}  */
+.address-block {
+  display: flex;
+  justify-content: space-between;
+  background: #f1f1f1;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.addres_item:last-child {
+  margin-bottom: 0;
+}
+.address-left p {
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0;
+}
+.address-action .btn {
+  color: #000000;
+  background: transparent;
+  padding: 0;
+  height: auto;
+  font-size: 13px;
+  text-decoration: underline;
+  margin-bottom: 14px;
+  text-align: right;
+}
+
+.form_action .text-center {
+  text-align: left;
+}
+
+.set_default {
+  margin-bottom: 15px;
+}
+
+.address_form .form_action .button_group {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+.address-left input + label {
+  padding-bottom: 18px;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  color: #000000 !important;
+}
+.address_form .register-action.address-btn {
+  text-align: center;
+  padding: 10px 0 0;
+}
+.addres_item h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.address_form .mobile-row .phone-area-div {
+  width: 30%;
+}
+.address_form .mobile-row .phone_number {
+  width: 70%;
+}
+
+.address_form.login-wrap hr {
+  display: none;
+}
+
+.address_form.login-wrap {
+  margin-bottom: 30px;
+}
+
+.address_form .form_action .button_group .btn-cancle {
+  min-height: 45px;
+  font-size: 13px;
+  padding: 0 10px;
+  height: 45px;
+  border: solid 0.5px #000;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #000;
+  font-weight: 400;
+  width: 100%;
+  transition: all 0.5s;
+  cursor: pointer;
+  background: #ffffff;
+}
+
+.address_form .form_action .button_group .btn-cancle:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.address_form .form_action .button_group .btn-item {
+  width: 50%;
+}
+
+.address_form .form_action .button_group .btn-item:first-child {
+  padding-left: 15px;
+}
+
+.address_form .form_action .button_group .btn-item:nth-child(2) {
+  padding-right: 15px;
+}
+.address_form .form_action .button_group input.btn.btn-update {
+  color: #ffffff;
+}
+.address_form.login-wrap select {
+  background-position: 97%;
+}
+
+.register-action.address-btn {
+  text-align: center;
+  padding: 10px 0 0;
+}
+.form_action .button_group {
+  margin: 15px 0 0;
+}
+form#address_form_new h2 {
+  font-size: 20px;
+}
+
+.p-box .address-block {
+  background: transparent;
+  padding: 0;
+}
+.address_form.login-wrap .phone-area-div select {
+  background-position: 93%;
+}
+
+.profile-row .p-box-order {
+  width: 100% !important;
+}
+p.rec_order_title {
+  font-size: 14px;
+  color: #000000;
+  font-style: italic;
+}
+.p-box-order ul {
+  padding: 15px 0 0;
+}
+.p-box-order ul > li {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.p-box-order ul > li > span {
+  display: block;
+  width: 50%;
+  font-size: 14px;
+  line-height: 28px;
+}
+.p-box-order ul > li > span.order_label_title {
+  font-weight: bold;
+  width: 46%;
+}
+
+.profile_item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.profile-footer {
+  display: none;
+}
+
+.order-grid-item ul {
+  margin: 0;
+  padding: 0;
+}
+
+.order-grid-item {
+  padding-bottom: 25px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-grid-item:last-child {
+  border-bottom: none;
+}
+
+.order-list-left {
+  width: 80%;
+}
+
+.order-list-action {
+  width: 20%;
+  text-align: right;
+}
+.order-list-left ul > li {
+  display: flex;
+  line-height: 28px;
+  font-size: 14px;
+}
+.order-list-left ul > li span.order_label_title {
+  max-width: 180px;
+  display: block;
+  width: 100%;
+  padding-right: 10px;
+  font-weight: bold;
+  color: #000000;
+}
+.order-list-action a {
+  font-size: 14px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.p-box ul > li {
+  line-height: 22px;
+  font-size: 14px;
+}
+
+.order-grid-details .order-list-left {
+  width: 100%;
+}
+.order-grid-item.order-grid-details {
+  border-bottom: 1px solid #ccc;
+}
+
+.myaccount__account-details h3 {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #000000;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.myaccount__account-details p {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0 0 15px;
+}
+
+.address-empty {
+  padding-bottom: 70px;
+}
+
+.payment_details p {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.order-view-details h3 {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.order-view-details .order-info {
+  display: grid;
+  grid-template-columns: 80px auto;
+}
+
+.order-view-details .order-content {
+  padding-left: 10px;
+}
+
+.order-view-details .order-title h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.order-view-details .order-title h4 {
+  font-size: 14px;
+}
+
+.order-view-details .order-content .order-qty {
+  font-size: 14px;
+}
+
+.order-view-details .order-content .order-price {
+  font-weight: bold;
+}
+.order-view-details {
+  padding-bottom: 25px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 25px;
+}
+.order-view-details .order-item {
+  padding-bottom: 25px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 25px;
+}
+
+.order-view-details .order-item:last-child {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.addres_item {
+  background: transparent;
+  padding: 0;
+}   
+
+
+
+@media all and (max-width: 1023px) {
+  .form-row-flex .form-group:nth-child(odd) {
+      padding-right: 10px;
+  }
+  .form-row-flex .form-group:nth-child(even) {
+      padding-left: 10px;
+  }
+}
+
+@media all and (max-width: 749px) {
+  .address_form .mobile-row {
+      display: flex;
+  }
+  .address_form .mobile-row .phone-area-div {
+      padding-right: 7px;
+  }
+  .address_form .mobile-row .phone_number {
+      padding-left: 7px;
+      margin: 0;
+  }
+  .address_form .form_action .button_group .btn-item {
+      width: 100%;
+  }
+
+  .address_form .form_action .button_group {
+      display: block;
+  }
+
+  .address_form .form_action .button_group .btn-item:first-child {
+      padding-left: 0;
+      margin-bottom: 15px;
+  }
+  .profile-footer .header-action {
+      text-align: left;
+      padding: 15px 0 0;
+      display: block;
+  }
+
+  .profile-footer .add_address {
+      position: relative;
+      left: 0;
+      padding: 10px 0 0;
+      margin: 0;
+      display: block;
+      top: 0;
+  }
+  .profile-footer {
+      display: block;
+  }
+
+  .order-list-left {
+      width: 100%;
+  }
+
+  .order-list-action {
+      width: 100%;
+      text-align: center;
+      padding: 20px 0 0;
+  }
+
+  .order-grid-item {
+      display: block;
+  }
+
+  .payment_details p {
+      font-size: 14px;
+  }
+}

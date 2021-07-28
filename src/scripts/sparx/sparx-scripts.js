@@ -128,10 +128,6 @@ const SparxScripts = (() => {
           });
         } // Account address code here
 
-
-        $("#AddressNewButton").click(function () {
-          $("#AddressNewForm").toggle();
-        });
       }); // Harshita 
 
       $(document).ready(function () {
