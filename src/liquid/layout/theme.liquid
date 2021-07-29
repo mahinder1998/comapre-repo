@@ -36,6 +36,9 @@
   
       {% comment %} Liquid to Javascript  {% endcomment %}
       {% render 'object-data' %}
+       {%- if request.page_type contains 'customers/' -%}
+          <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+        {%- endif -%}
     </head>
 
     {% render 'boost-pfs-style'%}
