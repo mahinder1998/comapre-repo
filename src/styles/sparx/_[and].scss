@@ -662,7 +662,7 @@ blockquote p {
 .item-variant-details .product-details__item--variant-option{font-size: 14px;font-weight: 400; line-height: 1.29;text-transform: none;}
 /* mega menu layout css  */
 .mega-menu ul.ul-reset.sub-first-lvl {
-    display: block;
+    display: flex;
     float: none;
     min-height: 370px;
     position: relative;
@@ -692,12 +692,11 @@ blockquote p {
 
 .mega-menu li.featured-block,
 li.lvl-li-two {
-    padding: 15px 0 0 15px;
+    padding: 0;
 }
 
 .mega-menu li.featured-block {
     width: 100%;
-    min-width: 210px;
     margin-right: 20px;
 }
 
@@ -707,10 +706,6 @@ li.lvl-li-two {
 
 .mega-menu a.lvl-one-link {
     text-transform: uppercase;
-}
-
-.mega-menu ul.sub-second-lvl li.lvl-li-three a {
-    padding: 4px 0;
 }
 /*megamenu laypout css  */
 
