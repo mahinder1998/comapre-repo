@@ -336,7 +336,7 @@ const PDPListeners = (function (){
                     if(slide.media_type === "image") {
                         const slideHTML = `
                             <div class="pdp__media__master__slide">
-                                <img src="${slide?.src}" alt="" class="pdp__media__master__slide__img">
+                                <img src="${slide?.src}" alt="${slide?.alt}" class="pdp__media__master__slide__img">
                             </div>
                         `;
                         masterGalleryHTMLString = masterGalleryHTMLString + slideHTML;
@@ -345,9 +345,9 @@ const PDPListeners = (function (){
                     if(slide.media_type === "video") {
                         const slideHTML = `
                             <div class="pdp__media__master__slide">
-                                <div class="pdp__media__master__slide__video-playbox">
-                                <img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/play-button.png?v=1627564710" alt="" class="pdp__media__master__slide__video-playbox__img">
-                                </div>
+                            <div class="pdp__media__master__slide__video-playbox">
+                                <img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/playbutton2.png?v=1627570945" alt="" class="pdp__media__master__slide__video-playbox__img">
+                            </div>
                                 <video width="100%" muted controls>${renderVideoSources(slide)}</video>
                             </div>
                         `;
@@ -369,7 +369,9 @@ const PDPListeners = (function (){
                     if(slide.media_type === "video") {
                         const slideHTML = `
                             <div class="pdp__media__thumbs__slide">
-                                <div class="pdp__media__thumbs__slide__video-play-icon"></div>
+                                <div class="pdp__media__thumbs__slide__video-playbox">
+                                    <img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/playbutton2.png?v=1627570945" alt="" class="pdp__media__thumbs__slide__video-playbox__img">
+                                </div>
                                 <img src="${slide?.preview_image?.src}" alt="${slide?.preview_image?.alt}" class="pdp__media__master__slide__img">
                             </div>
                         `;
@@ -404,11 +406,11 @@ const PDPListeners = (function (){
                     
                     });
 
-                    // const allImgs = document.querySelectorAll('.pdp__media__master__slide__img')
-                    // console.log(allImgs);
-                    // allImgs.forEach(img => {
-                    //     img.addEventListener('load', () => console.log("hello laodded."))
-                    // })
+                    const allImgs = document.querySelectorAll('.pdp__media__master__slide__img')
+                    console.log(allImgs);
+                    allImgs.forEach(img => {
+                        img.addEventListener('load', () => console.log("hello laodded."))
+                    })
 
                     setTimeout(() => {
                         showSlides();
