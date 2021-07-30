@@ -30,7 +30,57 @@
       position: relative;
       top: 6px;
       margin: 0 auto;
-  } 
+  }
+  
+  .promo-title {
+      font-size: 14px;
+      line-height: 18px;
+      color: #000000;
+      text-decoration: underline;
+      cursor: pointer;
+        margin-bottom: 15px;
+  }
+  
+  .promo-body .form-group.form_inline {
+        display: flex;
+  }
+  
+  .promo-body .form-group.form_inline .btn-ctm {
+      min-width: auto;
+      border: 1px solid #000000;
+      cursor: pointer;
+	  border-left: none;
+      width: 81px;
+	  padding: 14px 20px;
+  }
+  .promo-body .form-group.form_inline .form_control {
+      border-radius: 0px;
+      padding: 0 8px;
+      border: 1px solid #000000;
+	  cursor: auto !important;
+      outline: none;
+      width: calc(100% - 80px);
+  }
+  .promo-body {
+        display: none;
+  }
+  
+  
+  @media all and (max-width:1023px){
+  	.promo-body .form-group.form_inline .btn-ctm {
+        width: auto;
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+  }
+  
+   @media all and (max-width:749px){
+  	.promo-body .form-group.form_inline .btn-ctm {
+          padding: 12px 20px;
+      }
+    }
+
+  
   </style>
   
   {% assign found_title = false %}
@@ -268,6 +318,20 @@
             <p>(VAT included)</p>
           </div>
           <div id="cart-right">
+            
+            <div class="promo_code_wrap">
+              <div class="promo-title"> Have a promocode?  </div>
+                <div class="promo-body">
+                  <form class="promo-form">
+                    <div class="form-group form_inline">
+                    	<input type="text" placeholder="Enter promo code"  class="form_control" id="promo_coupon">
+                      <button type="submit" class="btn-ctm promo-submit" id="redemDevPromo"> APPLY  </button>
+                    </div>
+                  </form>
+                </div>
+              
+            </div> 
+            
             <input name="checkout" type="submit" class="button" id="checkout-button" value="PROCEED TO CHECKOUT">
             {% if additional_checkout_buttons %}
             <div class="additional-checkout-buttons">
@@ -327,6 +391,7 @@
   <style>
     .mb-search-logo-flex .mb-cart-flex{pointer-events: none;}
   </style>
+
 {% schema %}
   {
     "name": "cart",

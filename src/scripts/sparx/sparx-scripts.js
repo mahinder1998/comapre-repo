@@ -286,7 +286,7 @@ var address_list_container = document.getElementById('cus_address-list');
 
 var newAddressForm = document.getElementById('AddressNewForm');
 var newAddressFormButton = document.getElementById('AddressNewButton');
-
+var deletedTarget;
 
 
 // Toggle new/edit address forms
@@ -312,24 +312,29 @@ document.querySelectorAll('.address-edit-toggle').forEach(function(button) {
     editAddress.classList.toggle('hide');
     editButton.setAttribute('aria-expanded', !isExpanded);
     editButton.focus();
+    $('#default_'+formId+' input[type=checkbox]').prop('checked','checked'); 
   });
 });
+
+var fountHtm = setInterval(function() {
+  if(document.getElementById("address-remove")) {
+    clearInterval(fountHtm);
+    document.getElementById("address-remove").addEventListener("click", function() {
+      Shopify.postLink(deletedTarget, {
+        parameters: { _method: 'delete' }
+      });
+    });
+  }
+},1000);
 
 document.querySelectorAll('.address-delete').forEach(function(button) {
   button.addEventListener('click', function(evt) {
     var target = evt.target.dataset.target;
     var confirmMessage = evt.target.dataset.confirmMessage;
-
-    // eslint-disable-next-line no-alert
-    if (
-      confirm(
-        confirmMessage || 'Are you sure you wish to delete this address?'
-      )
-    ) {
-      Shopify.postLink(target, {
-        parameters: { _method: 'delete' }
-      });
-    }
+    deletedTarget = target;
+    //console.log("555555555555555555555555555555");
+    $("#cnf-msg").show();
+    $(".address_popup_overlay").show();
   });
 });
 
@@ -360,6 +365,41 @@ $('.giftyes').click(function() {
   } else {
       $(".gift_msg").fadeOut();
   }
+});
+// remove js popup modal
+
+$(".address-cancle-btn").click(function() {
+  $("#cnf-msg").hide();
+  $(".address_popup_overlay").hide();
+});
+
+$( ".address_popup_close" ).click(function() {
+ $( ".address-cancle-btn" ).click();
+});
+
+// andrew cart page coopen 
+$('#redemDevPromo').on('click', function(event){
+  //disable the button event
+  event.preventDefault();
+  //write the url format
+  var theUrl = '/checkout?discount=';
+  //grab the discount code from the input
+  var theDiscount = $('#promo_coupon').val();
+  //full url to redirect to checkout with promo code
+  if( !theDiscount) {
+    $('.errormessage').text('Please Enter Valid Coupon Code');
+    $('#promo_coupon').addClass('error-promo');
+  }
+  else{
+    var toRedirect = theUrl+theDiscount;
+    console.log(toRedirect);
+    //redirect
+    window.location.href = toRedirect;
+  }
+});
+
+jQuery(".promo-title").click(function(){
+  jQuery(".promo-body").slideToggle();
 });
     }
   };
