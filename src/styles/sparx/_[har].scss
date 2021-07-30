@@ -979,3 +979,22 @@ p.rec_order_title {
       font-size: 14px;
   }
 }
+.cart__footer .radio-group {
+  display: flex;
+  align-items: center;
+}
+.cart__footer .radio-group label {
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+.gift_msg {
+  display: none;
+}
+
+.Home_slideshow  .slick-dots li {
+  display: inline-block;
+}
+.Home_slideshow .slick-dots li:only-child {
+  display: none;
+}

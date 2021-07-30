@@ -260,7 +260,7 @@
           </div>
           <div colspan="5" class="subtotal">
             <h4 class="flex-bet">
-              <span class="cart-subtotal__title">Subtotal:</span>
+              <span class="cart-subtotal__title">Subtotal</span>
               <span class="cart-subtotal__title cart_subtotal">{{ cart.total_price | money }}</span>
             </h4>
           </div>
@@ -288,14 +288,13 @@
             <!-- Yes and No content goes here-->
             <div class="login-wrap">
               <div class="radio-group">
-                <input type="radio" id="{{ formId }}-ms" name="choice-radio" value="{{ cart.attributes["No"] }}" checked="checked" />
-                <label for="{{ formId }}-ms">No</label>
-                <input type="radio" id="{{ formId }}-mrs" name="choice-radio" value="{{ cart.attributes["Yes"] }}"  />
+                
+                <input type="checkbox" id="{{ formId }}-mrs" class="giftyes" name="choice-radio" value="{{ cart.attributes["Yes"] }}"  />
                 <label for="{{ formId }}-mrs">Yes</label>
               </div>
             </div>
             <!-- Gift message option code goes here-->
-  
+       <div class="gift_msg">
             <div class="login-wrap giftmessage ">
               <div class="radio-group">
                 <input type="checkbox" id="{{ formId }}-ms" name="choice-giftmessage" value="{{ cart.attributes["No"] }}" checked="checked" />
@@ -307,8 +306,9 @@
             </div>
   
             <span class="custom-cart-text">
-              Please note: To ensure flawless condition, Hand Refill Pouches cannot be gift-wrapped. Single and duo-bottle gifts arrive with assemble-at-home flat-packed boxes and tissue paper.
+            		{{ section.settings.giftmessage }}
             </span>
+         </div>
           </div>
   
         </div>
@@ -327,3 +327,15 @@
   <style>
     .mb-search-logo-flex .mb-cart-flex{pointer-events: none;}
   </style>
+{% schema %}
+  {
+    "name": "cart",
+    "settings": [
+	 {
+        "type": "textarea",
+        "id": "giftmessage",
+        "label": "gift message"
+      }
+]
+  }
+{% endschema %}
