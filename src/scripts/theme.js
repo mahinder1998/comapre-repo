@@ -21,12 +21,16 @@ window.Cart = cart;
 
 document.addEventListener('DOMContentLoaded', function() {
   lazyload();
-  MediaGallery.init();
-  RelatedProductSlider.init();
   SparxScripts.init();
-  PDPListeners.init();
   HeaderListeners.init();
   HomeSliderSparx.init();
+
+  if(window.objectData.template == 'product') {
+    MediaGallery.init();
+    RelatedProductSlider.init();
+    PDPListeners.init();
+  }
+
 });
 
 
@@ -42,8 +46,9 @@ const controlRelatedProducts = async () => {
 
 
 function init() {  
-  controlRelatedProducts();
-  
+  if(window.objectData.template == 'product') {
+    controlRelatedProducts();
+  }
 }
 
 init();

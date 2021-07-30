@@ -53,6 +53,8 @@ const MediaGallery = (() => {
     }
 
     function addListeners() {
+        if(!parentEl) return;
+        
         const videos = parentEl.querySelectorAll('video');
         if(!videos) return;
 
