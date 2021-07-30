@@ -103,8 +103,10 @@ const MediaGallery = (() => {
 
     function showSlides() {
         document.querySelector('.pdp__media__shimmer').style.display = "none";
-        document.querySelector('.pdp__media__master').style.display = "block";
-        document.querySelector('.pdp__media__thumbs').style.display = "block";
+        document.querySelector('.pdp__media__master').style.opacity = 1;
+        document.querySelector('.pdp__media__master').style.visibility = "visible";
+        document.querySelector('.pdp__media__thumbs').style.opacity = 1;
+        document.querySelector('.pdp__media__thumbs').style.visibility = "visible";
     }
 
     return {
