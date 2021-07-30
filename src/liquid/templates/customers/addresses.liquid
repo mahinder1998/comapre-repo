@@ -54,7 +54,6 @@
             <div class="address-block">
               <div class="address-left">
               {% if address == customer.default_address %}
-              <input type="radio" id="default-add" name="customer[note][gender]" value="ms" checked="checked">
               <label for="default-add">{{ 'customer.addresses.default' | t }}</label>
               {% endif %}
 
@@ -174,7 +173,7 @@
                      <div class="form-row">
                        <div class="form_action">
                          <div class="text-center form_action">
-                  <div class="set_default">
+                  <div class="set_default" {% if address == customer.default_address %} id="default_{{ form.id }}"{% endif %}>
                   {{ form.set_as_default_checkbox }}
                   <label for="address_default_address_{{ form.id }}">{{ 'customer.addresses.set_default' | t }}</label>
                     </div>
@@ -378,3 +377,27 @@
 </div> 
   
 </div>   
+<!-- address remove popup -->
+
+<div class="address_popup_overlay"></div>
+
+<div id="cnf-msg">
+    <div class="address_popup_close">
+        <div class="address-btn-group">
+            <div class="address-btn-left"></div>
+            <div class="address-btn-right"></div>
+        </div>
+    </div>
+    <div class="address-popup-title">
+        <h3 class="title">Delete Address</h3>
+    </div>
+
+    <div class="address-popup-body">
+        Are you sure you want to remove this address from your address book?
+    </div>
+
+    <div class="address-popup-actions">
+        <div class="address-cancle-btn">Cancel</div>
+        <div class="address-conf-btn" id="address-remove">Yes</div>
+    </div>
+</div>
