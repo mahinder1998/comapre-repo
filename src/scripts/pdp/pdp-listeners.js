@@ -407,10 +407,28 @@ const PDPListeners = (function (){
                     });
 
                     const allImgs = document.querySelectorAll('.pdp__media__master__slide__img')
-                    console.log(allImgs);
-                    allImgs.forEach(img => {
-                        img.addEventListener('load', () => console.log("hello laodded."))
-                    })
+                    const allImgsLength = allImgs.length;
+                    const counter = 0;
+
+                    [].forEach.call(allImgs, function(img) {
+                        if(img.complete){
+                            countPlus();
+                        }else {
+                            img.addEventListener('load', countPlus, false);
+                        }
+                    });
+
+                    function countPlus() {
+                        counter = counter + 1;
+                        if(counter === allImgsLength) {
+                            console.log("All Images loaded!")
+                        }
+                    }
+
+                    // console.log(allImgs);
+                    // allImgs.forEach(img => {
+                    //     img.addEventListener('load', () => console.log("hello laodded."))
+                    // })
 
                     setTimeout(() => {
                         showSlides();
