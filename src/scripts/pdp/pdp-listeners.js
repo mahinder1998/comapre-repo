@@ -422,6 +422,9 @@ const PDPListeners = (function (){
                         counter = counter + 1;
                         if(counter === allImgsLength) {
                             console.log("All Images loaded!")
+
+                                showSlides();
+                                hideLoader();
                         }
                     }
 
@@ -430,10 +433,7 @@ const PDPListeners = (function (){
                     //     img.addEventListener('load', () => console.log("hello laodded."))
                     // })
 
-                    setTimeout(() => {
-                        showSlides();
-                        hideLoader();
-                    }, 300);
+                    
 
                 };
 
