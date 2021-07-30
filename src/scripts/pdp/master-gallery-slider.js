@@ -1,5 +1,12 @@
 const MediaGallery = (() => {
     const parentEl = document.querySelector('.pdp__media');
+    
+    function renderVideoSources (slide) {
+        if(!slide) return;
+        return slide.sources.map(source => {
+            return `<source src="${  source.url }" type="${ source.mime_type }"/>`
+        }).join('');
+    }
 
     function renderSlide(slide) {
 
