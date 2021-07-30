@@ -127,10 +127,28 @@ const MediaGallery = (() => {
                     renderMasterSlides(currentVariantImages);
                     renderThumbSlides(currentVariantImages);
 
-                    initSlides();
-                    setTimeout(() => {
-                        showSlides();
-                    }, 300);
+
+                    const allImgs = document.querySelectorAll('.pdp__media__master__slide__img')
+                    const allImgsLength = allImgs.length;
+                    let counter = 0;
+
+                    [].forEach.call(allImgs, function(img) {
+                        if(img.complete){
+                            countPlus();
+                        }else {
+                            img.addEventListener('load', countPlus, false);
+                        }
+                    });
+
+                    function countPlus() {
+                        counter = counter + 1;
+                        if(counter === allImgsLength) {
+                            console.log("All Images loaded!")
+
+                            initSlides();
+                            showSlides();
+                        }
+                    }
                 }            
             }
             addListeners();
