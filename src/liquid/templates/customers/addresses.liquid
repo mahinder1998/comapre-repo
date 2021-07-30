@@ -151,11 +151,22 @@
                      <div class="form-row-flex">
                        <div class="form-group">
                            <label for="AddressCountry_{{ form.id }}">{{ 'customer.addresses.country' | t }}</label>
-                            <select id="AddressCountry_{{ form.id }}" class="address-country-option" data-form-id="{{ form.id }}" name="address[country]" data-default="{{ form.country }}" autocomplete="country">{{ all_country_option_tags }}</select>
+                            <select id="AddressCountry_{{ form.id }}" class="address-country-option" data-form-id="{{ form.id }}" name="address[country]" data-default="{{ form.country }}" autocomplete="country">
+                            {% comment %} {{ all_country_option_tags }} {% endcomment %}
+                           <option value="United Arab Emirates" data-provinces="[[&quot;Abu Dhabi&quot;,&quot;Abu Dhabi&quot;],[&quot;Ajman&quot;,&quot;Ajman&quot;],[&quot;Dubai&quot;,&quot;Dubai&quot;],[&quot;Fujairah&quot;,&quot;Fujairah&quot;],[&quot;Ras al-Khaimah&quot;,&quot;Ras al-Khaimah&quot;],[&quot;Sharjah&quot;,&quot;Sharjah&quot;],[&quot;Umm al-Quwain&quot;,&quot;Umm al-Quwain&quot;]]">United Arab Emirates</option>
+                         </select>
                        </div>
                        <div class="form-group">
-                          <label for="AddressProvinceNew">{{ 'customer.addresses.province' | t }}</label>
-                          <select id="AddressProvinceNew" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
+                          <label for="AddressProvince_{{ form.id }}">{{ 'customer.addresses.province' | t }}</label>
+                         <select id="AddressProvince_{{ form.id }}" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1">
+                           <option value="Abu Dhabi" {% if form.province == 'Abu Dhabi' %}selected{% endif %}>Abu Dhabi</option>
+                           <option value="Ajman" {% if form.province == 'Ajman' %}selected{% endif %}>Ajman</option>
+                           <option value="Dubai" {% if form.province == 'Dubai' %}selected{% endif %}>Dubai</option>
+                           <option value="Fujairah" {% if form.province == 'Fujairah' %}selected{% endif %}>Fujairah</option>
+                           <option value="Ras al-Khaimah" {% if form.province == 'Ras al-Khaimah' %}selected{% endif %}>Ras al-Khaimah</option>
+                           <option value="Sharjah" {% if form.province == 'Sharjah' %}selected{% endif %}>Sharjah</option>
+                           <option value="Umm al-Quwain" {% if form.province == 'Umm al-Quwain' %}selected{% endif %}>Umm al-Quwain</option></select>
+                        
                        </div>
 
                      </div>
@@ -277,13 +288,16 @@
            <div class="form-row-flex">
             <div class="form-group">
                  <label for="AddressCountryNew">{{ 'customer.addresses.country' | t }}</label>
-              <select id="AddressCountryNew" name="address[country]" data-default="{{ form.country }}" autocomplete="country">{{ all_country_option_tags }}</select>
+              <select id="AddressCountryNew" name="address[country]" data-default="{{ form.country }}" autocomplete="country">
+                 {% comment %} {{ all_country_option_tags }} {% endcomment %}
+                           <option value="United Arab Emirates" data-provinces="[[&quot;Abu Dhabi&quot;,&quot;Abu Dhabi&quot;],[&quot;Ajman&quot;,&quot;Ajman&quot;],[&quot;Dubai&quot;,&quot;Dubai&quot;],[&quot;Fujairah&quot;,&quot;Fujairah&quot;],[&quot;Ras al-Khaimah&quot;,&quot;Ras al-Khaimah&quot;],[&quot;Sharjah&quot;,&quot;Sharjah&quot;],[&quot;Umm al-Quwain&quot;,&quot;Umm al-Quwain&quot;]]">United Arab Emirates</option>
+                   </select>
             </div>
 
             <div class="form-group">
                 <label for="AddressProvinceNew">{{ 'customer.addresses.province' | t }}</label>
-                <select id="AddressProvinceNew" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
-            </div>
+            	<select id="AddressProvinceNew" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"><option value="Abu Dhabi">Abu Dhabi</option><option value="Ajman">Ajman</option><option value="Dubai">Dubai</option><option value="Fujairah">Fujairah</option><option value="Ras al-Khaimah">Ras al-Khaimah</option><option value="Sharjah">Sharjah</option><option value="Umm al-Quwain">Umm al-Quwain</option></select>
+             </div>
 
           </div>
 
@@ -360,16 +374,6 @@
     </div>
     
   </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
 </div> 
   

@@ -353,7 +353,14 @@ $( "#view-order-d" ).click(function() {
 $( "#view-order-m" ).click(function() {
   $( "a#my_order" ).click();
 });
-
+// harshita cart page 30-7
+$('.giftyes').click(function() {
+  if( $(this).is(':checked')) {
+      $(".gift_msg").fadeIn();
+  } else {
+      $(".gift_msg").fadeOut();
+  }
+});
     }
   };
 })();
