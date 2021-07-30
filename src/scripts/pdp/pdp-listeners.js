@@ -408,7 +408,7 @@ const PDPListeners = (function (){
 
                     const allImgs = document.querySelectorAll('.pdp__media__master__slide__img')
                     const allImgsLength = allImgs.length;
-                    const counter = 0;
+                    let counter = 0;
 
                     [].forEach.call(allImgs, function(img) {
                         if(img.complete){
