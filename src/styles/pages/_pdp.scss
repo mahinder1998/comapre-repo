@@ -67,7 +67,9 @@
         &__master {
             // background-color: purple;
             padding: 10px;
-            display: none;
+            // display: none;
+            opacity: 0;
+            visibility: hidden;
 
             &__inner {
                 position: relative;
@@ -103,7 +105,6 @@
                 }
             }
             &__slide {
-
                 position: relative;
                 &__video-playbox {
                     position: absolute;
@@ -131,8 +132,10 @@
         
         &__thumbs {
             padding: 10px;
-            display: none;
-
+            // display: none;
+            opacity: 0;
+            visibility: hidden;
+            
             &__slider {
                 margin-left: -5px;
                 

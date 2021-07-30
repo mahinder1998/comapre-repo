@@ -256,12 +256,14 @@ const PDPListeners = (function (){
     //     </div>
     // `;
 
-    function showShimmer() {
-        document.querySelector('.pdp__media__shimmer').style.opacity = 1;
-        document.querySelector('.pdp__media__shimmer').style.visibility = "visible";    }
-    function hideShimmer() {
-        document.querySelector('.pdp__media__shimmer').style.opacity = 0;
-        document.querySelector('.pdp__media__shimmer').style.visibility = "hidden";
+    function showLoader() {
+        const shimmer = document.querySelector('.pdp__media__shimmer');
+        shimmer.style.display = "block";
+    }
+
+    function hideLoader() {
+        const shimmer = document.querySelector('.pdp__media__shimmer');
+        shimmer.style.display = "none";
     }
 
     function hideSlides() {
@@ -277,14 +279,21 @@ const PDPListeners = (function (){
         document.querySelector('.pdp__media__thumbs').style.opacity = 1;
         document.querySelector('.pdp__media__thumbs').style.visibility = "visible";
     }
+
+    function renderVideoSources (slide) {
+        if(!slide) return;
+        return slide.sources.map(source => {
+            return `<source src="${  source.url }" type="${ source.mime_type }"/>`
+        }).join('');
+    }
     
     function swatchListeners() {
         const swatches = document.querySelectorAll('.pdp__content__swatches__item');
         swatches && swatches.forEach(swatch => {
             swatch.addEventListener('click', function(e) {
                 // Hide slides and show loader
-                hideSlides();
-                showShimmer();
+                showLoader();
+                hideShimmer();
 
                 const selectedOption = e.target.dataset.option
                 // console.log("Selected Option is : " + selectedOption);
@@ -322,25 +331,50 @@ const PDPListeners = (function (){
                 // console.log(selectedImages)
 
                 let masterGalleryHTMLString = "";
-                selectedImages.forEach(img => {
-                    const htmlString = `
-                        <div class="pdp__media__master__slide">
-                            <img src="${img.src}" alt="" class="pdp__media__master__slide__img">
-                        </div>
-                    `;
 
-                    masterGalleryHTMLString = masterGalleryHTMLString + htmlString;
+                selectedImages.forEach(slide => {
+                    if(slide.media_type === "image") {
+                        const slideHTML = `
+                            <div class="pdp__media__master__slide">
+                                <img src="${slide?.src}" alt="" class="pdp__media__master__slide__img">
+                            </div>
+                        `;
+                        masterGalleryHTMLString = masterGalleryHTMLString + slideHTML;
+                    }
+            
+                    if(slide.media_type === "video") {
+                        const slideHTML = `
+                            <div class="pdp__media__master__slide">
+                                <div class="pdp__media__master__slide__video-playbox">
+                                <img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/play-button.png?v=1627564710" alt="" class="pdp__media__master__slide__video-playbox__img">
+                                </div>
+                                <video width="100%" muted controls>${renderVideoSources(slide)}</video>
+                            </div>
+                        `;
+                        masterGalleryHTMLString = masterGalleryHTMLString + slideHTML;
+                    }
                 })
 
                 let thumbsGalleryHTMLString = "";
-                selectedImages.forEach(img => {
-                    const htmlString = `
-                        <div class="pdp__media__thumbs__slide">
-                            <img src="${img?.src}" alt="" class="pdp__media__master__slide__img">
-                        </div>
-                    `;
-
-                    thumbsGalleryHTMLString = thumbsGalleryHTMLString + htmlString;
+                selectedImages.forEach(slide => {
+                    if(slide.media_type === "image") {
+                        const slideHTML = `
+                            <div class="pdp__media__thumbs__slide">
+                                <img src="${slide?.src}" alt="" class="pdp__media__master__slide__img">
+                            </div>
+                        `;
+                        thumbsGalleryHTMLString = thumbsGalleryHTMLString + slideHTML;
+                    }
+            
+                    if(slide.media_type === "video") {
+                        const slideHTML = `
+                            <div class="pdp__media__thumbs__slide">
+                                <div class="pdp__media__thumbs__slide__video-play-icon"></div>
+                                <img src="${slide?.preview_image?.src}" alt="${slide?.preview_image?.alt}" class="pdp__media__master__slide__img">
+                            </div>
+                        `;
+                        thumbsGalleryHTMLString = thumbsGalleryHTMLString + slideHTML;
+                    }
                 })
 
 
@@ -370,8 +404,16 @@ const PDPListeners = (function (){
                     
                     });
 
-                    showSlides();
-                    hideShimmer();
+                    // const allImgs = document.querySelectorAll('.pdp__media__master__slide__img')
+                    // console.log(allImgs);
+                    // allImgs.forEach(img => {
+                    //     img.addEventListener('load', () => console.log("hello laodded."))
+                    // })
+
+                    setTimeout(() => {
+                        showSlides();
+                        hideLoader();
+                    }, 300);
 
                 };
 

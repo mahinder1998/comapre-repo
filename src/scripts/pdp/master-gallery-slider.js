@@ -2,24 +2,50 @@ const MediaGallery = (() => {
     const parentEl = document.querySelector('.pdp__media');
 
     function renderSlide(slide) {
-        // console.log(slide);
-        const slideHTML = `
-            <div class="pdp__media__master__slide">
-                <img src="${slide?.src}" alt="" class="pdp__media__master__slide__img">
-            </div>
-        `;
 
-        document.querySelector('.pdp__media__master__slider').insertAdjacentHTML("beforeend", slideHTML);
+        if(slide.media_type === "image") {
+            const slideHTML = `
+                <div class="pdp__media__master__slide">
+                    <img src="${slide?.src}" alt="" class="pdp__media__master__slide__img">
+                </div>
+            `;
+            document.querySelector('.pdp__media__master__slider').insertAdjacentHTML("beforeend", slideHTML);
+        }
+        
+        if(slide.media_type === "video") {
+            const slideHTML = `
+                <div class="pdp__media__master__slide">
+                    <div class="pdp__media__master__slide__video-playbox">
+                    <img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/playbutton2.png?v=1627570945" alt="" class="pdp__media__master__slide__video-playbox__img">
+                    </div>
+                    <video width="100%" muted controls preload="metadata">${renderVideoSources(slide)}</video>
+                </div>
+            `;
+            document.querySelector('.pdp__media__master__slider').insertAdjacentHTML("beforeend", slideHTML);
+        }
     }
 
     function renderThumb(slide) {
-        const slideHTML = `
-            <div class="pdp__media__thumbs__slide">
-                <img src="${slide?.src}" alt="" class="pdp__media__master__slide__img">
-            </div>
-        `;
+        if(slide.media_type === "image") {
+            const slideHTML = `
+                <div class="pdp__media__thumbs__slide">
+                    <img src="${slide?.src}" alt="" class="pdp__media__master__slide__img">
+                </div>
+            `;
+            document.querySelector('.pdp__media__thumbs__slider').insertAdjacentHTML("beforeend", slideHTML);
+        }
 
-        document.querySelector('.pdp__media__thumbs__slider').insertAdjacentHTML("beforeend", slideHTML);
+        if(slide.media_type === "video") {
+            const slideHTML = `
+                <div class="pdp__media__thumbs__slide">
+                    <div class="pdp__media__thumbs__slide__video-playbox">
+                        <img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/playbutton2.png?v=1627570945" alt="" class="pdp__media__thumbs__slide__video-playbox__img">
+                    </div>
+                    <img src="${slide?.preview_image?.src}" alt="${slide?.preview_image?.alt}" class="pdp__media__master__slide__img">
+                </div>
+            `;
+            document.querySelector('.pdp__media__thumbs__slider').insertAdjacentHTML("beforeend", slideHTML);
+        }
     }
 
     function renderMasterSlides(images) {
@@ -54,7 +80,7 @@ const MediaGallery = (() => {
 
     function addListeners() {
         if(!parentEl) return;
-        
+
         const videos = parentEl.querySelectorAll('video');
         if(!videos) return;
 
@@ -79,17 +105,23 @@ const MediaGallery = (() => {
             if(objectData.product) {
                 if(objectData.hasOnlyDefaultVariant) {
                     initSlides();
-                    showSlides();
+                    setTimeout(() => {
+                        showSlides();
+                    }, 300);
                 }else {
                     const medias = objectData?.product?.media;
                     const currentAlt = objectData?.selectedVaraint?.featured_image?.alt;
-                    const currentVariantImages = medias?.filter(media => media.alt == currentAlt);
+                    const currentVariantImages = medias?.filter(media => {
+                        return media.alt && media.alt.includes(currentAlt)
+                    });
 
                     renderMasterSlides(currentVariantImages);
                     renderThumbSlides(currentVariantImages);
 
                     initSlides();
-                    showSlides();
+                    setTimeout(() => {
+                        showSlides();
+                    }, 300);
                 }            
             }
             addListeners();
