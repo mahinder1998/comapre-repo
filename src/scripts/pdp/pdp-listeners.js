@@ -293,7 +293,7 @@ const PDPListeners = (function (){
             swatch.addEventListener('click', function(e) {
                 // Hide slides and show loader
                 showLoader();
-                hideShimmer();
+                hideSlides();
 
                 const selectedOption = e.target.dataset.option
                 // console.log("Selected Option is : " + selectedOption);
