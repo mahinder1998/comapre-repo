@@ -6,8 +6,13 @@
     {% endunless %}
 
 
-    <!-- <div class="pdp__content__review-info">REVIEWS</div> -->
-    <div class="pdp__content__price">{{ current_variant.price | money}}</div>
+    <div class="pdp__content__price">
+        <div class="pdp__content__price__original">{{ current_variant.price | money}}</div>
+        {% if current_variant.compare_at_price %}
+            <div class="pdp__content__price__compare">{{ current_variant.compare_at_price | money}}</div>
+        {% endif %}
+    </div>
+
 
     {% unless product.has_only_default_variant %}
         <div class="pdp__content__swatches">

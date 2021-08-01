@@ -200,12 +200,29 @@
         }
 
         &__price {
+            // background-color: red;
+            display: flex;
             margin-top: 40px;
-            font-weight: bold;
-            font-size: 22px;
-
+            justify-content: flex-start;
             @media(max-width: 768px) {
-                text-align: center;
+                justify-content: center;
+            }
+
+            &__original {
+                font-weight: bold;
+                font-size: 22px;
+    
+                @media(max-width: 768px) {
+                    text-align: center;
+                }
+            }
+
+            &__compare {
+                margin-left: 0.8rem;
+                font-weight: bold;
+                font-size: 22px;
+                text-decoration: line-through;
+
             }
         }
 
