@@ -8,9 +8,12 @@
 
     <div class="pdp__content__price">
         <div class="pdp__content__price__original">{{ current_variant.price | money}}</div>
-        {% if current_variant.compare_at_price %}
-            <div class="pdp__content__price__compare">{{ current_variant.compare_at_price | money}}</div>
-        {% endif %}
+        
+            <div class="pdp__content__price__compare">
+                {% if current_variant.compare_at_price %}
+                    {{ current_variant.compare_at_price | money}}
+                {% endif %}
+            </div>
     </div>
 
 

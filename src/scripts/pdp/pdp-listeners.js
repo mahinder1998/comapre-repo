@@ -311,7 +311,15 @@ const PDPListeners = (function (){
                 this.classList.add('active');
 
                 //Change the title, size, price.
-                document.querySelector('.pdp__content__price').innerHTML = Currency.formatMoney(selectedVariant.price);
+                document.querySelector('.pdp__content__price__original').innerHTML = Currency.formatMoney(selectedVariant.price);
+
+                
+                if(selectedVariant.compare_at_price) {
+                    document.querySelector('.pdp__content__price__compare').innerHTML = Currency.formatMoney(selectedVariant.compare_at_price);
+                }else {
+                    document.querySelector('.pdp__content__price__compare').innerHTML = "";
+                }
+
                 document.querySelector('.pdp__content__size').innerHTML = selectedVariant.option1;
 
                 // Change the size label in mobile
