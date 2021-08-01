@@ -32,6 +32,66 @@ li{list-style: none;}
 .hide{display: none;}
 
 /* Header Main */
+/* MB Breadcrumbs */
+.breadcrumbs {
+    font-size: .85em;
+    margin: 0 0 2em;
+  }
+  
+  .breadcrumbs ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .breadcrumbs li {
+    display: inline-block;
+  }
+  
+  .breadcrumbs a {
+    text-decoration: underline;
+  }
+  
+  .breadcrumbs li:not(:last-child):after {
+    content: "›\00a0";
+    display: inline-block;
+    padding-left: .75ch;
+    speak: none;
+  }
+  
+  .breadcrumbs [aria-current="page"] {
+    color: inherit;
+    font-weight: normal;
+    text-decoration: none;
+  }
+  
+  .breadcrumbs [aria-current="page"]:hover,
+  .breadcrumbs [aria-current="page"]:focus {
+    text-decoration: underline;
+  }
+  
+  nav.breadcrumbs-tree > ol > li {
+      display: inline;
+      color: #b7b7b7;
+  }
+  
+  nav.breadcrumbs-tree > ol > li > a {
+      color: inherit;
+      display: inline-block;
+      margin: 0 5px 0 5px;
+  }
+  
+  nav.breadcrumbs-tree > ol > li:first-child > a{
+   margin-left: 0;
+  }
+  
+  nav.breadcrumbs-tree > ol > li:last-child:after {
+      content: none;
+  }
+  
+  nav.breadcrumbs-tree > ol > li:after {
+      content: "/";
+  }
 
 /* Toolbar */
 section.mb-top-tool-bar {

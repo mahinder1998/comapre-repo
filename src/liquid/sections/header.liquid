@@ -2,6 +2,10 @@
 {% render 'header-logo-search' %}
 {% include 'header-desktop-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
 {% render 'mob-nav' %}
+{% if section.settings.show_breadcrumb_nav %}
+  {% include 'mb-breadcrumbs' %}
+{% endif %}
+
 
 {% schema %}
   {
@@ -22,7 +26,13 @@
         "id": "link_list_id",
         "label": "Top menu",
         "default": "main-menu"
+      },
+	  {
+        "type": "checkbox",
+        "id": "show_breadcrumb_nav",
+        "label": "Show breadcrumb navigation"
       }
+
     ],
     "blocks": [
       {
@@ -130,4 +140,5 @@
       
     ]
   }
+
 {% endschema %}
