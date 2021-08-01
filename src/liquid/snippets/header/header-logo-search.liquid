@@ -28,8 +28,12 @@
                <a class="mb-burger-icon" href="#"><img src="{{ 'mb-icon-mob-nav.svg' | asset_url }}" alt=""></a>
          </div>
          <div class="tb-logo-mid">
-            <a href="{{shop.url}}"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/moltonbrown_logo_big-1_540x.png?v=1623487154" alt=""></a>
-         </div>
+            {% if request.locale.iso_code == 'en' %}
+            <a href="{{shop.url}}"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/ENG_Logo.png?v=1627798432" alt=""></a>
+            {% else %}
+            <a href="{{shop.url}}"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/AR-Logo.png?v=1627798433" alt=""></a>
+            {% endif %}
+          </div>
          <div class="tb-logo-last">
             <div class="mb-search-logo-flex">
                <div class="mb-search-flex">
