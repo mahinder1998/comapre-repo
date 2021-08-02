@@ -285,7 +285,13 @@
   
   
                 </div>
+                
+                <div class="mobile-cart-compair">
                 <p class="price-cart-mob">{{ item.line_price | money }}</p>
+                {% if item.variant.compare_at_price %}
+                    <p class="pdp__content__price__compare">{{ item.variant.compare_at_price | money }}</p>
+                {% endif %}
+                </div>
   
               </div>   
               <p class="cart__remove">
@@ -294,6 +300,9 @@
             </div>
             <div class="cart-item-price">
               <p>{{ item.line_price | money }}</p>
+              {% if item.variant.compare_at_price %}
+                    <p class="pdp__content__price__compare">{{ item.variant.compare_at_price | money }}</p>
+                {% endif %}
             </div>
           </div>
           {% endfor %}

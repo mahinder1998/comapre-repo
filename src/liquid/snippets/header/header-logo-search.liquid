@@ -13,11 +13,12 @@
        {% unless forloop.last %},{% endunless %}
      {% endfor %}
    {% endcapture %}
+         {% comment %}    
    {
      "results_count": {{ search.results_count }},
      "results": [{{ results }}]
    }
-      
+  {% endcomment %}   
    </script>
    
    <!-- Logo and Search -->
@@ -27,13 +28,13 @@
             <a class="mb-logo-2" href="#"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232" alt=""></a>
                <a class="mb-burger-icon" href="#"><img src="{{ 'mb-icon-mob-nav.svg' | asset_url }}" alt=""></a>
          </div>
-         <div class="tb-logo-mid">
-            {% if request.locale.iso_code == 'en' %}
-            <a href="{{shop.url}}"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/ENG_Logo.png?v=1627798432" alt=""></a>
-            {% else %}
-            <a href="{{shop.url}}"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/AR-Logo.png?v=1627798433" alt=""></a>
-            {% endif %}
-          </div>
+            <div class="tb-logo-mid">
+               {% if request.locale.iso_code == 'en' %}
+                  <a href="{{shop.url}}"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/ENG_Logo.png?v=1627798432" alt=""></a>
+               {% else %}
+                  <a href="{{shop.url}}"><img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/AR-Logo.png?v=1627798433" alt=""></a>
+               {% endif %}
+            </div>
          <div class="tb-logo-last">
             <div class="mb-search-logo-flex">
                <div class="mb-search-flex">
@@ -101,8 +102,9 @@
                  <img style="max-height: 30px;" src="{{ 'cart.svg'| asset_url }}" alt=""><span class="mcart-count">{{ cart.item_count }}</span>
                </div>
             </div>
-   
+    
             <div class="mini-cart-content hide">
+              {% if cart.item_count > 0 %}
                <h3>Your cart</h3>
    
                <section class="mini-cart-list">
@@ -121,12 +123,15 @@
                {% endfor %}
    
                <div class="mcart-go-cart">
-                  <a href="./cart">View cart</a>
+                  <a href="/cart">View cart</a>
                </div>
    
                </section>
+               {% else %}
+              <h3 class="cartempty_text">Your cart is empty</h3>
+           {% endif %}
             </div>
-   
+  
          </div>
       </div>
    </section>

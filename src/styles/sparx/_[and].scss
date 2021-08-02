@@ -987,3 +987,37 @@ div#legend h3 {
 }
 .store-list .store-list-item{cursor: pointer;}
 /* media css end */
+
+.mini-cart-content>h3.cartempty_text {
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+	text-transform: uppercase; 
+}
+
+
+
+/* media css code */
+@media all and (max-width: 749px){
+  .mobile-nav__dropdown .child2_without_btn {
+      position: relative;
+  }
+  .mobile-nav__dropdown .child2_without_btn .lable_without_btn {
+      border-top: 1px solid #cccccc;
+      box-sizing: border-box;
+      width: 100%;
+      font-size: 15px;
+      color: #000000;
+      text-transform: uppercase;
+      padding: 14px 40px 14px 15px;
+      display: block;
+      background: #d3d3d3;
+  }
+  .mobile-nav__dropdown .child2_without_btn .mobile-nav__icon {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+  }
+}

@@ -30,6 +30,7 @@ var boostPFSFilterConfig = {
 		autoCloseMiniCartDuration: 2000,
 		selectOptionInProductItem: true, // Append the product's option inside the product item when clicking "select option"
 		selectOptionContainer: '.boost-pfs-filter-product-item-image',  // CSS selector to append the product option, if left empty it will append to the product item
+      	separateRefineByFromFilter: true,
     },
 	selector: {
 		otpButtons: '.boost-pfs-filter-product-item-image'
@@ -61,7 +62,7 @@ var boostPFSFilterConfig = {
 
 
 	BoostPFS.inject(this);
-	boostPFSFilterConfig.general.separateRefineByFromFilter = jQ('.boost-pfs-filter-tree-h').length > 0 ? true : false;
+	//boostPFSFilterConfig.general.separateRefineByFromFilter = jQ('.boost-pfs-filter-tree-h').length > 0 ? true : false;
 
 	/************************** CUSTOMIZE DATA BEFORE BUILDING PRODUCT ITEM **************************/
 	function prepareShopifyData(data) {

@@ -401,6 +401,26 @@ $('#redemDevPromo').on('click', function(event){
 jQuery(".promo-title").click(function(){
   jQuery(".promo-body").slideToggle();
 });
+// harshita 2 aug
+$( document ).ready(function() {
+  $("a#RecoverPassword").click(function(){
+     $("div#recover_form").show();
+     $("form#customer_login").hide();
+ });
+ $("a#HideRecoverPasswordLink").click(function(){
+     $("div#recover_form").hide();
+     $("form#customer_login").show();
+ });
+});
+// deepak 2 aug
+$("document").ready(function(){
+  $(".find-store,.language").hover(function() {
+    $(this).find(".uae-select").addClass("open");
+  },function() {
+    $(this).find(".uae-select").removeClass("open");
+  });
+});
+
     }
   };
 })();
