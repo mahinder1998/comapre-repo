@@ -126,5 +126,10 @@
         "password": "Password",
         "submit": "Create"
       }
+    },
+    "productpage": {
+      "related_title": "You might also like"
     }
 }
+
+

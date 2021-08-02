@@ -39,7 +39,7 @@ const controlRelatedProducts = async () => {
     // 1. Get the Current product type 
     const currentType = window.objectData.product?.type;
     await getAllProductsWithType("en", currentType);
-    console.log(state.relatedProducts);
+    // console.log(state.relatedProducts);
 
     RelatedProductsView.render(state.relatedProducts);
     RelatedProductsView.initSlider();
