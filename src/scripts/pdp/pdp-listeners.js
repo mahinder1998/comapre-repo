@@ -79,7 +79,7 @@ const PDPListeners = (function (){
     }
 
     // Open Added to cart modal.
-    function openAddedtoCartModal(title,image,quantity, price, size) {
+    function openAddedtoCartModal(title,image,quantity, price, compare_price, size) {
         if(title && document.querySelector('.pdpmodal-addedtocart__modal__body__content__title')) {
             document.querySelector('.pdpmodal-addedtocart__modal__body__content__title').innerHTML = title;
         }
@@ -92,8 +92,18 @@ const PDPListeners = (function (){
             document.querySelector('.pdpmodal-addedtocart__modal__body__content__qty__value').innerHTML = quantity;
         }
 
-        if(price && document.querySelector('.pdpmodal-addedtocart__modal__body__content__price')) {
-            document.querySelector('.pdpmodal-addedtocart__modal__body__content__price').innerHTML = price;
+        if(price && document.querySelector('.pdpmodal-addedtocart__modal__body__content__price__original')) {
+            document.querySelector('.pdpmodal-addedtocart__modal__body__content__price__original').innerHTML = price;
+        }
+
+        if(compare_price) {
+            if(document.querySelector('.pdpmodal-addedtocart__modal__body__content__price__compare')) {
+                document.querySelector('.pdpmodal-addedtocart__modal__body__content__price__compare').innerHTML = compare_price;
+            }
+        }else {
+            if(document.querySelector('.pdpmodal-addedtocart__modal__body__content__price__compare')) {
+                document.querySelector('.pdpmodal-addedtocart__modal__body__content__price__compare').innerHTML = "";
+            }
         }
 
         if(size && document.querySelector('.pdpmodal-addedtocart__modal__body__content__size__value')) {
@@ -149,6 +159,9 @@ const PDPListeners = (function (){
                         const title = res.product_title;
                         const image = res.featured_image.url || res.image;
                         const price = Currency.formatMoney(parseFloat(res.price) * parseFloat(quantity));
+                        const compare_unit_price = getVariantComparePrice(variantId);
+                        const compare_price = compare_unit_price ? Currency.formatMoney(parseFloat(compare_unit_price) * parseFloat(quantity)) : null;
+                        console.log(compare_price)
                         let size = null;
     
     
@@ -164,7 +177,7 @@ const PDPListeners = (function (){
                         updateBubble(quantity);
     
                         // Show added modal
-                        openAddedtoCartModal(title,image,quantity, price, size);
+                        openAddedtoCartModal(title,image,quantity, price, compare_price, size);
 
                         // Update the mincart.
                         Cart.getState().then(cart => {
