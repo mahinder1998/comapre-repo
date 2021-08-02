@@ -4,16 +4,12 @@ const SparxScripts = (() => {
       $(document).ready(function () {
 
         //Scroll top fixed nav
-        var previousScroll = 0;
+        var previousScroll = 0; 
         jQuery(window).scroll(function (e) {
-          var startscrollTop = $(window).scrollTop();
-          if (startscrollTop < 299) { 
-            $('body').removeClass('nav-is-fixed');
-          }                        
           var i = $(this).scrollTop();
           i < previousScroll ? i > 300 && (
-            $(".nav-is-fixed, section.mb-top-logo").stop().animate({ opacity: 1 }, 70), $("body").addClass("nav-is-fixed"))
-          : (i > 300 && $(".nav-is-fixed, section.mb-top-logo").stop().animate({ opacity: 0 }, 70), $("body").removeClass("nav-is-fixed")),
+            $('body').addClass('nav-is-fixed'), $('.mb-top-logo, .mb-dt-nav-cont').addClass('animate__animated animate__fadeInDown'))
+          : (i > 300 &&  $('.mb-top-logo, .mb-dt-nav-cont').removeClass('animate__animated animate__fadeInDown'), $('body').removeClass('nav-is-fixed')),
             (previousScroll = i);
         });
 
