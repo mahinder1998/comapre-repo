@@ -252,12 +252,15 @@ const SparxScripts = (() => {
             inputError = true;
           } else {
             inputError = false;
-            $('error-msg').hide();
+            $('.error-msg').hide();
           }
         });
         $(document).on('click', function (event) {
           if (inputError) {
             $('.error-msg').show();
+          }
+          else {
+            $('.error-msg').hide();
           }
         }); // cart page cart note count
 
