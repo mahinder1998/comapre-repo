@@ -175,9 +175,15 @@
                 }
 
                 &__price {
+                    display: flex;
                     font-size: 17px;
                     font-weight: bold;
                     margin-top: 15px;
+
+                    &__compare {
+                        margin-left: 1rem;
+                        text-decoration: line-through;
+                    }
                 }
             }
         }
