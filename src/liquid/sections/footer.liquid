@@ -1,13 +1,13 @@
 <footer class="site-footer">
   <div class="footer-top">
     <div class="page-width">
-      <div class="footer-grid">
+      <div class="footer-grid footer-grid_row">
         
-        
+        {% if section.settings.title1 != blank %}
         <div class="footer-item">
-          {% if section.settings.title1 %}
+          
             <div class="footer-header">
-              <h5 class="footer-title">{{section.settings.title3}}
+              <h5 class="footer-title">{{section.settings.title1}}
                 <span class="arrow-right">
                   <svg xmlns="http://www.w3.org/2000/svg" width="6.924" height="12.434" viewBox="0 0 6.924 12.434">
                     <defs>
@@ -36,7 +36,7 @@
                  </span>
               </h5>
             </div>
-          {%endif%}
+          
             
           <div class="footer-body">
             <ul class="footer-list">
@@ -48,10 +48,10 @@
             </ul>
           </div>
         </div>
+        {%endif%}
         
-        
+        {% if section.settings.title2 != blank %}
         <div class="footer-item">
-          {% if section.settings.title2 %}
             <div class="footer-header">
               <h5 class="footer-title">{{section.settings.title2}}
                 <span class="arrow-right">
@@ -82,7 +82,7 @@
                  </span>
               </h5>
             </div>
-          {%endif%}
+          
           <div class="footer-body">
             <ul class="footer-list">
               {% for link in linklists[section.settings.menu2].links %}
@@ -93,8 +93,10 @@
             </ul>
           </div>
         </div>
+        {%endif%}
+        
+        {% if section.settings.title3 != blank  %}
         <div class="footer-item">
-          {% if section.settings.title3 %}
             <div class="footer-header">
               <h5 class="footer-title">{{section.settings.title3}}
                 <span class="arrow-right">
@@ -125,7 +127,6 @@
                  </span>
               </h5>
             </div>
-          {%endif%}
           <div class="footer-body">
             <ul class="footer-list">
               {% for link in linklists[section.settings.menu3].links %}
@@ -136,8 +137,12 @@
             </ul>
           </div>
         </div>
+        
+         {%endif%}
+        
+        {% if section.settings.title4 != blank %}
         <div class="footer-item">
-          {% if section.settings.title4 %}
+          
             <div class="footer-header">
               <h5 class="footer-title">{{section.settings.title4}}
                 <span class="arrow-right">
@@ -168,7 +173,7 @@
                  </span>
               </h5>
             </div>
-          {%endif%}
+          
           <div class="footer-body">
             <ul class="footer-list">
               {% for link in linklists[section.settings.menu4].links %}
@@ -179,8 +184,11 @@
             </ul>
           </div>
         </div>
+        {%endif%}
+        
+        {% if section.settings.title5 != blank %}
         <div class="footer-item">
-          {% if section.settings.title5 %}
+          
           <div class="footer-header">
           	<h5 class="footer-title">{{section.settings.title5}}
               <span class="arrow-right">
@@ -211,7 +219,7 @@
                </span>
             </h5>
           </div>
-          {%endif%}
+         
           <div class="footer-body">
             <ul class="footer-list">
               {% for link in linklists[section.settings.menu5].links %}
@@ -222,8 +230,10 @@
             </ul>
           </div>
         </div>
+         {%endif%}
+         {% if section.settings.title6 != blank %}
         <div class="footer-item">
-          {% if section.settings.title6 %}
+         
             <div class="footer-header">
               <h5 class="footer-title">{{section.settings.title6}}
                 <span class="arrow-right">
@@ -254,7 +264,7 @@
                  </span>
               </h5>
             </div>
-          {%endif%}
+         
           <div class="footer-body">
             <ul class="footer-list">
               {% for link in linklists[section.settings.menu6].links %}
@@ -265,6 +275,8 @@
             </ul>
           </div>
         </div>
+         {%endif%}
+        
       </div>
     </div>
   </div>
@@ -276,7 +288,7 @@
     </div>
   </div>
 </footer>
-
+  
 
 
 {% schema %}

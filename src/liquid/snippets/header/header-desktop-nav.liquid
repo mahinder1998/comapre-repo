@@ -26,7 +26,16 @@
                 
                   <ul class="sub-second-lvl">
                     {%- for grandchild_link in child_link.links -%}
-                      <li class="lvl-li-three">
+                    {% assign boldmenu = '' %}       
+ 						{% assign menu_handle = bold_menu | split: ',' %}
+                    	{% for handle in menu_handle %}
+                        	{% assign handle_down =  handle | downcase %}
+                        		{% assign currentmenu = grandchild_link.handle | downcase %} 
+                					{% if handle_down == currentmenu %}
+                    					{% assign boldmenu = 'show_bold_menu' %} 
+                					{% endif %}
+              			{% endfor %}
+                      <li class="lvl-li-three {{ boldmenu }}" menu-handle="{{grandchild_link.handle}}">
                         <a class="lvl-two-link" href="{{ grandchild_link.url }}" {% if grandchild_link.active %}aria-current="page"{% endif %}>
                           {{ grandchild_link.title }}
                         </a>

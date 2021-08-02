@@ -1,6 +1,6 @@
 {% render 'header-toolbar' %}
 {% render 'header-logo-search' %}
-{% include 'header-desktop-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
+{% include 'header-desktop-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered', bold_menu: section.settings.bold_menu %}
 {% render 'mob-nav' %}
 {% if section.settings.show_breadcrumb_nav %}
   {% include 'mb-breadcrumbs' %}
@@ -31,6 +31,11 @@
         "type": "checkbox",
         "id": "show_breadcrumb_nav",
         "label": "Show breadcrumb navigation"
+      },
+	{
+        "type": "textarea",
+        "id": "bold_menu",
+        "label": "Bold menu"
       }
 
     ],

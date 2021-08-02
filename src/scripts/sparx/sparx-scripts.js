@@ -196,7 +196,7 @@ const SparxScripts = (() => {
                 $(".viewResults").html("More Results");
               }
 
-              $(".customSearchredirect").attr("href", "https://molton-dev.myshopify.com/search?q=" + searchKeyword + "&type=product");
+              $(".customSearchredirect").attr("href", "/search?q=" + searchKeyword + "&type=product");
             }
           });
         }); // account page tab js
@@ -252,12 +252,15 @@ const SparxScripts = (() => {
             inputError = true;
           } else {
             inputError = false;
-            $('error-msg').hide();
+            $('.error-msg').hide();
           }
         });
         $(document).on('click', function (event) {
           if (inputError) {
             $('.error-msg').show();
+          }
+          else {
+            $('.error-msg').hide();
           }
         }); // cart page cart note count
 

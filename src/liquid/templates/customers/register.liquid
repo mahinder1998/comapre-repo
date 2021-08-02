@@ -1,8 +1,3 @@
-<style>
-  .register-footer p.text-center input.btn.custom-black.filled{
-    background-color: black;
-  }  
-</style>
 <div class="page-container register-page">
   <div class="login-wrap register-wrap">
     <div class="comon-header">
@@ -12,166 +7,173 @@
       {%- assign formId = 'RegisterForm' -%}
       {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
       {% include 'form-status', form: form, form_id: formId %}
-   
-    <div class="radio-group">
-      <label class="radio-label">Title*</label>
-      <input class="custom-check" type="radio" id="{{ formId }}-ms" name="customer[note][gender]" value="ms" checked="checked" />
-      <label for="{{ formId }}-ms">Ms</label>
-      <input class="custom-check" type="radio" id="{{ formId }}-mrs" name="customer[note][gender]" value="mrs"  />
-      <label for="{{ formId }}-mrs">Mrs</label>
-      <input class="custom-check" type="radio" id="{{ formId }}-mr" name="customer[note][gender]" value="mr"  />    
-      <label for="{{ formId }}-mr">Mr</label>
-    </div>
 
-    <div class="form-group-row">
-      <div class="form-group">
-        <label for="{{ formId }}-FirstName">{{ 'customer.register.first_name' | t }}</label>
-        <input class="custom-check" type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} required autocomplete="given-name">
-      </div>
-      <div class="form-group">
-        <label for="{{ formId }}-LastName">{{ 'customer.register.last_name' | t }}</label>
-        <input class="custom-check" type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} required autocomplete="family-name">
+      <div class="radio-group">
+        <label class="radio-label">Title*</label>
+        <input class="custom-check" type="radio" id="{{ formId }}-ms" name="customer[note][gender]" value="ms" checked="checked" />
+        <label for="{{ formId }}-ms">Ms</label>
+        <input class="custom-check" type="radio" id="{{ formId }}-mrs" name="customer[note][gender]" value="mrs"  />
+        <label for="{{ formId }}-mrs">Mrs</label>
+        <input class="custom-check" type="radio" id="{{ formId }}-mr" name="customer[note][gender]" value="mr"  />    
+        <label for="{{ formId }}-mr">Mr</label>
       </div>
 
-      <div class="form-group">
-        <label for="{{ formId }}-PhoneCode">Phone Number*</label>
-        <div class="code-phonenumber">
-          <select class="custom-check"  name="customer[note][phonecode]" id="{{ formId }}-PhoneCode">
-            <option value="+971">+971</option>
-          </select>
-          <input class="custom-check" type="number" id="{{ formId}}-PhoneNumber" required name="customer[note][phonenumber]" placeholder="50 1234 567"/>
+      <div class="form-group-row">
+        <div class="form-group">
+          <label for="{{ formId }}-FirstName">{{ 'customer.register.first_name' | t }}*</label>
+          <input class="custom-check" type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} required autocomplete="given-name">
+          <span class="not-valid" style="display:none">First name is mandatory</span>        
+        </div>
+        <div class="form-group">
+          <label for="{{ formId }}-LastName">{{ 'customer.register.last_name' | t }}*</label>
+          <input class="custom-check" type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} required autocomplete="family-name">
+          <span class="not-valid" style="display:none">Last name is mandatory</span>        
+        </div>
+
+        <div class="form-group">
+          <label for="{{ formId }}-PhoneCode">Phone Number*</label>
+          <div class="code-phonenumber">
+            <select class="custom-check"  name="customer[note][phonecode]" id="{{ formId }}-PhoneCode">
+              <option value="+971">+971</option>
+            </select>
+            <input class="custom-check" type="number" id="{{ formId}}-PhoneNumber" required name="customer[note][phonenumber]" placeholder="50 1234 567"/>
+          </div>
+          <span class="not-valid" style="display:none">Phone number is mandatory</span>        
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="{{ formId }}-email">{{ 'customer.register.email' | t }}*</label>
+          <input
+                 type="email"
+                 name="customer[email]"
+                 id="{{ formId }}-email"
+                 class="{% if form.errors contains 'email' %} input--error{% endif %} custom-check"
+                 {% if form.email %} value="{{ form.email }}"{% endif %}
+                 autocorrect="off"
+                 autocapitalize="off"
+                 autocomplete="email"
+                 required
+                 aria-required="true"
+                 {%- if form.errors contains 'email' -%}
+                 class="input--error"
+                 aria-invalid="true"
+                 aria-describedby="{{ formId }}-email-error"
+                 {%- endif -%}
+                 >
+          <span class="not-valid" style="display:none">Email is mandatory</span>        
+          {%- if form.errors contains 'email' -%}
+          <span id="{{ formId }}-email-error" class="input-error-message">
+            {% include 'icon-error' %}
+            <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+          </span>
+          {%- endif -%}
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="{{ formId }}-password">{{ 'customer.register.password' | t }}*</label>
+          <input
+                 type="password"
+                 name="customer[password]"
+                 id="{{ formId }}-password"
+                 class="{% if form.errors contains 'password' %} input--error{% endif %} password-splash custom-check"
+                 aria-required="true"
+                 required
+                 {%- if form.errors contains 'password' -%}
+
+                 aria-invalid="true"
+                 aria-describedby="{{ formId }}-password-error"
+                 {%- endif -%}
+                 >
+          <span class="not-valid" style="display:none">Password is mandatory</span>        
+          {%- if form.errors contains 'password' -%}
+          <span id="{{ formId}}-password-error" class="input-error-message">
+            {% include 'icon-error' %}
+            <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
+          </span>
+          {%- endif -%}
+          <span toggle="#RegisterForm-password" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
+
+        </div> 
+
+        <div class="form-group">
+          <label for="{{ formId }}-password">Confirm Password*</label>
+          <input required type="password" value=""  name="customer[confirm-password]" id="confirm-password" class="confirm password-splash-conf custom-check" />
+          <span class="not-valid" style="display:none">Confirm password is mandatory</span>        
+          <span toggle="#RegisterForm-passwords" class="fa fa-fw fa-eye-slash field-icon toggle-password-conf"></span>
+          <span class="error-msg" style="display:none">Your password not matched.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="birthday">Birthday</label>
+          <div class="custom-birthday">
+            <select class="" name="customer[note][birthdate]" id="{{ formId }}-BirthDate">
+              <option value="select date">Select Date</option>
+              {% for i in (1..31) %}
+              <option value="{{i}}">{{i}}</option>
+              {%endfor%}
+            </select>
+            <select class="" name="customer[note][birthmonth]" id="{{ formId }}-BirthMonth">
+              <option value="select Month">Select Month</option>
+              {% for i in (1..12) %}
+              <option value="{{i}}">{{i}}</option>
+              {%endfor%}
+            </select>
+            <select class="" name="customer[note][year]" id="{{ formId }}-BirthYear">
+              <option value="select Year">Select Year</option>
+              {% for i in (1970..2020) %}
+              <option value="{{i}}">{{i}}</option>
+              {%endfor%}
+            </select>
+          </div>
         </div>
       </div>
 
+      <div class="register-footer">
 
-
-      <div class="form-group">
-        <label for="{{ formId }}-email">{{ 'customer.register.email' | t }}</label>
-        <input
-               type="email"
-               name="customer[email]"
-               id="{{ formId }}-email"
-               class="{% if form.errors contains 'email' %} input--error{% endif %} custom-check"
-               {% if form.email %} value="{{ form.email }}"{% endif %}
-               autocorrect="off"
-               autocapitalize="off"
-               autocomplete="email"
-               required
-               aria-required="true"
-               {%- if form.errors contains 'email' -%}
-               class="input--error"
-               aria-invalid="true"
-               aria-describedby="{{ formId }}-email-error"
-               {%- endif -%}
-               >
-        {%- if form.errors contains 'email' -%}
-        <span id="{{ formId }}-email-error" class="input-error-message">
-          {% include 'icon-error' %}
-          <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-        </span>
-        {%- endif -%}
-
-      </div>
-
-      <div class="form-group">
-
-        <label for="{{ formId }}-password">{{ 'customer.register.password' | t }}*</label>
-        <input
-               type="password"
-               name="customer[password]"
-               id="{{ formId }}-password"
-               class="{% if form.errors contains 'password' %} input--error{% endif %} password-splash custom-check"
-               aria-required="true"
-               required
-               {%- if form.errors contains 'password' -%}
-
-               aria-invalid="true"
-               aria-describedby="{{ formId }}-password-error"
-               {%- endif -%}
-               >
-        {%- if form.errors contains 'password' -%}
-        <span id="{{ formId}}-password-error" class="input-error-message">
-          {% include 'icon-error' %}
-          <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
-        </span>
-        {%- endif -%}
-        <span toggle="#RegisterForm-password" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
-
-      </div> 
-
-      <div class="form-group">
-        <label for="{{ formId }}-password">Confirm Password*</label>
-        <input required type="password" value=""  name="customer[confirm-password]" id="confirm-password" class="confirm password-splash-conf custom-check" />
-        <span toggle="#RegisterForm-passwords" class="fa fa-fw fa-eye-slash field-icon toggle-password-conf"></span>
-        <span class="error-msg" style="display:none">Your password not matched.</span>
-      </div>
-
-      <div class="form-group">
-        <label for="birthday">Birthday</label>
-        <div class="custom-birthday">
-          <select class="custom-check" name="customer[note][birthdate]" id="{{ formId }}-BirthDate">
-            <option value="select date">Select Date</option>
-            {% for i in (1..31) %}
-            <option value="{{i}}">{{i}}</option>
-            {%endfor%}
-          </select>
-          <select class="custom-check" name="customer[note][birthmonth]" id="{{ formId }}-BirthMonth">
-            <option value="select Month">Select Month</option>
-            {% for i in (1..12) %}
-            <option value="{{i}}">{{i}}</option>
-            {%endfor%}
-          </select>
-          <select class="custom-check" name="customer[note][year]" id="{{ formId }}-BirthYear">
-            <option value="select Year">Select Year</option>
-            {% for i in (1970..2020) %}
-            <option value="{{i}}">{{i}}</option>
-            {%endfor%}
-          </select>
+        <div class="form-footer term-list">
+          <p>Choose your preferred communication method</p>
+          <ul class="list-inline">
+            <li>
+              <input type="checkbox" name="customer[note][byemail]" id="{{ formId }}-by-email" />
+              <label for="{{ formId }}-by-email">Email</label>
+            </li>
+            <li>
+              <input type="checkbox" name="customer[note][bysms]" id="{{ formId }}-by-sms" />
+              <label for="{{ formId }}-by-sms">SMS</label>
+            </li>
+            <li>
+              <input type="checkbox" name="customer[note][bytelephone]" id="{{ formId }}-by-tel" />
+              <label for="{{ formId }}-by-tel">Telephone</label>
+            </li>
+            <li>
+              <input type="checkbox" name="customer[note][whatsapp]" id="{{ formId }}-by-whatsapp" />
+              <label for="{{ formId }}-by-whatsapp">WhatsApp</label>
+            </li>
+          </ul>
         </div>
-      </div>
-    </div>
 
-    <div class="register-footer">
-
-      <div class="form-footer term-list">
-        <p>Choose your preferred communication method</p>
-        <ul class="list-inline">
-          <li>
-            <input type="checkbox" name="customer[note][byemail]" id="{{ formId }}-by-email" />
-            <label for="{{ formId }}-by-email">Email</label>
-          </li>
-          <li>
-            <input type="checkbox" name="customer[note][bysms]" id="{{ formId }}-by-sms" />
-            <label for="{{ formId }}-by-sms">SMS</label>
-          </li>
-          <li>
-            <input type="checkbox" name="customer[note][bytelephone]" id="{{ formId }}-by-tel" />
-            <label for="{{ formId }}-by-tel">Telephone</label>
-          </li>
-          <li>
-            <input type="checkbox" name="customer[note][whatsapp]" id="{{ formId }}-by-whatsapp" />
-            <label for="{{ formId }}-by-whatsapp">WhatsApp</label>
-          </li>
-        </ul>
+        <div class="form-footer term-list recived-news">
+          <ul class="list-inline">
+            <li>
+              <input type="checkbox" name="customer[accepts_marketing]" value="true" id="marketing" />
+              <label for="marketing">Please sign me up to receive news on Molton Brown new product launches, exclusive in-store events and seasonal promotions.</label>
+            </li>
+            <li class="not-valid form-group">
+              <input required class="custom-check" type="checkbox" id="by-agree" />
+              <label for="by-agree">I have read and agree to the <a href="{{shop.url}}/pages/terms-conditions">Terms & Conditions</a> and <a href="{{shop.url}}/pages/privacy-policy"> Privacy Policy</a>.</label>
+              <span class="not-valid" style="display:none !important">term and condition accpetance is mandatory</span>        
+            </li>
+          </ul>
+        </div>
+        <p class="text-center">
+          <input type="submit" disabled value="{{ 'customer.register.submit' | t }}" class="btn custom-black inputDisabled">
+        </p>
+        {% endform %}
       </div>
-
-      <div class="form-footer term-list recived-news">
-        <ul class="list-inline">
-          <li>
-            <input type="checkbox" name="customer[accepts_marketing]" value="true" id="marketing" />
-            <label for="marketing">Please sign me up to receive news on Molton Brown new product launches, exclusive in-store events and seasonal promotions.</label>
-          </li>
-          <li>
-            <input required class="custom-check" type="checkbox" id="by-agree" />
-            <label for="by-agree">I have read and agree to the <a href="{{shop.url}}/pages/terms-conditions">Terms & Conditions</a> and <a href="{{shop.url}}/pages/privacy-policy"> Privacy Policy</a>.</label>
-          </li>
-        </ul>
-      </div>
-      <p class="text-center">
-        <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn custom-black">
-      </p>
-      {% endform %}
-    </div>
     </div>
   </div>
 </div>
@@ -200,59 +202,136 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   /* Registration page */
-jQuery(function() {
-jQuery('#create_customer').submit(function(event) {
-  event.preventDefault();
-  var data = jQuery(this).serialize();
-console.log('data - '+data);
- //create new account
-  jQuery.post('/account', data).done(function(data){
-    var logErrors = jQuery(data).find('.form-message--error').text();
+  jQuery(function() {
+    jQuery('#create_customer').submit(function(event) {
+      event.preventDefault();
+      var data = jQuery(this).serialize();
+      console.log('data - '+data);
+      //create new account
+      jQuery.post('/account', data).done(function(data){
+        var logErrors = jQuery(data).find('.form-message--error').text();
 
-    //if there are errors show them in the html form
-    if (logErrors != "" && logErrors != 'undefined'){
-        jQuery('#create_customer .form-message--error').html(logErrors);
-        jQuery('#create_customer .form-message--error').show();
+        //if there are errors show them in the html form
+        if (logErrors != "" && logErrors != 'undefined'){
+          jQuery('#create_customer .form-message--error').html(logErrors);
+          jQuery('#create_customer .form-message--error').show();
 
-    //if account creation is successful show checkout page
-    }else{
-       console.log('success');
-      alert('success');
-      //document.location.href = '/checkout';
-    }
-    }).fail(function(){
-    console.log('error');
+          //if account creation is successful show checkout page
+        }else{
+          console.log('success');
+          alert('success');
+          //document.location.href = '/checkout';
+        }
+      }).fail(function(){
+        console.log('error');
+      });
+      return false;
+    }); 
   });
-   return false;
-}); 
-});
 </script>
 {% endcomment %}
 
-<script type="text/javascript">
-jQuery(document).ready(function() {
-  jQuery(document).on("change blur keyup","input[required]",function() {
-    var flag = true;
-    var data = jQuery("input[required]");
-    for(var i = 0;i<data.length;i++) {
-    let val = $(data)[i];
-   if($(val).attr("type")=="checkbox" && $(val).prop("checked") == false) {
-        flag = false;
-        break;
-   } else {
-        if($(val).val()=="") {
+<script>
+  jQuery(document).ready(function() {
+    jQuery(document).on("change blur keyup","input[required]",function() {
+      var flag = true;
+      var data = jQuery("input[required]");
+      for(var i = 0;i<data.length;i++) {
+        let val = $(data)[i];
+        if($(val).attr("type")=="checkbox" && $(val).prop("checked") == false) {
+          flag = false;
+          break;
+        } else {
+          if($(val).val()=="") {
             flag = false;
             break;
+          }
         }
-   }
-    };
-  if(flag) {	
-      jQuery("input[type=submit]").addClass("filled");
-        jQuery(".register-footer p.text-center input .filled").css("background-color", "black");
-      } else {
-      jQuery("input[type=submit]").removeClass("filled");
+      };
+      if($(this).attr("type") == "text") {
+        if($(this).val() === "") {
+          $(this).parents(".form-group").addClass("not-valid");
+          flag = false;
+        } else {
+          $(this).parents(".form-group").removeClass("not-valid");
+        }
+      } else if($(this).attr("type") == "email"){
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!re.test(String($(this).val()).toLowerCase())) {
+          $(this).parents(".form-group").addClass("not-valid");
+          flag = false;
+        } else {
+          $(this).parents(".form-group").removeClass("not-valid");
+        }
+      } else if($(this).attr("type") == "number") {
+        if($(this).val() === "") {
+          $(this).parents(".form-group").addClass("not-valid");
+          flag = false;
+        } else {
+          $(this).parents(".form-group").removeClass("not-valid");
+        }
+      } else if($(this).attr("type") == "password") {
+        if($(this).val() === "") {
+          flag = false;
+          $(this).parents(".form-group").addClass("not-valid");
+        } else {
+          $(this).parents(".form-group").removeClass("not-valid");
+        }
+      } else if($(this).attr("type") == "checkbox") {
+        if($(this).prop("checked")) {
+          	flag = false;
+			$(this).parents(".form-group").addClass("not-valid");
+        } else {
+          $(this).parents(".form-group").removeClass("not-valid");
+        }
       }
       
+      if($("#by-agree:checked").length === 0){
+        flag = false;
+      }
+      
+      
+      
+      if(flag) {	
+        jQuery("input[type=submit]").addClass("filled");
+        jQuery('.inputDisabled').prop("disabled", false);
+        jQuery(".register-footer p.text-center input .filled").css("background-color", "black");
+      } else {
+        jQuery("input[type=submit]").removeClass("filled");
+        jQuery('.inputDisabled').prop("disabled", true);
+      }
+      
+    });
   });
-});
 </script>
+<style>
+  .register-footer p.text-center input.btn.custom-black.filled{
+    background-color: black;
+  }
+
+.form-group.not-valid>label {
+    color: #d31c1c;
+}
+.form-group.not-valid input {
+    border-color: #d31c1c;
+}
+
+.form-group.not-valid  span.not-valid  {
+    color: #d31c1c;
+    display: block !important;
+    padding: 10px 0 0;
+}
+  
+.login-wrap .term-list.recived-news ul.list-inline li:last-child {
+    flex-wrap: wrap;
+}
+
+.login-wrap .term-list.recived-news ul.list-inline li:last-child input#by-agree + label {
+    width: auto !important;
+    color: #000000 !important;
+}
+
+.login-wrap .term-list.recived-news ul.list-inline li:last-child span.not-valid {
+    font-size: 14px;
+}
+</style>

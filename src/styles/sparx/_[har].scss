@@ -1198,3 +1198,40 @@ padding-left: 0 !important;
 }
 
 }
+/* 02-aug- 2021  night  */
+.order-grid-details .order-list-left ul>li span:first-child{
+  max-width: 180px;
+  display: block;
+  width: 100%;
+  padding-right: 10px;
+  font-weight: bold;
+  color: #000000;
+}
+.footer-grid_row {
+    display: flex;
+    justify-content: space-between;
+}
+.footer-grid_row>.footer-item:not(first-child) {
+    padding-left: 15px;
+}
+.footer-grid_row>.footer-item:first-child {
+    padding-left: 0;
+}
+.collection-block .grid-five.mobile-view {
+    display: none;
+}
+@media all and (max-width: 749px){
+  .footer-grid_row {
+      display: block;
+  }
+  .footer-grid_row>.footer-item:not(first-child) {
+      padding-left: 0;
+  }
+  .collection-block .grid-five.mobile-view {
+      display: grid;
+  }
+  .collection-block .grid-five.desktop-view {
+      display: none;
+  }
+}
+/* 02-aug- 2021  night css end  */
