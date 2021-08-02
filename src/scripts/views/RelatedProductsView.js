@@ -85,6 +85,14 @@ class RelatedProductsView {
           </a>
         `;
     }
+
+    addHandlerLoad(handler) {
+      console.log('addHandlerLoad')
+      window.addEventListener('load', handler);
+    }
+
 }
 
 export default new RelatedProductsView();
+
+

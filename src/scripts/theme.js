@@ -52,8 +52,9 @@ const controlRelatedProducts = async () => {
 
 function init() {  
   if(window.objectData.template == 'product') {
-    controlRelatedProducts();
+    RelatedProductsView.addHandlerLoad(controlRelatedProducts);
   }
 }
+
 
 init();
