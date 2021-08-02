@@ -196,7 +196,7 @@ const SparxScripts = (() => {
                 $(".viewResults").html("More Results");
               }
 
-              $(".customSearchredirect").attr("href", "https://molton-dev.myshopify.com/search?q=" + searchKeyword + "&type=product");
+              $(".customSearchredirect").attr("href", "/search?q=" + searchKeyword + "&type=product");
             }
           });
         }); // account page tab js
