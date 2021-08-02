@@ -1,0 +1,61 @@
+body{
+ direction: rtl;
+}
+
+.slick-list.draggable {
+    direction: ltr;
+}
+
+.slick-arrow {
+    transform: rotate(180deg);
+}
+
+.boost-pfs-filter-left-col, .boost-pfs-filter-right-col {
+    float: right;
+}
+
+.boost-pfs-filter-right-col{
+    padding-right: 30px;
+}
+
+div.boost-pfs-filter-custom-sorting button>span:after {
+    left: 0;
+    right: auto;
+}
+
+.boost-pfs-filter-left-col * {
+    text-align: right;
+}
+
+.boost-pfs-check-box {
+    left: 15px !important;
+}
+
+div.boost-pfs-filter-tree-v .boost-pfs-filter-option-title-text:before {
+    transform: rotate(135deg);
+}
+
+a.boost-pfs-filter-button {
+    padding-left: 30px;
+}
+
+.boost-pfs-filter-custom-sorting .boost-pfs-filter-filter-dropdown {
+    left: 0;
+    right: auto;
+}
+
+ul.boost-pfs-filter-filter-dropdown li {
+    text-align: right;
+}
+
+span.boost-pfs-check-box:before {
+    width: 6px !important;
+    height: 13px !important;
+    top: 1px !important;
+    right: 5px !important;
+    transform: rotate(50deg) !important;
+}
+
+.custom-selection:before {
+    transform: rotate(-135deg);
+}
