@@ -1,18 +1,43 @@
 <!-- Tool bar -->
 <section class="mb-top-tool-bar">
-	<div class="mb-tool-bar-flex">
-      {% if section.settings.announcement-bar != blank %}
-		<div class="tb-left">
-			<p><a href="{{ section.settings.announcement-link }}">{{ section.settings.announcement-bar }}</a></p>
-		</div>
-      {% endif %}
-		<div class="tb-right">
-          {% assign  topcolumn = section.settings.link_list_id %}
-			<ul>
-				{% for link in linklists[topcolumn].links %}
-					<li class="tb-find-store"><a href="{{ link.url }}">{{ link.title }}</a></li>
-              {% endfor %} 
-			</ul>
-		</div>
-	</div>
+  <div class="mb-tool-bar-flex">
+    {% if section.settings.announcement-bar != blank %}
+    <div class="tb-left">
+      <p><a href="{{ section.settings.announcement-link }}">{{ section.settings.announcement-bar }}</a></p>
+    </div>
+    {% endif %}
+    <div class="tb-right">
+      {% assign  topcolumn = section.settings.link_list_id %}
+      <ul>
+        {% for link in linklists[topcolumn].links %}
+        <li class="tb-find-store"><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %} 
+
+        <li class="find-store">
+          <a href="javascript:void(0);">Find Store</a>  
+          <div class="uae-select">
+            <ul class="custom-selection" id="selection-store">
+              <li>
+                <a href="javascript:void(0);" target="_blank"><img src="{{"uae.png" | asset_img_url: "21x21"}}" alt="icon" style="width:auto;"> UAE </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);" target="_blank"><img src="{{"ksa.png" | asset_img_url: "21x21"}}" alt="icon" style="width:auto;"> KSA </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        
+        <li class="language">
+          <a href="javascript:void(0);">Language</a>  
+          <div class="uae-select">
+            <ul class="custom-selection" id="selection-uae">
+              <span class="ly-custom-1000"></span>
+            </ul>
+          </div>
+        </li>
+        
+
+      </ul>
+    </div>
+  </div>
 </section>

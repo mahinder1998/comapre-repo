@@ -198,7 +198,7 @@
     {% endif %}
     {% endif %}
     {% endfor %} 
-<div class="boost-pfs-filter-collection-header-wrapper boost-pfs-filter-collection-image {% if section.settings.show_collection_image and collection.image %}boost-pfs-filter-collection-has-image{% endif %}" {% if section.settings.show_collection_image and collection.image %} style="background-image: url({{ collection.image | img_url: '2048x600', crop: 'top' }});" {% endif %}>
+<div class="boost-pfs-filter-collection-header-wrapper">
 	<div class="boost-pfs-container-default-{{ layout_type }}">
 		 <div class="collection-header">
     {% assign collection_img = false %}
@@ -219,15 +219,15 @@
     {% endif %}
     {% endif %}
     {% endfor %} 
-    
+           
     {% if collection_img %}  
     <div class="collection-image">
-      <picture>
+      <picture class="boost-pfs-filter-collection-image">
         <source media="(min-width:750px)" srcset="{{ img_url }}">
         <img src="{{ mbl_img_url }}" alt="collection-banner">
       </picture>
       {% if collection.description == blank %}
-      <h1 class="collection-hero__title title_with_img">
+      <h1 class="boost-pfs-filter-collection-header collection-hero__title title_with_img">
         {{ collection.title }}
       </h1>
       {% endif %}
@@ -239,12 +239,12 @@
 
       <div class="section-header">
 
-        <h1 class="collection-hero__title">
+        <h1 class="boost-pfs-filter-collection-header collection-hero__title">
           {{ collection.title }}
         </h1>
 
         {% if collection.description != blank %}
-        <div class="rte collection-description">
+        <div class="boost-pfs-filter-collection-description rte collection-description">
           {{ collection.description }}
         </div>
         {% endif %}
@@ -257,7 +257,7 @@
     <div class="collection-header-wraper">
 
       <div class="sigle_col_title">
-        <h1 class="collection-hero__title">
+        <h1 class="boost-pfs-filter-collection-header collection-hero__title">
           {{ collection.title }}
         </h1>
       </div>
@@ -342,7 +342,8 @@
 		{%- if switch_layout_filter != 'switch_layout_filter_horizontal' -%}
 		<div class="boost-pfs-filter-right-col">
 		{%- endif -%} 
-
+          	<div class="boost-pfs-filter-refine-by-wrapper-v"></div>
+              
 			<div class="boost-pfs-filter-products {{ products_item_settings }}">
 				{%- for product in collection.products -%}
 				{%- render 'boost-pfs-filter-product-item',

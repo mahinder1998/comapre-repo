@@ -1122,3 +1122,79 @@ color: #000000;
 
 }
 /* 30 july- 2021 css end */
+
+.login-common a#RecoverPassword {
+  color: #000000;
+}
+a#HideRecoverPasswordLink {
+  border: none;
+  border-radius: 0;
+  width: 100%;
+  height: 44px;
+  padding: 12px;
+  background-color: #ffffff;
+  color: #000 !important;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  color: #fff;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000000;
+  transition: all .5s;
+}
+
+a#HideRecoverPasswordLink:hover {
+  background: #000000;
+  color: #ffffff !important;
+} 
+form#customer_login .message--error {
+  text-align: center;
+}
+
+form#customer_login .message--error h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+form#customer_login .message--error ul {
+  margin: 0;
+  padding: 10px 0 20px;
+}   
+
+.reset_password_page {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.reset_password_page h1.text-center {
+  font-size: 25px;
+  margin: 0;
+}
+
+.reset_password_page p.text-center {
+  margin-bottom: 40px;
+}
+ 
+
+
+/* media css code */
+
+
+@media all and (max-width: 749px){
+.form-row-flex .form-group:nth-child(even){
+padding-left: 0 !important;
+}
+
+.reset_password_page {
+    padding: 0 15px;
+}
+
+}

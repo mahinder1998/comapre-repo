@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="tab-link current" data-tab="my_order"> 
-				<a href="javascript:void(0)">
+				<a href="/account#my_order">
                     ORDER HISTORY
                   	<span class="icon-box">
                       <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
@@ -85,6 +85,10 @@
             <div class="order-grid-item  order-grid-details">
               <div class="order-list-left">
            			 <ul>
+                       <li>
+                         <span class="order_label_title">{{ 'customer.order.payment_status' | t }}</span>
+                         <span class="order_label_value">{{ order.financial_status_label }}</span>
+                       </li>
                           <li>
                             <span class="order_label_title">{{ 'customer.order.subtotal' | t }}</span><span class="order_label_value">{{ order.line_items_subtotal_price | money }}</span>
                           </li>
@@ -99,9 +103,10 @@
               <span>{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</span>
               <span class="text-right" data-label="{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)">{{ tax_line.price | money }}</span>
             </li>
-          {%- endfor -%}             
+          {%- endfor -%} 
+                       <li> <span class="order_label_title">VAT (5%)</span><span class="order_label_value">{{ order.total_price| times: 5 | divided_by: 100 | money}}</span></li>         
               <li>
-                <span class="order_label_title">{{ 'customer.order.total' | t }}</span><span class="order_label_value">{{ order.total_price | money_with_currency }}</span>
+                <span class="order_label_title">{{ 'customer.order.total' | t }} (Including VAT)</span><span class="order_label_value">{{ order.total_price | money_with_currency }}</span>
               </li>
            </ul>
             </div>
@@ -124,7 +129,7 @@
                               </div>
                               <div class="order-qty">
                                 <div class="qty-col">
-                                	 <p><span>QT</span> {{ line_item.quantity }}</p>
+                                	 <p><span>Quantity</span> {{ line_item.quantity }}</p>
                                 </div>
                                   <div class="order-price">
                                     <dt>

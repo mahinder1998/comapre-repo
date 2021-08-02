@@ -53,7 +53,7 @@
     {%- assign outerLoopIndex = forloop.index -%}
     {% if link.links != blank %}
     {% capture child_list_handle %}{{ link.handle }}-{{ outerLoopIndex }}{% endcapture %}
-    <li class="has-child-one mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvlone {% for childlink in link.links %}{% if childlink.current %}has-2ndd{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %} {% if grandchildlink.current %} has-thirdd {% endif %} {% endfor %}{% endfor %}">
+    <li class="1 has-child-one mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvlone {% for childlink in link.links %}{% if childlink.current %}has-2ndd{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %} {% if grandchildlink.current %} has-thirdd {% endif %} {% endfor %}{% endfor %}">
       <button type="button" class="togglenewmob lvlonemob btn--link js-toggle-submenu mobile-nav__link{% if link.child_active %} mobile-nav__link--active{% endif %}" data-target="{{ child_list_handle }}" data-level="1" aria-expanded="false">
         <span class="mobile-nav__label {% for childlink in link.links %}{% if childlink.current %}bold{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} bold{% endif %}{% endfor %}{% endfor %}"><a href="{{ link.url }}" {% if link.current %} nav-lvl-a="ok" aria-current="page"{% endif %}>{{ link.title | escape }}</a></span>
         <div class="mobile-nav__icon lvlonemob-chiv {% for childlink in link.links %}{% if childlink.current %}mobchiv-up{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} mobchiv-up{% endif %}{% endfor %}{% endfor %}">
@@ -64,14 +64,15 @@
 
         {% for childlink in link.links %}
         {% if childlink.links != blank and childlink.title != "All products" %}
-        <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvltwo">
+        <li class="child2_without_btn mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvltwo">
           {% capture grandchild_list_handle %}{{ childlink.handle }}-{{ outerLoopIndex }}-{{ forloop.index }}{% endcapture %}
-          <button type="button" class="togglenewmob lvltwomob btn--link js-toggle-submenu mobile-nav__link mobile-nav__sublist-link" data-target="{{ grandchild_list_handle }}" aria-expanded="false">
-            <span class="mobile-nav__label"><a href="{{ childlink.url }}" second-lvl-sub="yes" {% if childlink.current %} nav-lvl-b="ok" aria-current="page"{% endif %}>{{ childlink.title | escape }}</a></span>
-            <div class="mobile-nav__icon lvltwomob-chiv">
+        	
+          <span class="mobile-nav__label lable_without_btn"><a href="{{ childlink.url }}" second-lvl-sub="yes" {% if childlink.current %} nav-lvl-b="ok" aria-current="page"{% endif %}>{{ childlink.title | escape }}</a></span>
+            <div class="lvlonemob mobile-nav__icon lvltwomob-chiv togglenewmob btn--link js-toggle-submenu mobile-nav__link mobile-nav__sublist-link">
               <span><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik00IC43NTVsMTQuMzc0IDExLjI0NS0xNC4zNzQgMTEuMjE5LjYxOS43ODEgMTUuMzgxLTEyLTE1LjM5MS0xMi0uNjA5Ljc1NXoiLz48L3N2Zz4="></span>
             </div>
-          </button>
+        
+          
           <ul class="innercontent pad0 mobile-nav__dropdown" data-parent="{{ grandchild_list_handle }}" data-level="3">
 
             {% for grandchildlink in childlink.links %}
