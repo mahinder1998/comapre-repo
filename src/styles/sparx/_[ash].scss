@@ -481,3 +481,22 @@ a.addqty > img, a.minusqty > img {
 }
 
 .qty-txt-mob, .price-cart-mob{display: none;}
+
+.nav-is-fixed section.mb-top-logo, .nav-is-fixed .mb-dt-nav-cont {
+    position: fixed;
+    left: 0;
+    right: 0;    
+    background: #fff;
+    z-index: 99;
+}
+
+.nav-is-fixed section.mb-top-logo{top: 0;}
+
+.nav-is-fixed nav.mb-dt-nav-cont {
+    top: 98px;
+    box-shadow: 0px 4px 6px -5px #d8d8d8;
+}
+
+.nav-is-fixed .mb-logo-2{
+ display: none;
+}
