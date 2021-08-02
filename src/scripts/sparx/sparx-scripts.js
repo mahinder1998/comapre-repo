@@ -2,6 +2,21 @@ const SparxScripts = (() => {
   return {
     init: function init() {
       $(document).ready(function () {
+
+        //Scroll top fixed nav
+        var previousScroll = 0;
+        jQuery(window).scroll(function (e) {
+          var startscrollTop = $(window).scrollTop();
+          if (startscrollTop < 299) { 
+            $('body').removeClass('nav-is-fixed');
+          }                        
+          var i = $(this).scrollTop();
+          i < previousScroll ? i > 300 && (
+            $(".nav-is-fixed, section.mb-top-logo").stop().animate({ opacity: 1 }, 70), $("body").addClass("nav-is-fixed"))
+          : (i > 300 && $(".nav-is-fixed, section.mb-top-logo").stop().animate({ opacity: 0 }, 70), $("body").removeClass("nav-is-fixed")),
+            (previousScroll = i);
+        });
+
         $('li.has-subs').hover(function () {
           $('html').addClass('nav-is-ready');
           $(this).addClass('link-is-active');

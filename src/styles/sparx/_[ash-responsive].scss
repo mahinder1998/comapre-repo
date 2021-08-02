@@ -55,6 +55,10 @@
     secion#mb-mob-nav-cont {
         display: none;
     }
+
+    .nav-is-fixed section.mb-top-tool-bar {
+        min-height: 63px;
+    }
       
     .mobile-nav__dropdown {
       display: none;
