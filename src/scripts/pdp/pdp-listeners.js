@@ -138,11 +138,8 @@ const PDPListeners = (function (){
     function getVariantComparePrice(variantId) {
         if(!variantId) return;
         const variants = window.objectData.product.variants;
-        console.log(variants)
-
         const v = variants.find(variant => variant.id == variantId)
-        console.log(v);
-
+        
         if(v) {
             return v.compare_at_price;
         }else {
