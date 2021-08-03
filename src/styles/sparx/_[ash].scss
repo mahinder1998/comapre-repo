@@ -173,6 +173,7 @@ section.mb-top-tool-bar {
 
 .mb-tool-bar-flex {
     max-width: 1200px;
+    min-height: 30px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -245,7 +246,14 @@ nav > ul > li > a {
 /* Mega Menu Styles */
 secion#mb-mob-nav-cont {
     display: none;
-}
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    top: 115px;
+    bottom: 0;
+    overflow: scroll;
+} 
 
 .mega-menu {
   	display: none;
@@ -371,7 +379,7 @@ li.lvl-li-one.has-subs:hover > a {
     width: 310px;
     border: 1px solid #ccc;
     padding: 24px 25px;
-    z-index: 9;
+    z-index: 202;
     top: 40px;
 }
 
@@ -572,4 +580,8 @@ a.addqty > img, a.minusqty > img {
 .nav-is-fixed .mb-logo-2{
  display: none;
 }
+
+.nav-is-fixed div#shopify-section-header {
+    min-height: 188px;
+} 
 
