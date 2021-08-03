@@ -170,9 +170,12 @@ const PDPListeners = (function (){
     
                         const title = res.product_title;
                         const image = res.featured_image.url || res.image;
-                        const price = Currency.formatMoney(parseFloat(res.price) * parseFloat(quantity));
+
+                        const oPrice = quantity ? res.price * quantity : res.price * 1;
                         const compare_unit_price = getVariantComparePrice(variantId);
-                        const compare_price = compare_unit_price ? Currency.formatMoney(parseFloat(compare_unit_price) * parseFloat(quantity)) : null;
+                        const oComparePrice = compare_unit_price ? compare_unit_price * quantity : null;
+                        const price = Currency.formatMoney(oPrice);
+                        
                         let size = null;
     
     
