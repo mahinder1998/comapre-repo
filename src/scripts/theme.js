@@ -38,8 +38,15 @@ const controlRelatedProducts = async () => {
   try {
     // 1. Get the Current product type 
     const currentType = window.objectData.product?.type;
-    await getAllProductsWithType("en", currentType);
-    // console.log(state.relatedProducts);
+    if(langify) {
+      if(langify.locale.iso_code === "ar") {
+        await getAllProductsWithType("ar", currentType);
+      }else {
+        await getAllProductsWithType("en", currentType);
+      }
+    }else {
+      await getAllProductsWithType("en", currentType);
+    }
 
     RelatedProductsView.render(state.relatedProducts);
     RelatedProductsView.initSlider();
