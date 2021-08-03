@@ -9,8 +9,15 @@ const SparxScripts = (() => {
           var i = $(this).scrollTop();
           i < previousScroll ? i > 300 && (
             $('body').addClass('nav-is-fixed'), $('.mb-top-logo, .mb-dt-nav-cont').addClass('animate__animated animate__fadeInDown'))
-          : (i > 300 &&  $('.mb-top-logo, .mb-dt-nav-cont').removeClass('animate__animated animate__fadeInDown'), $('body').removeClass('nav-is-fixed')),
+          : ( i < 300 &&  $('body').removeClass('nav-is-fixed'),$('.mb-top-logo, .mb-dt-nav-cont').removeClass('animate__animated animate__fadeInDown'), $('body').removeClass('nav-is-fixed')),
             (previousScroll = i);
+        });
+
+        $(document).scroll(function() {
+          if ( $(document).scrollTop() < 39 ) {
+            $('body').removeClass('nav-is-fixed');
+            $('.mb-top-logo, .mb-dt-nav-cont').removeClass('animate__animated animate__fadeInDown');
+          }
         });
 
         $('li.has-subs').hover(function () {

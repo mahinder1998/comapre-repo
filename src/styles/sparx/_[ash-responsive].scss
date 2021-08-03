@@ -24,7 +24,9 @@
         width: 100%;
         text-align: center;
     } 
-      
+    .nav-is-fixed div#shopify-section-header {
+        min-height: 131px;
+    }     
     .tb-left > p {
         margin: 6px 0;
     }  
