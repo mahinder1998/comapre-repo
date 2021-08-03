@@ -41,7 +41,7 @@ class RelatedProductsView {
     render(prods) {
         // console.log(prods)
         this._data = prods;
-        if(!this._data) return;
+        if(!this._data || this._data.length < 1) return;
 
         this.parentElJQuery.slick('unslick')
         this.parentEl.innerHTML = "";
@@ -60,18 +60,39 @@ class RelatedProductsView {
         return this._data.map(prod => this._generateMarkupSlide(prod)).join('')
     }
 
+    _getComparePrice(min, max) {
+      if(min >= max) {
+        return "";
+      }else {
+        return Currency.formatMoney(max);
+      }
+    }
+
     _generateMarkupSlide(prod) {
         return `
-            <a href="/products/${prod.handle}" class="pdp-like__slider__item">
-                <figure class="pdp-like__slider__item__imgbox">
-                    <img src="${prod.images[0]?.src}" alt="" class="pdp-like__slider__item__img"/>
-                </figure>
+          <a href="/products/${prod.handle}" class="pdp-like__slider__item">
+              <figure class="pdp-like__slider__item__imgbox">
+                  <img src="${prod.image?.originalSrc}" alt="${prod.image?.altText ? prod.image?.altText : ""}" class="pdp-like__slider__item__img"/>
+              </figure>
 
-                <div class="pdp-like__slider__item__title">${prod.title}</div>
-                <div class="pdp-like__slider__item__price">${Currency.formatMoney(prod.variants[0]?.price)}</div>
-            </a>
+              <div class="pdp-like__slider__item__title">${prod?.title}</div>
+              <div class="pdp-like__slider__item__price">
+                  <div class="pdp-like__slider__item__price__original">${Currency.formatMoney(prod?.productMinPrice)}</div>                
+                  <div class="pdp-like__slider__item__price__compare">${
+                    this._getComparePrice(prod?.productMinPrice, prod?.productMaxPrice)
+                  }</div>                
+              </div>
+          </a>
         `;
     }
+
+    addHandlerLoad(handler) {
+      console.log('addHandlerLoad')
+      window.addEventListener('load', handler);
+    }
+
 }
 
 export default new RelatedProductsView();
+
+

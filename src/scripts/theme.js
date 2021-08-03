@@ -36,9 +36,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const controlRelatedProducts = async () => {
   try {
-    await getAllProductsWithType('mens');
+    // 1. Get the Current product type 
+    const currentType = window.objectData.product?.type;
+    await getAllProductsWithType("en", currentType);
+    // console.log(state.relatedProducts);
+
     RelatedProductsView.render(state.relatedProducts);
     RelatedProductsView.initSlider();
+
   }catch(err) {
     console.log(err.message);
   }
@@ -47,8 +52,9 @@ const controlRelatedProducts = async () => {
 
 function init() {  
   if(window.objectData.template == 'product') {
-    controlRelatedProducts();
+    RelatedProductsView.addHandlerLoad(controlRelatedProducts);
   }
 }
+
 
 init();
