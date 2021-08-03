@@ -1,7 +1,6 @@
 const HomeSliderSparx = (function () {
     return {
         init: () => {
-            console.log("Running from homeslider")
             jQuery(".Home_slideshow").slick({
                 speed: 1000,
                 slidesToShow: 1,

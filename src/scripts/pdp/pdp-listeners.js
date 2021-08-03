@@ -1,3 +1,5 @@
+import Currency from "../money-format";
+
 const PDPListeners = (function (){
     // Selectors
     const selectors = {
@@ -162,7 +164,16 @@ const PDPListeners = (function (){
                     const variantId = parseInt(variantIdString)
                     const quantityString = document.querySelector(selectors.qtyElem).innerHTML;
                     const quantity = quantityString ? parseInt(quantityString) : 1;
-    
+
+                    if(quantity > 10) {
+                        hideLoaderAddToCartButton();
+                        showError("Cannot add more that 10 products.");
+                        if(document.querySelector('.pdp__content__control__qty__value')) {
+                            document.querySelector('.pdp__content__control__qty__value').innerHTML = 1;
+                        }
+                        return;
+                    }
+
                     // Add item to the cart.
                     Cart.addItem(variantId, {quantity: quantity})
                     .then(res => {
@@ -175,7 +186,8 @@ const PDPListeners = (function (){
                         const compare_unit_price = getVariantComparePrice(variantId);
                         const oComparePrice = compare_unit_price ? compare_unit_price * quantity : null;
                         const price = Currency.formatMoney(oPrice);
-                        
+                        const compare_price = Currency.formatMoney(oComparePrice);
+
                         let size = null;
     
     
