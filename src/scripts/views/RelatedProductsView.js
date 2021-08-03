@@ -87,7 +87,6 @@ class RelatedProductsView {
     }
 
     addHandlerLoad(handler) {
-      console.log('addHandlerLoad')
       window.addEventListener('load', handler);
     }
 
