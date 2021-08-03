@@ -9,7 +9,7 @@
        <ul class="grid-five desktop-view">
         {%- assign collection = collections[section.settings.collection_id] -%}
         {% assign pro_limit = section.settings.grid %}
-         {% assign pro_limit_mobile = section.settings.grid_mobile %}
+         
         {% for product in collection.products limit:pro_limit %}
             <li class="grid-items">
                 {% render 'product-grid-layout' with {
@@ -21,7 +21,7 @@
       
        <ul class="grid-five mobile-view">
         {%- assign collection = collections[section.settings.collection_id] -%}
-        {% assign pro_limit = section.settings.grid %}
+        {% assign pro_limit_mobile = section.settings.grid_mobile %}
         {% for product in collection.products limit:pro_limit_mobile %}
             <li class="grid-items">
                 {% render 'product-grid-layout' with {
@@ -68,7 +68,7 @@
                 "id": "grid_mobile",
                 "label": "Product list on mobile",
                 "min": 2,
-                "max": 5,
+                "max": 6,
                 "step": 1,
                 "default": 3
             },
