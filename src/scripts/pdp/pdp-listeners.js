@@ -174,10 +174,7 @@ const PDPListeners = (function (){
                         const oPrice = quantity ? res.price * quantity : res.price * 1;
                         const compare_unit_price = getVariantComparePrice(variantId);
                         const oComparePrice = compare_unit_price ? compare_unit_price * quantity : null;
-
-                        const price = Currency.formatMoney(parseFloat(res.price) * parseFloat(quantity));
-                        const compare_unit_price = getVariantComparePrice(variantId);
-                        const compare_price = compare_unit_price ? Currency.formatMoney(parseFloat(compare_unit_price) * parseFloat(quantity)) : null;
+                        const price = Currency.formatMoney(oPrice);
                         
                         let size = null;
     
