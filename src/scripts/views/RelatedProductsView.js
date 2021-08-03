@@ -64,7 +64,7 @@ class RelatedProductsView {
       if(min >= max) {
         return "";
       }else {
-        return Currency.formatMoney(max);
+        return max ? Currency.formatMoney(max+"0") : "";
       }
     }
 
@@ -77,7 +77,7 @@ class RelatedProductsView {
 
               <div class="pdp-like__slider__item__title">${prod?.title}</div>
               <div class="pdp-like__slider__item__price">
-                  <div class="pdp-like__slider__item__price__original">${Currency.formatMoney(prod?.productMinPrice)}</div>                
+                  <div class="pdp-like__slider__item__price__original">${prod?.productMinPrice ? Currency.formatMoney(prod?.productMinPrice + "0") : ""}</div>                
                   <div class="pdp-like__slider__item__price__compare">${
                     this._getComparePrice(prod?.productMinPrice, prod?.productMaxPrice)
                   }</div>                

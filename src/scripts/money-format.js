@@ -58,8 +58,9 @@ const Currency = (function () {
                 value = formatWithDelimiters(cents, 2, "'");
                 break;
         }
-        const valueNumber = parseFloat(value, 2);
-        return formatString.replace(placeholderRegex, JSON.stringify(Math.round(valueNumber)));
+
+        const valueNumber = value ? value.substring(0, value.length-3) : null;
+        return formatString.replace(placeholderRegex, valueNumber);
     }
 
     return {
