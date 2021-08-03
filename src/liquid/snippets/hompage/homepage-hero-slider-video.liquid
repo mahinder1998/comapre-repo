@@ -1,0 +1,19 @@
+<div class="h__slide">
+    <div class="h__slide__inner">
+        <img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/playbutton2.png?v=1627570945" alt="" class="h__slide__play-icon">
+
+        <video class="h__slide__video desktop" width="100%" muted preload="metadata" poster="{{ block.video_poster_image | img_url: '500x', scale: 2 }}">
+            <source src="{{ block.video_url_desktop }}" type="video/mp4"/>
+            <source src="{{ block.video_url_desktop }}" type="video/ogg"/>
+            <source src="{{ block.video_url_desktop }}" type="video/webm"/>
+        </video>
+
+
+        <video class="h__slide__video mobile" width="100%" muted preload="metadata" poster="{{ block.video_poster_image_mobile | img_url: '500x', scale: 2 }}">
+            <source src="{{ block.video_url_mobile }}" type="video/mp4"/>
+            <source src="{{ block.video_url_mobile }}" type="video/ogg"/>
+            <source src="{{ block.video_url_mobile }}" type="video/webm"/>
+        </video>
+
+    </div>
+</div>

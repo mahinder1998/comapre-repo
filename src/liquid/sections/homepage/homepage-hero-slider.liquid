@@ -1,0 +1,103 @@
+<div class="h">
+    <div class="h__slider">
+        {% for block in section.blocks %}
+                {% if block.type == 'image' %}
+                    {% render 'homepage-hero-slider-image' with { block: block.settings} %}
+                {% endif %}
+
+                {% if block.type == 'video' %}
+                    {% render 'homepage-hero-slider-video' with { block: block.settings} %}
+                {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Homepage Hero Slider",
+    "settings": [],
+    "blocks": [
+        {
+            "name": "Image",
+            "type": "image",
+            "settings": [
+                {
+                    "type":"image_picker",
+                    "id":"image_desktop",
+                    "label":"Desktop Banner"
+                },
+                {
+                    "type":"image_picker",
+                    "id":"image_mobile",
+                    "label":"Mobile banner"
+                  },
+                  {
+                    "type":"text",
+                    "id":"title",
+                    "label":"Title"
+                  },
+                  {
+                    "type":"text",
+                    "id":"title_arabic",
+                    "label":"Title - Arabic"
+                  },
+                  {
+                    "type":"textarea",
+                    "id":"subtitle",
+                    "label":"Subtitle"
+                  },
+                  {
+                    "type":"textarea",
+                    "id":"subtitle_arabic",
+                    "label":"Subtitle - Arabic"
+                  },
+
+                  
+                  {
+                    "type":"text",
+                    "id":"button_text",
+                    "label":"Button Text"
+                  },
+                  {
+                    "type":"url",
+                    "id":"button_link",
+                    "label":"Button link"
+                  }
+            ]
+        },
+        {
+            "name": "Video",
+            "type": "video",
+            "settings": [
+                {
+                    "type":"image_picker",
+                    "id":"video_poster_image",
+                    "label":"Poster image"
+                },
+                {
+                    "type":"image_picker",
+                    "id":"video_poster_image_mobile",
+                    "label":"Poster image mobile"
+                },
+                {
+                    "type":"text",
+                    "id":"video_url_desktop",
+                    "label":"Desktop Video URL"
+                },
+                {
+                    "type":"text",
+                    "id":"video_url_mobile",
+                    "label":"Mobile Video URL"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Homepage Hero Slider",
+            "category": "Homepage Sections"
+        }
+    ]
+
+}
+{% endschema %}
