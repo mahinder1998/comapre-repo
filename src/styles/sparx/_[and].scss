@@ -1024,3 +1024,43 @@ div#legend h3 {
 .lvl-li-three.show_bold_menu {
     font-weight: bold;
 }
+// cart promo
+.promo_code_wrap .promo-title {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.promo-body {
+    display: none;
+}
+.promo-body .form-group.form_inline {
+    display: flex;
+}
+.promo-body .form-group.form_inline .btn-ctm {
+    min-width: auto;
+    border: 1px solid #000000;
+    border-radius: 0px;
+    width: 90px;
+}
+.promo-body .form-group.form_inline input#promo_coupon {
+    border-radius: 0px;
+    border: 1px solid #000000;
+    border-right: none;
+    padding-left: 8px;
+    outline: none;
+    width: calc(100% - 90px);
+}
+@media all and (max-width: 1023px) {
+    .promo-body .form-group.form_inline .btn-ctm {
+        padding: 14px 4px;
+        font-size: 12px;
+    }
+}
+@media all and (max-width: 749px) {
+    .promo-body .form-group.form_inline .btn-ctm {
+        width: 90px;
+    }
+    .promo-body .form-group.form_inline input#promo_coupon {
+        width: calc(100% - 90px);
+    }
+}
+
