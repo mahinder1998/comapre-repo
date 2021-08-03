@@ -178,9 +178,6 @@ const PDPListeners = (function (){
                         const price = Currency.formatMoney(parseFloat(res.price) * parseFloat(quantity));
                         const compare_unit_price = getVariantComparePrice(variantId);
                         const compare_price = compare_unit_price ? Currency.formatMoney(parseFloat(compare_unit_price) * parseFloat(quantity)) : null;
-
-                        const price = Currency.formatMoney(oPrice);
-                        const compare_price = compare_unit_price ? Currency.formatMoney(oComparePrice) : null;
                         
                         let size = null;
     
