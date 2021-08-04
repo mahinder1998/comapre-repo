@@ -99,6 +99,7 @@ li{list-style: none;}
   .nav-is-fixed nav.mb-dt-nav-cont {
       top: 98px;
       box-shadow: 0px 4px 6px -5px #d8d8d8;
+      z-index: 12;
   }
   
   .nav-is-fixed .mb-logo-2{
@@ -660,4 +661,8 @@ a.addqty > img, a.minusqty > img {
     font-size: 16px;
     margin: 5px 0;
     color: #716e6a;
+}
+
+.search-result-weap {
+    display: none !important;
 }
