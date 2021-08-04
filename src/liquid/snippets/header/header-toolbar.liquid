@@ -1,43 +1,57 @@
 <!-- Tool bar -->
 <section class="mb-top-tool-bar">
-  <div class="mb-tool-bar-flex">
-    {% if section.settings.announcement-bar != blank %}
-    <div class="tb-left">
-      <p><a href="{{ section.settings.announcement-link }}">{{ section.settings.announcement-bar }}</a></p>
-    </div>
-    {% endif %}
-    <div class="tb-right">
-      {% assign  topcolumn = section.settings.link_list_id %}
-      <ul>
-        {% for link in linklists[topcolumn].links %}
-        <li class="tb-find-store"><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %} 
-
-        <li class="find-store">
-          <a href="javascript:void(0);">Find Store</a>  
-          <div class="uae-select">
-            <ul class="custom-selection" id="selection-store">
-              <li>
-                <a href="javascript:void(0);" target="_blank"><img src="{{"uae.png" | asset_img_url: "21x21"}}" alt="icon" style="width:auto;"> UAE </a>
-              </li>
-              <li>
-                <a href="javascript:void(0);" target="_blank"><img src="{{"ksa.png" | asset_img_url: "21x21"}}" alt="icon" style="width:auto;"> KSA </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        
-        <li class="language">
-          <a href="javascript:void(0);">Language</a>  
-          <div class="uae-select">
-            <ul class="custom-selection" id="selection-uae">
-              <span class="ly-custom-1000"></span>
-            </ul>
-          </div>
-        </li>
-        
-
-      </ul>
-    </div>
+<div class="mb-tool-bar-flex">
+  {% if section.settings.announcement-bar != blank %}
+  <div class="tb-left">
+    <p><a href="{{ section.settings.announcement-link }}">{{ section.settings.announcement-bar }}</a></p>
   </div>
+  {% endif %}
+  <div class="tb-right">
+    {% assign  topcolumn = section.settings.link_list_id %}
+    <ul>
+      {% for link in linklists[topcolumn].links %}
+      <li class="tb-find-store"><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %} 
+
+      
+      
+      <li class="language">
+        <a href="javascript:void(0);">Find Store</a>  
+        <div class="uae-select">
+          <ul class="custom-selection" id="selection-uae">
+            <span class="ly-custom-1000"></span>
+          </ul>
+        </div>
+      </li>
+
+      <li class="find-store">
+        {% if section.settings.find_text != blank %}
+          <a href="javascript:void(0);">{{section.settings.find_text}}</a>  
+        {%endif%}
+        <div class="uae-select">
+          <ul class="custom-selection" id="selection-store">
+            {% if section.settings.uae_text != blank %}
+            <li>
+              <a href="{{section.settings.uae_text_url}}" target="_blank">{% if section.settings.uae_img != empty %}<img src="{{section.settings.uae_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.uae_text}} </a>
+            </li>
+            {%endif%}
+            {% if section.settings.ksa_text != blank %}
+            <li>
+              <a href="{{section.settings.ksa_text_url}}" target="_blank">{% if section.settings.ksa_img != empty %}<img src="{{section.settings.ksa_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.ksa_text}} </a>
+            </li>
+            {%endif%}
+          </ul>
+        </div>
+      </li>
+      
+      {%if section.settings.change_country != blank %}
+      <li class="change-count">
+        <a href="{{section.settings.change_cou_url}}">{{section.settings.change_country}}</a>  
+      </li>
+      {%endif%}
+      
+
+    </ul>
+  </div>
+</div>
 </section>
