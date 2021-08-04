@@ -36,7 +36,7 @@
             <select class="custom-check"  name="customer[note][phonecode]" id="{{ formId }}-PhoneCode">
               <option value="+971">+971</option>
             </select>
-            <input class="custom-check" type="number" id="{{ formId}}-PhoneNumber" required name="customer[note][phonenumber]" placeholder="50 1234 567"/>
+            <input minlength="1" maxlength="15" class="custom-check" type="number" id="{{ formId}}-PhoneNumber" required name="customer[note][phonenumber]" placeholder="50 1234 567"/>
           </div>
           <span class="not-valid" style="display:none">Phone number is mandatory</span>        
         </div>
@@ -265,7 +265,7 @@
           $(this).parents(".form-group").removeClass("not-valid");
         }
       } else if($(this).attr("type") == "number") {
-        if($(this).val() === "") {
+        if($(this).val() === "" || $(this).val().length<=9) {
           $(this).parents(".form-group").addClass("not-valid");
           flag = false;
         } else {
