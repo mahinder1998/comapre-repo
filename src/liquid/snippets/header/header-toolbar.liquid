@@ -16,39 +16,31 @@
       
       
       <li class="language">
-        <a href="javascript:void(0);">Find Store</a>  
-        <div class="uae-select">
-          <ul class="custom-selection" id="selection-uae">
-            <span class="ly-custom-1000"></span>
-          </ul>
-        </div>
-      </li>
+          <a href="javascript:void(0);">Find Store</a>
+          <div class="uae-select">
+            <ul class="custom-selection" id="selection-uae">
+              <span class="ly-custom-1000"></span>
+            </ul>
+          </div>
+        </li>
 
       <li class="find-store">
-        {% if section.settings.find_text != blank %}
-          <a href="javascript:void(0);">{{section.settings.find_text}}</a>  
-        {%endif%}
-        <div class="uae-select">
-          <ul class="custom-selection" id="selection-store">
-            {% if section.settings.uae_text != blank %}
-            <li>
-              <a href="{{section.settings.uae_text_url}}" target="_blank">{% if section.settings.uae_img != empty %}<img src="{{section.settings.uae_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.uae_text}} </a>
-            </li>
-            {%endif%}
-            {% if section.settings.ksa_text != blank %}
-            <li>
-              <a href="{{section.settings.ksa_text_url}}" target="_blank">{% if section.settings.ksa_img != empty %}<img src="{{section.settings.ksa_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.ksa_text}} </a>
-            </li>
-            {%endif%}
-          </ul>
-        </div>
-      </li>
+          <a href="javascript:void(0);">{{section.settings.find_text | default: "Language"}}</a>
+          <div class="uae-select">
+            <ul class="custom-selection" id="selection-store">
+              <li>
+                <a href="{{section.settings.uae_text_url | default: "https://molton-brown-uae.myshopify.com/" }}" target="_blank">{% if section.settings.uae_img != empty %}<img src="{{section.settings.uae_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.uae_text | default: "UAE"}} </a>
+              </li>
+              <li>
+                <a href="{{section.settings.ksa_text_url | default: "https://molton-brown-ksa.myshopify.com/"}}" target="_blank">{% if section.settings.ksa_img != empty %}<img src="{{section.settings.ksa_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.ksa_text | default: "KSA"}} </a>
+              </li>
+            </ul>
+          </div>
+        </li>
       
-      {%if section.settings.change_country != blank %}
       <li class="change-count">
-        <a href="{{section.settings.change_cou_url}}">{{section.settings.change_country}}</a>  
-      </li>
-      {%endif%}
+          <a href="{{section.settings.change_cou_url}}">{{section.settings.change_country | default: "Change Country" }}</a>
+        </li>
       
 
     </ul>

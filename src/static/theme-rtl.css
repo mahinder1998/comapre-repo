@@ -326,7 +326,6 @@ li {
 	content: "›\00a0";
 	display: inline-block;
 	padding-right: .75ch;
-	speak: none
 }
 
 .breadcrumbs [aria-current="page"] {
@@ -7115,6 +7114,12 @@ html[lang="ar"] .h__slide__info-overlay {
 
 .btn-contune {
 	margin-top: 36px
+}
+
+/* Arabic account default address checkbox */
+.login-wrap .address_form  input[type=checkbox]:checked:after {
+    transform: rotate( -45deg);
+    right: 8px;
 }
 
 @media screen and (min-width: 1200px) {
