@@ -63,3 +63,7 @@ span.boost-pfs-check-box:before {
 .mini-cart-list .single-mcart-item {
     justify-content: flex-start;
 }
+
+.mobile-nav__icon {
+    transform: rotate(180deg);
+}
