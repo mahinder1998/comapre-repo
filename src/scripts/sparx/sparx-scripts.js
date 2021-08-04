@@ -154,7 +154,7 @@ const SparxScripts = (() => {
           e.preventDefault();
           $("#searchbar").toggleClass("collapsed");
         }); // product search js
-
+        /*
         $(".search-input").bind("keyup", function (e) {
           if (this.value.length < 3) {
             // console.log(this.value.length);
@@ -202,7 +202,9 @@ const SparxScripts = (() => {
               $(".customSearchredirect").attr("href", "/search?q=" + searchKeyword + "&type=product");
             }
           });
-        }); // account page tab js
+        }); 
+        */
+        // account page tab js
 
         $(".tabs-main li").click(function () {
           var tab_id = $(this).attr("data-tab");
