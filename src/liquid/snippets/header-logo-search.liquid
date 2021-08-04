@@ -117,7 +117,12 @@
                   </div>
                   <div class="mcart-content">
                      <p class="mcart-single-title"><a href="{{ item.product.url }}">{{ item.title }}</a></p>
-                     <p class="mcart-single-price"><b>{{ item.price | money }}</b></p>
+                     <p class="mcart-single-price">                       
+                     {% if item.variant.compare_at_price %}
+                        <span class="pdp__content__price__compare">{{ item.variant.compare_at_price | money }}</span>
+                     {% endif %}                       
+                       <span><b>{{ item.price | money }}</b></span>
+                    </p>
                   </div>
                </div>
                {% endfor %}
