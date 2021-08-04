@@ -12,6 +12,8 @@ import HeaderListeners from './listeners/header-listeners';
 import RelatedProductSlider from './pdp/related-product-slider';
 import SparxScripts from './sparx/sparx-scripts'
 import HomeSliderSparx from "./sparx/homeSlider";
+import HomepageHeroSliderView from "./views/HomepageHeroSliderView";
+
 
 import {state, getAllProductsWithType} from './model'
 
@@ -56,11 +58,31 @@ const controlRelatedProducts = async () => {
   }
 }
 
+const controlHomepageHeroBannerVideos = (e) => {
+  const parentEl = e.target.closest('.h__slide__inner');
+  const allChildren = parentEl ? Array.from(parentEl.children) : null;
+  if(!allChildren || allChildren.length < 1) return;
+  const allVideoChildrens = allChildren.filter( child => child.localName == "video");
+
+  allVideoChildrens && allVideoChildrens.forEach(v => {
+      if(v.paused){
+          v.play();
+          v.closest('.h__slide__inner').querySelector('.h__slide__play-icon').classList.add('hide')
+      }else {
+          v.pause()
+          v.closest('.h__slide__inner').querySelector('.h__slide__play-icon').classList.remove('hide')
+      }
+  });
+}
+
 
 function init() {  
-  if(window.objectData.template == 'product') {
-    RelatedProductsView.addHandlerLoad(controlRelatedProducts);
-  }
+  HomepageHeroSliderView.addHandlerClicks(controlHomepageHeroBannerVideos);
+  HomepageHeroSliderView.initSlider();
+
+if(window.objectData.template == 'product') {
+  RelatedProductsView.addHandlerLoad(controlRelatedProducts);
+}
 }
 
 
