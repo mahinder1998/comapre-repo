@@ -15,7 +15,11 @@
 
       
       
-      <li class="language">
+      <li class="change-count">
+          <a href="{{section.settings.change_cou_url | default: "https://molton-brown-uae.myshopify.com/pages/store-locator" }}">{{section.settings.change_country | default: "Find Store" }}</a>
+        </li>
+
+        <li class="language">
           <a href="javascript:void(0);">Find Store</a>
           <div class="uae-select">
             <ul class="custom-selection" id="selection-uae">
@@ -24,8 +28,8 @@
           </div>
         </li>
 
-      <li class="find-store">
-          <a href="javascript:void(0);">{{section.settings.find_text | default: "Language"}}</a>
+        <li class="find-store">
+          <a href="javascript:void(0);">{{section.settings.find_text | default: "Change Country"}}</a>
           <div class="uae-select">
             <ul class="custom-selection" id="selection-store">
               <li>
@@ -36,10 +40,6 @@
               </li>
             </ul>
           </div>
-        </li>
-      
-      <li class="change-count">
-          <a href="{{section.settings.change_cou_url}}">{{section.settings.change_country | default: "Change Country" }}</a>
         </li>
       
 
