@@ -250,7 +250,7 @@ secion#mb-mob-nav-cont {
     left: 0;
     right: 0;
     z-index: 200;
-    top: 115px;
+    top: 110px;
     bottom: 0;
     overflow: scroll;
 } 
@@ -541,9 +541,71 @@ div#cart-right > input#checkout-button {
 }
 
 #cartform p.pdp__content__price__compare {
-    font-size: 12px;
+    font-size: 12px !important;
     color: #716e6a;
 }
+
+.cart-main-data .cart-item-price > p {
+    margin: 5px 0;
+}
+
+p.mcart-single-price > span {
+    display: block;
+    margin: 3px 0;
+}
+
+p.mcart-single-price .pdp__content__price__compare {
+    font-size: 12px !important;
+    color: #716e6a;
+}
+
+.promo-title {
+    font-size: 14px;
+    line-height: 18px;
+    color: #000000;
+    text-decoration: underline;
+    cursor: pointer;
+      margin-bottom: 15px;
+}
+
+.promo-body .form-group.form_inline {
+      display: flex;
+}
+
+.promo-body .form-group.form_inline .btn-ctm {
+    min-width: auto;
+    border: 1px solid #000000;
+    cursor: pointer;
+    border-left: none;
+    width: 81px;
+    padding: 14px 20px;
+}
+.promo-body .form-group.form_inline .form_control {
+    border-radius: 0px;
+    padding: 0 8px;
+    border: 1px solid #000000;
+    cursor: auto !important;
+    outline: none;
+    width: calc(100% - 80px);
+}
+.promo-body {
+      display: none;
+}
+
+
+@media all and (max-width:1023px){
+    .promo-body .form-group.form_inline .btn-ctm {
+      width: auto;
+      padding: 12px 10px;
+      font-size: 13px;
+  }
+}
+
+ @media all and (max-width:749px){
+    .promo-body .form-group.form_inline .btn-ctm {
+        padding: 12px 20px;
+    }
+  }
 
 input.qtycart {
     border: none;
@@ -590,3 +652,12 @@ a.addqty > img, a.minusqty > img {
     min-height: 188px;
 } 
 
+.pdp .pdp__content__price {
+    flex-direction: column-reverse;
+}
+
+.pdp .pdp__content__price__compare {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #716e6a;
+}

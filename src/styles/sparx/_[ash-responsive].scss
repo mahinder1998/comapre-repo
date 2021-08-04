@@ -221,11 +221,15 @@
     }  
 
     .mobile-cart-compair {
-        display: block;
+        display: block !important;
     }
 
     .mobile-cart-compair > p {
         margin: 6px 0;
+    }  
+    
+    .pdp .pdp__content__price__compare {
+        text-align: center;
     }    
       
     .qty-txt-mob, .price-cart-mob{display: block;}  
