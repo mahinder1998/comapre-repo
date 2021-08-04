@@ -170,6 +170,15 @@
 }
 .feature-col {
     text-align: center;
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 .feature-col .feature-image,
 .feature-col .rte-setting {
@@ -341,6 +350,7 @@
         margin-top: 60px;
     }
     .btn-ctm {
+        margin-top: auto;
         min-width: auto;
     }
 }
