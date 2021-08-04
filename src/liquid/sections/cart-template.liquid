@@ -1,94 +1,3 @@
-<style type="text/css">
-  .modal-gwp-added {
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgb(0,0,0);
-      background-color: rgba(0,0,0,0.7);
-      z-index: 9999;
-  }
-  
-  .gwp-modal-content {
-      background-color: #fefefe;
-      margin: auto;
-      padding: 25px;
-      border: 1px solid #888;
-      width: 450px;
-      position: absolute;
-      left: calc(50% - 225px);
-      font-size: 16px;
-      top: calc(40% - 75px);
-  }
-     
-  span.loading-dotts > img {
-      width: 35px;
-      display: block;
-      position: relative;
-      top: 6px;
-      margin: 0 auto;
-  }
-  
-  .promo-title {
-      font-size: 14px;
-      line-height: 18px;
-      color: #000000;
-      text-decoration: underline;
-      cursor: pointer;
-        margin-bottom: 15px;
-  }
-  
-  .promo-body .form-group.form_inline {
-        display: flex;
-  }
-  
-  .promo-body .form-group.form_inline .btn-ctm {
-      min-width: auto;
-      border: 1px solid #000000;
-      cursor: pointer;
-	  border-left: none;
-      width: 81px;
-	  padding: 14px 20px;
-  }
-  .promo-body .form-group.form_inline .form_control {
-      border-radius: 0px;
-      padding: 0 8px;
-      border: 1px solid #000000;
-	  cursor: auto !important;
-      outline: none;
-      width: calc(100% - 80px);
-  }
-  .promo-body {
-        display: none;
-  }
-  
-  
-  @media all and (max-width:1023px){
-  	.promo-body .form-group.form_inline .btn-ctm {
-        width: auto;
-        padding: 12px 10px;
-        font-size: 13px;
-    }
-  }
-  
-   @media all and (max-width:749px){
-  	.promo-body .form-group.form_inline .btn-ctm {
-          padding: 12px 20px;
-      }
-    }
-
-  
-  </style>
-  
-  {% assign found_title = false %}
-  {% for item in cart.items %}
-    {% if item.variant.id == 40574769889448 %}
-      {% assign found_title = true %}
-    {% endif %}
-  {% endfor %}
   
   <script type="text/javascript">
   window.Currency = window.Currency || {};
@@ -116,104 +25,11 @@
           $('.cart_subtotal').html(up_total_price);
           $("[item-loop=item-" + itemIndex + "]").find('.cart-item-price p').html(item_price);
           $("[item-loop=item-" + itemIndex + "]").find('.price-cart-mob').html(item_price);
-  
-  
-          if (item.total_price >= 75000) {                                 
-            {% if found_title == false %}
-            $('#mymodalgwp').removeClass('hide');
-            $('#gwptext').html('Cart above 750AED - adding free gift');
-  
-            setTimeout(function() { 
-                var uri = window.location.toString();
-                 if (uri.indexOf("#") > 0) {
-                    var clean_uri = uri.substring(0, uri.indexOf("#"));
-                    window.history.replaceState({}, document.title, clean_uri);
-                }  
-                window.location.reload();
-            }, 1500);
-  
-           {% endif %} 
-  
-          } 
-  
-          else {
-  
-          {% if found_title == true %} 
-  
-             var productId = 40574769889448;
-             jQuery.post('/cart/update.js', 'updates['+productId+']=0'); 
-  
-             $('#mymodalgwp').removeClass('hide');
-             $('#gwptext').html('Cart below 750AED - removing free gift');
-  
-             setTimeout(function() { 
-                 var uri = window.location.toString();
-                  if (uri.indexOf("#") > 0) {
-                     var clean_uri = uri.substring(0, uri.indexOf("#"));
-                     window.history.replaceState({}, document.title, clean_uri);
-                 }  
-                 window.location.reload();
-             }, 1500);
-  
-  
-         {% endif %} 
-  
-          }
-  
-  
         }
       });
     });
   }   
   </script>
-  
-  
-  {% if cart.total_price > 75000 and found_title == false %} 
-  <script type="text/javascript">  
-    $( document ).ready(function() { 
-  
-      var productId = 40574769889448;
-      jQuery.post('/cart/update.js', 'updates['+productId+']=1'); 
-  
-      $('#mymodalgwp').removeClass('hide');
-      $('#gwptext').html('Your Complimentary gift was <u>added</u> to your cart');
-      
-      setTimeout(function() { 
-          var uri = window.location.toString();
-           if (uri.indexOf("#") > 0) {
-              var clean_uri = uri.substring(0, uri.indexOf("#"));
-              window.history.replaceState({}, document.title, clean_uri);
-          }  
-          window.location.reload();
-      }, 2000);
-  
-    });
-  </script> 
-  
-  {% elsif cart.total_price < 75000 and found_title == true %}
-  <script type="text/javascript">  
-    $( document ).ready(function() { 
-  
-      var productId = 40574769889448;
-      jQuery.post('/cart/update.js', 'updates['+productId+']=0'); 
-  
-      $('#mymodalgwp').removeClass('hide');
-      $('#gwptext').html('Your Complimentary gift was <u>removed</u> to your cart');
-      
-      setTimeout(function() { 
-          var uri = window.location.toString();
-           if (uri.indexOf("#") > 0) {
-              var clean_uri = uri.substring(0, uri.indexOf("#"));
-              window.history.replaceState({}, document.title, clean_uri);
-          }  
-          window.location.reload();
-      }, 1500);
-  
-    });
-  </script> 
-  {% endif %}  
-   
-  
   
   <script type="text/javascript">
     function remove_item(id){
@@ -286,11 +102,11 @@
   
                 </div>
                 
-                <div class="mobile-cart-compair">
-                <p class="price-cart-mob">{{ item.line_price | money }}</p>
+                <div class="mobile-cart-compair">                
                 {% if item.variant.compare_at_price %}
                     <p class="pdp__content__price__compare">{{ item.variant.compare_at_price | money }}</p>
                 {% endif %}
+                <p class="price-cart-mob">{{ item.line_price | money }}</p>
                 </div>
   
               </div>   
@@ -299,10 +115,11 @@
               </p>
             </div>
             <div class="cart-item-price">
-              <p>{{ item.line_price | money }}</p>
+              
               {% if item.variant.compare_at_price %}
                     <p class="pdp__content__price__compare">{{ item.variant.compare_at_price | money }}</p>
                 {% endif %}
+                <p>{{ item.line_price | money }}</p>
             </div>
           </div>
           {% endfor %}
