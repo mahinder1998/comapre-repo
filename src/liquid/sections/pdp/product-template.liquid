@@ -10,4 +10,27 @@
     }%}
 </div>
 
-{% render 'product-related' %}
+{% render 'product-related' with {
+    title: section.settings.related_products_title_english,
+    titleAr: section.settings.related_products_title_arabic,
+} %}
+
+
+
+{% schema %}
+{
+    "name" : "Product",
+    "settings": [
+        {
+            "type": "text",
+            "label": "Related Products Title",
+            "id": "related_products_title_english"
+        },
+        {
+            "type": "text",
+            "label": "Related Products Title - Arabic",
+            "id": "related_products_title_arabic"
+        }
+    ]
+}
+{% endschema %}

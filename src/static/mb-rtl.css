@@ -59,3 +59,11 @@ span.boost-pfs-check-box:before {
 .custom-selection:before {
     transform: rotate(-135deg);
 }
+
+.mini-cart-list .single-mcart-item {
+    justify-content: flex-start;
+}
+
+.mobile-nav__icon {
+    transform: rotate(180deg);
+}

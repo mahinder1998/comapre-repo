@@ -326,6 +326,7 @@ li {
 	content: "›\00a0";
 	display: inline-block;
 	padding-right: .75ch;
+	speak: none
 }
 
 .breadcrumbs [aria-current="page"] {
@@ -454,7 +455,7 @@ secion#mb-mob-nav-cont {
 	right: 0;
 	left: 0;
 	z-index: 200;
-	top: 115px;
+	top: 110px;
 	bottom: 0;
 	overflow: scroll
 }
@@ -751,6 +752,74 @@ div#cart-right>input#checkout-button {
 	align-items: center
 }
 
+#cartform p.pdp__content__price__compare {
+	font-size: 12px !important;
+	color: #716e6a
+}
+
+.cart-main-data .cart-item-price>p {
+	margin: 5px 0
+}
+
+p.mcart-single-price>span {
+	display: block;
+	margin: 3px 0
+}
+
+p.mcart-single-price .pdp__content__price__compare {
+	font-size: 12px !important;
+	color: #716e6a
+}
+
+.promo-title {
+	font-size: 14px;
+	line-height: 18px;
+	color: #000000;
+	text-decoration: underline;
+	cursor: pointer;
+	margin-bottom: 15px
+}
+
+.promo-body .form-group.form_inline {
+	display: flex
+}
+
+.promo-body .form-group.form_inline .btn-ctm {
+	min-width: auto;
+	border: 1px solid #000000;
+	cursor: pointer;
+	border-right: none;
+	width: 81px;
+	padding: 14px 20px
+}
+
+.promo-body .form-group.form_inline .form_control {
+	border-radius: 0px;
+	padding: 0 8px;
+	border: 1px solid #000000;
+	cursor: auto !important;
+	outline: none;
+	width: calc(100% - 80px)
+}
+
+.promo-body {
+	display: none
+}
+
+@media all and (max-width: 1023px) {
+	.promo-body .form-group.form_inline .btn-ctm {
+		width: auto;
+		padding: 12px 10px;
+		font-size: 13px
+	}
+}
+
+@media all and (max-width: 749px) {
+	.promo-body .form-group.form_inline .btn-ctm {
+		padding: 12px 20px
+	}
+}
+
 input.qtycart {
 	border: none;
 	padding: 5px 11px;
@@ -802,6 +871,22 @@ a.minusqty>img {
 
 .nav-is-fixed div#shopify-section-header {
 	min-height: 188px
+}
+
+.pdp .pdp__content__price {
+	flex-direction: column-reverse
+}
+
+.pdp .pdp__content__price__compare {
+	font-size: 16px;
+	margin: 5px 0;
+	color: #716e6a
+}
+
+@media only screen and (min-width: 750px) {
+	secion#mb-mob-nav-cont {
+		display: none !important
+	}
 }
 
 @media only screen and (max-width: 749px) {
@@ -984,6 +1069,15 @@ a.minusqty>img {
 	}
 	.cart-item-qty {
 		display: block
+	}
+	.mobile-cart-compair {
+		display: block !important
+	}
+	.mobile-cart-compair>p {
+		margin: 6px 0
+	}
+	.pdp .pdp__content__price__compare {
+		text-align: center
 	}
 	.qty-txt-mob,
 	.price-cart-mob {
@@ -6036,6 +6130,10 @@ form#customer_login .message--error ul {
 	}
 }
 
+.tb-right li a {
+	text-transform: uppercase
+}
+
 body {
 	color: #333333
 }
@@ -6322,7 +6420,14 @@ section.mb-top-tool-bar {
 	display: flex;
 	font-size: 17px;
 	font-weight: bold;
-	margin-top: 15px
+	margin-top: 15px;
+	justify-content: flex-start
+}
+
+@media (max-width: 768px) {
+	.pdpmodal-addedtocart__modal__body__content__price {
+		justify-content: center
+	}
 }
 
 .pdpmodal-addedtocart__modal__body__content__price__compare {
@@ -6971,7 +7076,7 @@ html[lang="ar"] .h__slide__info-overlay {
 }
 
 .pdp-like__slider>.slick-list {
-	margin-right: 10px
+	margin-right: -10px
 }
 
 .pdp-like__slider__wrapper {
@@ -7114,12 +7219,6 @@ html[lang="ar"] .h__slide__info-overlay {
 
 .btn-contune {
 	margin-top: 36px
-}
-
-/* Arabic account default address checkbox */
-.login-wrap .address_form  input[type=checkbox]:checked:after {
-    transform: rotate( -45deg);
-    right: 8px;
 }
 
 @media screen and (min-width: 1200px) {

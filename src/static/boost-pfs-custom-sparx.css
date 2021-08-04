@@ -30,3 +30,22 @@
   top: 13px;
   border-top-color: #fff !important;
 }
+span.tag.boost-pfs-filter-label:not(.Exclusively) {
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  line-height: 45px;
+}
+span.tag.boost-pfs-filter-label.Exclusively {
+  border-radius: 50px;
+  background-color: black;
+  line-height: 45px;
+}
+.boost-pfs-search-result-toolbar{border-top: none !important;}
+.boost-pfs-filter-collection-header-wrapper.boost-pfs-search-form-wrapper {
+  display: none !important;
+}
+.boost-pfs-filter-product-item-label .tag{
+  color:#fff !important;
+}

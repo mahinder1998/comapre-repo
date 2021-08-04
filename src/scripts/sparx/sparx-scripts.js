@@ -2,7 +2,6 @@ const SparxScripts = (() => {
   return {
     init: function init() {
       $(document).ready(function () {
-
         //Scroll top fixed nav
         var previousScroll = 0; 
         jQuery(window).scroll(function (e) {
@@ -112,21 +111,13 @@ const SparxScripts = (() => {
         });
         $('.mb-cart-flex').click(function () {
           $('.mini-cart-content').toggleClass('hide');
-        }); // $('.mb-cart-flex').click(function () {
-        //     if($('.mini-cart-content').hasClass("hide")) {
-        //       $('.mini-cart-content').removeClass('hide');
-        //     } else {
-        //       $('.mini-cart-content').addClass('hide');
-        //     } 
-        // });
-        // $(document).on("click",".mb-cart-flex",function(event) {
-        //   event.stopPropagation();
-        //   event.stopImmediatePropagation();
-        //   event.preventDefault();
-        // });
-        // $(".mb-dt-nav-cont li").hover(function() {
-        //   jQuery(".mini-cart-content").addClass("hide");
-        // });
+        });
+        $(document).click(function(e){
+          var mcart_cont = $(".mb-cart-flex");
+          if (!mcart_cont.is(e.target) && mcart_cont.has(e.target).length === 0) { 
+            $('.mini-cart-content').addClass('hide'); 
+          } 
+        });        
       });
       /* End Doc ready */
       // Sahid 
@@ -154,7 +145,7 @@ const SparxScripts = (() => {
           e.preventDefault();
           $("#searchbar").toggleClass("collapsed");
         }); // product search js
-
+        /*
         $(".search-input").bind("keyup", function (e) {
           if (this.value.length < 3) {
             // console.log(this.value.length);
@@ -202,7 +193,9 @@ const SparxScripts = (() => {
               $(".customSearchredirect").attr("href", "/search?q=" + searchKeyword + "&type=product");
             }
           });
-        }); // account page tab js
+        }); 
+        */
+        // account page tab js
 
         $(".tabs-main li").click(function () {
           var tab_id = $(this).attr("data-tab");
