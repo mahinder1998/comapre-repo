@@ -54,12 +54,14 @@
     {% if link.links != blank %}
     {% capture child_list_handle %}{{ link.handle }}-{{ outerLoopIndex }}{% endcapture %}
     <li class="1 has-child-one mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvlone {% for childlink in link.links %}{% if childlink.current %}has-2ndd{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %} {% if grandchildlink.current %} has-thirdd {% endif %} {% endfor %}{% endfor %}">
-      <button type="button" class="togglenewmob lvlonemob btn--link js-toggle-submenu mobile-nav__link{% if link.child_active %} mobile-nav__link--active{% endif %}" data-target="{{ child_list_handle }}" data-level="1" aria-expanded="false">
+      <div class="dropdown_custom_item">
         <span class="mobile-nav__label {% for childlink in link.links %}{% if childlink.current %}bold{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} bold{% endif %}{% endfor %}{% endfor %}"><a href="{{ link.url }}" {% if link.current %} nav-lvl-a="ok" aria-current="page"{% endif %}>{{ link.title | escape }}</a></span>
-        <div class="mobile-nav__icon lvlonemob-chiv {% for childlink in link.links %}{% if childlink.current %}mobchiv-up{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} mobchiv-up{% endif %}{% endfor %}{% endfor %}">
-          <span><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik00IC43NTVsMTQuMzc0IDExLjI0NS0xNC4zNzQgMTEuMjE5LjYxOS43ODEgMTUuMzgxLTEyLTE1LjM5MS0xMi0uNjA5Ljc1NXoiLz48L3N2Zz4="></span>
+      </div> 
+        <div class="togglenewmob lvlonemob togglenewmob-wrap">
+            <div class="mobile-nav__icon lvlonemob-chiv {% for childlink in link.links %}{% if childlink.current %}mobchiv-up{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} mobchiv-up{% endif %}{% endfor %}{% endfor %}">
+              <span><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik00IC43NTVsMTQuMzc0IDExLjI0NS0xNC4zNzQgMTEuMjE5LjYxOS43ODEgMTUuMzgxLTEyLTE1LjM5MS0xMi0uNjA5Ljc1NXoiLz48L3N2Zz4="></span>
+            </div>
         </div>
-      </button>
       <ul class="innercontent pad0 mobile-nav__dropdown {% for childlink in link.links %}{% if childlink.current %}show{% endif %}{% endfor %} {% for childlink in link.links %}{% for grandchildlink in childlink.links %} {% if grandchildlink.current %}show{% endif %}{% endfor %}{% endfor %}" data-parent="{{ child_list_handle }}" data-level="2">
 
         {% for childlink in link.links %}
