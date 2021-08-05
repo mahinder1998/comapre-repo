@@ -54,7 +54,7 @@ span.tag.boost-pfs-filter-label.Exclusively {
 .boost-pfs-filter-product-item-label{
   position: static;
   padding:0;
-
+  background: #000;
 }
 span.tag.boost-pfs-filter-label:not(.Exclusively){
 border-radius: 0;
