@@ -9,11 +9,20 @@
 {%- assign boost_pfs_suggest_list_temp = boost_pfs_suggestion_no_result | split: 'search_terms":' | last | split: ']' | first | split: ':[' -%}
 {%- assign boost_pfs_suggest_list = boost_pfs_suggest_list_temp[1] | replace: '"', '' | split: ',' -%}
 
+{%- assign availableProdHandle = '' -%}
+{%- for prodHandle in boost_pfs_product_list -%}
+{% unless all_products[prodHandle] == blank  %}
+{%- assign availableProdHandle = availableProdHandle | append: ',' | append: prodHandle  -%}   
+{% endunless %}
+{%- endfor -%}
+
+{%- assign availableProdHandle = availableProdHandle | split: ',' -%}
+
 <script type="application/json" id="boost-pfs-instant-search-products-not-found-json">
 	{
 		"search_terms": {{ boost_pfs_suggest_list | json }},
 		"products": [
-		{%- for prodHandle in boost_pfs_product_list -%}
+		{%- for prodHandle in availableProdHandle -%}
 		{% unless all_products[prodHandle] == blank  %}
 		{{- all_products[prodHandle] | json -}}{%- if forloop.last != true -%},{%- endif -%}
 		{% endunless %}
