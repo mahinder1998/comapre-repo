@@ -755,3 +755,8 @@ a.addqty > img, a.minusqty > img {
 div#stores_and_dist {
     min-width: 400px;
 }
+
+.login-wrap p.form-message > a {
+    font-weight: bold;
+    text-decoration: underline;
+}
