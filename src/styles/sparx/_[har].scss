@@ -1241,3 +1241,27 @@ padding-left: 0 !important;
   text-transform: uppercase;
 }
 /* 04-aug- 2021  css end */
+
+
+/* 05-aug- 2021  css start  */
+.page_content_cms p,
+.page_content_cms ul li,
+.page_content_cms ol li {
+    font-size: 14px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.page_content_cms ul li,
+.page_content_cms ol li {
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 999px) {
+    .ly-breakpoint-1 {
+        display: none !important;
+    }
+}
+ 
+
+/* 05-aug- 2021  css end */
