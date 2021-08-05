@@ -269,7 +269,7 @@ const PDPListeners = (function () {
 
                             // Hide loader 
                             hideLoaderAddToCartButton();
-                            showError();
+                            showError("Available quantity limit reached");
                         });
 
 
