@@ -67,3 +67,8 @@ span.boost-pfs-check-box:before {
 .mobile-nav__icon {
     transform: rotate(180deg);
 }
+
+.banner-wrap .banner-content-wrap {
+    right: calc((100vw - 1100px)/ 2) !important;
+    left: auto !important;
+}
