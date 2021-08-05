@@ -638,7 +638,7 @@ a.addqty > img, a.minusqty > img {
 .nav-is-fixed section.mb-top-logo{top: 0;}
 
 .nav-is-fixed nav.mb-dt-nav-cont {
-    top: 98px;
+    top: 97px;
     box-shadow: 0px 4px 6px -5px #d8d8d8;
 }
 
@@ -692,7 +692,7 @@ a.addqty > img, a.minusqty > img {
     padding: 0;
     list-style: none;
     max-height: 740px;
-    overflow: scroll;
+    overflow: auto;
 }
 .store-list-item {
     display: flex;
