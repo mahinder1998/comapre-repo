@@ -89,3 +89,7 @@ span.boost-pfs-check-box:before {
 li.mobile-no {
     direction: ltr;
 }
+
+.promo_code_wrap {
+    display: none;
+}
