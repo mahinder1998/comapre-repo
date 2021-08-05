@@ -102,9 +102,6 @@ li{list-style: none;}
       z-index: 12;
   }
   
-  .nav-is-fixed .mb-logo-2{
-   display: none;
-  }
 /* MB Breadcrumbs */
 .breadcrumbs {
     font-size: .85em;
@@ -665,4 +662,8 @@ a.addqty > img, a.minusqty > img {
 
 .search-result-weap {
     display: none !important;
+}
+
+.boost-pfs-filter-right-col span.boost-pfs-filter-product-item-sale-price {
+    display: block;
 }
