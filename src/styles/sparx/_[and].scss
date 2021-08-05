@@ -922,7 +922,21 @@ div#legend h3 {
 	text-transform: uppercase; 
 }
 
+.mini-cart-content>h3.cartempty_text.hide {
+    display: none;
+}
 
+.mini-cart-content>h3.mini-cart-title.hide {
+    display: none;
+}
+
+.mini-cart-content>section.mini-cart-list.hide {
+    display: none;
+}
+
+.mini-cart-content>div.mcart-go-cart.hide {
+    display: none;
+}
 
 /* media css code */
 @media all and (max-width: 749px){
