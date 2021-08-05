@@ -820,10 +820,7 @@ li.lvl-li-two {
 #legend img {
     vertical-align: middle;
 }
-.store_grid {
-    display: flex;
-    justify-content: space-between;
-}
+
 
 div#legend {
     align-self: flex-start;
@@ -831,79 +828,7 @@ div#legend {
 }
 div#legend h3 {
     display: none;
-}  
-.store-sidebar {
-    width: 34%;
-}
-.store-content {
-    width: 60%;
-    display: flex;
-    justify-content: flex-end;
-}
-.store-list-wrap {
-    margin: 30px 0 0;
-    padding: 0;
-    list-style: none;
-    max-height: 740px;
-    overflow: scroll;
-}
-.store-list-item {
-    display: flex;
-    border-bottom: 1px solid #cccccc;
-    padding: 25px 0;
-}
-.store-img {
-    width: 45px;
-}
-.store-desc {
-    padding-left: 15px;
-    display: flex;
-    align-items: center;
-      justify-content: space-between;
-      width: calc(100% - 60px);
-}
-.store-desc-left {
-    font-size: 14px;
-    line-height: 20px;
-    color: #000000;
-}
-
-.store-desc-left address {
-    font-style: normal;
-}
-.store-info ul {
-    margin: 0;
-    padding: 0;
-}
-
-.store-info {
-    margin: 15px 0 0;
-}
-
-.store-info ul > li {
-    display: inline-block;
-    font-size: 13px;
-    line-height: 13px;
-}
-
-.store-list-item:last-child {
-    border-bottom: none;
-}
-
-.store-info ul > li:last-child {
-    border-left: 2px solid #9b9b9b;
-    padding-left: 10px;
-    margin-left: 10px;
-}
- 
-.store-desc-right {
-    width: 30px;
-    text-align: right;
-}
-
-.store-desc-right img {
-    width: 7px !important;
-}
+} 
 
 #legend div {
     width: 50%;
@@ -957,16 +882,6 @@ div#legend h3 {
 #legend input[type=checkbox]:checked:before {
     background-color: #000;
 }   
-
-
-
-.store-sidebar-single ul.store-list-wrap {
-    margin: 0;
-}
-
-.store-sidebar-single .store-list-item {
-    padding-top: 0;
-}
 
 
 /* media css start */

@@ -72,3 +72,20 @@ span.boost-pfs-check-box:before {
     right: calc((100vw - 1100px)/ 2) !important;
     left: auto !important;
 }
+
+#legend input[type=checkbox]:checked:after {
+    height: 5px !important;
+    width: 10px !important;
+    transform: rotate(315deg);
+    right: 5px !important;
+    top: 5px !important;
+}
+
+.store-desc-right {
+    transform: rotate(180deg);
+    margin-right: 20px;
+}
+
+li.mobile-no {
+    direction: ltr;
+}
