@@ -7221,7 +7221,14 @@ html[lang="ar"] .h__slide__info-overlay {
 .btn-contune {
 	margin-top: 36px
 }
-
+.login-wrap input[type=checkbox]:checked:after{
+	border-width: 0px 1px 1px 0px;
+}
+@media only screen and (max-width: 999px) {
+	.ly-breakpoint-1{
+		display: none !important;
+	}
+}
 @media screen and (min-width: 1200px) {
 	#searchbar.collapsed .sliding-panel-outer {
 		width: 255px
