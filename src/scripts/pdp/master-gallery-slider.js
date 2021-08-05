@@ -143,7 +143,7 @@ const MediaGallery = (() => {
                     function countPlus() {
                         counter = counter + 1;
                         if(counter === allImgsLength) {
-                            console.log("All Images loaded!")
+                            // console.log("All Images loaded!")
 
                             initSlides();
                             showSlides();

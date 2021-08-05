@@ -48,7 +48,7 @@ const PDPListeners = (function () {
         const errorBox = document.querySelector('.pdp__content__error');
         const errorText = document.querySelector('.pdp__content__error__text')
 
-        errorText.innerHTML = message || "There was an errro adding product to the cart."
+        errorText.innerHTML = message || "There was an error adding product to the cart."
         errorBox.style.display = "flex";
     }
 
@@ -117,19 +117,26 @@ const PDPListeners = (function () {
         document.querySelector('.pdpmodal-addedtocart__modal').style.display = "block"
     }
 
+    function renderItemtoMinicart(variant, comparePrice) {
+        const compare_variant_unit_price = getVariantComparePrice(variant?.variant_id);
+        const varinatComparePrice = compare_variant_unit_price ? compare_variant_unit_price * variant?.quantity : null;
 
-    function renderItemtoMinicart(variant) {
+
         if (document.querySelector(".mini-cart-list")) {
             const minicartItemHTML = `
                 <div class="single-mcart-item">
                     <div class="mcart-thumb">
-                        <a href="/products/${variant?.handle}"> 
-                        <img src="${variant?.image || variant?.featured_image?.url}" alt="${variant?.featured_image?.alt}"></a>
+                    <a href="/products/${variant?.handle}"
+                        title="${variant?.title}">
+                        <img src="${variant?.image || variant?.featured_image?.url}" alt="${variant?.featured_image?.alt}">
+                    </a>
                     </div>
                     <div class="mcart-content">
-                        <p class="mcart-single-title"><a href="/products/${variant?.handle}">${variant?.product_title}</a></p>
-                        <p class="mcart-single-price"><b>${Currency.formatMoney(variant?.final_line_price)}</b></p>
-
+                    <p class="mcart-single-title"><a href="/products/${variant?.handle}">${variant?.title}</a></p>
+                    <p class="mcart-single-price">
+                        <span class="mcart-compare-price">${varinatComparePrice ? Currency.formatMoney(varinatComparePrice) : ""} </span>
+                        <span><b>${Currency.formatMoney(variant?.final_line_price)}</b></span>
+                    </p>
                     </div>
                 </div>
             `;
@@ -141,7 +148,7 @@ const PDPListeners = (function () {
         if (!variantId) return;
         const variants = window.objectData.product.variants;
         const v = variants.find(variant => variant.id == variantId)
-        console.log({ v })
+        // console.log({ v })
         if (v) {
             return v.compare_at_price;
         } else {
@@ -167,7 +174,7 @@ const PDPListeners = (function () {
 
                 if (quantity > 10) {
                     hideLoaderAddToCartButton();
-                    showError("Cannot add more that 10 products.");
+                    showError("Cannot add more than 10 products.");
                     if (document.querySelector('.pdp__content__control__qty__value')) {
                         document.querySelector('.pdp__content__control__qty__value').innerHTML = 1;
                     }
@@ -180,7 +187,7 @@ const PDPListeners = (function () {
 
                         if (variantInCart.quantity + quantity > 10) {
                             hideLoaderAddToCartButton();
-                            showError("Cannot add more that 10 products.");
+                            showError("Cannot add more than 10 products.");
                             if (document.querySelector('.pdp__content__control__qty__value')) {
                                 document.querySelector('.pdp__content__control__qty__value').innerHTML = 1;
                             }
@@ -194,13 +201,46 @@ const PDPListeners = (function () {
                         .then(res => {
                             // console.log(res);
 
+                            const title = res.product_title;
+                            const image = res.featured_image.url || res.image;
+
+                            const oPrice = quantity ? res.price * quantity : res.price * 1;
+                            const compare_unit_price = getVariantComparePrice(variantId);
+                            // console.log('compare_unit_price', compare_unit_price)
+                            const oComparePrice = compare_unit_price ? compare_unit_price * quantity : null;
+                            // console.log('oComparePrice', oComparePrice)
+                            const price = oPrice ? Currency.formatMoney(oPrice) : null;
+                            const compare_price = oComparePrice ? Currency.formatMoney(oComparePrice) : null;
+                            // console.log('compare_price', compare_price);
+                            let size = null;
+
+
+                            if (!res.product_has_only_default_variant) {
+                                size = res.variant_options[0];
+                            }
+
                             // Update the mincart.
                             Cart.getState().then(cart => {
 
                                 if(document.querySelector(".mini-cart-list")) {
                                     document.querySelector(".mini-cart-list").innerHTML = "";
                                 }
-                                cart?.items.forEach(item => renderItemtoMinicart(item));
+                                cart?.items.forEach(item => renderItemtoMinicart(item, oComparePrice));
+                                
+                                // Hide no cart 
+                                if(!document.querySelector('.cartempty_text').classList.contains('hide')) {
+                                    document.querySelector('.cartempty_text').classList.add('hide');
+                                }
+
+                                // cart title 
+                                if(document.querySelector('.mini-cart-title').classList.contains('hide')) {
+                                    document.querySelector('.mini-cart-title').classList.remove('hide');
+                                }
+
+                                // Show the cart buttton 
+                                if(document.querySelector('.mcart-go-cart').classList.contains('hide')) {
+                                    document.querySelector('.mcart-go-cart').classList.remove('hide');
+                                }
 
                             }).catch(error => {
                                 console.log("Error on current cart fetch.")
@@ -208,23 +248,6 @@ const PDPListeners = (function () {
                             })
 
 
-                            const title = res.product_title;
-                            const image = res.featured_image.url || res.image;
-
-                            const oPrice = quantity ? res.price * quantity : res.price * 1;
-                            const compare_unit_price = getVariantComparePrice(variantId);
-                            console.log('compare_unit_price', compare_unit_price)
-                            const oComparePrice = compare_unit_price ? compare_unit_price * quantity : null;
-                            console.log('oComparePrice', oComparePrice)
-                            const price = oPrice ? Currency.formatMoney(oPrice) : null;
-                            const compare_price = oComparePrice ? Currency.formatMoney(oComparePrice) : null;
-                            console.log('compare_price', compare_price);
-                            let size = null;
-
-
-                            if (!res.product_has_only_default_variant) {
-                                size = res.variant_options[0];
-                            }
 
                             // Reset counter 
                             resetCount();
@@ -269,7 +292,6 @@ const PDPListeners = (function () {
         // Close button in the modal click.
         if (document.querySelector('.pdpmodal-addedtocart__modal__close-btn')) {
             document.querySelector('.pdpmodal-addedtocart__modal__close-btn').addEventListener('click', () => {
-                console.log('clicked')
                 document.querySelector('.pdpmodal-addedtocart__overlay').style.display = "none"
                 document.querySelector('.pdpmodal-addedtocart__modal').style.display = "none"
             })
@@ -362,6 +384,11 @@ const PDPListeners = (function () {
                 showLoader();
                 hideSlides();
 
+                // Reset the counter
+                if(document.querySelector('.pdp__content__control__qty__value')) {
+                    document.querySelector('.pdp__content__control__qty__value').innerHTML = "1";
+                }
+
                 const selectedOption = e.target.dataset.option
                 // console.log("Selected Option is : " + selectedOption);
 
@@ -380,10 +407,14 @@ const PDPListeners = (function () {
                 //Change the title, size, price.
                 document.querySelector('.pdp__content__price__original').innerHTML = Currency.formatMoney(selectedVariant.price);
 
-
                 if (selectedVariant.compare_at_price) {
+                    // console.log('selectedVariant.compare_at_price', selectedVariant.compare_at_price)
+
                     document.querySelector('.pdp__content__price__compare').innerHTML = Currency.formatMoney(selectedVariant.compare_at_price);
                 } else {
+                    // console.log('selectedVariant.compare_at_price', selectedVariant.compare_at_price)
+
+                    // console.log(document.querySelectorAll('.pdp__content__price__compare'))
                     document.querySelector('.pdp__content__price__compare').innerHTML = "";
                 }
 
@@ -392,9 +423,7 @@ const PDPListeners = (function () {
                 // Change the size label in mobile
                 document.querySelector('.pdp__info-mobile__size').innerHTML = selectedVariant.option1;
 
-
                 //Change data-id on CTAButtons;
-
                 document.querySelector('.pdp__content__control__add-to-cart-btn') ? document.querySelector('.pdp__content__control__add-to-cart-btn').dataset.id = selectedVariant.id : null;
                 document.querySelector('.pdp__content__control__notify-me-btn') ? document.querySelector('.pdp__content__control__notify-me-btn').dataset.id = selectedVariant.id : null;
 
@@ -496,8 +525,7 @@ const PDPListeners = (function () {
                     function countPlus() {
                         counter = counter + 1;
                         if (counter === allImgsLength) {
-                            console.log("All Images loaded!")
-
+                            // console.log("All Images loaded!")
                             showSlides();
                             hideLoader();
                         }
