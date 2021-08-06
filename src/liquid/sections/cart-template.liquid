@@ -1,479 +1,494 @@
-<style type="text/css">
-  .modal-gwp-added {
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgb(0,0,0);
-      background-color: rgba(0,0,0,0.7);
-      z-index: 9999;
-  }
+{% if section.settings.enable_gwp_content %}
+  <style type="text/css">
+    .modal-gwp-added {
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.7);
+        z-index: 9999;
+    }
+    
+    .gwp-modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 25px;
+        border: 1px solid #888;
+        width: 450px;
+        position: absolute;
+        left: calc(50% - 225px);
+        font-size: 16px;
+        top: calc(40% - 75px);
+    }
+       
+    span.loading-dotts > img {
+        width: 35px;
+        display: block;
+        position: relative;
+        top: 6px;
+        margin: 0 auto;
+    } 
+    </style>
   
-  .gwp-modal-content {
-      background-color: #fefefe;
-      margin: auto;
-      padding: 25px;
-      border: 1px solid #888;
-      width: 450px;
-      position: absolute;
-      left: calc(50% - 225px);
-      font-size: 16px;
-      top: calc(40% - 75px);
-  }
-     
-  span.loading-dotts > img {
-      width: 35px;
-      display: block;
-      position: relative;
-      top: 6px;
-      margin: 0 auto;
-  } 
-  </style>
-
-{% if cart.total_price > 0 %}
-  {% assign gwp_cart_val = section.settings.gwp_cart_val | plus: 0 %}
-  {% assign gwp_cart_val_num = gwp_cart_val | times: 100 %}
-  {% assign var_id_a = section.settings.gwp_above_400_1 | plus: 0 %}
-  {% assign var_id_b = section.settings.gwp_above_400_2 | plus: 0 %}
-  {% assign var_id_c = section.settings.gwp_below_400 | plus: 0 %}
-
-  {% assign found_title = false %}
-  {% assign found_title_b = false %}
-  {% assign found_title_c = false %}
-
-  {% for item in cart.items %}
-    {% if item.variant.id == var_id_a %}
-      {% assign found_title = true %}
-    {% endif %}
-    {% if item.variant.id == var_id_b %}
-      {% assign found_title_b = true %}
-    {% endif %}    
-    {% if item.variant.id == var_id_c %}   
-      {% assign found_title_c = true %}
-    {% endif %}
-  {% endfor %}
-{% endif %}   
+    {% if cart.total_price > 0 %}
+      {% assign gwp_cart_val = section.settings.gwp_cart_val | plus: 0 %}
+      {% assign gwp_cart_val_num = gwp_cart_val | times: 100 %}
+      {% assign var_id_a = section.settings.gwp_above_400_1 | plus: 0 %}
+      {% assign var_id_b = section.settings.gwp_above_400_2 | plus: 0 %}
+      {% assign var_id_c = section.settings.gwp_below_400 | plus: 0 %}
+  
+      {% assign found_title = false %}
+      {% assign found_title_b = false %}
+      {% assign found_title_c = false %}
+  
+      {% for item in cart.items %}
+        {% if item.variant.id == var_id_a %}
+          {% assign found_title = true %}
+        {% endif %}
+        {% if item.variant.id == var_id_b %}
+          {% assign found_title_b = true %}
+        {% endif %}    
+        {% if item.variant.id == var_id_c %}   
+          {% assign found_title_c = true %}
+        {% endif %}
+      {% endfor %}
+    {% endif %} 
+  {% endif %}  
   <script type="text/javascript">
-  window.Currency = window.Currency || {};
-  jQuery(document).on("click", ".updateqty", function (event) {
-    var value = $(this).siblings('.cart-quantity').val();
-    var itemIndex = $(this).attr('qty-index');
-    _updateItemQuantity(itemIndex, value);
-  });
+    window.Currency = window.Currency || {};
+    jQuery(document).on("click", ".updateqty", function (event) {
+      var value = $(this).siblings('.cart-quantity').val();
+      var itemIndex = $(this).attr('qty-index');
+      _updateItemQuantity(itemIndex, value);
+    });
+    
+    function _updateItemQuantity(itemIndex, value) {
+      $.getJSON('/cart.js').then(function (cart) {
+        $.ajax({
+          type: 'POST',
+          url: '/cart/change.js',
+          data: {
+            quantity: value,
+            line: itemIndex
+          },
+          dataType: 'json',
+          success: function success(item) {
+            console.log(JSON.stringify(item));
+            $('.mcart-count').html(item.item_count);
+            var up_total_price = Currency.formatMoney(item.total_price);
+            var item_price = Currency.formatMoney(item.items[itemIndex - 1].line_price);
+            {% if section.settings.enable_gwp_content %}
+            $('.cart_subtotal').html(up_total_price);
+            $("[item-loop=item-" + itemIndex + "]").find('.cart-item-price p').html(item_price);
+            $("[item-loop=item-" + itemIndex + "]").find('.price-cart-mob').html(item_price);
   
-  function _updateItemQuantity(itemIndex, value) {
-    $.getJSON('/cart.js').then(function (cart) {
-      $.ajax({
-        type: 'POST',
-        url: '/cart/change.js',
-        data: {
-          quantity: value,
-          line: itemIndex
-        },
-        dataType: 'json',
-        success: function success(item) {
-          console.log(JSON.stringify(item));
-          $('.mcart-count').html(item.item_count);
-          var up_total_price = Currency.formatMoney(item.total_price);
-          var item_price = Currency.formatMoney(item.items[itemIndex - 1].line_price);
-          $('.cart_subtotal').html(up_total_price);
-          $("[item-loop=item-" + itemIndex + "]").find('.cart-item-price p').html(item_price);
-          $("[item-loop=item-" + itemIndex + "]").find('.price-cart-mob').html(item_price);
-
-           if (item.total_price < {{ gwp_cart_val_num }} ) {    
-              {% if found_title_c == false %}
+             if (item.total_price < {{ gwp_cart_val_num }} ) {    
+                {% if found_title_c == false %}
+                  var productId_c = {{ var_id_c }};
+                  jQuery.post('/cart/update.js', 'updates['+productId_c+']=1'); 
+                  $('#mymodalgwp').removeClass('hide');
+                  $('#gwptext').html('Updating cart');
+                  setTimeout(function() { 
+                      window.location.reload();
+                  }, 1000);           
+        
+               {% endif %} 
+      
+              }//end-if
+              else {
+                {% if found_title_c == true %}
                 var productId_c = {{ var_id_c }};
-                jQuery.post('/cart/update.js', 'updates['+productId_c+']=1'); 
+                jQuery.post('/cart/update.js', 'updates['+productId_c+']=0'); 
                 $('#mymodalgwp').removeClass('hide');
                 $('#gwptext').html('Updating cart');
                 setTimeout(function() { 
                     window.location.reload();
-                }, 1000);           
+                }, 1000);
+                {% endif %}
+  
+              }          
       
-             {% endif %} 
-    
-            }//end-if
-            else {
-              {% if found_title_c == true %}
-              var productId_c = {{ var_id_c }};
-              jQuery.post('/cart/update.js', 'updates['+productId_c+']=0'); 
-              $('#mymodalgwp').removeClass('hide');
-              $('#gwptext').html('Updating cart');
-              setTimeout(function() { 
-                  window.location.reload();
-              }, 1000);
-              {% endif %}
-
-            }          
-    
-            if (item.total_price >= {{ gwp_cart_val_num }}) {    
-              {% if found_title == false %}
-                var productId = {{ var_id_a }};
-                jQuery.post('/cart/update.js', 'updates['+productId+']=1'); 
-                  $('#mymodalgwp').removeClass('hide');
-                  $('#gwptext').html('Updating cart');
-                    setTimeout(function() { 
-                        window.location.reload();
-                    }, 1000);               
+              if (item.total_price >= {{ gwp_cart_val_num }}) {    
+                {% if found_title == false %}
+                  var productId = {{ var_id_a }};
+                  jQuery.post('/cart/update.js', 'updates['+productId+']=1'); 
+                    $('#mymodalgwp').removeClass('hide');
+                    $('#gwptext').html('Updating cart');
+                      setTimeout(function() { 
+                          window.location.reload();
+                      }, 1000);               
+        
+               {% endif %} 
+  
+                {% if found_title_b == false %}
+                  var productId_b = {{ var_id_b }};
+                  jQuery.post('/cart/update.js', 'updates['+productId_b+']=1'); 
+                    $('#mymodalgwp').removeClass('hide');
+                    $('#gwptext').html('Updating cart');
+                      setTimeout(function() { 
+                          window.location.reload();
+                      }, 1000);                   
+               {% endif %} 
+              }
+              else {
+                {% if found_title == true %}
+                  var productId = {{ var_id_a }};
+                  jQuery.post('/cart/update.js', 'updates['+productId+']=0'); 
+                    $('#mymodalgwp').removeClass('hide');
+                    $('#gwptext').html('Updating cart');
+                      setTimeout(function() { 
+                          window.location.reload();
+                      }, 1000);               
+               {% endif %} 
+  
+                {% if found_title_b == true %}
+                  var productId_b = {{ var_id_b }};
+                  jQuery.post('/cart/update.js', 'updates['+productId_b+']=0'); 
+                    $('#mymodalgwp').removeClass('hide');
+                    $('#gwptext').html('Updating cart');
+                      setTimeout(function() { 
+                          window.location.reload();
+                      }, 1000);                   
+               {% endif %} 
       
-             {% endif %} 
-
-              {% if found_title_b == false %}
-                var productId_b = {{ var_id_b }};
-                jQuery.post('/cart/update.js', 'updates['+productId_b+']=1'); 
-                  $('#mymodalgwp').removeClass('hide');
-                  $('#gwptext').html('Updating cart');
-                    setTimeout(function() { 
-                        window.location.reload();
-                    }, 1000);                   
-             {% endif %} 
-            }
-            else {
-              {% if found_title == true %}
-                var productId = {{ var_id_a }};
-                jQuery.post('/cart/update.js', 'updates['+productId+']=0'); 
-                  $('#mymodalgwp').removeClass('hide');
-                  $('#gwptext').html('Updating cart');
-                    setTimeout(function() { 
-                        window.location.reload();
-                    }, 1000);               
-             {% endif %} 
-
-              {% if found_title_b == true %}
-                var productId_b = {{ var_id_b }};
-                jQuery.post('/cart/update.js', 'updates['+productId_b+']=0'); 
-                  $('#mymodalgwp').removeClass('hide');
-                  $('#gwptext').html('Updating cart');
-                    setTimeout(function() { 
-                        window.location.reload();
-                    }, 1000);                   
-             {% endif %} 
-    
-            }
+              }
+              {% endif %} 
+          }
+        });
+      });
+    }   
+  </script>
+  {% if section.settings.enable_gwp_content %}
+  
+  {% if cart.total_price == 0 and cart.item_count > 0 %} 
+  <script type="text/javascript">
+  $( document ).ready(function() { 
+    $.ajax({
+        type: "POST",
+        url: '/cart/clear.js',
+        data: '',
+        dataType: 'json',
+        success: function() {
+          $('#mymodalgwp').removeClass('hide');
+          $('#gwptext').html('Updating cart');
+          location.reload();
+        },
+        error: function(XMLHttpRequest, textStatus) {
         }
       });
-    });
-  }   
-</script>
-{% if cart.total_price == 0 and cart.item_count > 0 %} 
-<script type="text/javascript">
-$( document ).ready(function() { 
-  $.ajax({
-      type: "POST",
-      url: '/cart/clear.js',
-      data: '',
-      dataType: 'json',
-      success: function() {
+      return false; 
+   });    
+  </script> 
+  {% endif %}   
+  {% if cart.total_price > gwp_cart_val_num and found_title == false %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
+          var productId = {{ var_id_a }};
+          jQuery.post('/cart/update.js', 'updates['+productId+']=1'); 
+  
         $('#mymodalgwp').removeClass('hide');
         $('#gwptext').html('Updating cart');
-        location.reload();
-      },
-      error: function(XMLHttpRequest, textStatus) {
-      }
-    });
-    return false; 
- });    
-</script> 
-{% endif %}   
-{% if cart.total_price > gwp_cart_val_num and found_title == false %} 
-  <script type="text/javascript">  
-    $( document ).ready(function() { 
+  
+        setTimeout(function() { 
+  
+            window.location.reload();
+        }, 3000);
+      });
+    </script>
+    {% elsif cart.total_price < gwp_cart_val_num and found_title  == true %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
         var productId = {{ var_id_a }};
-        jQuery.post('/cart/update.js', 'updates['+productId+']=1'); 
-
-      $('#mymodalgwp').removeClass('hide');
-      $('#gwptext').html('Updating cart');
-
-      setTimeout(function() { 
-
-          window.location.reload();
-      }, 3000);
-    });
-  </script>
-  {% elsif cart.total_price < gwp_cart_val_num and found_title  == true %} 
-  <script type="text/javascript">  
-    $( document ).ready(function() { 
-      var productId = {{ var_id_a }};
-      jQuery.post('/cart/update.js', 'updates['+productId+']=0'); 
-      $('#mymodalgwp').removeClass('hide');
-      $('#gwptext').html('Your Complimentary first gift was <u>removed</u> from your cart');
-      setTimeout(function() {
-          window.location.reload();
-      }, 1000);
-  
-    });
-  </script>
-{% endif %}  
-  
-{% if cart.total_price > gwp_cart_val_num and found_title_b  == false %} 
-  <script type="text/javascript">  
-    $( document ).ready(function() { 
-      var productId_b = {{ var_id_b }};
-      jQuery.post('/cart/update.js', 'updates['+productId_b+']=1'); 
-      $('#mymodalgwp').removeClass('hide');
-      $('#gwptext').html('Your Complimentary second gift was <u>added</u> from your cart');
-      setTimeout(function() { 
-          window.location.reload();
-      }, 1000);
-  
-    });
-  </script> 
-  {% elsif cart.total_price < gwp_cart_val_num and found_title_b  == true %} 
-  <script type="text/javascript">  
-    $( document ).ready(function() { 
-       var productId_b = {{ var_id_b }};
-       jQuery.post('/cart/update.js', 'updates['+productId_b+']=0'); 
-       $('#mymodalgwp').removeClass('hide');
-       $('#gwptext').html('Your Complimentary second gift was <u>removed</u> from your cart');
-       setTimeout(function() { 
-          window.location.reload();
-       }, 1000);
-    });
-  </script>
-{% endif %}
-   
-{% if cart.total_price < gwp_cart_val_num and found_title_c  == false %} 
-  <script type="text/javascript">  
-    $( document ).ready(function() { 
-       var productId_c = {{ var_id_c }};
-       jQuery.post('/cart/update.js', 'updates['+productId_c+']=1'); 
-       $('#mymodalgwp').removeClass('hide');
-       $('#gwptext').html('Your Complimentary gift was <u>added</u> to your cart ');
-      setTimeout(function() { 
-          window.location.reload();
-      }, 1000);
-    });
-  </script> 
-  {% elsif cart.total_price > gwp_cart_val_num and found_title_c  == true %} 
-  <script type="text/javascript">  
-    $( document ).ready(function() { 
-      var productId_c = {{ var_id_c }};
-      jQuery.post('/cart/update.js', 'updates['+productId_c+']=0'); 
-      $('#mymodalgwp').removeClass('hide');
-      $('#gwptext').html('Updating cart');
-      setTimeout(function() { 
-          window.location.reload();
-      }, 1000);
-    });
-  </script>
-{% endif %}     
-  <script type="text/javascript">
-    function remove_item(id){
-      document.getElementById('updates_' + id).value = 0;
-      document.getElementById('cartform').submit();
-    }
-  </script>
-  
-  {% if cart.item_count > 0 %}
-  <section id="cart-container" class="padding_lg">
-    <h1 class="cart-title">Your Cart</h1>
-    <form action="/cart" method="post" id="cartform">
-      <div class="cart-body">
-        <div class="cart-main-data">
-          <div class="cart-titles">
-            <div class="cart-item-t">PRODUCTS</div>
-            <div class="cart-qty-t">QUANTITY</div>
-            <div class="cart-total-t">PRICE</div>
-          </div>
-          {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
-          <div class="cart-items-loop" item-loop="item-{{ forloop.index }}">
-            <div class="cart-item-img">
-              <div>
-                <a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> 
-                   <img class="cart__image{% if item.image == null %} hide{% endif %}" src="{{ item | img_url: 'small' }}" alt="{{ item.image.alt | escape }}" data-cart-item-image>                   
-                </a>
+        jQuery.post('/cart/update.js', 'updates['+productId+']=0'); 
+        $('#mymodalgwp').removeClass('hide');
+        $('#gwptext').html('Your Complimentary first gift was <u>removed</u> from your cart');
+        setTimeout(function() {
+            window.location.reload();
+        }, 1000);
+    
+      });
+    </script>
+  {% endif %}  
+    
+  {% if cart.total_price > gwp_cart_val_num and found_title_b  == false %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
+        var productId_b = {{ var_id_b }};
+        jQuery.post('/cart/update.js', 'updates['+productId_b+']=1'); 
+        $('#mymodalgwp').removeClass('hide');
+        $('#gwptext').html('Your Complimentary second gift was <u>added</u> from your cart');
+        setTimeout(function() { 
+            window.location.reload();
+        }, 1000);
+    
+      });
+    </script> 
+    {% elsif cart.total_price < gwp_cart_val_num and found_title_b  == true %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
+         var productId_b = {{ var_id_b }};
+         jQuery.post('/cart/update.js', 'updates['+productId_b+']=0'); 
+         $('#mymodalgwp').removeClass('hide');
+         $('#gwptext').html('Your Complimentary second gift was <u>removed</u> from your cart');
+         setTimeout(function() { 
+            window.location.reload();
+         }, 1000);
+      });
+    </script>
+  {% endif %}
+     
+  {% if cart.total_price < gwp_cart_val_num and found_title_c  == false %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
+         var productId_c = {{ var_id_c }};
+         jQuery.post('/cart/update.js', 'updates['+productId_c+']=1'); 
+         $('#mymodalgwp').removeClass('hide');
+         $('#gwptext').html('Your Complimentary gift was <u>added</u> to your cart ');
+        setTimeout(function() { 
+            window.location.reload();
+        }, 1000);
+      });
+    </script> 
+    {% elsif cart.total_price > gwp_cart_val_num and found_title_c  == true %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
+        var productId_c = {{ var_id_c }};
+        jQuery.post('/cart/update.js', 'updates['+productId_c+']=0'); 
+        $('#mymodalgwp').removeClass('hide');
+        $('#gwptext').html('Updating cart');
+        setTimeout(function() { 
+            window.location.reload();
+        }, 1000);
+      });
+    </script>
+  {% endif %} 
+  {% endif %}  
+    <script type="text/javascript">
+      function remove_item(id){
+        document.getElementById('updates_' + id).value = 0;
+        document.getElementById('cartform').submit();
+      }
+    </script>
+    
+    {% if cart.item_count > 0 %}
+    <section id="cart-container" class="padding_lg">
+      <h1 class="cart-title">Your Cart</h1>
+      <form action="/cart" method="post" id="cartform">
+        <div class="cart-body">
+          <div class="cart-main-data">
+            <div class="cart-titles">
+              <div class="cart-item-t">PRODUCTS</div>
+              <div class="cart-qty-t">QUANTITY</div>
+              <div class="cart-total-t">PRICE</div>
+            </div>
+            {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
+            <div class="cart-items-loop" item-loop="item-{{ forloop.index }}">
+              <div class="cart-item-img">
+                <div>
+                  <a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> 
+                     <img class="cart__image{% if item.image == null %} hide{% endif %}" src="{{ item | img_url: 'small' }}" alt="{{ item.image.alt | escape }}" data-cart-item-image>                   
+                  </a>
+                </div>
+                <div class="cart-title-dt">
+                  <p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p>
+                   {%- assign variant_options = 'template ' | split: ' ' -%}
+                        {%- if item.product.has_only_default_variant != true -%}
+                          {%- assign variant_options = item.options_with_values -%}
+                        {%- endif -%}
+                        {%- assign property_size = item.properties | size -%}
+                        
+                        {%- assign variant_options_hide = false -%}
+                        {% if item.product.has_only_default_variant and property_size == 0 %}
+                         {%- assign variant_options_hide = true -%}
+                   {% elsif variant_options.size == 1 and variant_options[0].value == "Default title" %}
+                         {%- assign variant_options_hide = true -%}
+                        {% endif %}
+                        
+                        <ul class="item-variant-details{% if variant_options_hide and property_size == 0 %} hide{% endif %}" >
+                          {%- for option in variant_options -%}
+                            <li class="product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>{{ option.name }}: {{ option.value }}</li>
+                          {%- endfor -%}
+                  </ul>
+                  <p class="cart__remove">
+                    <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
+                  </p>
+                </div>
+    
               </div>
-              <div class="cart-title-dt">
-                <p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p>
-                 {%- assign variant_options = 'template ' | split: ' ' -%}
-                      {%- if item.product.has_only_default_variant != true -%}
-                        {%- assign variant_options = item.options_with_values -%}
-                      {%- endif -%}
-                      {%- assign property_size = item.properties | size -%}
-                      
-                      {%- assign variant_options_hide = false -%}
-                      {% if item.product.has_only_default_variant and property_size == 0 %}
-                       {%- assign variant_options_hide = true -%}
-                 {% elsif variant_options.size == 1 and variant_options[0].value == "Default title" %}
-                       {%- assign variant_options_hide = true -%}
-                      {% endif %}
-                      
-                      <ul class="item-variant-details{% if variant_options_hide and property_size == 0 %} hide{% endif %}" >
-                        {%- for option in variant_options -%}
-                          <li class="product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>{{ option.name }}: {{ option.value }}</li>
-                        {%- endfor -%}
-                </ul>
+              <div class="cart-item-qty">
+                <div class="cart-title-mob"><p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p></div>
+                <div class="qty-selc">
+    
+                  <div class="qty-slctor-arws"> 
+                    <p class="qty-txt-mob">Qty</p>
+    
+                    {%- if item.line_price != 0 -%}
+                    <a class="minusqty updateqty" data-loop="" qty-index="{{ forloop.index }}">{% include 'down-arrow' %}</a>               
+                    <input name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" onfocus="this.select();" value="{{ item.quantity }}" size="2"/>
+                    <a class="addqty updateqty" qty-index="{{ forloop.index }}">{% include 'upper-arrow' %}</a>
+                    {%- elsif item.line_price == 0 -%}
+                    <input name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" value="1" size="1"/>
+                    {%- endif-%}
+    
+    
+                  </div>
+                  
+                  <div class="mobile-cart-compair">                
+                  {% if item.variant.compare_at_price %}
+                      <p class="pdp__content__price__compare">{{ item.variant.compare_at_price | money }}</p>
+                  {% endif %}
+                  <p class="price-cart-mob">{{ item.line_price | money }}</p>
+                  </div>
+    
+                </div>   
                 <p class="cart__remove">
                   <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
                 </p>
               </div>
-  
-            </div>
-            <div class="cart-item-qty">
-              <div class="cart-title-mob"><p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p></div>
-              <div class="qty-selc">
-  
-                <div class="qty-slctor-arws"> 
-                  <p class="qty-txt-mob">Qty</p>
-  
-                  {%- if item.line_price != 0 -%}
-                  <a class="minusqty updateqty" data-loop="" qty-index="{{ forloop.index }}">{% include 'down-arrow' %}</a>               
-                  <input name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" onfocus="this.select();" value="{{ item.quantity }}" size="2"/>
-                  <a class="addqty updateqty" qty-index="{{ forloop.index }}">{% include 'upper-arrow' %}</a>
-                  {%- elsif item.line_price == 0 -%}
-                  <input name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" value="1" size="1"/>
-                  {%- endif-%}
-  
-  
-                </div>
+              <div class="cart-item-price">
                 
-                <div class="mobile-cart-compair">                
                 {% if item.variant.compare_at_price %}
-                    <p class="pdp__content__price__compare">{{ item.variant.compare_at_price | money }}</p>
-                {% endif %}
-                <p class="price-cart-mob">{{ item.line_price | money }}</p>
-                </div>
-  
-              </div>   
-              <p class="cart__remove">
-                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
-              </p>
+                      <p class="pdp__content__price__compare">{{ item.variant.compare_at_price | money }}</p>
+                  {% endif %}
+                  <p>{{ item.line_price | money }}</p>
+              </div>
             </div>
-            <div class="cart-item-price">
+            {% endfor %}
+          </div>
+    
+          <div class="right-side-cart cart-main-prices">
+    
+            <div class="flex-bet shipping-free">
+              <span class="cart-subtotal__title">SHIPPING </span>
+              <span class="cart-subtotal__price">Free</span>
+            </div>
+            <div class="shipping-day">
+              <p>Free Shipping within 2-3 days</p>
+            </div>
+            <div colspan="5" class="subtotal">
+              <h4 class="flex-bet">
+                <span class="cart-subtotal__title">Subtotal</span>
+                <span class="cart-subtotal__title cart_subtotal">{{ cart.total_price | money }}</span>
+              </h4>
+            </div>
+            <div class="vat-shiping">
+              <p>(VAT included)</p>
+            </div>
+            <div id="cart-right">
               
-              {% if item.variant.compare_at_price %}
-                    <p class="pdp__content__price__compare">{{ item.variant.compare_at_price | money }}</p>
-                {% endif %}
-                <p>{{ item.line_price | money }}</p>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-  
-        <div class="right-side-cart cart-main-prices">
-  
-          <div class="flex-bet shipping-free">
-            <span class="cart-subtotal__title">SHIPPING </span>
-            <span class="cart-subtotal__price">Free</span>
-          </div>
-          <div class="shipping-day">
-            <p>Free Shipping within 2-3 days</p>
-          </div>
-          <div colspan="5" class="subtotal">
-            <h4 class="flex-bet">
-              <span class="cart-subtotal__title">Subtotal</span>
-              <span class="cart-subtotal__title cart_subtotal">{{ cart.total_price | money }}</span>
-            </h4>
-          </div>
-          <div class="vat-shiping">
-            <p>(VAT included)</p>
-          </div>
-          <div id="cart-right">
-            
-            <div class="promo_code_wrap">
-              <div class="promo-title"> Have a promocode?  </div>
-                <div class="promo-body">
-                  <form class="promo-form">
-                    <div class="form-group form_inline">
-                    	<input type="text" placeholder="Enter promo code"  class="form_control" id="promo_coupon">
-                      <button type="submit" class="btn-ctm promo-submit" id="redemDevPromo"> APPLY  </button>
-                    </div>
-                  </form>
-                </div>
-              
-            </div> 
-            
-            <input name="checkout" type="submit" class="button" id="checkout-button" value="PROCEED TO CHECKOUT">
-            {% if additional_checkout_buttons %}
-            <div class="additional-checkout-buttons">
-              {{ content_for_additional_checkout_buttons }}
-            </div>
-            {% endif %}
-          </div>
-  
-  
-        </div>
-      </div>
-      <div class="cart__footer">
-        <div class="grid-wrapper">
-  
-          <div class="col-sp-sm col-sp-md">
-            <label for="CartSpecialInstructions" class="cart-note__label small--text-center">Would you like a FREE gift box and gift message?</label>
-  
-            <!-- Yes and No content goes here-->
-            <div class="login-wrap">
-              <div class="radio-group">
+              <div class="promo_code_wrap">
+                <div class="promo-title"> Have a promocode?  </div>
+                  <div class="promo-body">
+                    <form class="promo-form">
+                      <div class="form-group form_inline">
+                        <input type="text" placeholder="Enter promo code"  class="form_control" id="promo_coupon">
+                        <button type="submit" class="btn-ctm promo-submit" id="redemDevPromo"> APPLY  </button>
+                      </div>
+                    </form>
+                  </div>
                 
-                <input type="checkbox" id="{{ formId }}-mrs" class="giftyes" name="choice-radio" value="{{ cart.attributes["Yes"] }}"  />
-                <label for="{{ formId }}-mrs">Yes</label>
+              </div> 
+              
+              <input name="checkout" type="submit" class="button" id="checkout-button" value="PROCEED TO CHECKOUT">
+              {% if additional_checkout_buttons %}
+              <div class="additional-checkout-buttons">
+                {{ content_for_additional_checkout_buttons }}
               </div>
+              {% endif %}
             </div>
-            <!-- Gift message option code goes here-->
-       <div class="gift_msg">
-            <div class="login-wrap giftmessage ">
-              <div class="radio-group">
-                <input type="checkbox" id="{{ formId }}-ms" name="choice-giftmessage" value="{{ cart.attributes["No"] }}" checked="checked" />
-                <label for="{{ formId }}-ms">I would like to provide a gift message.</label>
-              </div>
-  
-              <textarea name="note" id="CartSpecialInstructions" placeholder="Please enter a message up to 250 characters (including spaces)*" class="cart-note__input" data-cart-notes>{{ cart.note }}</textarea>
-              <span id="countcharacter"></span><br>
-            </div>
-  
-            <span class="custom-cart-text">
-            		{{ section.settings.giftmessage }}
-            </span>
-         </div>
+    
+    
           </div>
-  
         </div>
+        <div class="cart__footer">
+          <div class="grid-wrapper">
+    
+            <div class="col-sp-sm col-sp-md">
+              <label for="CartSpecialInstructions" class="cart-note__label small--text-center">Would you like a FREE gift box and gift message?</label>
+    
+              <!-- Yes and No content goes here-->
+              <div class="login-wrap">
+                <div class="radio-group">
+                  
+                  <input type="checkbox" id="{{ formId }}-mrs" class="giftyes" name="choice-radio" value="{{ cart.attributes["Yes"] }}"  />
+                  <label for="{{ formId }}-mrs">Yes</label>
+                </div>
+              </div>
+              <!-- Gift message option code goes here-->
+         <div class="gift_msg">
+              <div class="login-wrap giftmessage ">
+                <div class="radio-group">
+                  <input type="checkbox" id="{{ formId }}-ms" name="choice-giftmessage" value="{{ cart.attributes["No"] }}" checked="checked" />
+                  <label for="{{ formId }}-ms">I would like to provide a gift message.</label>
+                </div>
+    
+                <textarea name="note" id="CartSpecialInstructions" placeholder="Please enter a message up to 250 characters (including spaces)*" class="cart-note__input" data-cart-notes>{{ cart.note }}</textarea>
+                <span id="countcharacter"></span><br>
+              </div>
+    
+              <span class="custom-cart-text">
+                  {{ section.settings.giftmessage }}
+              </span>
+           </div>
+            </div>
+    
+          </div>
+        </div>
+      </form>
+    </section>
+    {%else%}
+    <section class="empty-section">
+      <h1 class="cart-title">Your Cart</h1>
+      <div class="page-container">
+        <p>Your cart is empty!</p>
+        <a href="{{shop.url}}" class="btn">CONTINUE SHOPPING</a>
       </div>
-    </form>
-  </section>
-  {%else%}
-  <section class="empty-section">
-    <h1 class="cart-title">Your Cart</h1>
-    <div class="page-container">
-      <p>Your cart is empty!</p>
-      <a href="{{shop.url}}" class="btn">CONTINUE SHOPPING</a>
-    </div>
-  </section>
-  {%endif%}
-  <style>
-    .mb-search-logo-flex .mb-cart-flex{pointer-events: none;}
-  </style>
-{% schema %}
-  {
-    "name": "Cart Settings",
-    "settings": [
-      {
-        "type": "text",
-        "id": "gwp_cart_val",
-        "label": "GWP total cart value"
-      },
-      {
-        "type": "text",
-        "id": "gwp_above_400_1",
-        "label": "Variant ID 1 - Above GWP Cart Value"
-      },
-      {
-        "type": "text",
-        "id": "gwp_above_400_2",
-        "label": "Variant ID 2 - Above GWP Cart Value"
-      },
-      {
-        "type": "text",
-        "id": "gwp_below_400",
-        "label": "Variant ID 3 - Below GWP Cart Value"
-      },
-       {
-        "type": "textarea",
-        "id": "giftmessage",
-        "label": "gift message note"
-        }      
-  ]
-}
-{% endschema %}
+    </section>
+    {%endif%}
+    <style>
+      .mb-search-logo-flex .mb-cart-flex{pointer-events: none;}
+    </style>
+  {% schema %}
+    {
+      "name": "Cart Settings",
+      "settings": [
+  
+        {
+          "type": "checkbox",
+          "id": "enable_gwp_content",
+          "label": "Enable GWP?"
+        },
+  
+        {
+          "type": "text",
+          "id": "gwp_cart_val",
+          "label": "GWP total cart value"
+        },
+        {
+          "type": "text",
+          "id": "gwp_above_400_1",
+          "label": "Variant ID 1 - Above GWP Cart Value"
+        },
+        {
+          "type": "text",
+          "id": "gwp_above_400_2",
+          "label": "Variant ID 2 - Above GWP Cart Value"
+        },
+        {
+          "type": "text",
+          "id": "gwp_below_400",
+          "label": "Variant ID 3 - Below GWP Cart Value"
+        },
+         {
+          "type": "textarea",
+          "id": "giftmessage",
+          "label": "gift message note"
+          }      
+    ]
+  }
+  {% endschema %}
+  
