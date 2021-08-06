@@ -1265,3 +1265,35 @@ padding-left: 0 !important;
  
 
 /* 05-aug- 2021  css end */
+
+
+/* MB-75 css start */
+@media all and (max-width:749px){
+	ul.mb-mb-nav-ul > li .dropdown_custom_item {
+        border-top: 1px solid #ccc;
+        box-sizing: border-box;
+        width: 100%;
+        color: #000;
+        text-transform: uppercase;
+        padding: 14px 15px;
+        position: relative;
+    }
+
+    #mb-mob-nav-cont .mb-mb-nav-ul > li.mobile-nav__item > .togglenewmob.togglenewmob-wrap {
+        border: none;
+        padding: 0;
+        position: absolute;
+        right: 15px;
+        width: auto;
+        margin-top: -30px;
+    }
+
+    ul.mb-mb-nav-ul > li .dropdown_custom_item span,
+    ul.mb-mb-nav-ul > li .dropdown_custom_item span > a {
+        font-size: 15px;
+		display: block;
+		padding-right: 30px;
+    }
+}
+
+/* MB-75 css end */
