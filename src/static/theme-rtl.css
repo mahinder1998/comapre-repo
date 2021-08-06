@@ -7224,6 +7224,69 @@ html[lang="ar"] .h__slide__info-overlay {
 .login-wrap input[type=checkbox]:checked:after{
 	border-width: 0px 1px 1px 0px;
 }
+
+/*06-08-2021 D.k*/
+.tb-right ul{
+  display: flex;
+}
+.uae-field a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.uae-field{
+  margin-right: 10px;
+}
+.uae-field a img{
+  margin-left:5px;
+}
+.find-store > a{
+  position:relative;
+}
+.find-store > a:after {
+  top: 50%;
+  right: 0;
+  left:-15px;
+  right:  auto;
+  position: absolute;
+  margin-top: -2px;
+  content: "";
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  display: inline-block;
+  -webkit-transition: all .1s ease-in-out;
+  -moz-transition: all .1s ease-in-out;
+  -ms-transition: all .1s ease-in-out;
+  -o-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 7px;
+  height: 7px;
+  display: inline-block;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 11px;
+  margin-right: 10px;
+  vertical-align: top;
+  margin-top: -5px;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: inherit;
+}
+.announcement-bar ul.wrap-list{
+  padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* End 06-08-2021 D.k*/
+
+
 @media only screen and (max-width: 999px) {
 	.ly-breakpoint-1{
 		display: none !important;
