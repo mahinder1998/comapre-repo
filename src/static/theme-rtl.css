@@ -323,7 +323,6 @@ li {
 	content: "›\00a0";
 	display: inline-block;
 	padding-right: .75ch;
-	speak: none
 }
 
 .breadcrumbs [aria-current="page"] {
@@ -7236,4 +7235,11 @@ html[lang="ar"] .h__slide__info-overlay {
 	.sliding-panel-inner input {
 		background: transparent
 	}
+}
+
+.register-footer .form-group.not-valid>label{
+    color:#000000;    
+}
+.red-label {
+    color:#ff0000;
 }
