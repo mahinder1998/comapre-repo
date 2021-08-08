@@ -39,15 +39,7 @@
         <a href="{{section.settings.find_store_url | default: "https://molton-brown-uae.myshopify.com/pages/store-locator" }}">{{section.settings.find_store_text | default: "Find Store" }}</a>
       </li>
 
-      <li class="language">
-
-        {% if request.locale.iso_code == 'ar' %}
-        <a href="javascript:void(0);">Language</a>
-        {% else %}
-        <a href="javascript:void(0);">العربية</a>
-        {% endif %}
-
-
+      <li class="language {% if request.locale.iso_code == 'ar' %} lang-is-ar{% else %} lang-is-en{% endif %}">        
         <div class="uae-select">
           <ul class="custom-selection" id="selection-uae">
             <span class="ly-custom-1000 ly-custom-750"></span>

@@ -186,6 +186,46 @@ section.mb-top-tool-bar {
 
 .mb-tool-bar-flex a { color: #ffffff; font-size: 12px; }
 
+.language .custom-selection:before{
+    content: none;
+}
+
+.language #selection-uae .ly-custom-1000 {
+    background: transparent;
+    padding: 0;
+    display: inline-block;
+}
+
+.language #selection-uae {
+    display: inline-block;
+    border: none !important;
+}
+
+.language ul.ly-languages-switcher.ly-list.ly-bright-theme {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.language .custom-selection {
+    border: none !important;
+}
+
+.ly-languages-switcher.ly-list > li {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.ly-languages-switcher.ly-list > li > a {
+    background: transparent !important;
+    color: #fff !important;
+}
+
+li.language.lang-is-en li[key="en"], li.language.lang-is-ar li[key="ar"] {
+    display: none;
+}
+
+
 /* Logo and Search */
 .mb-tool-logo-flex {
     display: flex;
