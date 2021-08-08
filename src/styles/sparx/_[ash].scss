@@ -699,7 +699,8 @@ a.addqty > img, a.minusqty > img {
 }
 
 .boost-pfs-filter-right-col span.boost-pfs-filter-product-item-sale-price {
-    display: block;
+    display: inline-block;
+    margin: 0 5px;
 }
 
 /* Store Locator */
