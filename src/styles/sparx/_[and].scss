@@ -1003,4 +1003,10 @@ div#legend h3 {
         width: calc(100% - 90px);
     }
 }
-
+@media all and (max-width: 749px){
+    .mb-tool-bar-flex .announcement-bar {
+        text-align: center;
+        display: block !important;
+        width: 100%;
+    }
+    }
