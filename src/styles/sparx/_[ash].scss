@@ -222,7 +222,7 @@ section.mb-top-tool-bar {
 }
 
 li.language.lang-is-en li[key="en"], li.language.lang-is-ar li[key="ar"] {
-    display: none;
+    display: none !important;
 }
 
 

@@ -428,7 +428,7 @@ $( document ).ready(function() {
 });
 // deepak 2 aug
 $("document").ready(function(){
-  $(".find-store,.language").hover(function() {
+  $(".find-store").hover(function() {
     $(this).find(".uae-select").addClass("open");
   },function() {
     $(this).find(".uae-select").removeClass("open");
