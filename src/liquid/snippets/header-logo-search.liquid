@@ -113,17 +113,27 @@
                   {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
                   <div class="single-mcart-item">
                      <div class="mcart-thumb">
-                        <a href="{{ item.product.url }}"
+                        {% if item.image %}
+                           <a href="{{ item.product.url }}"
+                              title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}">
+                              {{ item.image | product_img_url: '200x200' | img_tag: item_title }}</a>
+                        {%else %}
+                           <a href="{{ item.product.url }}"
                            title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}">
-                           {{ item.product.images.first | product_img_url: '200x200' | img_tag: item_title }}</a>
+                           {{ item.product.featured_image | product_img_url: '200x200' | img_tag: item_title }}</a>
+                        {% endif %}
                      </div>
                      <div class="mcart-content">
                         <p class="mcart-single-title"><a href="{{ item.product.url }}">{{ item.title }}</a></p>
+
                         <p class="mcart-single-price">
-                           {% if item.variant.compare_at_price %}
-                           <span class="mcart-compare-price">{{ item.variant.compare_at_price | money }}</span>
+                           {% assign final_compare_price = item.variant.compare_at_price | times: item.quantity %}
+
+                           {% if final_compare_price and final_compare_price > item.final_line_price %}
+                              <span class="mcart-compare-price">{{ final_compare_price | round | money }}</span>
                            {% endif %}
-                           <span><b>{{ item.price | money }}</b></span>
+                           <span><b>{{ item.final_line_price | money }}</b></span>
+
                         </p>
                      </div>
                   </div>

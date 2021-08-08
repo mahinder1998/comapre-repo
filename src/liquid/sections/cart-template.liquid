@@ -77,16 +77,17 @@
           },
           dataType: 'json',
           success: function success(item) {
-            console.log(JSON.stringify(item));
+            console.log("item",item);
+
             $('.mcart-count').html(item.item_count);
             var up_total_price = Currency.formatMoney(item.total_price);
             var item_price = Currency.formatMoney(item.items[itemIndex - 1].line_price);
-            {% if section.settings.enable_gwp_content %}
             $('.cart_subtotal').html(up_total_price);
             $("[item-loop=item-" + itemIndex + "]").find('.cart-item-price p').html(item_price);
             $("[item-loop=item-" + itemIndex + "]").find('.price-cart-mob').html(item_price);
   
-             if (item.total_price < {{ gwp_cart_val_num }} ) {    
+            {% if section.settings.enable_gwp_content %}
+            if (item.total_price < {{ gwp_cart_val_num }} ) {    
                 {% if found_title_c == false %}
                   var productId_c = {{ var_id_c }};
                   jQuery.post('/cart/update.js', 'updates['+productId_c+']=1'); 
@@ -95,9 +96,7 @@
                   setTimeout(function() { 
                       window.location.reload();
                   }, 1000);           
-        
                {% endif %} 
-      
               }//end-if
               else {
                 {% if found_title_c == true %}
@@ -157,6 +156,7 @@
       
               }
               {% endif %} 
+              location.reload();
           }
         });
       });
@@ -337,11 +337,13 @@
     
                   </div>
                   
-                  <div class="mobile-cart-compair">                
-                  {% if item.variant.compare_at_price %}
-                      <p class="pdp__content__price__compare">{{ item.variant.compare_at_price | money }}</p>
-                  {% endif %}
-                  <p class="price-cart-mob">{{ item.line_price | money }}</p>
+                  <div class="mobile-cart-compair">     
+                    
+                    {% assign final_compare_price = item.variant.compare_at_price | times: item.quantity %}
+                    {% if final_compare_price and final_compare_price > item.final_line_price %}
+                    <p class="pdp__content__price__compare">{{ final_compare_price | round | money }}</p>
+                    {% endif %}
+                    <p class="price-cart-mob">{{ item.final_line_price | money }}</p>
                   </div>
     
                 </div>   
@@ -349,12 +351,12 @@
                   <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
                 </p>
               </div>
-              <div class="cart-item-price">
-                
-                {% if item.variant.compare_at_price %}
-                      <p class="pdp__content__price__compare">{{ item.variant.compare_at_price | money }}</p>
-                  {% endif %}
-                  <p>{{ item.line_price | money }}</p>
+                <div class="cart-item-price">
+                    {% assign final_compare_price = item.variant.compare_at_price | times: item.quantity %}
+                    {% if final_compare_price and final_compare_price > item.final_line_price %}
+                          <p class="pdp__content__price__compare">{{ final_compare_price | round | money }}</p>
+                    {% endif %}
+                    <p>{{ item.final_line_price | money }}</p>
               </div>
             </div>
             {% endfor %}
@@ -492,3 +494,5 @@
   }
   {% endschema %}
   
+
+
