@@ -204,6 +204,7 @@
             display: flex;
             margin-top: 40px;
             justify-content: flex-start;
+            &.hide {display: none;}
             @media(max-width: 768px) {
                 justify-content: center;
             }
@@ -269,6 +270,10 @@
         &__control {
             margin-top: 40px;
             display: flex;
+
+            &.hide {
+                display: none;
+            }
 
             @media(max-width: 768px) {
                 flex-direction: column;

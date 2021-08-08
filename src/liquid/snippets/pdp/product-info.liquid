@@ -6,11 +6,11 @@
     {% endunless %}
 
 
-    <div class="pdp__content__price">
+    <div class="{% if current_variant.price <= 0 %}pdp__content__price hide{% else %}pdp__content__price{% endif %}">
         <div class="pdp__content__price__original">{{ current_variant.price | money}}</div>
         
             <div class="pdp__content__price__compare">
-                {% if current_variant.compare_at_price %}
+                {% if current_variant.compare_at_price and current_variant.compare_at_price > current_variant.price %}
                     {{ current_variant.compare_at_price | money}}
                 {% endif %}
             </div>
@@ -33,8 +33,10 @@
     {% endunless %}
 
 
+    
 
-    <div class="pdp__content__control">
+
+    <div class="{% if current_variant.price <= 0 %}pdp__content__control hide{% else %}pdp__content__control{% endif %}">
         <div class="pdp__content__control__qty">
             <div class="pdp__content__control__qty__prev">
                 <svg class="pdp__content__control__qty__next-icon" xmlns="http://www.w3.org/2000/svg" width="12.771" height="24.129" viewBox="0 0 12.771 24.129">

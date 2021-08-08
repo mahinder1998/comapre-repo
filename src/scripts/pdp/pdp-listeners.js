@@ -98,7 +98,7 @@ const PDPListeners = (function () {
             document.querySelector('.pdpmodal-addedtocart__modal__body__content__price__original').innerHTML = price;
         }
 
-        if (compare_price) {
+        if (compare_price && compare_price > price) {
             if (document.querySelector('.pdpmodal-addedtocart__modal__body__content__price__compare')) {
                 document.querySelector('.pdpmodal-addedtocart__modal__body__content__price__compare').innerHTML = compare_price;
             }
@@ -117,10 +117,9 @@ const PDPListeners = (function () {
         document.querySelector('.pdpmodal-addedtocart__modal').style.display = "block"
     }
 
-    function renderItemtoMinicart(variant, comparePrice) {
-        const compare_variant_unit_price = getVariantComparePrice(variant?.variant_id);
+    async function renderItemtoMinicart(variant, comparePrice) {
+        const compare_variant_unit_price = await getVariantComparePrice(variant?.handle, variant?.variant_id);
         const varinatComparePrice = compare_variant_unit_price ? compare_variant_unit_price * variant?.quantity : null;
-
 
         if (document.querySelector(".mini-cart-list")) {
             const minicartItemHTML = `
@@ -144,16 +143,13 @@ const PDPListeners = (function () {
         }
     }
 
-    function getVariantComparePrice(variantId) {
-        if (!variantId) return;
-        const variants = window.objectData.product.variants;
-        const v = variants.find(variant => variant.id == variantId)
-        // console.log({ v })
-        if (v) {
-            return v.compare_at_price;
-        } else {
-            return null;
-        }
+    async function getVariantComparePrice(handle, variantId) {
+        if (!handle || !variantId) return;
+        const productFromHandle = await axios.get(`/products/${handle}.js`);
+        const productFromHandleVariants = productFromHandle?.data?.variants;
+        const giveVariant = productFromHandleVariants.find(variant => variant.id == variantId);
+        const givenVariantComparePrice = giveVariant ? giveVariant.compare_at_price : null;
+        return giveVariant?.price >= givenVariantComparePrice ? null : givenVariantComparePrice
     }
 
 
@@ -162,6 +158,7 @@ const PDPListeners = (function () {
         // Add to cart button click
         if (document.querySelector('.pdp__content__control__add-to-cart-btn')) {
             document.querySelector('.pdp__content__control__add-to-cart-btn').addEventListener('click', function (e) {
+                
                 // Show loader
                 hideError();
                 showLoaderAddToCartButton();
@@ -187,7 +184,7 @@ const PDPListeners = (function () {
 
                         if (variantInCart.quantity + quantity > 10) {
                             hideLoaderAddToCartButton();
-                            showError("Cannot add more than 10 products.");
+                            showError("Cannot add more than 10 products");
                             if (document.querySelector('.pdp__content__control__qty__value')) {
                                 document.querySelector('.pdp__content__control__qty__value').innerHTML = 1;
                             }
@@ -198,22 +195,21 @@ const PDPListeners = (function () {
 
                     // Add item to the cart.
                     Cart.addItem(variantId, { quantity: quantity })
-                        .then(res => {
-                            // console.log(res);
+                        .then(async res => {
+                            // console.log('res', res);
 
+                            const handle = res?.handle;
                             const title = res.product_title;
                             const image = res.featured_image.url || res.image;
-
-                            const oPrice = quantity ? res.price * quantity : res.price * 1;
-                            const compare_unit_price = getVariantComparePrice(variantId);
-                            // console.log('compare_unit_price', compare_unit_price)
-                            const oComparePrice = compare_unit_price ? compare_unit_price * quantity : null;
-                            // console.log('oComparePrice', oComparePrice)
-                            const price = oPrice ? Currency.formatMoney(oPrice) : null;
-                            const compare_price = oComparePrice ? Currency.formatMoney(oComparePrice) : null;
-                            // console.log('compare_price', compare_price);
                             let size = null;
 
+                            const oPrice = quantity ? res.price * quantity : res.price * 1;
+                            const compare_unit_price = await getVariantComparePrice(handle, variantId);
+                            // console.log('variantId', variantId);
+                            // console.log('compare_unit_price :', compare_unit_price)
+                            const oComparePrice = compare_unit_price ? compare_unit_price * quantity : null;
+                            const price = oPrice ? Currency.formatMoney(oPrice) : null;
+                            const compare_price = oComparePrice ? Currency.formatMoney(oComparePrice) : null;
 
                             if (!res.product_has_only_default_variant) {
                                 size = res.variant_options[0];
@@ -407,14 +403,9 @@ const PDPListeners = (function () {
                 //Change the title, size, price.
                 document.querySelector('.pdp__content__price__original').innerHTML = Currency.formatMoney(selectedVariant.price);
 
-                if (selectedVariant.compare_at_price) {
-                    // console.log('selectedVariant.compare_at_price', selectedVariant.compare_at_price)
-
+                if (selectedVariant.compare_at_price && selectedVariant.compare_at_price > selectedVariant.price) {
                     document.querySelector('.pdp__content__price__compare').innerHTML = Currency.formatMoney(selectedVariant.compare_at_price);
                 } else {
-                    // console.log('selectedVariant.compare_at_price', selectedVariant.compare_at_price)
-
-                    // console.log(document.querySelectorAll('.pdp__content__price__compare'))
                     document.querySelector('.pdp__content__price__compare').innerHTML = "";
                 }
 
