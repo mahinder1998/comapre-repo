@@ -7396,3 +7396,10 @@ html[lang="ar"] .h__slide__info-overlay {
 	overflow: hidden;
 	line-height: inherit
 }
+@media all and (max-width: 749px){
+    .mb-tool-bar-flex .announcement-bar {
+        text-align: center;
+        display: block !important;
+        width: 100%;
+    }
+    }
