@@ -227,10 +227,17 @@
     .mobile-cart-compair > p {
         margin: 6px 0;
     }  
-    
-    .pdp .pdp__content__price__compare {
-        text-align: center;
+    div#stores_and_dist {
+        min-width: auto;
+    }
+  
+    .store-sidebar {
+        margin-right: 10px;
+        padding: 30px 0;
     }    
+    .store-list-wrap {
+        max-height: none;
+    }           
       
     .qty-txt-mob, .price-cart-mob{display: block;}  
       
