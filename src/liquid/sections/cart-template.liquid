@@ -383,9 +383,9 @@
             <div colspan="5" class="total_vat">
             <h4 class="flex-bet">
               <span class="vat__title">VAT</span>
-              <span class="cart-subtotal__title cart_vat">{{ cart.total_price| times: 5 | divided_by: 100 | money}}</span>
+              <span class="cart-subtotal__title cart_vat"></span>
             </h4>
-            </div>
+          </div>
             <div colspan="5" class="subtotal">
               <h4 class="flex-bet">
                 <span class="cart-subtotal__title">Subtotal</span>
@@ -469,6 +469,16 @@
     <style>
       .mb-search-logo-flex .mb-cart-flex{pointer-events: none;}
     </style>
+
+
+    <script>
+  
+  const priceWithTax = {{ cart.total_price }};
+        const priceWithoutTax = parseInt(priceWithTax / 1.05);
+        const taxAmount = parseInt(priceWithTax - priceWithoutTax);
+   var pice = (taxAmount)/100;
+  $('.cart-subtotal__title.cart_vat').html(pice+' <span>AED</span>');
+</script>
   {% schema %}
     {
       "name": "Cart Settings",
