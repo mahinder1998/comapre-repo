@@ -6,14 +6,14 @@
     {% endunless %}
 
 
-    <div class="{% if current_variant.price <= 0 %}pdp__content__price hide{% else %}pdp__content__price{% endif %}">
-        <div class="pdp__content__price__original">{{ current_variant.price | money}}</div>
+    <div class="pdp__content__price">
+        <div class="pdp__content__price__original">{% if current_variant.price <= 0 %}FREE{% else %}{{ current_variant.price | money}}{% endif %}</div>
         
-            <div class="pdp__content__price__compare">
-                {% if current_variant.compare_at_price and current_variant.compare_at_price > current_variant.price %}
-                    {{ current_variant.compare_at_price | money}}
-                {% endif %}
-            </div>
+        <div class="{% if current_variant.price <= 0 %}pdp__content__price__compare hide{% else %}pdp__content__price__compare{% endif %}">
+            {% if current_variant.compare_at_price and current_variant.compare_at_price > current_variant.price %}
+                {{ current_variant.compare_at_price | money}}
+            {% endif %}
+        </div>
     </div>
 
 

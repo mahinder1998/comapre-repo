@@ -223,6 +223,9 @@
                 font-weight: bold;
                 font-size: 22px;
                 text-decoration: line-through;
+                &.hide {
+                    display: none;
+                }
 
             }
         }
