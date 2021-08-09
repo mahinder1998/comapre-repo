@@ -371,6 +371,12 @@
             <div class="shipping-day">
               <p>Free Shipping within 2-3 days</p>
             </div>
+            <div colspan="5" class="total_vat">
+            <h4 class="flex-bet">
+              <span class="vat__title">VAT</span>
+              <span class="cart-subtotal__title cart_vat">{{ cart.total_price| times: 5 | divided_by: 100 | money}}</span>
+            </h4>
+            </div>
             <div colspan="5" class="subtotal">
               <h4 class="flex-bet">
                 <span class="cart-subtotal__title">Subtotal</span>
