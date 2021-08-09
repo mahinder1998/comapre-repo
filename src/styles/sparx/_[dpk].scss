@@ -1823,7 +1823,8 @@ div.boost-pfs-filter-default-toolbar{
   font-family: 'Century Gothic';
 }
 .boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-amount{
-  display:none;
+  display: inline;
+    margin-right: 20px;
 }
 .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li {
   padding-left: 10px !important;
@@ -2160,7 +2161,7 @@ ul.boost-pfs-filter-filter-dropdown a.boost-pfs-filter-sort-item-active:after{
     text-shadow: 0px 0px 0px #585757;
   }
   .boost-pfs-filter-products .boost-pfs-filter-product-item-title, .product_desc .product_title, .pdp-like__slider__item__title{
-    min-height: 30px;
+    min-height: 40px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
