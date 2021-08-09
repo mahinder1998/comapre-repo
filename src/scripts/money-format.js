@@ -11,12 +11,11 @@ const Currency = (function () {
         var value = '';
         var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
 
-        // if (langify.locale.iso_code === "en") {
-        //     formatString = format || 'Dhs. {{amount}}';
-        // } else {
-        //     formatString = format || '{{amount}} ر.س';
-        // }
-        formatString = format || '{{amount}} د.إ';
+        if (langify.locale.iso_code === "en") {
+            formatString = format || 'AED {{amount}}';
+        } else {
+            formatString = format || '{{amount}} د.إ';
+        }
 
         function formatWithDelimiters(number, precision, thousands, decimal) {
             thousands = thousands || ',';
