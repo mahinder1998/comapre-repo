@@ -87,76 +87,81 @@
             $("[item-loop=item-" + itemIndex + "]").find('.price-cart-mob').html(item_price);
   
             {% if section.settings.enable_gwp_content %}
-            if (item.total_price < {{ gwp_cart_val_num }} ) {    
-                {% if found_title_c == false %}
+              if (item.total_price < {{ gwp_cart_val_num }} ) {    
+                  {% if found_title_c == false %}
+                    var productId_c = {{ var_id_c }};
+                    jQuery.post('/cart/update.js', 'updates['+productId_c+']=1'); 
+                    $('#mymodalgwp').removeClass('hide');
+                    $('#gwptext').html('Updating cart');
+                    setTimeout(function() { 
+                        window.location.reload();
+                    }, 1000);           
+                {% endif %} 
+                }//end-if
+                else {
+                  {% if found_title_c == true %}
                   var productId_c = {{ var_id_c }};
-                  jQuery.post('/cart/update.js', 'updates['+productId_c+']=1'); 
+                  jQuery.post('/cart/update.js', 'updates['+productId_c+']=0'); 
                   $('#mymodalgwp').removeClass('hide');
                   $('#gwptext').html('Updating cart');
                   setTimeout(function() { 
                       window.location.reload();
-                  }, 1000);           
-               {% endif %} 
-              }//end-if
-              else {
-                {% if found_title_c == true %}
-                var productId_c = {{ var_id_c }};
-                jQuery.post('/cart/update.js', 'updates['+productId_c+']=0'); 
+                  }, 1000);
+                  {% endif %}
+    
+                }          
+        
+                if (item.total_price >= {{ gwp_cart_val_num }}) {    
+                  {% if found_title == false %}
+                    var productId = {{ var_id_a }};
+                    jQuery.post('/cart/update.js', 'updates['+productId+']=1'); 
+                      $('#mymodalgwp').removeClass('hide');
+                      $('#gwptext').html('Updating cart');
+                        setTimeout(function() { 
+                            window.location.reload();
+                        }, 1000);               
+          
+                {% endif %} 
+    
+                  {% if found_title_b == false %}
+                    var productId_b = {{ var_id_b }};
+                    jQuery.post('/cart/update.js', 'updates['+productId_b+']=1'); 
+                      $('#mymodalgwp').removeClass('hide');
+                      $('#gwptext').html('Updating cart');
+                        setTimeout(function() { 
+                            window.location.reload();
+                        }, 1000);                   
+                {% endif %} 
+                }
+                else {
+                  {% if found_title == true %}
+                    var productId = {{ var_id_a }};
+                    jQuery.post('/cart/update.js', 'updates['+productId+']=0'); 
+                      $('#mymodalgwp').removeClass('hide');
+                      $('#gwptext').html('Updating cart');
+                        setTimeout(function() { 
+                            window.location.reload();
+                        }, 1000);               
+                {% endif %} 
+    
+                  {% if found_title_b == true %}
+                    var productId_b = {{ var_id_b }};
+                    jQuery.post('/cart/update.js', 'updates['+productId_b+']=0'); 
+                      $('#mymodalgwp').removeClass('hide');
+                      $('#gwptext').html('Updating cart');
+                        setTimeout(function() { 
+                            window.location.reload();
+                        }, 1000);                   
+                {% endif %} 
+        
+                }
+              {% endif %} 
+              
+              setTimeout(function() { 
                 $('#mymodalgwp').removeClass('hide');
                 $('#gwptext').html('Updating cart');
-                setTimeout(function() { 
-                    window.location.reload();
-                }, 1000);
-                {% endif %}
-  
-              }          
-      
-              if (item.total_price >= {{ gwp_cart_val_num }}) {    
-                {% if found_title == false %}
-                  var productId = {{ var_id_a }};
-                  jQuery.post('/cart/update.js', 'updates['+productId+']=1'); 
-                    $('#mymodalgwp').removeClass('hide');
-                    $('#gwptext').html('Updating cart');
-                      setTimeout(function() { 
-                          window.location.reload();
-                      }, 1000);               
-        
-               {% endif %} 
-  
-                {% if found_title_b == false %}
-                  var productId_b = {{ var_id_b }};
-                  jQuery.post('/cart/update.js', 'updates['+productId_b+']=1'); 
-                    $('#mymodalgwp').removeClass('hide');
-                    $('#gwptext').html('Updating cart');
-                      setTimeout(function() { 
-                          window.location.reload();
-                      }, 1000);                   
-               {% endif %} 
-              }
-              else {
-                {% if found_title == true %}
-                  var productId = {{ var_id_a }};
-                  jQuery.post('/cart/update.js', 'updates['+productId+']=0'); 
-                    $('#mymodalgwp').removeClass('hide');
-                    $('#gwptext').html('Updating cart');
-                      setTimeout(function() { 
-                          window.location.reload();
-                      }, 1000);               
-               {% endif %} 
-  
-                {% if found_title_b == true %}
-                  var productId_b = {{ var_id_b }};
-                  jQuery.post('/cart/update.js', 'updates['+productId_b+']=0'); 
-                    $('#mymodalgwp').removeClass('hide');
-                    $('#gwptext').html('Updating cart');
-                      setTimeout(function() { 
-                          window.location.reload();
-                      }, 1000);                   
-               {% endif %} 
-      
-              }
-              {% endif %} 
-              location.reload();
+                location.reload();
+            }, 1500);
           }
         });
       });
@@ -194,7 +199,6 @@
         $('#gwptext').html('Updating cart');
   
         setTimeout(function() { 
-  
             window.location.reload();
         }, 3000);
       });
@@ -352,11 +356,16 @@
                 </p>
               </div>
                 <div class="cart-item-price">
+                    {% if item.final_line_price == 0 %}
+                      <p>FREE</p>
+                    {% elsif item.final_line_price > 0 %}
                     {% assign final_compare_price = item.variant.compare_at_price | times: item.quantity %}
                     {% if final_compare_price and final_compare_price > item.final_line_price %}
                           <p class="pdp__content__price__compare">{{ final_compare_price | round | money }}</p>
                     {% endif %}
                     <p>{{ item.final_line_price | money }}</p>
+                  {% endif %}
+
               </div>
             </div>
             {% endfor %}

@@ -127,12 +127,16 @@
                         <p class="mcart-single-title"><a href="{{ item.product.url }}">{{ item.title }}</a></p>
 
                         <p class="mcart-single-price">
-                           {% assign final_compare_price = item.variant.compare_at_price | times: item.quantity %}
 
+                           {% if item.final_line_price == 0 %}
+                              <p>FREE</p>
+                           {% elsif item.final_line_price > 0 %}
+                           {% assign final_compare_price = item.variant.compare_at_price | times: item.quantity %}
                            {% if final_compare_price and final_compare_price > item.final_line_price %}
                               <span class="mcart-compare-price">{{ final_compare_price | round | money }}</span>
                            {% endif %}
                            <span><b>{{ item.final_line_price | money }}</b></span>
+                        {% endif %}
 
                         </p>
                      </div>
