@@ -32,10 +32,6 @@ body{
     float: right;
 }
 
-.boost-pfs-filter-right-col{
-    padding-right: 30px;
-}
-
 div.boost-pfs-filter-custom-sorting button>span:after {
     left: 0;
     right: auto;
