@@ -315,7 +315,7 @@ li {
 	content: "›\00a0";
 	display: inline-block;
 	padding-right: .75ch;
-	speak: none
+	speak-as: none;
 }
 
 .breadcrumbs [aria-current="page"] {
@@ -7450,4 +7450,25 @@ html[lang="ar"] .h__slide__info-overlay {
 	white-space: nowrap;
 	overflow: hidden;
 	line-height: inherit
+}
+
+/*09-08-2021*/
+
+.red-label, .red-label a{
+    color: red !important;
+}
+.login-wrap input[type=checkbox]:checked:after{
+    border-width: 0px 1px 1px 0px;
+}
+
+
+@media only screen and (min-width: 750px){
+    
+	.page_content_cms ol li, .page_content_cms p, .page_content_cms ul li{
+		font-size: 16px !important;
+	}
+	.page_content_cms h3{
+		font-size: 16px;
+	}
+	
 }
