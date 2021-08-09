@@ -2,6 +2,14 @@ body{
  direction: rtl;
 }
 
+@media all and (min-width: 750px){
+
+    .boost-pfs-filter-right-col{
+        padding-right: 30px;
+    }
+    
+  }
+
 .slick-list.draggable {
     direction: ltr;
 }
@@ -11,6 +19,16 @@ body{
 }
 
 .boost-pfs-filter-left-col, .boost-pfs-filter-right-col {
+    float: right;
+}
+
+.boost-pfs-search-suggestion-item-product .boost-pfs-search-suggestion-left {
+    margin-left: 16px;
+}
+
+.boost-pfs-search-suggestion-item-product .boost-pfs-search-suggestion-right, 
+.boost-pfs-search-suggestion-item-product .boost-pfs-search-suggestion-left 
+{
     float: right;
 }
 
