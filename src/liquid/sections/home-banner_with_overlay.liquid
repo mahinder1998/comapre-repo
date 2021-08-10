@@ -1,104 +1,65 @@
 <section class="banner-wrap">
 
-<div class="Home_slideshow">    
+  <div class="Home_slideshow">
 
-  {% for block in section.blocks %}
-  {% case block.type %}
-  {% when 'image' %}
-  <div class="inner_slide">
-    
-    <div class="banner-img-wrap">
-    
-    <div class="banner-image">
-      
-       <picture>
-            <source
-                data-srcset="{{ block.settings.imgepic | img_url:'master'}}"
-                media="(min-width: 750px)"
-                srcset= "{{ block.settings.imgepic | img_url:'master'}}"
-            />
-            <source
-                data-srcset="{{ block.settings.imgepic_mbl | img_url:'original'}}"
-                media="(max-width: 749px)"
-                srcset="{{ block.settings.imgepic_mbl | img_url:'original'}}"
-            />
-            <img
-                class="lazy"
-                {% comment %} src="{{ block.settings.imgepic | img_url:'master'}}" {% endcomment %}
-                data-src="{{ block.settings.imgepic | img_url:'master'}}"
-            />
-        </picture>
-      
-      
-      
-    </div>
-    <div class="banner-content-wrap">
-    {% if block.settings.heading != blank %}
-    <div class="banner-content">
-        <h1 class="banner-title">{{ block.settings.heading }}</h1>
-      {% if block.settings.btn_lable != blank %}
-      <div class="banner-desc">{{ block.settings.text }}</div>
-      <div class="banner-cta">
-      	<a class="btn-ctm" href="{{ block.settings.btn_link }}">{{ block.settings.btn_lable }}</a>
-      </div> 
-        
-      </div>
-      {% endif %}
-    </div>
-      
-     
-    {% endif %}
+    {% for block in section.blocks %}
+    {% case block.type %}
+    {% when 'image' %}
+    <div class="inner_slide">
+      <div class="banner-img-wrap">
+        <div class="banner-image">
+          <picture>
+            <source data-srcset="{{ block.settings.imgepic | img_url:'500x', scale: 2}}" media="(min-width: 750px)" />
+            <source data-srcset="{{ block.settings.imgepic_mbl | img_url:'300x', scale: 2}}"
+              media="(max-width: 749px)" />
+            <img class="lazy" data-src="{{ block.settings.imgepic | img_url:'500x', scale: 2}}" />
+          </picture>
+        </div>
+        <div class="banner-content-wrap">
+          {% if block.settings.heading != blank %}
+          <div class="banner-content">
+            <h1 class="banner-title">{{ block.settings.heading }}</h1>
+            {% if block.settings.btn_lable != blank %}
+            <div class="banner-desc">{{ block.settings.text }}</div>
+            <div class="banner-cta">
+              <a class="btn-ctm" href="{{ block.settings.btn_link }}">{{ block.settings.btn_lable }}</a>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
       </div>
     </div>
-    
-    
-  {% when 'video' %}
-  <div class="inner_slide iner-two">
-    <div class="video-container vides-padding">
 
-      <video class="responsive-iframe"  width="100%" controls="true">
-        <source src="{{ block.settings.video }}" type="video/mp4">
-      </video>
-      {% comment %}
 
-      <iframe class="responsive-iframe" frameborder="0" allow="autoplay; fullscreen" allowTransparency="true" src="{{ block.settings.video }}&controls=1&rel=0&enablejsapi=1&autoplay=1&loop=1&mute=1" frameborder="0"  allowfullscreen ></iframe>
-      {% endcomment %}
+    {% when 'video' %}
+    <div class="inner_slide iner-two">
+      <div class="video-container vides-padding">
+        <video class="responsive-iframe" width="100%" controls="true">
+          <source src="{{ block.settings.video }}" type="video/mp4">
+        </video>
+        <div class="inner_img video-containerss">
+          <picture>
+            <source data-srcset="{{ block.settings.poster_img | img_url:'master'}}" media="(min-width: 750px)"
+              srcset="{{ block.settings.poster_img | img_url:'master'}}" />
+            <source data-srcset="{{ block.settings.poster_img_mob | img_url:'original'}}" media="(max-width: 749px)"
+              srcset="{{ block.settings.poster_img_mob | img_url:'original'}}" />
+            <img class="lazy" {% comment %} src="{{ block.settings.poster_img | img_url:'master'}}" {% endcomment %}
+              data-src="{{ block.settings.poster_img | img_url:'master'}}" />
+          </picture>
 
-      <div class="inner_img video-containerss">
-        
-        <picture>
-            <source
-                data-srcset="{{ block.settings.poster_img | img_url:'master'}}"
-                media="(min-width: 750px)"
-                srcset= "{{ block.settings.poster_img | img_url:'master'}}"
-            />
-            <source
-                data-srcset="{{ block.settings.poster_img_mob | img_url:'original'}}"
-                media="(max-width: 749px)"
-                srcset="{{ block.settings.poster_img_mob | img_url:'original'}}"
-            />
-            <img
-                class="lazy"
-                {% comment %} src="{{ block.settings.poster_img | img_url:'master'}}" {% endcomment %}
-                data-src="{{ block.settings.poster_img | img_url:'master'}}"
-            />
-        </picture>
-        
-        {% comment %} <img class="custom-video-src" data-src="{{ block.settings.video}}" src="{{ block.settings.poster_img | img_url: "original" }}"> {% endcomment %}
-        <button class="videoPoster show">Play video</button>
+          {% comment %} <img class="custom-video-src" data-src="{{ block.settings.video}}"
+            src="{{ block.settings.poster_img | img_url: " original" }}"> {% endcomment %}
+          <button class="videoPoster show">Play video</button>
+        </div>
       </div>
     </div>
-    
-    
-    
-
+    {% endcase %}
+    {% endfor %}
   </div>
-  {% endcase %}  
-  {% endfor %}
-</div>
-  
-  </section> 
-  
+
+</section>
+
 {% schema %}
 {
 "name": "Home Slider",
@@ -158,7 +119,7 @@
 "type":"text",
 "id":"video",
 "label":"Video URL"
-}    
+}
 
 ]
 }
@@ -172,4 +133,4 @@
 }
 ]
 }
-{% endschema %}       
+{% endschema %}

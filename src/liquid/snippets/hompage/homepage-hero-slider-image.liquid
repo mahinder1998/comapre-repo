@@ -1,7 +1,7 @@
 <div class="h__slide">
     <div class="h__slide__inner">
         <picture class="h__slide__picture">
-            <source srcset="{{ block.image_mobile | img_url: '500x', scale: 2 }}" media="(max-width: 768px)">
+            <source data-srcset="{{ block.image_mobile | img_url: '300x', scale: 2 }}" media="(max-width: 768px)">
             <img class="h__slide__img" src="{{ block.image_desktop | img_url: '500x', scale: 2 }}" alt="">
         </picture>
         <div class="h__slide__info-overlay">
@@ -12,11 +12,8 @@
                 {% if shop.locale == "ar" %}{{ block.subtitle_arabic }}{% else %}{{ block.subtitle }}{% endif %}
             </div>
             {% unless block.button_text == blank or block.button_link == blank %}
-                <a href="{{ block.button_link }}" class="h__slide__info-overlay__cta">{{ block.button_text}}</a>
+            <a href="{{ block.button_link }}" class="h__slide__info-overlay__cta">{{ block.button_text}}</a>
             {% endunless %}
         </div>
     </div>
 </div>
-
-
-
