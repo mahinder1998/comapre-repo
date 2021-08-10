@@ -12,9 +12,9 @@ const Currency = (function () {
         var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
 
         if (langify.locale.iso_code === "en") {
-            formatString = format || 'AED {{amount}}';
+            formatString = format || '{{amount}} AED';
         } else {
-            formatString = format || '{{amount}} د.إ';
+            formatString = format || 'د.إ {{amount}}';
         }
 
         function formatWithDelimiters(number, precision, thousands, decimal) {
