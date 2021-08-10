@@ -7488,3 +7488,29 @@ html[lang="ar"] .h__slide__info-overlay {
 	overflow: hidden;
 	line-height: inherit
 }
+
+
+
+@media only screen and (max-width: 750px) {
+  .bold-mb .ly-switcher-wrapper.ly-breakpoint-1.custom.ly-custom{
+    display:block!important    
+  }
+  .bold-mb ul.ly-languages-switcher.ly-list.ly-bright-theme{
+    background: transparent !important;
+  }
+  .bold-mb a.lang-is-ar li[key=ar]{
+    display: none;    
+  }
+  .bold-mb .lang-is-en li[key=en]{
+    display: none;
+  }
+  .bold-mb .ly-languages-switcher.ly-list>li>a{
+    color: #000!important;
+  }
+  .bold-mb .ly-breakpoint-1 .ly-flag-icon-ar{
+    display:none;
+  }
+  
+}
+
+
