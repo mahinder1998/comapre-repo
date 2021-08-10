@@ -7,8 +7,12 @@ body{
     .boost-pfs-filter-right-col{
         padding-right: 30px;
     }
+    .banner-wrap .banner-content-wrap {
+        right: calc((100vw - 1100px)/ 2) !important;
+        left: auto !important;
+    }  
     
-  }
+}
 
 .slick-list.draggable {
     direction: ltr;
@@ -80,11 +84,6 @@ span.boost-pfs-check-box:before {
 
 .mobile-nav__icon {
     transform: rotate(180deg);
-}
-
-.banner-wrap .banner-content-wrap {
-    right: calc((100vw - 1100px)/ 2) !important;
-    left: auto !important;
 }
 
 #legend input[type=checkbox]:checked:after {
