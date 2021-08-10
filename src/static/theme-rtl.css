@@ -7472,3 +7472,35 @@ html[lang="ar"] .h__slide__info-overlay {
 	}
 	
 }
+
+
+
+/*Start 10-08-2021*/
+
+@media only screen and (max-width: 750px) {
+  .custom-nav-country{
+    display: flex;
+    align-items: center;
+    margin-left: 0 !important;
+  }
+  .kas-fild a{
+    display: flex;
+    align-items: center;
+  }
+  .kas-fild a img{
+    margin-right:5px;
+  }
+  .uae-field span.mobile-nav__label{
+    padding-right:0 !important;
+  }
+  .bold-mb a.mobile-nav__link, .bold-mb .mobile-nav__label, .uae-field a{
+    text-shadow: 0 0 0 black;
+    font-size: 15px;
+  }
+}
+
+
+/*End 10-08-2021*/
+
+
+
