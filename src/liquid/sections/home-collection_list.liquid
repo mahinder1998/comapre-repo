@@ -7,17 +7,9 @@
                   <div class="feature-image">
                     <a href="{{ block.settings.btnlink }}">
                       <picture>
-                          <source
-                              data-srcset="{{ block.settings.pic_desk | img_url:'original' }}"
-                              media="(min-width: 750px)"
-                              srcset="{{ block.settings.pic_desk | img_url:'original' }}"
-                          />
-                          <source
-                              data-srcset="{{ block.settings.pic_mbl | img_url:'original' }}"
-                              media="(max-width: 749px)"
-                              srcset="{{ block.settings.pic_mbl | img_url:'original' }}"
-                          />
-                          <img class="lazy" data-src="{{ block.settings.pic_desk | img_url:'original' }}" data-src="{{ block.settings.pic_desk | img_url:'original' }}" />
+                          <source data-srcset="{{ block.settings.pic_desk | img_url:'500x', scale: 2 }}" media="(min-width: 750px)"/>
+                          <source data-srcset="{{ block.settings.pic_mbl | img_url:'300x', scale: 2 }}" media="(max-width: 749px)"/>
+                          <img class="lazy" data-src="{{ block.settings.pic_desk | img_url:'500x', scale: 2 }}"/>
                       </picture>
                     </a>
                   </div>
