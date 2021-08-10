@@ -48,6 +48,36 @@
       </div>
     </li>
 
+    <!--mobile langify -->
+    <li class="no-child-one mobile-nav__item border-bottom li-lvlone bold-mb">
+      <a class="mobile-nav__link mobile-nav__link--active 
+        {% if request.locale.iso_code == 'ar' %} lang-is-ar{% else %} lang-is-en{% endif %}">
+        <span class="ly-custom-0 mob-langify" ></span>
+      </a>
+    </li>
+    
+    <li class="1 has-child-one mobile-nav__item border-bottom li-lvlone bold-mb">
+      <div class="dropdown_custom_item custom-nav-country uae-field">
+        <span class="mobile-nav__label "><a href="/collections/most-wanted">Change country -</a></span>
+        <a href="{{section.settings.uae_text_url | default: "https://molton-brown-uae.myshopify.com/" }}" target="_blank">{% if section.settings.uae_img != empty %}<img src="{{section.settings.uae_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.uae_text | default: "UAE"}} </a>
+      </div> 
+      <div class="togglenewmob lvlonemob togglenewmob-wrap">
+        <div class="mobile-nav__icon lvlonemob-chiv ">
+          <span><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik00IC43NTVsMTQuMzc0IDExLjI0NS0xNC4zNzQgMTEuMjE5LjYxOS43ODEgMTUuMzgxLTEyLTE1LjM5MS0xMi0uNjA5Ljc1NXoiLz48L3N2Zz4="></span>
+        </div>
+      </div>
+      <ul class="innercontent pad0 mobile-nav__dropdown   " data-parent="bath-and-body-4" data-level="2">
+        <li class="child2_without_btn mobile-nav__item li-lvltwo">
+          <span class="mobile-nav__label lable_without_btn kas-fild"><a href="{{section.settings.ksa_text_url | default: "https://molton-brown-ksa.myshopify.com/"}}" target="_blank" second-lvl-sub="yes">{% if section.settings.ksa_img != empty %}<img src="{{section.settings.ksa_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.ksa_text | default: "KSA"}} </a></span>
+        </li>
+      </ul>
+    </li>
+    
+
+
+
+    
+    <!--mobile langify -->
 
     {%- for link in linklists.main-menu.links -%}
     {%- assign outerLoopIndex = forloop.index -%}
