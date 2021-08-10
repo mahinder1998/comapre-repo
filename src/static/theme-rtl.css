@@ -6203,7 +6203,7 @@ form#customer_login .message--error ul {
 	}
 }
 
-.order-grid-details .order-list-left ul>li span:first-child {
+.order-grid-details .order-list-left ul>li>span:first-child {
 	max-width: 180px;
 	display: block;
 	width: 100%;
