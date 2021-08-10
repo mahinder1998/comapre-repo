@@ -58,7 +58,7 @@
     
     <li class="1 has-child-one mobile-nav__item border-bottom li-lvlone bold-mb">
       <div class="dropdown_custom_item custom-nav-country uae-field">
-        <span class="mobile-nav__label "><a href="/collections/most-wanted">Change country -</a></span>
+        <span class="mobile-nav__label "><a href="javascript:void(0);">{{section.settings.change_country_text | default: "Change Country"}} -</a></span>
         <a href="{{section.settings.uae_text_url | default: "https://molton-brown-uae.myshopify.com/" }}" target="_blank">{% if section.settings.uae_img != empty %}<img src="{{section.settings.uae_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.uae_text | default: "UAE"}} </a>
       </div> 
       <div class="togglenewmob lvlonemob togglenewmob-wrap">
