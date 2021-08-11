@@ -9,10 +9,10 @@
       <div class="banner-img-wrap">
         <div class="banner-image">
           <picture class="banner-image__picture">
-            <source data-srcset="{{ block.settings.imgepic | img_url:'500x', scale: 2}}" media="(min-width: 750px)" />
-            <source data-srcset="{{ block.settings.imgepic_mbl | img_url:'300x', scale: 2}}"
+            <source srcset="{{ block.settings.imgepic | img_url:'500x', scale: 2}}" media="(min-width: 750px)" />
+            <source srcset="{{ block.settings.imgepic_mbl | img_url:'300x', scale: 2}}"
               media="(max-width: 749px)" />
-            <img class="lazy" data-src="{{ block.settings.imgepic | img_url:'500x', scale: 2}}" />
+            <img src="{{ block.settings.imgepic | img_url:'500x', scale: 2}}" />
           </picture>
         </div>
         <div class="banner-content-wrap">
