@@ -25,17 +25,19 @@
    <div class="mb-tool-logo-flex">
       <div class="tb-logo-left">
          <a class="mb-logo-2" href="{{shop.url}}"><img
-               src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232"
+               class="lazy"
+               data-src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232"
                alt=""></a>
-         <a class="mb-burger-icon" href="#"><img src="{{ 'mb-icon-mob-nav.svg' | asset_url }}" alt=""></a>
+         <a class="mb-burger-icon" href="#"><img class="lazy" data-src="{{ 'mb-icon-mob-nav.svg' | asset_url }}" alt=""></a>
       </div>
       <div class="tb-logo-mid">
          {% if request.locale.iso_code == 'en' %}
-         <a href="{{shop.url}}"><img
-               src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/ENG_Logo.png?v=1627798432" alt=""></a>
+         <a href="{{shop.url}}"><img class="lazy"
+               data-src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/ENG_Logo.png?v=1627798432" alt=""></a>
          {% else %}
          <a href="{{shop.url}}"><img
-               src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/AR-Logo.png?v=1627798433" alt=""></a>
+               class="lazy"
+               data-src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/AR-Logo.png?v=1627798433" alt=""></a>
          {% endif %}
       </div>
       <div class="tb-logo-last">
@@ -72,7 +74,7 @@
 
                         <div class="search-label">
                            <a href="#" class="mb-search-header">
-                              <span><img src="{{ 'mb-icon-search.svg' | asset_url }}" /></span>
+                              <span><img class="lazy" data-src="{{ 'mb-icon-search.svg' | asset_url }}" /></span>
                            </a>
                         </div>
                      </div>
@@ -84,17 +86,17 @@
             <div class="mb-account-flex">
                {% if customer %}
                <a href="{{ routes.account_url }}" class="">
-                  <img style="max-height: 23px;" src="{{ 'mb-icon-account.png'| asset_url }}" alt="">
+                  <img class="lazy" style="max-height: 23px;" data-src="{{ 'mb-icon-account.png'| asset_url }}" alt="">
                </a>
                {% else %}
                <a href="{{ routes.account_login_url }}" class="">
-                  <img style="max-height: 23px;" src="{{ 'mb-icon-account.png'| asset_url }}" alt="">
+                  <img class="lazy" style="max-height: 23px;" data-src="{{ 'mb-icon-account.png'| asset_url }}" alt="">
                </a>
                {% endif %}
 
             </div>
             <div class="mb-cart-flex">
-               <img style="max-height: 30px;" src="{{ 'cart.svg'| asset_url }}" alt=""><span class="mcart-count">{{
+               <img class="lazy" style="max-height: 30px;" data-src="{{ 'cart.svg'| asset_url }}" alt=""><span class="mcart-count">{{
                   cart.item_count }}</span>
             </div>
          </div>
