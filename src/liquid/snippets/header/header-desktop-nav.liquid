@@ -62,7 +62,7 @@
                       <li class="featured-block">
                         <div class="mg-mnu-ftimg-cont">
                           <a href="{{ block.settings.link }}">
-                            <img src="{{ block.settings.imgepic | img_url: '220x' }}">
+                            <img class="lazy" data-src="{{ block.settings.imgepic | img_url: '220x' }}">
                           </a>
                           <div class="mg-mnu-ftimg">
                             <h4>{{ block.settings.title }}</h4>
@@ -80,7 +80,7 @@
                       <li class="featured-block">
                         <div class="mg-mnu-ftimg-cont">
                           <a href="{{ block.settings.link-2 }}">
-                            <img src="{{ block.settings.imgepic-2 | img_url: '220x' }}" />
+                            <img class="lazy" data-src="{{ block.settings.imgepic-2 | img_url: '220x' }}" />
                           </a>
                           <div class="mg-mnu-ftimg">
                             <h4>{{ block.settings.title-2 }}</h4>
@@ -98,7 +98,7 @@
                       <li class="featured-block">
                         <div class="mg-mnu-ftimg-cont">
                           <a href="{{ block.settings.link-3 }}">
-                            <img src="{{ block.settings.imgepic-3 | img_url: '220x' }}" />
+                            <img class="lazy" data-src="{{ block.settings.imgepic-3 | img_url: '220x' }}" />
                           </a>
                           <div class="mg-mnu-ftimg">
                             <h4>{{ block.settings.title-3 }}</h4>
