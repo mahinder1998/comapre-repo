@@ -898,12 +898,49 @@ a.minusqty>img {
 	box-shadow: 0px 4px 6px -5px #d8d8d8
 }
 
+.mb-logo-2__imgbox {
+	display: inline-block;
+	padding-top: 56.03%
+}
+
+.mb-logo-2__img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+
+.mainlogo__a {
+	width: 270px;
+	position: relative;
+	display: inline-block;
+	padding-top: 20.37%
+}
+
+@media (max-width: 750px) {
+	.mainlogo__a {
+		width: 200px
+	}
+}
+
+.mainlogo__img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+
 .nav-is-fixed .mb-logo-2 {
 	display: none
 }
 
 .nav-is-fixed div#shopify-section-header {
-	min-height: 200px
+	min-height: 215px
 }
 
 .search-result-weap {
@@ -1046,7 +1083,7 @@ div#stores_and_dist {
 		text-align: center
 	}
 	.nav-is-fixed div#shopify-section-header {
-		min-height: 131px
+		min-height: 113px
 	}
 	.tb-left>p {
 		margin: 6px 0
@@ -1290,6 +1327,24 @@ div#stores_and_dist {
 	line-height: unset
 }
 
+.banner-image {
+	position: relative;
+	padding-top: 34.57%
+}
+
+@media (max-width: 749px) {
+	.banner-image {
+		padding-top: 66.66%
+	}
+}
+
+.banner-image__picture {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%
+}
+
 .banner-image img {
 	max-width: 100%;
 	width: 100%;
@@ -1466,6 +1521,42 @@ div#stores_and_dist {
 	flex: 1;
 	display: flex;
 	flex-direction: column
+}
+
+.feature-image {
+	position: relative;
+	background-color: #f3f3f3;
+	padding-top: 65.71%
+}
+
+.feature-image__homepage-category {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%
+}
+
+.feature-image__homepage-category__img {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+
+.homepage__feature-products__imgbox {
+	position: relative;
+	padding-top: 100%;
+	background-color: #f3f3f3
+}
+
+.homepage__feature-products__img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center
 }
 
 .feature-col .feature-image,
