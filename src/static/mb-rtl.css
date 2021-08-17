@@ -110,3 +110,11 @@ li.mobile-no {
 .promo_code_wrap {
     display: none;
 }
+
+.cart__footer .login-wrap input[type=checkbox]:checked:after{
+    transform: rotate( -45deg );
+    top: 5px;
+    right: 5px;
+    width: 10px;
+    height: 5px;
+}
