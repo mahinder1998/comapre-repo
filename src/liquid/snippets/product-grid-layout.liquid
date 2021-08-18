@@ -5,12 +5,13 @@
 
    </div>
    <div class="product_desc">
+    {% comment %}
     {% if product.tags contains 'new' %}
     <div class="product-tag-mob">
       <span>New</span>
     </div>
     {% endif %}
-
+   {% endcomment %}
 
     {% if product.tags contains 'new' %}
     <div class="product-tag home-desk_tp">New</div>
