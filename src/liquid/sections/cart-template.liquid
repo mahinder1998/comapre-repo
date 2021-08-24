@@ -87,29 +87,28 @@
       });
     }   
   </script>
-{% if section.settings.enable_gwp_content %}
-  
-    {% if cart.total_price == 0 and cart.item_count > 0 %} 
-      <script type="text/javascript">
-        $( document ).ready(function() { 
-        $.ajax({
-            type: "POST",
-            url: '/cart/clear.js',
-            data: '',
-            dataType: 'json',
-            success: function() {
-              $('#mymodalgwp').removeClass('hide');
-              $('#gwptext').html('Updating cart');
-              location.reload();
-            },
-            error: function(XMLHttpRequest, textStatus) {
-            }
-          });
-          return false; 
-      });    
-      </script> 
-    {% endif %} 
+  {% if cart.total_price == 0 and cart.item_count > 0 %} 
+  <script type="text/javascript">
+    $( document ).ready(function() { 
+    $.ajax({
+        type: "POST",
+        url: '/cart/clear.js',
+        data: '',
+        dataType: 'json',
+        success: function() {
+          $('#mymodalgwp').removeClass('hide');
+          $('#gwptext').html('Updating cart');
+          location.reload();
+        },
+        error: function(XMLHttpRequest, textStatus) {
+        }
+      });
+      return false; 
+  });    
+  </script> 
+{% endif %} 
 
+  {% if section.settings.enable_gwp_content %}  
   {% if cart.total_price > gwp_cart_val_num and found_title == false %} 
     <script type="text/javascript">  
       $( document ).ready(function() { 
