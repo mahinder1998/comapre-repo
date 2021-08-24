@@ -11,19 +11,19 @@
       {%- assign product_gwp_2 = section.settings.gwp_above_value_2 -%}
       {%- assign product_gwp_3 = section.settings.gwp_below_value_1 -%}      
       
-      {% if product_gwp_1.has_only_default_variant %}
+      {% if product_gwp_1.selected_or_first_available_variant %}
         {% for variant in product_gwp_1.variants %}
           {% assign var_id_a = variant.id | plus: 0 %}  
         {% endfor%}
       {% endif %}
       
-      {% if product_gwp_2.has_only_default_variant %}
+      {% if product_gwp_2.selected_or_first_available_variant %}
         {% for variant in product_gwp_2.variants %}
           {% assign var_id_b = variant.id | plus: 0 %}  
         {% endfor%}
       {% endif %}
       
-      {% if product_gwp_3.has_only_default_variant %}
+      {% if product_gwp_3.selected_or_first_available_variant %}
         {% for variant in product_gwp_3.variants %}
           {% assign var_id_c = variant.id | plus: 0 %}  
         {% endfor%}
@@ -46,7 +46,6 @@
       {% endfor %}
     {% endif %} 
 {% endif %}  
-
   <script type="text/javascript">
     window.Currency = window.Currency || {};
     jQuery(document).on("click", ".updateqty", function (event) {
@@ -510,6 +509,3 @@
     ]
   }
   {% endschema %}
-  
-
-
