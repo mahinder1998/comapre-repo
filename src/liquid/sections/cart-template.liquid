@@ -1,63 +1,56 @@
 {% if section.settings.enable_gwp_content %}
   <style type="text/css">
-    .modal-gwp-added {
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0,0,0);
-        background-color: rgba(0,0,0,0.7);
-        z-index: 9999;
-    }
-    
-    .gwp-modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 25px;
-        border: 1px solid #888;
-        width: 450px;
-        position: absolute;
-        left: calc(50% - 225px);
-        font-size: 16px;
-        top: calc(40% - 75px);
-    }
-       
-    span.loading-dotts > img {
-        width: 35px;
-        display: block;
-        position: relative;
-        top: 6px;
-        margin: 0 auto;
-    } 
-    </style>
-  
+    .modal-gwp-added { position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.7); z-index: 9999; } .gwp-modal-content { background-color: #fefefe; margin: auto; padding: 25px; border: 1px solid #888; width: 450px; position: absolute; left: calc(50% - 225px); font-size: 16px; top: calc(40% - 75px); } span.loading-dotts > img { width: 35px; display: block; position: relative; top: 6px; margin: 0 auto; }
+  </style>
     {% if cart.total_price > 0 %}
+
       {% assign gwp_cart_val = section.settings.gwp_cart_val | plus: 0 %}
       {% assign gwp_cart_val_num = gwp_cart_val | times: 100 %}
-      {% assign var_id_a = section.settings.gwp_above_400_1 | plus: 0 %}
-      {% assign var_id_b = section.settings.gwp_above_400_2 | plus: 0 %}
-      {% assign var_id_c = section.settings.gwp_below_400 | plus: 0 %}
-  
+
+      {% if section.settings.gwp_above_value_1 %}
+        {%- assign product_gwp_1 = section.settings.gwp_above_value_1 -%}
+        {% if product_gwp_1.selected_or_first_available_variant %}
+          {% for variant in product_gwp_1.variants %}
+            {% assign var_id_a = variant.id | plus: 0 %}  
+          {% endfor%}
+        {% endif %}        
+      {% endif %}
+
+      {% if section.settings.gwp_above_value_2 %}
+        {%- assign product_gwp_2 = section.settings.gwp_above_value_2 -%}
+        {% if product_gwp_2.selected_or_first_available_variant %}
+          {% for variant in product_gwp_2.variants %}
+            {% assign var_id_b = variant.id | plus: 0 %}  
+          {% endfor%}
+        {% endif %}
+      {% endif %}
+
+      {% if section.settings.gwp_below_value_1 %}        
+        {%- assign product_gwp_3 = section.settings.gwp_below_value_1 -%} 
+        {% if product_gwp_3.selected_or_first_available_variant %}
+          {% for variant in product_gwp_3.variants %}
+            {% assign var_id_c = variant.id | plus: 0 %}  
+          {% endfor%}
+        {% endif %}
+      {% endif %}
+          
       {% assign found_title = false %}
       {% assign found_title_b = false %}
       {% assign found_title_c = false %}
   
-      {% for item in cart.items %}
-        {% if item.variant.id == var_id_a %}
-          {% assign found_title = true %}
-        {% endif %}
-        {% if item.variant.id == var_id_b %}
-          {% assign found_title_b = true %}
-        {% endif %}    
-        {% if item.variant.id == var_id_c %}   
-          {% assign found_title_c = true %}
-        {% endif %}
+      {% for item in cart.items %}       
+          {% if item.variant.id == var_id_a %}
+            {% assign found_title = true %}
+          {% endif %}                
+          {% if item.variant.id == var_id_b %}
+            {% assign found_title_b = true %}
+          {% endif %}                               
+          {% if item.variant.id == var_id_c %}   
+            {% assign found_title_c = true %}
+          {% endif %}        
       {% endfor %}
     {% endif %} 
-  {% endif %}  
+{% endif %}  
   <script type="text/javascript">
     window.Currency = window.Currency || {};
     jQuery(document).on("click", ".updateqty", function (event) {
@@ -78,100 +71,25 @@
           dataType: 'json',
           success: function success(item) {
             console.log("item",item);
-
             $('.mcart-count').html(item.item_count);
             var up_total_price = Currency.formatMoney(item.total_price);
             var item_price = Currency.formatMoney(item.items[itemIndex - 1].line_price);
             $('.cart_subtotal').html(up_total_price);
             $("[item-loop=item-" + itemIndex + "]").find('.cart-item-price p').html(item_price);
-            $("[item-loop=item-" + itemIndex + "]").find('.price-cart-mob').html(item_price);
-  
-            {% if section.settings.enable_gwp_content %}
-              if (item.total_price < {{ gwp_cart_val_num }} ) {    
-                  {% if found_title_c == false %}
-                    var productId_c = {{ var_id_c }};
-                    jQuery.post('/cart/update.js', 'updates['+productId_c+']=1'); 
-                    $('#mymodalgwp').removeClass('hide');
-                    $('#gwptext').html('Updating cart');
-                    setTimeout(function() { 
-                        window.location.reload();
-                    }, 1000);           
-                {% endif %} 
-                }//end-if
-                else {
-                  {% if found_title_c == true %}
-                  var productId_c = {{ var_id_c }};
-                  jQuery.post('/cart/update.js', 'updates['+productId_c+']=0'); 
-                  $('#mymodalgwp').removeClass('hide');
-                  $('#gwptext').html('Updating cart');
-                  setTimeout(function() { 
-                      window.location.reload();
-                  }, 1000);
-                  {% endif %}
-    
-                }          
-        
-                if (item.total_price >= {{ gwp_cart_val_num }}) {    
-                  {% if found_title == false %}
-                    var productId = {{ var_id_a }};
-                    jQuery.post('/cart/update.js', 'updates['+productId+']=1'); 
-                      $('#mymodalgwp').removeClass('hide');
-                      $('#gwptext').html('Updating cart');
-                        setTimeout(function() { 
-                            window.location.reload();
-                        }, 1000);               
-          
-                {% endif %} 
-    
-                  {% if found_title_b == false %}
-                    var productId_b = {{ var_id_b }};
-                    jQuery.post('/cart/update.js', 'updates['+productId_b+']=1'); 
-                      $('#mymodalgwp').removeClass('hide');
-                      $('#gwptext').html('Updating cart');
-                        setTimeout(function() { 
-                            window.location.reload();
-                        }, 1000);                   
-                {% endif %} 
-                }
-                else {
-                  {% if found_title == true %}
-                    var productId = {{ var_id_a }};
-                    jQuery.post('/cart/update.js', 'updates['+productId+']=0'); 
-                      $('#mymodalgwp').removeClass('hide');
-                      $('#gwptext').html('Updating cart');
-                        setTimeout(function() { 
-                            window.location.reload();
-                        }, 1000);               
-                {% endif %} 
-    
-                  {% if found_title_b == true %}
-                    var productId_b = {{ var_id_b }};
-                    jQuery.post('/cart/update.js', 'updates['+productId_b+']=0'); 
-                      $('#mymodalgwp').removeClass('hide');
-                      $('#gwptext').html('Updating cart');
-                        setTimeout(function() { 
-                            window.location.reload();
-                        }, 1000);                   
-                {% endif %} 
-        
-                }
-              {% endif %} 
-              
-              setTimeout(function() { 
+            $("[item-loop=item-" + itemIndex + "]").find('.price-cart-mob').html(item_price);               
+            setTimeout(function() { 
                 $('#mymodalgwp').removeClass('hide');
                 $('#gwptext').html('Updating cart');
                 location.reload();
-            }, 1500);
+            }, 1000);
           }
         });
       });
     }   
   </script>
-  {% if section.settings.enable_gwp_content %}
-  
   {% if cart.total_price == 0 and cart.item_count > 0 %} 
   <script type="text/javascript">
-  $( document ).ready(function() { 
+    $( document ).ready(function() { 
     $.ajax({
         type: "POST",
         url: '/cart/clear.js',
@@ -186,9 +104,11 @@
         }
       });
       return false; 
-   });    
+  });    
   </script> 
-  {% endif %}   
+{% endif %} 
+
+  {% if section.settings.enable_gwp_content %}  
   {% if cart.total_price > gwp_cart_val_num and found_title == false %} 
     <script type="text/javascript">  
       $( document ).ready(function() { 
@@ -465,7 +385,7 @@
         <a href="{{shop.url}}" class="btn">CONTINUE SHOPPING</a>
       </div>
     </section>
-    {%endif%}
+{%endif%}
     <style>
       .mb-search-logo-flex .mb-cart-flex{pointer-events: none;}
     </style>
@@ -494,22 +414,25 @@
           "type": "text",
           "id": "gwp_cart_val",
           "label": "GWP total cart value"
-        },
+        }, 
         {
-          "type": "text",
-          "id": "gwp_above_400_1",
-          "label": "Variant ID 1 - Above GWP Cart Value"
-        },
+          "type": "product",
+        "id": "gwp_above_value_1",
+        "label": "GWP above value 1"
+        }, 
+        
         {
-          "type": "text",
-          "id": "gwp_above_400_2",
-          "label": "Variant ID 2 - Above GWP Cart Value"
-        },
+          "type": "product",
+        "id": "gwp_above_value_2",
+        "label": "GWP above value 2"
+        }, 
+        
         {
-          "type": "text",
-          "id": "gwp_below_400",
-          "label": "Variant ID 3 - Below GWP Cart Value"
-        },
+          "type": "product",
+        "id": "gwp_below_value_1",
+        "label": "GWP below value 1"
+        },         
+     
          {
           "type": "textarea",
           "id": "giftmessage",
@@ -518,6 +441,3 @@
     ]
   }
   {% endschema %}
-  
-
-

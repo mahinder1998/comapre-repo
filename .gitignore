@@ -59,6 +59,10 @@ web_modules/
 # Optional eslint cache
 .eslintcache
 
+# package-lock
+.package-lock.json
+package-lock.json
+
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/
