@@ -97,7 +97,7 @@ li{list-style: none;}
   .nav-is-fixed section.mb-top-logo{top: 0;}
   
   .nav-is-fixed nav.mb-dt-nav-cont {
-      top: 98px;
+      top: 124px;
       box-shadow: 0px 4px 6px -5px #d8d8d8;
       z-index: 12;
   }
@@ -693,8 +693,8 @@ a.addqty > img, a.minusqty > img {
 
 .mb-logo-2__img {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%;
+    top: 0; 
+    left: 0;    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -716,11 +716,6 @@ a.addqty > img, a.minusqty > img {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-
-.nav-is-fixed .mb-logo-2{
- display: none;
 }
 
 .nav-is-fixed div#shopify-section-header {
