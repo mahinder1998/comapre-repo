@@ -1,4 +1,9 @@
+{% assign is_single_store = true %}
+
 <style type="text/css">
+{% if is_single_store == true %}
+nav.breadcrumbs-tree > ol > li.find-store-bc{display:inline !important;}
+{% endif %}
     .single-store-page .store-list .store-list-item {
         cursor: auto;
     }    
