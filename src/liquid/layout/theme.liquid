@@ -29,9 +29,8 @@
       <meta name="description" content="{{ page_description | escape }}">
       {%- endif -%}    
   
-      {% include 'script-datadog' %}
+      {% include 'script-datadog' %}      
 
-      {% comment %} font  {% endcomment %}
       <style type="text/css">
         @font-face {
           font-family: 'Century Gothic';
@@ -52,10 +51,11 @@
       {% comment %} Font Awesome  {% endcomment %}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <!-- MB Styles  -->
-      {% if request.locale.iso_code == 'ar' %}
+      {% if request.locale.iso_code == 'ar' %}  
+        {% render 'arabic-fonts-data' %}
         {{- 'theme-rtl.css' | asset_url | stylesheet_tag -}}
       {% else %}
-      {{- 'theme.css' | asset_url | stylesheet_tag -}}
+        {{- 'theme.css' | asset_url | stylesheet_tag -}}
       {% endif %} 
       {% comment %} {{- 'deepak.css' | asset_url | stylesheet_tag -}}
       {{- 'harshita.css' | asset_url | stylesheet_tag -}}
