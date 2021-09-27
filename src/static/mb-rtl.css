@@ -1,7 +1,7 @@
 body{
  direction: rtl;
  font-family: 'GE SS Text';
- font-weight: 300;
+ font-weight: 400;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -10,6 +10,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6, p {
     direction: rtl;
+    font-style: normal !important;
 }
 
 .slick-list.draggable {
