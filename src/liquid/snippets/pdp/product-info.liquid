@@ -1,4 +1,20 @@
 <div class="pdp__content">
+
+    <div class="hm-wraper">
+      {% if product.tags contains 'new' %}
+      <div class="product-tag home-desk_tp">New</div>
+      {%endif%}
+      {% if product.tags contains 'best-seller' %}
+      <div class="product-tag home-desk_tp">Best seller</div>
+      {%endif%}
+      {% if product.tags contains 'exclusively_online' %}
+      <div class="product-tag home-desk_tp">Exclusively Online</div>
+      {%endif%}
+      {% if product.tags contains 'sale' %}
+      <div class="product-tag home-desk_tp colored_sale">sale</div>
+      {%endif%}
+    </div>
+
     <div class="pdp__content__title">{{ product.title }}</div>
     
     {% unless product.has_only_default_variant %}
