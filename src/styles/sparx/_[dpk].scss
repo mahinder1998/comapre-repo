@@ -990,22 +990,27 @@ span.mcart-count{
   display:none;
 }
 .home-desk_tp{
-  background: #000;
+  background: #cccccc;
   height: 30px;
   line-height: 30px;
   font-size: 12px;
-  color: #fff;  
+  color: #000;  
   margin-bottom: 5px;
+  font-weight:700;
 }
 .hm-wraper{
   min-height: 30px;
 }
-
+div.boost-pfs-filter-wrapper .boost-pfs-filter-product-item-label>span.tag{
+  background: #cccccc !important;
+  color: #000!important;
+}
 
 /* 26-10-2021 PDP page*/ 
 
 .pdp .product-tag.colored_sale{
   background:#f20000;
+  color: #fff;
 }
 .pdp .product-tag{
   display: inline-block;
