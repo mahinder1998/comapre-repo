@@ -1,7 +1,7 @@
 
 <style>
  h1.banner-title{
-  line-spacing:{{section.settings.letter_spacing}}px !important;
+  line-height:{{section.settings.letter_spacing}}px !important;
   font-size:{{section.settings.banner_font_size}}px !important; 
 } 
 </style>
@@ -90,20 +90,20 @@
         "type":"range",
         "id":"letter_spacing",
         "label":"Line spacing",
-        "default":1,
+        "default":55,
         "unit": "px",
         "min":1,
-        "max":20,
+        "max":60,
         "step":1
       },
       {
         "type":"range",
         "id":"banner_font_size",
         "label":"Banner Font Size",
-        "default":16,
+        "default":40,
         "unit": "px",
         "min":1,
-        "max":60,
+        "max":100,
         "step":1
       }
     ],
