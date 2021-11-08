@@ -1,3 +1,9 @@
+<style>
+ h1.banner-title{
+  line-height:{{section.settings.letter_spacing}}px !important;
+  font-size:{{section.settings.banner_font_size}}px !important; 
+} 
+</style>
 <section class="banner-wrap">
 
   <div class="Home_slideshow">
@@ -62,7 +68,30 @@
 
 {% schema %}
 {
-"name": "Home Slider",
+"name": "Home banner with overlay",
+"settings":[
+      
+       {
+        "type":"range",
+        "id":"letter_spacing",
+        "label":"Line spacing",
+        "default":55,
+        "unit": "px",
+        "min":1,
+        "max":60,
+        "step":1
+      },
+      {
+        "type":"range",
+        "id":"banner_font_size",
+        "label":"Banner Font Size",
+        "default":40,
+        "unit": "px",
+        "min":1,
+        "max":100,
+        "step":1
+      }
+    ],
 "blocks": [
 {
 "type": "image",
@@ -128,7 +157,7 @@
 ],
 "presets": [
 {
-"name": "Home Slider",
+"name": "Home banner with overlay",
 "category": "image"
 }
 ]
