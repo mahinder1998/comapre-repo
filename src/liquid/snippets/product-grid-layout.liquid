@@ -14,24 +14,44 @@
     {% endcomment %}
 
     <div class="hm-wraper">
+      {% assign show_tag = true %}
       
-      {% if product.tags contains 'new' %}
-      <div class="product-tag home-desk_tp">New</div>
-      {%endif%}
-
-      {% if product.tags contains 'best-seller' %}
-      <div class="product-tag home-desk_tp">Best seller</div>
-      {%endif%}
-
-      {% if product.tags contains 'exclusively_online' %}
-      <div class="product-tag home-desk_tp">Exclusively Online</div>
-      {%endif%}
-
-      {% if product.tags contains 'sale' %}
-      <div class="product-tag home-desk_tp">sale</div>
-      {%endif%}
-
-    </div>
+       {% if show_tag %}
+        {% if product.tags contains '300ml for 111AED' %}
+        	<div class="product-tag home-desk_tp tag_bg_color">300ml for 111AED</div>
+         {% assign show_tag = false %}
+        {% endif %}
+      {% endif %}
+      
+      {% if show_tag %}
+        {% if product.tags contains 'new' %}
+        	<div class="product-tag home-desk_tp">New</div>
+         {% assign show_tag = false %}
+        {% endif %}
+      {% endif %}
+      
+      {% if show_tag %}	
+          {% if product.tags contains 'best-seller' %}
+          <div class="product-tag home-desk_tp">Best seller</div>
+          {% assign show_tag = false %}
+          {% endif %}
+          {% endif %}
+          
+    {% if show_tag %}
+          {% if product.tags contains 'exclusively_online' %}
+          <div class="product-tag home-desk_tp">Exclusively Online</div>
+          {% assign show_tag = false %}
+          {%endif%}
+          {% endif %}
+          
+      {% if show_tag %}
+            {% if product.tags contains 'sale' %}
+            <div class="product-tag home-desk_tp">sale</div>
+            {% assign show_tag = false %}
+            {%endif%}
+      {% endif %}
+        
+      </div>
 
 
     <h4 class="product_title">{{ product.title}}</h4>
