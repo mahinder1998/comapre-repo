@@ -369,14 +369,28 @@ var boostPFSFilterConfig = {
 			} else {
 				var tagLabel = '';
 				if (data.tags) {
-					for (var i = data.tags.length - 1; i >= 0; i--) {
-						tag = data.tags[i];
-						if (tag.indexOf("pfs:label") !== -1) {
-							var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, tag.split('pfs:label-')[1]);
-							tagLabel += preTagLabel;
-							break;
-						}
-					}
+					if(data.tags.indexOf("EXTRA10") > -1){
+                      var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'EXTRA10');
+                      tagLabel += preTagLabel;
+                    }else if (data.tags.indexOf("PRIVATE SALE") > -1){
+                      var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'PRIVATE SALE');
+                      tagLabel += preTagLabel;
+                    } else if (data.tags.indexOf("300ml for 111 AED") > -1) {
+                      var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '300ml for 111 AED');
+                      tagLabel += preTagLabel;
+                    } else if (data.tags.indexOf("sale") > -1) {
+                      var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'Sale');
+                      tagLabel += preTagLabel;
+                    } else if (data.tags.indexOf("exclusively_online") > -1) {
+                      var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'Exclusively Online');
+                      tagLabel += preTagLabel;
+                    } else if (data.tags.indexOf("new") > -1) {
+                      var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'New');
+                      tagLabel += preTagLabel;
+                    } else if (data.tags.indexOf("best-seller") > -1) {
+                      var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'Best seller');
+                      tagLabel += preTagLabel;
+                    }
 				}
 			}
 			return tagLabel;
