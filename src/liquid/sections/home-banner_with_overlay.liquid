@@ -4,6 +4,7 @@
   color:{{section.settings.color_heading}} !important;
   font-size:{{section.settings.banner_font_size}}px !important; 
 } 
+  .banner-content .banner-desc {color:{{section.settings.color_content}} !important }
 </style>
 <section class="banner-wrap">
 
@@ -23,16 +24,21 @@
           </picture>
         </div>
         <div class="banner-content-wrap">
-          {% if block.settings.heading != blank %}
+          
           <div class="banner-content">
+            {% if block.settings.heading != blank %}
             <h1 class="banner-title">{{ block.settings.heading }}</h1>
-            {% if block.settings.btn_lable != blank %}
+            {% endif %}
+            {% if block.settings.text != blank %}
             <div class="banner-desc">{{ block.settings.text }}</div>
+            {% endif %}
+            {% if block.settings.btn_lable != blank %}
             <div class="banner-cta">
               <a class="btn-ctm" href="{{ block.settings.btn_link }}">{{ block.settings.btn_lable }}</a>
             </div>
+            
           </div>
-          {% endif %}
+          
         </div>
         {% endif %}
       </div>
@@ -97,6 +103,12 @@
         "id": "color_heading",
         "label": "Banner font color",
         "default": "#ffffff"
+      },
+{
+        "type": "color",
+        "id": "color_content",
+        "label": "Banner content color",
+        "default": "#ffffff"
       }
     ],
 "blocks": [
@@ -122,7 +134,7 @@
 {
 "type":"textarea",
 "id":"text",
-"label":"text"
+"label":"Content"
 },
 {
 "type":"text",
