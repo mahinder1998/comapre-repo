@@ -152,3 +152,7 @@ li.mobile-no {
     background-color: #DE0D0D;
     color: #ffffff;
   }
+
+.pdp__content__control__qty__prev-icon, .pdp__content__control__qty__next-icon {
+    transform: rotate(90deg) !important;
+}
