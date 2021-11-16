@@ -40,8 +40,9 @@ class RelatedProductsView {
     }
 
     render(prods) {
-        // console.log(prods)
-        this._data = prods;
+        //console.log('heresss' + prods)
+        //console.log('twoo' + this._data);
+        this._data = prods;        
         if(!this._data || this._data.length < 1) return;
 
         this.parentElJQuery.slick('unslick')
@@ -70,8 +71,8 @@ class RelatedProductsView {
     }
 
     _generateMarkupSlide(prod) {
-        return `
-          <a href="/products/${prod.handle}" class="pdp-like__slider__item">
+        return `                     
+          <a href="/products/${prod.handle}" class="pdp-like__slider__item ${prod.variants?.availableForSale}">
               <figure class="pdp-like__slider__item__imgbox">
                   <img src="${prod.image?.originalSrc}" alt="${prod.image?.altText ? prod.image?.altText : ""}" class="pdp-like__slider__item__img"/>
               </figure>
