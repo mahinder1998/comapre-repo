@@ -1,3 +1,5 @@
+{% if settings.is_privatesale == false %}
+
 <style>
  h1.banner-title{
   line-height:{{section.settings.letter_spacing}}px !important;
@@ -71,6 +73,7 @@
   </div>
 
 </section>
+{% endif %}
 
 {% schema %}
 {
