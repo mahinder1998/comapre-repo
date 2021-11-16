@@ -40,15 +40,12 @@ class RelatedProductsView {
     }
 
     render(prods) {
-        //console.log('heresss' + prods)
-        //console.log('twoo' + this._data);
+
         this._data = prods;        
         if(!this._data || this._data.length < 1) return;
 
         this.parentElJQuery.slick('unslick')
-        this.parentEl.innerHTML = "";
-
-        // console.log(this.parentEl)
+        this.parentEl.innerHTML = "";        
 
         const markup = this._generateMarkup();
         this.parentEl.insertAdjacentHTML('afterbegin', markup)
