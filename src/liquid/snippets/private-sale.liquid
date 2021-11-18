@@ -43,6 +43,8 @@
             .p-sale__content {
                 background-color: {{ settings.privatesale_content_background }};
             }    
+            .p-sale__heading { color:{{settings.heading_color}} !important;}
+            .p-sale__subheading { color:{{settings.para_color}} !important}
         </style>
     {% else %}
         <div class="p-sale">
@@ -88,6 +90,8 @@
             .p-sale__content {
                 background-color: {{ settings.privatesale_welcome_content_background }};
             }    
+            .p-sale__heading { color:{{settings.heading_color}} !important;}
+            .p-sale__subheading { color:{{settings.para_color}} !important}
         </style>
     {% endif %}
 {% endif %}

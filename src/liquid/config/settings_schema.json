@@ -16,6 +16,18 @@
         "label": "Enable Private sale"
       },
       {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Banner title color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "para_color",
+        "label": "Banner content color",
+        "default": "#ffffff"
+      },
+      {
         "id": "privatesale_couponcode",
         "type": "text",
         "label": "Coupon code"
