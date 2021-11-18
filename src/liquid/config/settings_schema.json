@@ -16,6 +16,11 @@
         "label": "Enable Private sale"
       },
       {
+        "id": "privatesale_couponcode",
+        "type": "text",
+        "label": "Coupon code"
+      },
+      {
         "type": "header",
         "content": "Sale Banner"
       },
@@ -194,3 +199,5 @@
     ]
   }
 ]
+
+
