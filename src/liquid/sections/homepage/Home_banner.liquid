@@ -1,3 +1,22 @@
+{% if request.locale.iso_code == 'ar' %} 
+<section class="banner-wrap">
+    <div class="Home_slideshow_main">
+        <div class="inner_slide">
+            <div class="banner-img-wrap">
+                <div class="banner-image">
+                  <a href="{{ section.settings.ar_banner_link }}">
+                    <picture class="banner-image__picture">
+                        <source data-srcset="{{ section.settings.ar_imgepic | img_url:'master'}}" media="(min-width: 750px)" srcset="{{ section.settings.ar_imgepic | img_url:'master'}}" />
+                      <source data-srcset="{{ section.settings.ar_imgepic_mbl | img_url:'original'}}" media="(max-width: 749px)" srcset="{{ section.settings.ar_imgepic_mbl | img_url:'original'}}" />
+                        <img class="lazy" data-src="{{ section.settings.ar_imgepic | img_url:'master'}}"  />
+                    </picture>
+                  </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
 <section class="banner-wrap">
     <div class="Home_slideshow_main">
         <div class="inner_slide">
@@ -15,7 +34,7 @@
         </div>
     </div>
 </section>
-
+{% endif %}
 
 
 
@@ -38,6 +57,25 @@
 		"type":"url",
 		"id":"banner_link",
 		"label":"Link"
+	},
+	{
+		"type":"header",
+		"content":"AR banner"
+	},
+	 {
+		"type":"image_picker",
+		"id":"ar_imgepic",
+		"label":"AR image"
+	},
+	{
+		"type":"image_picker",
+		"id":"ar_imgepic_mbl",
+		"label":"AR Mobile image"
+	},
+	{
+		"type":"url",
+		"id":"ar_banner_link",
+		"label":"AR Link"
 	}
  ],
 "presets": [
