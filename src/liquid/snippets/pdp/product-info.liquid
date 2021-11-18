@@ -1,9 +1,7 @@
 <div class="pdp__content">
 
     <div class="hm-wraper">
-        {% if settings.is_privatesale and product.tags contains 'PRIVATE SALE'%}
-            <div class="product-tag home-desk_tp tag_bg_color">Private sale</div>
-        {% else %}
+        
             {% assign show_tag = true %}
             
             {% if show_tag %}
@@ -40,7 +38,7 @@
                 {% assign show_tag = false %}
             {%endif%}
                 {%endif%}
-        {% endif %}
+       
         </div>
 
     <div class="pdp__content__title">{{ product.title }}</div>
