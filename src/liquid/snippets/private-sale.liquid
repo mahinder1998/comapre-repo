@@ -10,7 +10,7 @@
                 </div>
             </div>
 
-            <div class="p-sale__content" {% if settings.privatesale_title == blank and settings.privatesale_subtitle and settings.privatesale_button_label %}style="display: none;"{% endif %}>
+            <div style=" left: 15%; right: auto;" class="p-sale__content" {% if settings.privatesale_title == blank and settings.privatesale_subtitle and settings.privatesale_button_label %}style="display: none;"{% endif %}>
                 {% if settings.privatesale_title != blank and settings.privatesale_title_ar != blank %}
                     <h2 class="p-sale__heading">
                         {% if shop.locale == "en" %}{{ settings.privatesale_title }}{% else %}{{ settings.privatesale_title_ar }}{% endif %}
@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <div class="p-sale__content" {% if settings.privatesale_welcome_title == blank and settings.privatesale_welcome_subtitle and settings.privatesale_welcome_button_label %}style="display: none;"{% endif %}>
+            <div style=" left: 15%; right: auto;" class="p-sale__content" {% if settings.privatesale_welcome_title == blank and settings.privatesale_welcome_subtitle and settings.privatesale_welcome_button_label %}style="display: none;"{% endif %}>
                 {% if settings.privatesale_welcome_title != blank and settings.privatesale_welcome_title_ar != blank %}
                     <h2 class="p-sale__heading">
                         {% if shop.locale == "en" %}{{ settings.privatesale_welcome_title }}{% else %}{{ settings.privatesale_welcome_title_ar }}{% endif %}
