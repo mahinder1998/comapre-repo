@@ -1002,11 +1002,18 @@ span.mcart-count{
 .hm-wraper{
   min-height: 30px;
 }
-div.boost-pfs-filter-wrapper .boost-pfs-filter-product-item-label>span.tag{
-  background: #cccccc !important;
-  color: #000!important;
+// div.boost-pfs-filter-wrapper .boost-pfs-filter-product-item-label>span.tag{
+//   background: #cccccc !important;
+//   color: #000!important;
+// }
+div.boost-pfs-filter-wrapper .boost-pfs-filter-product-item-label>span.SALE {
+  background: red !important;
+  color: #fff !important;
 }
-
+.SALE {
+  background: red !important;
+  color: #fff !important;
+}
 /* 26-10-2021 PDP page*/ 
 
 .pdp .product-tag.colored_sale{

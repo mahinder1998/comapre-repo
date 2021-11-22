@@ -82,7 +82,7 @@ padding: 0 15px;
   background: transparent;
 }
 .boost-pfs-filter-wrapper .boost-pfs-filter-product-item-label>span.tag  {
-  background: #000000 !important;
+  background: #000000;
   height: 30px;
   line-height: 26px;
   font-size: 12px;
