@@ -167,13 +167,12 @@
 {% if section.settings.product_item_label_bg_color != blank or section.settings.product_item_label_text_color != blank %}
 .boost-pfs-filter-product-item-label .sale,
 .boost-pfs-filter-product-item-label .tag {
-	color: #ff0;
 	{% if section.settings.product_item_label_bg_color != blank %}
-	background-color: {{ section.settings.product_item_label_bg_color }};
+	background-color: {{ section.settings.product_item_label_bg_color }} !important;
 	{% endif %}
 
 	{% if section.settings.product_item_label_text_color != blank %}
-	color: {{ section.settings.product_item_label_text_color }};
+	color: {{ section.settings.product_item_label_text_color }} !important;
 	{% endif %}
 }
 {% endif %}

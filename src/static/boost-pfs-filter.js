@@ -373,10 +373,10 @@ var boostPFSFilterConfig = {
                       var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'EXTRA10');
                       tagLabel += preTagLabel;
                     }
-					// else if (data.tags.indexOf("PRIVATE SALE") > -1){
-                    //   var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'PRIVATE SALE');
-                    //   tagLabel += preTagLabel;
-                    // } 
+					else if (data.tags.indexOf("PRIVATE SALE") > -1){
+                      var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'PRIVATE SALE');
+                      tagLabel += preTagLabel;
+                    } 
 					else if (data.tags.indexOf("300ml for 111 AED") > -1) {
                       var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '300ml for 111 AED');
                       tagLabel += preTagLabel;
