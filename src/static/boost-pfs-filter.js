@@ -369,11 +369,11 @@ var boostPFSFilterConfig = {
 			} else {
 				var tagLabel = '';
 				if (data.tags) {
-					if(data.tags.indexOf("EXTRA10") > -1){
-                      var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'EXTRA10');
-                      tagLabel += preTagLabel;
-                    }
-					else if (data.tags.indexOf("PRIVATE SALE") > -1){
+					// if(data.tags.indexOf("EXTRA10") > -1){
+                    //   var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'EXTRA10');
+                    //   tagLabel += preTagLabel;
+                    // }
+					if (data.tags.indexOf("PRIVATE SALE") > -1){
                       var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'PRIVATE SALE');
                       tagLabel += preTagLabel;
                     } 
