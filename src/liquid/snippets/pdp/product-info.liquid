@@ -3,6 +3,12 @@
     <div class="hm-wraper">
         
             {% assign show_tag = true %}
+             {% if show_tag %}
+                {% if product.tags contains '50% OFF' %}
+                    <div class="product-tag home-desk_tp SALE">50% OFF</div>
+                {% assign show_tag = false %}
+                {% endif %}
+            {% endif %} 
             
             {% if show_tag %}
                 {% if product.tags contains 'PRIVATE SALE' %}
