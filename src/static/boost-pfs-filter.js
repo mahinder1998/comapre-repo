@@ -373,7 +373,11 @@ var boostPFSFilterConfig = {
                     //   var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'EXTRA10');
                     //   tagLabel += preTagLabel;
                     // }
-					if (data.tags.indexOf("PRIVATE SALE") > -1){
+					if (data.tags.indexOf("50% OFF") > -1){
+						var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '50% OFF');
+						tagLabel += preTagLabel;
+					  } 
+					else if (data.tags.indexOf("PRIVATE SALE") > -1){
                       var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'PRIVATE SALE');
                       tagLabel += preTagLabel;
                     } 
