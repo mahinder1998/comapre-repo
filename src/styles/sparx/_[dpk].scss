@@ -1026,7 +1026,10 @@ div.boost-pfs-filter-wrapper .boost-pfs-filter-product-item-label>span.SALE {
   box-sizing: border-box;
   text-transform:uppercase;
 }
-
+.boost-pfs-filter-wrapper .boost-pfs-filter-product-item-label>span.tag.OFF{
+    color: #fff !important;
+    background:#de0d0d!important;
+}
 
 /* Rresponsive code start here */
 
