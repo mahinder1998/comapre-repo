@@ -295,59 +295,12 @@
               </div>
             </div>
             {% endfor %}
-          </div>
-    
-          <div class="right-side-cart cart-main-prices">
-    
-            <div class="flex-bet shipping-free">
-              <span class="cart-subtotal__title">SHIPPING </span>
-              <span class="cart-subtotal__price">Free</span>
-            </div>
-            <div class="shipping-day">
-              <p>Free Shipping within 2-3 days</p>
-            </div>
-            <div colspan="5" class="total_vat">
-            <h4 class="flex-bet">
-              <span class="vat__title">VAT</span>
-              <span class="cart-subtotal__title cart_vat"></span>
-            </h4>
-          </div>
-            <div colspan="5" class="subtotal">
-              <h4 class="flex-bet">
-                <span class="cart-subtotal__title">Subtotal</span>
-                <span class="cart-subtotal__title cart_subtotal">{{ cart.total_price | money }}</span>
-              </h4>
-            </div>
-            <div class="vat-shiping">
-              <p>(VAT included)</p>
-            </div>
-            <div id="cart-right">
+            
+            
+            
+              <!-- -->
               
-              <div class="promo_code_wrap">
-                <div class="promo-title"> Have a promocode?  </div>
-                  <div class="promo-body">
-                    <form class="promo-form">
-                      <div class="form-group form_inline">
-                        <input type="text" placeholder="Enter promo code"  class="form_control" id="promo_coupon">
-                        <button type="submit" class="btn-ctm promo-submit" id="redemDevPromo"> APPLY  </button>
-                      </div>
-                    </form>
-                  </div>
-                
-              </div> 
-              
-              <input name="checkout" type="submit" class="button" id="checkout-button" value="PROCEED TO CHECKOUT">
-              {% if additional_checkout_buttons %}
-              <div class="additional-checkout-buttons">
-                {{ content_for_additional_checkout_buttons }}
-              </div>
-              {% endif %}
-            </div>
-    
-    
-          </div>
-        </div>
-        <div class="cart__footer">
+              <div class="cart__footer">
           <div class="grid-wrapper">
     
             <div class="col-sp-sm col-sp-md">
@@ -381,6 +334,72 @@
     
           </div>
         </div>
+              
+              <!-- -->
+              
+            
+            
+          </div>
+    
+          
+          <div class="right-side-cart cart-main-prices">
+    
+            <div class="flex-bet shipping-free">
+              <span class="cart-subtotal__title">SHIPPING </span>
+              <span class="cart-subtotal__price">Free</span>
+            </div>
+            <div class="shipping-day">
+              <p>Free Shipping within 2-3 days</p>
+            </div>
+            <div colspan="5" class="total_vat">
+            <h4 class="flex-bet">
+              <span class="vat__title">VAT</span>
+              <span class="cart-subtotal__title cart_vat"></span>
+            </h4>
+          </div>
+            <div colspan="5" class="subtotal">
+              <h4 class="flex-bet">
+                <span class="cart-subtotal__title">Subtotal</span>
+                <span class="cart-subtotal__title cart_subtotal">{{ cart.total_price | money }}</span>
+              </h4>
+            </div>
+            <div class="vat-shiping">
+              <p>(VAT included)</p>
+            </div>
+            
+            
+            
+            
+            <div id="cart-right">
+              
+              <div class="promo_code_wrap">
+                <div class="promo-title"> Have a promocode?  </div>
+                  <div class="promo-body">
+                    <form class="promo-form">
+                      <div class="form-group form_inline">
+                        <input type="text" placeholder="Enter promo code"  class="form_control" id="promo_coupon">
+                        <button type="submit" class="btn-ctm promo-submit" id="redemDevPromo"> APPLY  </button>
+                      </div>
+                    </form>
+                  </div>
+                
+              </div> 
+              
+              
+              
+              
+              <input name="checkout" type="submit" class="button" id="checkout-button" value="PROCEED TO CHECKOUT">
+              {% if additional_checkout_buttons %}
+              <div class="additional-checkout-buttons">
+                {{ content_for_additional_checkout_buttons }}
+              </div>
+              {% endif %}
+            </div>
+    
+    
+          </div>
+        </div>
+        
       </form>
     </section>
     {%else%}
