@@ -23,14 +23,17 @@
     padding-top: 34.57%;
 
     @media(max-width: 749px) {
-        padding-top: 66.66%;
+        padding-top: 0;
     }
 }
 .banner-image__picture {
-    position: absolute;
+   
     top: 0;
     left: 0;
     width: 100%;
+    @media(min-width: 750px) {
+        position: absolute;
+    }
 }
 
 .banner-image img {
