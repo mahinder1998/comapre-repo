@@ -375,8 +375,10 @@ $( "#view-order-m" ).click(function() {
 // harshita cart page 30-7
 $('.giftyes').click(function() {
   if( $(this).is(':checked')) {
+      $(".hidegiftbox").val('Yes');
       $(".gift_msg").fadeIn();
   } else {
+      $(".hidegiftbox").val('No');
       $(".gift_msg").fadeOut();
   }
 });
