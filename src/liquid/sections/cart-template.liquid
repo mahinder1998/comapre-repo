@@ -309,21 +309,54 @@
               <!-- Yes and No content goes here-->
               <div class="login-wrap">
                 <div class="radio-group">
-                  
-                  <input type="checkbox" id="{{ formId }}-mrs" class="giftyes" name="choice-radio" value="{{ cart.attributes["Yes"] }}"  />
+                  <input type="hidden" class="hidegiftbox" name="attributes[Gift box]" value="No"/>
+                  <input type="checkbox" id="{{ formId }}-mrs" class="giftyes" data-name="Gift box"  value="Yes">
                   <label for="{{ formId }}-mrs">Yes</label>
                 </div>
               </div>
               <!-- Gift message option code goes here-->
+              
+              <!-- 12-07-21 -->
+              
+              <script type="text/javascript">
+                  $(function () {
+                      $("#-ms_chk_gift_msg").click(function () {
+                          if ($(this).is(":checked")) {
+                              $('.hiddengiftmsg').val('');
+                              $("#CartSpecialInstructions").removeAttr("disabled");
+                              $("#CartSpecialInstructions").focus();
+
+                          } else {
+                             $('.hiddengiftmsg').val('None');
+                             $("#CartSpecialInstructions").attr("disabled", "disabled");
+                          }
+                      });
+                  });
+              </script>
+              <style>
+                .giftmessage textarea:disabled { background:#eee; overflow:hidden;}
+              </style>
+              <!-- end of 12-07-21-->
+             
          <div class="gift_msg">
               <div class="login-wrap giftmessage ">
                 <div class="radio-group">
-                  <input type="checkbox" id="{{ formId }}-ms" name="choice-giftmessage" value="{{ cart.attributes["No"] }}" checked="checked" />
-                  <label for="{{ formId }}-ms">I would like to provide a gift message.</label>
+                  <input type="checkbox" id="{{ formId }}-ms_chk_gift_msg" name="choice-giftmessage"  />
+                  <label for="{{ formId }}-ms_chk_gift_msg">I would like to provide a gift message.</label>
                 </div>
-    
-                <textarea name="note" id="CartSpecialInstructions" placeholder="Please enter a message up to 250 characters (including spaces)*" class="cart-note__input" data-cart-notes>{{ cart.note }}</textarea>
+                
+                	<input type="hidden" class="hiddengiftmsg" name="attributes[Gift message]" value="None" />
+                    <div class="gift_notes_not_checked">
+               		 <textarea  id="CartSpecialInstructions" class="cart-note__input" 
+                                placeholder="Please enter a message up to 250 characters (including spaces)*"
+                                disabled="disabled"
+								value="None"
+                                data-name="Gift message" name="attributes[Gift message]" ></textarea>
                 <span id="countcharacter"></span><br>
+                </div>    
+                
+                
+                
               </div>
     
               <span class="custom-cart-text">
@@ -465,4 +498,4 @@
           }      
     ]
   }
-  {% endschema %}
+  {% endschema %} 
