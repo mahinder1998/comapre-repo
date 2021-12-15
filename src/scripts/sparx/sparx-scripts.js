@@ -261,6 +261,8 @@ const SparxScripts = (() => {
         }); // cart page cart note count
 
         $("#CartSpecialInstructions").on('keyup', function () {
+            var notemsg = $(this).val();
+             $('#CartNote').text('Gift Box : Yes\nGift Message : '+notemsg);
           $("#countcharacter").text(250 - $(this).val().length + " Characters");
         });
       });
@@ -375,10 +377,10 @@ $( "#view-order-m" ).click(function() {
 // harshita cart page 30-7
 $('.giftyes').click(function() {
   if( $(this).is(':checked')) {
-      $(".hidegiftbox").val('Yes');
+    $('#CartNote').text('Gift Box : Yes\nGift Message : None');
       $(".gift_msg").fadeIn();
   } else {
-      $(".hidegiftbox").val('No');
+    $('#CartNote').text('Gift Box : No\nGift Message : None');
       $(".gift_msg").fadeOut();
   }
 });

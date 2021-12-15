@@ -125,5 +125,12 @@
       {% render 'ly-liquid-scripts' content: ly_liquid_content %}
       {% render 'ly-core-scripts' %}
       {% render 'ly-switcher-factory' %}
+        {% if template contains 'cart' %}
+          <script>
+            $(document).ready(function(){
+              $('#CartNote').text('Gift Box : No\nGift Message : None');
+            });        
+          </script>
+      {% endif %}
     </body>
   </html>

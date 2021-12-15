@@ -305,11 +305,11 @@
     
             <div class="col-sp-sm col-sp-md">
               <label for="CartSpecialInstructions" class="cart-note__label small--text-center">Would you like a FREE gift box and gift message?</label>
-    
+            <textarea name="note" id="CartNote" style="display:none;">{{ cart.note }}</textarea>
               <!-- Yes and No content goes here-->
               <div class="login-wrap">
                 <div class="radio-group">
-                  <input type="hidden" class="hidegiftbox" name="attributes[Gift box]" value="No"/>
+                  
                   <input type="checkbox" id="{{ formId }}-mrs" class="giftyes" data-name="Gift box"  value="Yes">
                   <label for="{{ formId }}-mrs">Yes</label>
                 </div>
@@ -322,12 +322,10 @@
                   $(function () {
                       $("#-ms_chk_gift_msg").click(function () {
                           if ($(this).is(":checked")) {
-                              $('.hiddengiftmsg').val('');
                               $("#CartSpecialInstructions").removeAttr("disabled");
                               $("#CartSpecialInstructions").focus();
 
                           } else {
-                             $('.hiddengiftmsg').val('None');
                              $("#CartSpecialInstructions").attr("disabled", "disabled");
                           }
                       });
@@ -345,13 +343,14 @@
                   <label for="{{ formId }}-ms_chk_gift_msg">I would like to provide a gift message.</label>
                 </div>
                 
-                	<input type="hidden" class="hiddengiftmsg" name="attributes[Gift message]" value="None" />
+                	
                     <div class="gift_notes_not_checked">
                		 <textarea  id="CartSpecialInstructions" class="cart-note__input" 
                                 placeholder="Please enter a message up to 250 characters (including spaces)*"
                                 disabled="disabled"
-								value="None"
-                                data-name="Gift message" name="attributes[Gift message]" ></textarea>
+								                value="None"
+                                data-name="Gift message"  >
+                    </textarea>
                 <span id="countcharacter"></span><br>
                 </div>    
                 
