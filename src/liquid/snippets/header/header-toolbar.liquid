@@ -1,88 +1,92 @@
 <!-- Tool bar -->
 <section class="mb-top-tool-bar">
   <div class="mb-tool-bar-flex">
-   {%comment%}
-   {% if section.settings.announcement-bar != blank %}
-   <div class="tb-left">
-    <p><a href="{{ section.settings.announcement-link }}">{{ section.settings.announcement-bar }}</a></p>
+    {%comment%}
+    {% if section.settings.announcement-bar != blank %}
+    <div class="tb-left">
+      <p><a href="{{ section.settings.announcement-link }}">{{ section.settings.announcement-bar }}</a></p>
+    </div>
+    {% endif %}
+    {%endcomment%}
+    <div class="announcement-bar " role="region">
+      <ul class="wrap-list">
+        <li>
+          <span class="announcement-bar__message text-announc">
+            <a href="{{section.settings.announcement_link | default: "#"}}">
+            {{ section.settings.announcement_bar | default: "complementry shipping on all order"}}</a>
+          </span>
+        </li>
+
+        {% if section.settings.announcement_bar2 != blank %}
+        <li style="display:none">
+          <span class="announcement-bar__message message-two">
+            <a href="{{section.settings.announcement_link2 | default: "#"}}">
+            {{ section.settings.announcement_bar2 | default: "10 %off off on all items"}}</a>
+          </span>
+        </li>
+        {% endif %}
+
+        {% if section.settings.announcement_bar3 != blank %}
+        <li style="display:none">
+          <span class="announcement-bar__message message-three">
+            <a href="{{section.settings.announcement_link3 | default: "#"}}">
+            {{ section.settings.announcement_bar3 | default: "10% off on all items"}}</a>
+          </span>
+        </li>
+        {% endif %}
+        
+      </ul>
+    </div>
+
+    <div class="tb-right">
+      {% assign  topcolumn = section.settings.link_list_id %}
+      <ul>
+        {% for link in linklists[topcolumn].links %}
+        <li class="tb-find-store"><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %} 
+
+
+
+        <li class="change-count">
+          <a href="{{section.settings.find_store_url | default: "https://molton-brown-uae.myshopify.com/pages/store-locator" }}">{{section.settings.find_store_text | default: "Find Store" }}</a>
+        </li>
+
+        <li class="language {% if request.locale.iso_code == 'ar' %} lang-is-ar{% else %} lang-is-en{% endif %}">        
+          <div>
+            <ul class="custom-selection">
+              <span class="ly-custom-1000 ly-custom-750"></span>
+            </ul>
+          </div>
+        </li>
+
+        <li class="find-store">
+          <a href="javascript:void(0);">{{section.settings.change_country_text | default: "Change Country"}}</a>
+          <div class="uae-select">
+            <ul class="custom-selection" id="selection-store">
+
+              <li>
+                <a href="{{section.settings.ksa_text_url | default: "https://molton-brown-ksa.myshopify.com/"}}" target="_blank">{% if section.settings.ksa_img != empty %}<img src="{{section.settings.ksa_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.ksa_text | default: "KSA"}} </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="uae-field">
+          <a href="{{section.settings.uae_text_url | default: "https://molton-brown-uae.myshopify.com/" }}" target="_blank">{% if section.settings.uae_img != empty %}<img src="{{section.settings.uae_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.uae_text | default: "UAE"}} </a>
+        </li>
+
+
+      </ul>
+    </div>
   </div>
-  {% endif %}
-  {%endcomment%}
-  <div class="announcement-bar " role="region">
-    <ul class="wrap-list">
-      <li>
-        <span class="announcement-bar__message text-announc">
-          <a href="{{section.settings.announcement_link | default: "#"}}">
-          {{ section.settings.announcement_bar | default: "complementry shipping on all order"}}</a>
-        </span>
-      </li>
-
-      <li style="display:none">
-        <span class="announcement-bar__message message-two">
-          <a href="{{section.settings.announcement_link2 | default: "#"}}">
-          {{ section.settings.announcement_bar2 | default: "10 %off off on all items"}}</a>
-        </span>
-      </li>
-
-      <li style="display:none">
-        <span class="announcement-bar__message message-three">
-          <a href="{{section.settings.announcement_link3 | default: "#"}}">
-          {{ section.settings.announcement_bar3 | default: "10% off on all items"}}</a>
-        </span>
-      </li>
-
-    </ul>
-  </div>
-
-  <div class="tb-right">
-    {% assign  topcolumn = section.settings.link_list_id %}
-    <ul>
-      {% for link in linklists[topcolumn].links %}
-      <li class="tb-find-store"><a href="{{ link.url }}">{{ link.title }}</a></li>
-      {% endfor %} 
-
-
-
-      <li class="change-count">
-        <a href="{{section.settings.find_store_url | default: "https://molton-brown-uae.myshopify.com/pages/store-locator" }}">{{section.settings.find_store_text | default: "Find Store" }}</a>
-      </li>
-
-      <li class="language {% if request.locale.iso_code == 'ar' %} lang-is-ar{% else %} lang-is-en{% endif %}">        
-        <div>
-          <ul class="custom-selection">
-            <span class="ly-custom-1000 ly-custom-750"></span>
-          </ul>
-        </div>
-      </li>
-
-      <li class="find-store">
-        <a href="javascript:void(0);">{{section.settings.change_country_text | default: "Change Country"}}</a>
-        <div class="uae-select">
-          <ul class="custom-selection" id="selection-store">
-
-            <li>
-              <a href="{{section.settings.ksa_text_url | default: "https://molton-brown-ksa.myshopify.com/"}}" target="_blank">{% if section.settings.ksa_img != empty %}<img src="{{section.settings.ksa_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.ksa_text | default: "KSA"}} </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="uae-field">
-        <a href="{{section.settings.uae_text_url | default: "https://molton-brown-uae.myshopify.com/" }}" target="_blank">{% if section.settings.uae_img != empty %}<img src="{{section.settings.uae_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.uae_text | default: "UAE"}} </a>
-      </li>
-
-
-    </ul>
-  </div>
-</div>
 </section>
 
 
 {%assign second_limit = section.settings.second_limit %}
 <script>
-  //Announce bar js
+//Announce bar js
 var countInt;
-  var limitcount = {{ section.settings.second_limit }};
-  var limicount = parseInt(limitcount*1000);
+var limitcount = {{ section.settings.second_limit }};
+var limicount = parseInt(limitcount*1000);
 jQuery(document).ready(function () {
   var announcement = getCookie("announcement");
 
@@ -91,7 +95,7 @@ jQuery(document).ready(function () {
     $('.wrap-list li:first').addClass('ActiveImg');
     setInterval(cycleImages, limicount);
   }
-  
+
   function setCookie(cname,cvalue,exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
