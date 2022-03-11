@@ -390,7 +390,10 @@ var boostPFSFilterConfig = {
                     } else if (data.tags.indexOf("exclusively_online") > -1) {
                       var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'Exclusively Online');
                       tagLabel += preTagLabel;
-                    } else if (data.tags.indexOf("new") > -1) {
+                    }else if (data.tags.indexOf("Limited Edition") > -1) {
+						var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'Limited Edition');
+						tagLabel += preTagLabel;
+					} else if (data.tags.indexOf("new") > -1) {
                       var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'New');
                       tagLabel += preTagLabel;
                     } else if (data.tags.indexOf("best-seller") > -1) {

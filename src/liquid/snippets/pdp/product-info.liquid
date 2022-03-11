@@ -23,6 +23,27 @@
                 {% assign show_tag = false %}
                 {% endif %}
             {% endif %}
+
+             {% if show_tag %}
+            {% if product.tags contains 'sale' %}
+            <div class="product-tag home-desk_tp colored_sale">sale</div>
+                {% assign show_tag = false %}
+            {%endif%}
+                {%endif%}
+
+            {% if show_tag %}
+                {% if product.tags contains 'exclusively_online' %}
+                    <div class="product-tag home-desk_tp">Exclusively Online</div>
+                    {% assign show_tag = false %}
+                {%endif%}
+            {%endif%} 
+
+            {% if show_tag %}
+                {% if product.tags contains 'Limited Edition' %}
+                    <div class="product-tag home-desk_tp">Limited Edition</div>
+                    {% assign show_tag = false %}
+                {%endif%}
+            {%endif%}   
             
             {% if show_tag %}
                 {% if product.tags contains 'new' %}
@@ -38,19 +59,9 @@
             {%endif%}
             {% endif %}
             
-            {% if show_tag %}
-            {% if product.tags contains 'exclusively_online' %}
-            <div class="product-tag home-desk_tp">Exclusively Online</div>
-            {% assign show_tag = false %}
-            {%endif%}
-                {%endif%}
             
-            {% if show_tag %}
-            {% if product.tags contains 'sale' %}
-            <div class="product-tag home-desk_tp colored_sale">sale</div>
-                {% assign show_tag = false %}
-            {%endif%}
-                {%endif%}
+            
+           
        
         </div>
 
