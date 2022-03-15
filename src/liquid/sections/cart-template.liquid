@@ -459,6 +459,20 @@
    var pice = (taxAmount)/100;
   $('.cart-subtotal__title.cart_vat').html(pice+' <span>AED</span>');
 </script>
+{% if cart.items != blank %}
+  {% if cart.total_price < 100 %}
+<script>
+  $.ajax({
+      type: "POST",
+      url: '/cart/clear.js',
+      success: function(){
+        location.reload();
+      },
+      dataType: 'json'
+    }); 
+</script>
+{% endif %}
+{% endif %}
   {% schema %}
     {
       "name": "Cart Settings",
