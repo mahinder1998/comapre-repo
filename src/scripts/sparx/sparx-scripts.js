@@ -2,6 +2,32 @@ const SparxScripts = (() => {
   return {
     init: function init() {
       $(document).ready(function () {
+
+
+        $('.lp-products').slick({
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          prevArrow: $('.prev'),
+          nextArrow: $('.next'),
+          infinite:false,
+          responsive: [
+              {
+              breakpoint: 992,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1
+              }
+              },
+              {
+              breakpoint: 480,
+              settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 1
+              }
+              }
+          ]
+          });
+
         //Scroll top fixed nav
         var previousScroll = 0; 
         jQuery(window).scroll(function (e) {
@@ -438,6 +464,10 @@ $("document").ready(function(){
     $(this).find(".uae-select").removeClass("open");
   });
 });
+
+
+// lp products js
+
 
     }
   };
