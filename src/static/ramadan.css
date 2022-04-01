@@ -312,7 +312,10 @@ left: -10px;
 .giftbanner-text {
     max-width: 600px;
 }
-
+.card-products .card-header p {
+    margin-bottom: 20px;
+    margin-top: 16px;
+}
 
 }
 

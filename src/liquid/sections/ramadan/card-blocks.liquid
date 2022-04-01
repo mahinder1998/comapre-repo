@@ -1,13 +1,19 @@
 {% for block in section.blocks %}
-  {% case block.type %}
+{% case block.type %}
     {% when 'card-two' %}
-      {% include 'card-two' %}
+    {% include 'card-two' %}
 
     {% when 'card-three' %}
-      {% include 'card-three' %}
- {% when 'card-four' %}
-      {% include 'card-four' %}
-  {% endcase %}
+    {% include 'card-three' %}
+
+    {% when 'card-four' %}
+    {% include 'card-four' %}
+
+    {% when 'prouct-carousel' %}
+    {% include 'prouct-carousel' %}
+
+{% endcase %}
+
 {% endfor %}
 
 
@@ -361,6 +367,40 @@
                 "type": "url",
                 "id": "card-url-four",
                 "label": "Card link"
+            }
+         ]
+     },
+     {
+      "type": "prouct-carousel",
+      "name": "Prouct Carousel",
+      "settings":[
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "heading",
+                "default": "section header"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "btn",
+                "label": "button",
+                "default": "View All"
+            },
+            {
+                "type": "url",
+                "id": "btn-link",
+                "label": "link"
+            },
+            {
+                "type": "collection",
+                "id": "ramadan-coll",
+                "label": "collection"
             }
          ]
      }
