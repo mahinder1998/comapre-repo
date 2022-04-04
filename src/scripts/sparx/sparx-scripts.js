@@ -7,8 +7,7 @@ const SparxScripts = (() => {
         $('.lp-products').slick({
           slidesToShow: 6,
           slidesToScroll: 1,
-          prevArrow: $('.prev'),
-          nextArrow: $('.next'),
+          arrows:true,
           infinite:false,
           responsive: [
               {

@@ -1,56 +1,18 @@
 {% for block in section.blocks %}
-<div class="page-width">
-<div class="card-container">
-    <div class="card-header pt-56">
-        {%if block.settings.heading != blank %}
-            <h2> {{ block.settings.heading }} </h2>
-        {% endif %}
-        {%if block.settings.decription_con != blank %}
-            {{ block.settings.decription_con }} 
-        {% endif %}
-    </div>
-    {% if block.settings.ramadan-coll != blank%}
-    <div class="lp-products-wrap">
-        <div class="lp-products">
-            {% assign lp-product = collections[block.settings.ramadan-coll] %}
-            {% for product in lp-product.products %}
+{% case block.type %}
+    {% when 'card-two' %}
+    {% include 'gift-card-two' %}
 
-                <div class="lp-product-item">
-                    <a href="{{ product.url }}" class="lp-product-link">
-                        <div class="lp-product-image">
-                        <img src="{{ product.featured_image.src | img_url: '1024x' }}" alt="">
-                        </div>
-                        <div class="lp-product-content">
-                            <h3>{{ product.title }}</h3>
-                            <span class="price">
-                                {%- if product.price_varies -%}
-                                    {{ product.price_min | money_without_trailing_zeros }}
-                                {%- else -%}
-                                    {{ product.price | money_without_trailing_zeros }}
-                                {%- endif -%}
-                            </span>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
-        <ul class="lp-products-arrow">
-                <li class="prev">
-                    <svg class="pdp__media__master__slider__arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12.771" height="24.129" viewBox="0 0 12.771 24.129">
-                        <path fill="none" stroke="#000" d="M-11902.357-18787.281l11.711 11.719-11.711 11.7" transform="translate(-11889.939 -18763.506) rotate(180)"></path>
-                    </svg>
-                </li>
-                <li class="next">
-                    <svg class="pdp__media__master__slider__arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12.771" height="24.129" viewBox="0 0 12.771 24.129">
-                        <path fill="none" stroke="#000" d="M-11902.357-18787.281l11.711 11.719-11.711 11.7" transform="translate(11902.711 18787.635)"></path>
-                    </svg>
-                </li>
-            </ul>
-    </div>
-    {% endif %}
-</div>
-</div>
+    {% when 'card-three' %}
+    {% include 'gift-card-three' %}
 
+    {% when 'card-four' %}
+    {% include 'gift-card-four' %}
+
+    {% when 'prouct-carousel' %}
+    {% include 'gift-prouct-carousel' %}
+
+{% endcase %}
 
 {% endfor %}
 
@@ -63,30 +25,383 @@
 "settings":[
 ],
 "blocks":[
-    {
-        "type": "gifts-items",
-        "name": "Gifts Items",
-        "settings":[
-                {
-                    "type": "text",
-                    "id": "heading",
-                    "label": "heading",
-                    "default": "section header"
-                },
-                {
-                    "type": "richtext",
-                    "id": "decription_con",
-                    "label": "description"
-                },
-                {
-                    "type": "collection",
-                    "id": "ramadan-coll",
-                    "label": "collection"
-                }
-            
-        ]
-    }
-]
+     {
+         "type": "card-two",
+         "name": "card two",
+         "settings":[
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "heading",
+                "default": "section header"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "header",
+                "content": "card 1"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-one",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-one",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-one",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-one",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-one",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 2"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-two",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-two",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-two",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-two",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-two",
+                "label": "Card link"
+            }
+         ]
+     },
+     {
+      "type": "card-three",
+      "name": "card three",
+      "settings":[
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "heading",
+                "default": "section header"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "header",
+                "content": "card 1"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-one",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-one",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-one",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-one",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-one",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 2"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-two",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-two",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-two",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-two",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-two",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 3"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-three",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-three",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-three",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-three",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-three",
+                "label": "Card link"
+            }
+         ]
+     },
+     {
+      "type": "card-four",
+      "name": "card four",
+      "settings":[
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "heading",
+                "default": "section header"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "header",
+                "content": "card 1"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-one",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-one",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-one",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-one",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-one",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 2"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-two",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-two",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-two",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-two",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-two",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 3"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-three",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-three",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-three",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-three",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-three",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 4"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-four",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-four",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-four",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-four",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-four",
+                "label": "Card link"
+            }
+         ]
+     },
+     {
+      "type": "prouct-carousel",
+      "name": "Product Carousel",
+      "settings":[
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "heading",
+                "default": "section header"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "btn",
+                "label": "button",
+                "default": "View All"
+            },
+            {
+                "type": "url",
+                "id": "btn-link",
+                "label": "link"
+            },
+            {
+                "type": "collection",
+                "id": "ramadan-coll",
+                "label": "collection"
+            }
+         ]
+     }
+ ]
 
 }
 {% endschema %}

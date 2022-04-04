@@ -198,6 +198,46 @@ max-width: 142px;
 
 
 
+.card-products .slick-prev {
+    left: 5px;
+    z-index: 1;
+}
+.card-products .slick-next {
+    right: 5px;
+}
+.card-products .slick-next:before,
+.card-products .slick-prev:before {
+    color: #000000;
+    opacity: 1 !important;
+}
+.card-products .slick-arrow {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.card-products .slick-next:before {
+    content: " ";
+    border-right: 1px solid #6a6a6a;
+    border-top: 1px solid #6a6a6a;
+    width: 13px;
+    height: 13px;
+    opacity: 1;
+    transform: rotate(45deg);
+    cursor: pointer;
+    display: inline-block !important;
+}
+.card-products .slick-prev:before {
+    content: " ";
+    border-left: 1px solid #6a6a6a;
+    border-bottom: 1px solid #6a6a6a;
+    width: 13px;
+    height: 13px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    display: inline-block !important;
+}
+
+
 
 /* media css start */
 
