@@ -210,7 +210,7 @@
               <div class="cart-total-t">PRICE</div>
             </div>
             {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
-            <div class="cart-items-loop" item-loop="item-{{ forloop.index }}">
+            <div class="cart-items-loop th_pb_cart_line" item-loop="item-{{ forloop.index }}" data-idth="{{ item.id }}" data-indexth="{{ forloop.index }}">
               <div class="cart-item-img">
                 <div>
                   <a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> 
@@ -231,31 +231,101 @@
                    {% elsif variant_options.size == 1 and variant_options[0].value == "Default title" %}
                          {%- assign variant_options_hide = true -%}
                         {% endif %}
-                        
-                        <ul class="item-variant-details{% if variant_options_hide and property_size == 0 %} hide{% endif %}" >
+                {% assign remove_qty = false %}            
+                         <ul class="item-variant-details{% if variant_options_hide and property_size == 0 %} hide{% endif %}" >
                           {%- for option in variant_options -%}
                             <li class="product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>{{ option.name }}: {{ option.value }}</li>
                           {%- endfor -%}
+                           {%- assign properties = 'template ' | split: ' ' -%}
+                      {%- if property_size > 0 -%}
+                        {%- assign properties = item.properties -%}
+                      {%- endif -%}
+                      {%- for p in properties -%}
+                          {% for block in section.blocks %}
+                           {% if p.last == block.settings.bundle_id %}
+                             <span class="cart_bundle_label">{{ block.settings.bundle_label }}</span>
+                             {% endif %}
+                          {% endfor %}
+                      	{%- if p.first contains '_th_bundle_type' -%}
+                             {% assign remove_qty = true %}  
+                          <span class="th_bundle_discount_text"></span>
+                          {%- continue -%}
+                        {%- endif -%}
+                        {% assign property_first_char = p.first | slice: 0 %}
+                        <li class="product-details__item product-details__item--property
+                          {%if property_size == 0 or p.last == blank or property_first_char == '_' %} hide{% endif %}" data-cart-item-property>
+                          <span class="product-details__item-label" data-cart-item-property-name>{{ p.first }}: </span>
+                          {%- comment -%}
+                            Check if there was an uploaded file associated
+                          {%- endcomment -%}
+                          <span data-cart-item-property-value>
+                            {%- if p.last contains '/uploads/' -%}
+                              <a href="{{ p.last }}" data-role="product-upload">{{ p.last | split: '/' | last }}</a>
+                            {%- else -%}
+                              {{ p.last }}
+                            {%- endif -%}
+                          </span>
+                        </li>
+                      {%- endfor -%}
                   </ul>
                   {% if item.final_line_price == 0 %}
                     {% else %}
                       <p class="cart__remove">
-                        <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
+                        <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent th_pb_remove_cart_item" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
                       </p>
                     {% endif %}
                 </div>
     
               </div>
               <div class="cart-item-qty">
-                <div class="cart-title-mob"><p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p></div>
+                <div class="cart-title-mob">
+                  <p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p>
+                    {% assign remove_qty = false %}            
+                    <ul class="item-variant-details{% if variant_options_hide and property_size == 0 %} hide{% endif %}" >
+                          {%- for option in variant_options -%}
+                            <li class="product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>{{ option.name }}: {{ option.value }}</li>
+                          {%- endfor -%}
+                           {%- assign properties = 'template ' | split: ' ' -%}
+                      {%- if property_size > 0 -%}
+                        {%- assign properties = item.properties -%}
+                      {%- endif -%}
+                      {%- for p in properties -%}
+                          {% for block in section.blocks %}
+                           {% if p.last == block.settings.bundle_id %}
+                             <span class="cart_bundle_label">{{ block.settings.bundle_label }}</span>
+                             {% endif %}
+                          {% endfor %}
+                      	{%- if p.first contains '_th_bundle_type' -%}
+                             {% assign remove_qty = true %}  
+                          <span class="th_bundle_discount_text"></span>
+                          {%- continue -%}
+                        {%- endif -%}
+                        {% assign property_first_char = p.first | slice: 0 %}
+                        <li class="product-details__item product-details__item--property
+                          {%if property_size == 0 or p.last == blank or property_first_char == '_' %} hide{% endif %}" data-cart-item-property>
+                          <span class="product-details__item-label" data-cart-item-property-name>{{ p.first }}: </span>
+                          {%- comment -%}
+                            Check if there was an uploaded file associated
+                          {%- endcomment -%}
+                          <span data-cart-item-property-value>
+                            {%- if p.last contains '/uploads/' -%}
+                              <a href="{{ p.last }}" data-role="product-upload">{{ p.last | split: '/' | last }}</a>
+                            {%- else -%}
+                              {{ p.last }}
+                            {%- endif -%}
+                          </span>
+                        </li>
+                      {%- endfor -%}
+                  </ul>
+                </div>
                 <div class="qty-selc">
     
-                  <div class="qty-slctor-arws"> 
+                  <div class="qty-slctor-arws {% if remove_qty %} remove_qty {% endif %}"> 
                     <p class="qty-txt-mob">Qty</p>
     
                     {%- if item.line_price != 0 -%}
                     <a class="minusqty updateqty" data-loop="" qty-index="{{ forloop.index }}">{% include 'down-arrow' %}</a>               
-                    <input name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" onfocus="this.select();" value="{{ item.quantity }}" size="2"/>
+                    <input {% if remove_qty %}disabled{% endif %} name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" onfocus="this.select();" value="{{ item.quantity }}" size="2"/>
                     <a class="addqty updateqty" qty-index="{{ forloop.index }}">{% include 'upper-arrow' %}</a>
                     {%- elsif item.line_price == 0 -%}
                     <input name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" value="1" size="1"/>
@@ -264,7 +334,7 @@
     
                   </div>
                   
-                  <div class="mobile-cart-compair">     
+                  <div class="mobile-cart-compair th_item_line_price">     
                     
                     {% assign final_compare_price = item.variant.compare_at_price | times: item.quantity %}
                     {% if final_compare_price and final_compare_price > item.final_line_price %}
@@ -277,11 +347,11 @@
                 {% if item.final_line_price == 0 %}
                   {% else %}
                   <p class="cart__remove">
-                    <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
+                    <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent th_pb_remove_cart_item" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
                   </p>               
                   {% endif %} 
               </div>
-                <div class="cart-item-price">
+                <div class="cart-item-price th_item_line_price">
                     {% if item.final_line_price == 0 %}
                       <p>FREE</p>
                     {% elsif item.final_line_price > 0 %}
@@ -395,7 +465,7 @@
             <div colspan="5" class="subtotal">
               <h4 class="flex-bet">
                 <span class="cart-subtotal__title">Subtotal</span>
-                <span class="cart-subtotal__title cart_subtotal">{{ cart.total_price | money }}</span>
+                 <span class="cart-subtotal__title cart_subtotal"><span class="th_cart_total_price"><span class="th_cart_total_price">{{ cart.total_price | money }}</span></span></span>
               </h4>
             </div>
             <div class="vat-shiping">
@@ -447,8 +517,15 @@
     </section>
 {%endif%}
     <style>
-      .mb-search-logo-flex .mb-cart-flex{pointer-events: none;}
-    </style>
+      .mb-search-logo-flex .mb-cart-flex, .remove_qty{pointer-events: none;}
+      .th_bundle_discount_text, .cart_bundle_label{font-size:12px; line-height:normal; margin:8px 0;}
+      .remove_qty .updateqty {
+          background: #F5F5F5;
+          opacity: .5;
+          pointer-events: none;
+      }
+       .th_bundle_discount_text{display: none !important;}    
+</style>
 
 
     <script>
@@ -512,6 +589,24 @@
           "id": "giftmessage",
           "label": "gift message note"
           }      
-    ]
+    ],
+"blocks":[
+     {
+         "type": "bundle",
+         "name": "bundle label",
+         "settings":[
+            {
+                "type": "number",
+                "id": "bundle_id",
+                "label": "bundle id"
+            },
+ 		  {
+                "type": "text",
+                "id": "bundle_label",
+                "label": "bundle label"
+            }
+]
+}
+]
   }
   {% endschema %} 

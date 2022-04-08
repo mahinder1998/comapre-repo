@@ -52,8 +52,7 @@ const SparxScripts = (() => {
           $(this).removeClass('link-is-active');
         });
         /* Mobile Nav */
-
-        $('.mb-burger-icon').click(function (e) {
+        jQuery(document).on('click','.mb-burger-icon', function(e){
           $('html').toggleClass('overh');
           $('#mb-mob-nav-cont').toggleClass('hide show');
           $('a[nav-lvl-three="ok"]').parent().parent().addClass('show');
@@ -134,9 +133,9 @@ const SparxScripts = (() => {
             }
           });
         });
-        $('.mb-cart-flex').click(function () {
-          $('.mini-cart-content').toggleClass('hide');
-        });
+        // $('.mb-cart-flex').click(function () {
+        //   $('.mini-cart-content').toggleClass('hide');
+        // });
         $(document).click(function(e){
           var mcart_cont = $(".mb-cart-flex");
           if (!mcart_cont.is(e.target) && mcart_cont.has(e.target).length === 0) { 

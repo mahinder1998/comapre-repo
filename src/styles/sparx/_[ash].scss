@@ -126,7 +126,7 @@ li{list-style: none;}
     content: "›\00a0";
     display: inline-block;
     padding-left: .75ch;
-    speak: none;
+    //speak: none;
   }
   
   .breadcrumbs [aria-current="page"] {
@@ -454,7 +454,7 @@ li.lvl-li-one.has-subs:hover > a {
 
 .single-mcart-item {
     display: flex;
-    justify-content: space-between;
+    //justify-content: space-between;
     align-items: center;
     padding-bottom: 10px;
     margin-bottom: 10px;
@@ -463,6 +463,7 @@ li.lvl-li-one.has-subs:hover > a {
 
 .mcart-thumb {
     max-width: 80px;
+    margin-right: 15px;
 }
 
 .mcart-content p {
