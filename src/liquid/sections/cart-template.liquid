@@ -442,7 +442,23 @@
               
               <!-- -->
               
-            
+            {% if section.settings.enable_shipping %}
+              <div class="item shipping-item">
+              <div class="shipping-item-row">
+              <div class="ship-img ship-img-desk">
+              <img class="lazy" src="{{ 'delivery-van.svg' | asset_url  }}" data-src="{{ 'delivery-van.svg' | asset_url  }}" width="50" />
+              </div>
+              <div class="shipping-description">
+              <h3>
+                <div class="ship-img ship-img-mob">
+                  <img class="lazy" src="{{ 'delivery-van.svg' | asset_url  }}" data-src="{{ 'delivery-van.svg' | asset_url  }}" width="50" />
+                  </div>
+                {{section.settings.shipping-title}}</h3>
+              <div class="shipping-des">{{section.settings.shipping-description}}</div>
+              </div>
+              </div>
+              </div>
+            {% endif %}
             
           </div>
     
@@ -554,7 +570,28 @@
     {
       "name": "Cart Settings",
       "settings": [
-  
+        {
+      "type": "header",
+      "content": "Shipping Delivery"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shipping",
+      "label": "Enable Shipping",
+      "default":true
+    },
+    {
+      "type": "text",
+      "id":"shipping-title",
+      "label":"Shipping title",
+      "default":"Next Day Delivery available!"
+    },
+    {
+      "type": "richtext",
+      "id":"shipping-description",
+      "label":"Shipping description",
+      "default":"<p>Place your order before 4pm and recieve complimentary delivery on orders above 500 AED *Conditions apply</p>"
+    },
         {
           "type": "checkbox",
           "id": "enable_gwp_content",
