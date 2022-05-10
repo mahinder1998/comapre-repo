@@ -11,7 +11,9 @@
         {%- assign product_gwp_1 = section.settings.gwp_above_value_1 -%}
         {% if product_gwp_1.selected_or_first_available_variant %}
           {% for variant in product_gwp_1.variants %}
-            {% assign var_id_a = variant.id | plus: 0 %}  
+            {% if variant.available %}
+              {% assign var_id_a = variant.id | plus: 0 %} 
+            {% endif %}   
           {% endfor%}
         {% endif %}        
       {% endif %}
@@ -20,7 +22,9 @@
         {%- assign product_gwp_2 = section.settings.gwp_above_value_2 -%}
         {% if product_gwp_2.selected_or_first_available_variant %}
           {% for variant in product_gwp_2.variants %}
-            {% assign var_id_b = variant.id | plus: 0 %}  
+            {% if variant.available %}
+              {% assign var_id_b = variant.id | plus: 0 %}
+            {% endif %}    
           {% endfor%}
         {% endif %}
       {% endif %}
@@ -29,7 +33,9 @@
         {%- assign product_gwp_3 = section.settings.gwp_below_value_1 -%} 
         {% if product_gwp_3.selected_or_first_available_variant %}
           {% for variant in product_gwp_3.variants %}
-            {% assign var_id_c = variant.id | plus: 0 %}  
+            {% if variant.available %}
+              {% assign var_id_c = variant.id | plus: 0 %}  
+            {% endif %}  
           {% endfor%}
         {% endif %}
       {% endif %}
