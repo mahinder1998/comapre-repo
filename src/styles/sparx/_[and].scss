@@ -1,5 +1,17 @@
 
 
+@font-face {
+    font-family: 'Century Gothic Bold';
+    src: url('CenturyGothic-Bold.woff2') format('woff2'),
+        url('CenturyGothic-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+
 /* Home-banner_with_overlay */
 .page-width {
     max-width: 1220px;
@@ -1066,3 +1078,133 @@ div#legend h3 {
         width: 100%;
     }
     }
+
+#TabbyPromo {
+           margin: 15px 0px;
+       }
+       #TabbyPromo {}
+
+       .styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__text--f30af {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7 {
+        position: relative;
+        margin-left: 20px !important;
+    }
+    
+    .styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7:before {
+        content: url('info-icon.png');
+        position: absolute;
+        left: -30px;
+        width: 10px;
+        transform: scale(.26);
+        position: absolute;
+        top: -22px;
+    }
+    .styles__tabby-promo-snippet--54518.styles__tabby-promo-snippet_font_inherit--b7b35 {
+        border: none;
+        border-bottom: solid 1px #ccc;
+        border-radius: 0;
+    }
+    span.styles__tabby-promo-snippet__link--5b4e7 {
+        text-decoration: none !important;
+    }
+    .styles__tabby-promo-snippet--54518.styles__tabby-promo-snippet_font_inherit--b7b35 {
+        padding-left: 0;
+    }
+
+    /* tabby style */
+.cart-main-data {
+    width: 70%;
+}
+.tabby-custom {
+    display: flex;
+    margin-top: 1.5rem;
+    gap: 10px;
+}
+.tb-content h3 {
+    margin: 0;
+}
+.tb-content p {
+    line-height: 1.5;
+}
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__text--f30af>span {
+    position: relative;
+}
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__text--f30af>span:after {
+    content: "";
+    width: 6px;
+    height: 15px;
+    background: #ffffff;
+    background: #ffffff;
+    position: absolute;
+    right: -3px;
+    top: 0;
+}
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7 {
+    color: #666666!important;
+    margin-left: 25px!important;
+}
+
+@media only screen and (min-width: 750px){
+  .right-side-cart {
+      width: calc(30% + 7px);
+  }
+}
+
+
+@media only screen and (max-width: 749px){
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__text--f30af {
+    font-size: 12px;
+}
+svg.styles__tabby-info__logo--becc0 {
+    width: 50px !important;
+}
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7:before {
+    transform: scale(.2);
+    left: -25px;
+}
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7 {
+    margin-left: 20px!important;
+}
+}
+
+
+
+/* tabby caret css start */
+.tabby-custom .tb-content h3 {
+    font-weight: 900;
+    color: #000;
+    font-size:1rem;
+}
+
+.tabby-custom .tb-content p {
+    margin: 4px 0;
+}
+.tabby-custom svg.styles__tabby-info__logo--becc0 {
+    width: 50px !important;
+}
+
+@media(max-width:748px) {
+    .cart-main-data { width:100%; }
+
+}
+
+span.styles__tabby-promo-snippet__text--f30af:after {
+    position: absolute;
+    content: '';
+    background: #fff;
+    width: 3px;
+    height: 19px;
+    right: 0;
+}
+
+.styles__tabby-promo-snippet__content--88401 {
+    position: relative;
+}
+/* tabby cart css end here */
