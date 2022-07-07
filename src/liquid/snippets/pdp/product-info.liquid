@@ -100,7 +100,20 @@
 
 
     
-
+    <div id="TabbyPromo"></div> 
+     
+   <script>
+   new TabbyPromo({
+     selector: '#TabbyPromo', 
+     currency: 'AED', 
+     price: '{{ current_variant.price | money_without_currency }}', 
+     installmentsCount: 4, 
+     source: 'cart', 
+     publicKey: 'pk_50d38c61-f2ee-4a6a-b60e-b03002fdf3be', 
+     merchantCode: 'sk_d5c968f4-168a-4442-9df1-747db3af8ad1'  
+   });
+   </script>
+    
 
     <div class="{% if current_variant.price <= 0 %}pdp__content__control hide{% else %}pdp__content__control{% endif %}">
         <div class="pdp__content__control__qty">
@@ -119,6 +132,7 @@
             </div>
         </div>
 
+ 
         {% if product.available %}
             <div 
                 class="pdp__content__control__add-to-cart-btn"

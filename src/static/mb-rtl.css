@@ -156,3 +156,54 @@ li.mobile-no {
 .pdp__content__control__qty__prev-icon, .pdp__content__control__qty__next-icon {
     transform: rotate(90deg) !important;
 }
+
+
+
+
+/* tabby pdp css start */
+.styles__tabby-promo-snippet--54518 {
+    direction: rtl;
+}
+
+.styles__tabby-promo-snippet__content--88401 {
+    margin-right: 0 !important;
+    margin-left: 16px !important;
+}
+
+.styles__tabby-promo-snippet--54518.styles__tabby-promo-snippet_font_inherit--b7b35 {
+    padding-left: 16px;
+    padding-right: 0;
+}
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__text--f30af>span:after {
+    right: -6px;
+}
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7 {
+    margin-left: 0 !important;
+    margin-right: 25px !important;
+}
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7:before {
+    left: 0 !important;
+    right: -30px !important;
+}
+
+
+
+@media only screen and (max-width: 749px){
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7:before {
+    left: auto;
+    right: -25px;
+}
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7 {
+    margin-left: 0px!important;
+    margin-left: 20px!important;
+}
+
+}
+/* tabby pdp css end  */
+
+

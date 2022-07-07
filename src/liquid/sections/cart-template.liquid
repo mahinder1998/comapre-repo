@@ -447,6 +447,7 @@
         {% endcomment %}
               
               <!-- -->
+               
               
             {% if section.settings.enable_shipping %}
               <div class="item shipping-item">
@@ -467,7 +468,7 @@
             {% endif %}
             
           </div>
-    
+          
           
           <div class="right-side-cart cart-main-prices">
     
@@ -523,12 +524,22 @@
               {% endif %}
             </div>
     
-    
+            <div class="tabby-custom">
+              <div class="tb-img">
+                {% render 'icon-tabby' %} 
+              </div>
+              <div class="tb-content">
+              <h3>Split into 4 Payments</h3>
+              <p>1/4 today, and the rest within 3 months without fees</p>
+              </div>
+            </div>
+
+
           </div>
         </div>
         
-      </form>
-    </section>
+      </form> 
+    </section> 
     {%else%}
     <section class="empty-section">
       <h1 class="cart-title">Your Cart</h1>
@@ -572,6 +583,10 @@
 </script>
 {% endif %}
 {% endif %}
+ 
+<script>
+//alert('a')
+</script>
   {% schema %}
     {
       "name": "Cart Settings",
