@@ -98,14 +98,61 @@
         </div>
     {% endunless %}
 
-
-    
+    <style>
+        .custom-tabby {
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 18px 0;
+        }
+            #TabbyPromo, #TabbyPromo2{
+              display:none;
+            }
+            #ct_payment_price {
+            font-weight: 700;
+        }
+            .ct-content {
+            font-size: 14px;
+            color: #292929;
+        }
+          .ct-learn {
+            display: flex;
+            margin-top: 5px;
+        }
+          .ct-learn #infoImg {
+            width: 17px;
+            margin-right: 5px;
+        }
+          </style>
+        <div class="custom-tabby">
+          <div class="ct-content">
+            <div class="ct-price">
+                {% if shop.locale == 'en' %}
+                <span id="ct_payments">or 4 interest-free payments of </span>
+                {% else %}
+                <span id="ct_payments">أو قسمها على 4 دفعات شهرية بقيمة</span>
+                {% endif %}
+                <span id="ct_payment_price"></span>
+              </div>
+            <div class="ct-learn">
+                {% if shop.locale == 'en' %}
+                    <img id="infoImg" src="{{ 'info-icon.png'| asset_url }}"><span>Learn more</span>
+                    {% else %}
+                    <img id="infoImg" src="{{ 'info-icon.png'| asset_url }}"><span>لمعرفة المزيد</span>
+                    {% endif %}
+            </div>
+          </div>
+          <div class="ct-icon">
+            {% render 'icon-tabby' %}
+          </div>
+        </div>
+    <div class="tabby-section">
     {% if product.variants.size > 1 %}
         <div id="TabbyPromo"></div>   
         {% else %}
         <div id="TabbyPromo2"></div>  
         {% endif %}
-    
+    </div>
 
     <div class="{% if current_variant.price <= 0 %}pdp__content__control hide{% else %}pdp__content__control{% endif %}">
         <div class="pdp__content__control__qty">
@@ -211,7 +258,7 @@ total_price_cart = parseInt(total_price_cart);
 })
 
 
-$('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div').on('click', function(){
+$('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
 
 setTimeout(function() {
   
@@ -219,28 +266,47 @@ setTimeout(function() {
   let getPrice =  $('.pdp__content__price__original').text();
  
   var total_price_cart = getPrice;
+  total_price_cart = total_price_cart.replace("Dhs. ", "");
   total_price_cart = total_price_cart.replace(/,/g, "");
   total_price_cart = parseInt(total_price_cart);
           //alert(myStr);
 
-  
-  total_price_cart = parseInt(total_price_cart);
-   
   let finalPrice = (total_price_cart / 4).toFixed(2);
+  finalPrice = " " + finalPrice;
  // $('#TabbyPromo span b').text(' '); 
  // console.log('patel123');
-  $('#TabbyPromo span strong, #TabbyPromo span b').text(' '); 
-  $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' AED'); 
+  let shadowSelection = document.querySelector("#TabbyPromo div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+  shadowSelection.firstChild.querySelector("strong").textContent = ' ';
+  shadowSelection.firstChild.querySelector("strong").textContent = finalPrice +' AED';
+  shadowSelection.firstChild.querySelector("strong").style.marginLeft = "3px";
+  // $('#TabbyPromo span strong, #TabbyPromo span b').text(' '); 
+  // $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' AED'); 
+
+  document.getElementById("ct_payment_price").innerHTML = finalPrice +' AED';
   
-  $('.styles__title--38ade span').text('Split in 4 interest-free payments of '+finalPrice);
+  $('.styles__title--38ade span').text('Split in 4 interest-free payments of '+finalPrice + ' AED');
   
   $('.styles__tabby-promo__graph-with-titles--8a6da .styles__tabby-promo__graph-with-titles__item-text--bdcb7.styles__tabby-promo__graph-with-titles__item-text_big--b6da4 div:nth-child(1)').text(finalPrice +' AED'); 
 }, 1000);
 });
 
+
  
 
-
+$(".custom-tabby").on("click",function(){
+    let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+    $(shadowSelection).trigger( "click" );
+  });
+  
 
 
 </script>
+
+<style>
+
+  .styles__tabby-promo-snippet--54518.styles__tabby-promo-snippet_font_inherit--b7b35 { background:#f00}
+span.styles__tabby-promo-snippet__text--f30af {
+    display: flex !important;
+    flex-direction: column !important;
+}
+</style>
