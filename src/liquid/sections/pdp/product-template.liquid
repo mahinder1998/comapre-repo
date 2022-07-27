@@ -32,7 +32,10 @@
     shadowSelection.firstChild.querySelector("strong").style.marginRight = "3px";
     shadowSelection.style.borderLeft="solid #fff"; 
     shadowSelection.style.color="#333";
+
     let load_price = shadowSelection.firstChild.querySelector("strong").textContent;
+    load_price = load_price.replace("AED","  د.إ.");
+    
     document.getElementById("ct_payment_price").innerHTML = load_price;
     infoImage = `<img id="infoImg" src="{{ 'info-icon.png'| asset_url }}">`;
     let span = document.createElement("span");
