@@ -123,6 +123,14 @@
             width: 17px;
             margin-right: 5px;
         }
+        {% if shop.locale == 'en' %}
+
+            {% else %}
+          .ct-learn span {
+            margin-right: 5px;
+        } 
+        .ct-learn #infoImg { margin-right:0px;}
+        {% endif %}
           </style>
         <div class="custom-tabby">
           <div class="ct-content">
@@ -212,7 +220,7 @@
 </style>
 
 
-<script src="https://checkout.tabby.ai/tabby-promo.js"></script>
+<script src="{{ 'tabby-promo.js' | asset_url }}"></script>
 <script>
 {% if product.variants.size > 1 %}
   new TabbyPromo({
@@ -238,70 +246,136 @@
 {% endif %} 
 
 </script>
+{% if request.locale.iso_code == 'ar' %}  
 <script>
     
-$(document).on("click",".styles__tabby-promo-wrapper--43068",function() {
-setTimeout(function() {
-let getPrice =  $('.pdp__content__price__original').text();
- 
-var total_price_cart = getPrice;
-total_price_cart = total_price_cart.replace(/,/g, "");
-total_price_cart = parseInt(total_price_cart);
-  //alert(total_price_cart);
-  total_price_cart = parseInt(total_price_cart);
-  let finalPrice = (total_price_cart / 4).toFixed(2);
- // $('#TabbyPromo span b').text(' '); 
- //console.log('patel123', finalPrice);
-  $('#TabbyPromo span strong, #TabbyPromo span b').text(' '); 
-  $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' AED');
-},600);
-})
+    $(document).on("click",".styles__tabby-promo-wrapper--43068",function() {
+    setTimeout(function() {
+    let getPrice =  $('.pdp__content__price__original').text();
+     
+    var total_price_cart = getPrice;
+    total_price_cart = total_price_cart.replace(/,/g, "");
+    total_price_cart = parseInt(total_price_cart);
+      //alert(total_price_cart);
+      total_price_cart = parseInt(total_price_cart);
+      let finalPrice = (total_price_cart / 4).toFixed(2);
+     // $('#TabbyPromo span b').text(' '); 
+     //console.log('patel123', finalPrice);
+      $('#TabbyPromo span strong, #TabbyPromo span b').text(' '); 
+      $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' د.إ');
+    },600);
+    })
+    
+    
+    $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
+    
+    setTimeout(function() {
+      
+      
+      let getPrice =  $('.pdp__content__price__original').text();
+     
+      var total_price_cart = getPrice;
+      total_price_cart = total_price_cart.replace("د.إ ", "");
+      total_price_cart = total_price_cart.replace(/,/g, "");
+      total_price_cart = parseInt(total_price_cart);
+              //alert(myStr);
+    
+      let finalPrice = (total_price_cart / 4).toFixed(2);
+      finalPrice = " " + finalPrice;
+     // $('#TabbyPromo span b').text(' '); 
+     // console.log('patel123');
+      let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+      shadowSelection.firstChild.querySelector("strong").textContent = ' ';
+      shadowSelection.firstChild.querySelector("strong").textContent = finalPrice +' د.إ';
+      shadowSelection.firstChild.querySelector("strong").style.marginLeft = "3px";
+      // $('#TabbyPromo span strong, #TabbyPromo span b').text(' '); 
+      // $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' د.إ'); 
+    
+      document.getElementById("ct_payment_price").innerHTML = finalPrice +' د.إ';
+      
+      $('.styles__title--38ade span').text('Split in 4 interest-free payments of '+finalPrice + ' د.إ');
+      
+      $('.styles__tabby-promo__graph-with-titles--8a6da .styles__tabby-promo__graph-with-titles__item-text--bdcb7.styles__tabby-promo__graph-with-titles__item-text_big--b6da4 div:nth-child(1)').text(finalPrice +' د.إ'); 
+    }, 1000);
+    });
+    
+    
+     
+    
+    $(".custom-tabby").on("click",function(){
+        let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+        $(shadowSelection).trigger( "click" );
+      });
+      
+    
+    
+    </script>
+{% else %}
+<script>
+    
+    $(document).on("click",".styles__tabby-promo-wrapper--43068",function() {
+    setTimeout(function() {
+    let getPrice =  $('.pdp__content__price__original').text();
+     
+    var total_price_cart = getPrice; 
+    total_price_cart = total_price_cart.replace(/,/g, "");
+    total_price_cart = parseInt(total_price_cart);
+      //alert(total_price_cart);
+      total_price_cart = parseInt(total_price_cart);
+      let finalPrice = (total_price_cart / 4).toFixed(2);
+     // $('#TabbyPromo span b').text(' '); 
+     //console.log('patel123', finalPrice);
+      $('#TabbyPromo span strong, #TabbyPromo span b').text(' '); 
+      $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' AED');
+    },600);
+    })
+    
+    
+    $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
+    
+    setTimeout(function() {
+      
+      
+      let getPrice =  $('.pdp__content__price__original').text();
+     
+      var total_price_cart = getPrice;
+      total_price_cart = total_price_cart.replace("AED ", ""); 
+      total_price_cart = total_price_cart.replace(/,/g, "");
+      total_price_cart = parseInt(total_price_cart);
+              //alert(myStr);
+    
+      let finalPrice = (total_price_cart / 4).toFixed(2);
+      finalPrice = " " + finalPrice;
+     // $('#TabbyPromo span b').text(' '); 
+     // console.log('patel123');
+      let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+      shadowSelection.firstChild.querySelector("strong").textContent = ' ';
+      shadowSelection.firstChild.querySelector("strong").textContent = finalPrice +' AED';
+      shadowSelection.firstChild.querySelector("strong").style.marginLeft = "3px";
+      // $('#TabbyPromo span strong, #TabbyPromo span b').text(' '); 
+      // $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' AED'); 
+    
+      document.getElementById("ct_payment_price").innerHTML = finalPrice +' AED';
+      
+      $('.styles__title--38ade span').text('Split in 4 interest-free payments of '+finalPrice + ' AED');
+      
+      $('.styles__tabby-promo__graph-with-titles--8a6da .styles__tabby-promo__graph-with-titles__item-text--bdcb7.styles__tabby-promo__graph-with-titles__item-text_big--b6da4 div:nth-child(1)').text(finalPrice +' AED'); 
+    }, 1000);
+    });
+    
+    
+     
+    
+    $(".custom-tabby").on("click",function(){
+        let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+        $(shadowSelection).trigger( "click" );
+      });
+      
+    
+    
+    </script>
 
-
-$('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
-
-setTimeout(function() {
-  
-  
-  let getPrice =  $('.pdp__content__price__original').text();
- 
-  var total_price_cart = getPrice;
-  total_price_cart = total_price_cart.replace("Dhs. ", "");
-  total_price_cart = total_price_cart.replace(/,/g, "");
-  total_price_cart = parseInt(total_price_cart);
-          //alert(myStr);
-
-  let finalPrice = (total_price_cart / 4).toFixed(2);
-  finalPrice = " " + finalPrice;
- // $('#TabbyPromo span b').text(' '); 
- // console.log('patel123');
-  let shadowSelection = document.querySelector("#TabbyPromo div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
-  shadowSelection.firstChild.querySelector("strong").textContent = ' ';
-  shadowSelection.firstChild.querySelector("strong").textContent = finalPrice +' AED';
-  shadowSelection.firstChild.querySelector("strong").style.marginLeft = "3px";
-  // $('#TabbyPromo span strong, #TabbyPromo span b').text(' '); 
-  // $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' AED'); 
-
-  document.getElementById("ct_payment_price").innerHTML = finalPrice +' AED';
-  
-  $('.styles__title--38ade span').text('Split in 4 interest-free payments of '+finalPrice + ' AED');
-  
-  $('.styles__tabby-promo__graph-with-titles--8a6da .styles__tabby-promo__graph-with-titles__item-text--bdcb7.styles__tabby-promo__graph-with-titles__item-text_big--b6da4 div:nth-child(1)').text(finalPrice +' AED'); 
-}, 1000);
-});
-
-
- 
-
-$(".custom-tabby").on("click",function(){
-    let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
-    $(shadowSelection).trigger( "click" );
-  });
-  
-
-
-</script>
-
+{% endif %}
 <style>
 
   .styles__tabby-promo-snippet--54518.styles__tabby-promo-snippet_font_inherit--b7b35 { background:#f00}
