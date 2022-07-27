@@ -1179,12 +1179,12 @@ svg.styles__tabby-info__logo--becc0 {
 /* tabby caret css start */
 .tabby-custom .tb-content h3 {
     font-weight: 900;
-    color: #000;
+    color: #001022;
     font-size:1rem;
 }
 
 .tabby-custom .tb-content p {
-    margin: 4px 0;
+    margin: 4px 0; color:#001022;
 }
 .tabby-custom svg.styles__tabby-info__logo--becc0 {
     width: 50px !important;
@@ -1208,3 +1208,7 @@ span.styles__tabby-promo-snippet__text--f30af:after {
     position: relative;
 }
 /* tabby cart css end here */
+
+.tb-content p {
+    font-size: 12px;
+}

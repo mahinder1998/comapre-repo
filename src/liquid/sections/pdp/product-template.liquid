@@ -16,7 +16,80 @@
 } %}
 
 
+{% if request.locale.iso_code == 'ar' %}  
+<script>
+  const observer = new MutationObserver((mutationRecords) => {         
+    let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+    let contentShowdowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet--54518");
+    shadowSelection.style.display = "flex";
+    shadowSelection.style.flexDirection = "column";
+    shadowSelection.style.direction = "rtl";
+    shadowSelection.firstChild.style.display = "flex"; 
+    shadowSelection.firstChild.style.marginLeft = '-2px'; 
+    shadowSelection.firstChild.style.backgroundColor = '#fff'; 
+    shadowSelection.firstChild.style.zIndex = '-1'; 
+    shadowSelection.firstChild.style.flexWrap = "wrap"; 
+    shadowSelection.firstChild.querySelector("strong").style.marginRight = "3px";
+    shadowSelection.style.borderLeft="solid #fff"; 
+    shadowSelection.style.color="#333";
+    let load_price = shadowSelection.firstChild.querySelector("strong").textContent;
+    document.getElementById("ct_payment_price").innerHTML = load_price;
+    infoImage = `<img id="infoImg" src="{{ 'info-icon.png'| asset_url }}">`;
+    let span = document.createElement("span");
+    shadowSelection.lastChild.prepend(span);
+    shadowSelection.lastChild.firstChild.innerHTML = infoImage;
+    shadowSelection.lastChild.style.display = "flex";
+    shadowSelection.lastChild.style.textDecoration = "none";
+    shadowSelection.lastChild.style.color = "#626262";
+    document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.width = "15px";
+    document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.marginTop = "3px";
+    document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.marginLeft = "5px";
+    contentShowdowSelection.style.border = "none";
+    contentShowdowSelection.style.paddingLeft = "0";
+    contentShowdowSelection.style.paddingRight = "0"; 
+    contentShowdowSelection.style.flexDirection = "row-reverse";
+  });
+  observer.observe(document.querySelector("#TabbyPromo, #TabbyPromo2"), {
+    childList: true
+  })
+</script>
+{% else %}
 
+<script>
+  const observer = new MutationObserver((mutationRecords) => {         
+    let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+    let contentShowdowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet--54518");
+    shadowSelection.style.display = "flex";
+    shadowSelection.style.flexDirection = "column";
+    shadowSelection.firstChild.style.display = "flex"; 
+    shadowSelection.firstChild.style.marginRight = '-3px'; 
+    shadowSelection.firstChild.style.backgroundColor = '#fff'; 
+    shadowSelection.firstChild.style.zIndex = '-1'; 
+    shadowSelection.firstChild.style.flexWrap = "wrap"; 
+    shadowSelection.firstChild.querySelector("strong").style.marginLeft = "3px";
+    shadowSelection.style.borderRight="solid #fff"; 
+    shadowSelection.style.color="#333";
+    let load_price = shadowSelection.firstChild.querySelector("strong").textContent;
+    document.getElementById("ct_payment_price").innerHTML = load_price;
+    infoImage = `<img id="infoImg" src="{{ 'info-icon.png'| asset_url }}">`;
+    let span = document.createElement("span");
+    shadowSelection.lastChild.prepend(span);
+    shadowSelection.lastChild.firstChild.innerHTML = infoImage;
+    shadowSelection.lastChild.style.display = "flex";
+    shadowSelection.lastChild.style.textDecoration = "none";
+    shadowSelection.lastChild.style.color = "#626262";
+    document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.width = "15px";
+    document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.marginTop = "3px";
+    document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.marginRight = "5px";
+    contentShowdowSelection.style.border = "none";
+    contentShowdowSelection.style.paddingLeft = "0";
+    contentShowdowSelection.style.paddingRight = "0"; 
+  });
+  observer.observe(document.querySelector("#TabbyPromo, #TabbyPromo2"), {
+    childList: true
+  })
+</script>
+{%endif %}
 {% schema %}
 {
     "name" : "Product",
