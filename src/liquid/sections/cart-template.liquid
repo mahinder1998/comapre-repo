@@ -529,8 +529,13 @@
                 {% render 'icon-tabby' %} 
               </div>
               <div class="tb-content">
+                {% if request.locale.iso_code == 'ar' %}  
+                <h3 style="font-size:14px;">قسمها على 4 دفعات وبدون فوائد</h3>
+                <p>1/4 اليوم والباقي على 3 أشهر بدون رسوم </p>
+                {% else %}
               <h3>Split into 4 Payments</h3>
               <p>1/4 today, and the rest within 3 months without fees</p>
+              {% endif %}
               </div>
             </div>
 
