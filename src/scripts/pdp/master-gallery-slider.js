@@ -14,7 +14,7 @@ const MediaGallery = (() => {
     if (slide.media_type === "image") {
       const slideHTML = `
                 <div class="pdp__media__master__slide">
-                    <img src="${slide?.src}" alt="" class="pdp__media__master__slide__img">
+                    <img src="${slide?.src}" alt="${slide?.alt}" class="pdp__media__master__slide__img">
                 </div>
             `;
       document
@@ -146,7 +146,7 @@ const MediaGallery = (() => {
             if (media.alt === null) {
               return medias;
             } else {
-              return media.alt && media.alt.includes(currentAlt);
+              return media.alt;
             }
           });
 
