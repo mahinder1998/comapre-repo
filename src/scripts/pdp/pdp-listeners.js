@@ -421,9 +421,8 @@ const PDPListeners = (function () {
 
                 //Update the Sliders.
                 const medias = window.objectData.product.media;
-                const meidaFilterText = `__${selectedOption}__`;
-                const selectedImages = medias.filter(item => item.alt && item.alt.includes(meidaFilterText))
-                // console.log(selectedImages)
+                const meidaFilterText = `_${selectedOption}_`;
+                const selectedImages = medias.filter(item => item.alt && item.alt.includes(meidaFilterText));
 
                 let masterGalleryHTMLString = "";
 
