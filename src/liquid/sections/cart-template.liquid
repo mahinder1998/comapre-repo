@@ -375,8 +375,8 @@
             
             
               <!-- -->
-              {% comment %}
               
+              {% if section.settings.enable_gift_message %}
               <div class="cart__footer">
           <div class="grid-wrapper">
     
@@ -444,7 +444,7 @@
           </div>
         </div>
 
-        {% endcomment %}
+         {% endif %}
               
               <!-- -->
                
@@ -596,6 +596,15 @@
     {
       "name": "Cart Settings",
       "settings": [
+        {
+          "type": "header",
+          "content": "Gift Box & Message"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_gift_message",
+          "label": "Enable Gift Box & Message"
+        },
         {
       "type": "header",
       "content": "Shipping Delivery"
