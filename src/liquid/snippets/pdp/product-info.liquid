@@ -162,6 +162,10 @@
         {% endif %}
     </div>
 
+<div class="tamara-widget">
+    {% render 'tamara' %}
+</div>
+
     <div class="{% if current_variant.price <= 0 %}pdp__content__control hide{% else %}pdp__content__control{% endif %}">
         <div class="pdp__content__control__qty">
             <div class="pdp__content__control__qty__prev">
@@ -267,7 +271,7 @@
     })
     
     
-    $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
+    $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby, .tamara-product-widget').on('click', function(){
     
     setTimeout(function() {
       
@@ -281,6 +285,7 @@
               //alert(myStr);
     
       let finalPrice = (total_price_cart / 4).toFixed(2);
+      let finalPrice2 = (total_price_cart / 3).toFixed(2);
       finalPrice = " " + finalPrice;
      // $('#TabbyPromo span b').text(' '); 
      // console.log('patel123');
@@ -292,8 +297,14 @@
       // $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' د.إ'); 
     
       document.getElementById("ct_payment_price").innerHTML = finalPrice +' د.إ';
+
+       let getTamara = document.querySelector(".tamara-product-price");
+        getTamara.textContent = 'د.إ '+ finalPrice2;
+       // console.log("getTamara",getTamara);
       
       $('.styles__title--38ade span').text('Split in 4 interest-free payments of '+finalPrice + ' د.إ');
+
+      $('.tamara-popup__moto').text('قسم فاتورتك على 3 دفعات بقيمة د.إ '+finalPrice2 +' بدون فوائد'); 
       
       $('.styles__tabby-promo__graph-with-titles--8a6da .styles__tabby-promo__graph-with-titles__item-text--bdcb7.styles__tabby-promo__graph-with-titles__item-text_big--b6da4 div:nth-child(1)').text(finalPrice +' د.إ'); 
     }, 1000);
@@ -331,7 +342,7 @@
     })
     
     
-    $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
+    $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby, .tamara-product-widget').on('click', function(){
     
     setTimeout(function() {
       
@@ -345,6 +356,7 @@
               //alert(myStr);
     
       let finalPrice = (total_price_cart / 4).toFixed(2);
+      let finalPrice2 = (total_price_cart / 3).toFixed(2);
       finalPrice = " " + finalPrice;
      // $('#TabbyPromo span b').text(' '); 
      // console.log('patel123');
@@ -356,8 +368,16 @@
       // $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' AED'); 
     
       document.getElementById("ct_payment_price").innerHTML = finalPrice +' AED';
+
+      let getTamara = document.querySelector(".tamara-product-price");
+        getTamara.textContent = 'AED '+ finalPrice2;
+       // console.log("getTamara",getTamara);
       
       $('.styles__title--38ade span').text('Split in 4 interest-free payments of '+finalPrice + ' AED');
+        $('.tamara-popup__moto').text('Split your bill into 3 payments of AED '+finalPrice2 +' interest-free');
+
+      
+      
       
       $('.styles__tabby-promo__graph-with-titles--8a6da .styles__tabby-promo__graph-with-titles__item-text--bdcb7.styles__tabby-promo__graph-with-titles__item-text_big--b6da4 div:nth-child(1)').text(finalPrice +' AED'); 
     }, 1000);
