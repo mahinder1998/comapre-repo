@@ -1388,4 +1388,19 @@ padding-left: 0 !important;
   padding-left: 22px;
 }
 
+.tamara-icon-cart img {
+  width: 50px;
+}
+.tamara-icon-cart {
+  padding-right: 10px;
+}
+
+.tamara-icon-cart .tb-img {
+  width: 50px;
+}
+
+.tamara-icon-cart .tb-content {
+   width: calc(100% - 50px);
+}
+
 //tamara css end
