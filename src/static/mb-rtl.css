@@ -207,3 +207,11 @@ li.mobile-no {
 /* tabby pdp css end  */
 
 
+/* register page password page css  */
+
+.password-action span {
+    right: auto !important;
+    left: 10px;
+}
+
+/* register page password page end  */

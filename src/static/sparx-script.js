@@ -257,26 +257,26 @@ $(document).ready(function () {
 
 // Deepak
 $( document ).ready(function() {
-    $(".toggle-password").click(function() {
-      $(this).toggleClass("fa-eye fa-eye-slash");
-      var input = $('.password-splash');
-      if (input.attr("type") == "password") {
-        input.attr("type", "text");
-      } else {
-        input.attr("type", "password");
-      }
-    });
+    // $(".toggle-password").click(function() {
+    //   $(this).toggleClass("fa-eye fa-eye-slash");
+    //   var input = $('.password-splash');
+    //   if (input.attr("type") == "password") {
+    //     input.attr("type", "text");
+    //   } else {
+    //     input.attr("type", "password");
+    //   }
+    // });
   
   
-    $(".toggle-password-conf").click(function() {
-      $(this).toggleClass("fa-eye fa-eye-slash");
-      var input = $('.password-splash-conf');
-      if (input.attr("type") == "password") {
-        input.attr("type", "text");
-      } else {
-        input.attr("type", "password");
-      }
-    });
+    // $(".toggle-password-conf").click(function() {
+    //   $(this).toggleClass("fa-eye fa-eye-slash");
+    //   var input = $('.password-splash-conf');
+    //   if (input.attr("type") == "password") {
+    //     input.attr("type", "text");
+    //   } else {
+    //     input.attr("type", "password");
+    //   }
+    // });
   
   
     var inputError=false;

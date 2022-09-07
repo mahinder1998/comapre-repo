@@ -1,3 +1,34 @@
+
+<style>
+.password-action span {
+    position: absolute;
+    top: 39px;
+    width: 16px;
+    height: 16px;
+    right: 10px;
+    vertical-align: middle;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    opacity: .7;
+    cursor: pointer;
+}
+.password-action span svg {
+    height: 18px;
+    width: 18px;
+}
+.password-action span.password-toggle-hide {
+    display: none;
+}
+.password-action.active span.password-toggle-hide {
+    display: flex;
+}
+.password-action.active span.password-toggle-show {
+    display: none;
+}
+ 
+</style>
+
 <div class="page-container register-page">
   <div class="login-wrap register-wrap">
     <div class="comon-header">
@@ -95,7 +126,15 @@
             <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
           </span>
           {%- endif -%}
-          <span toggle="#RegisterForm-password" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
+          
+          <div id="toggle-password" class="password-action">
+              <span class="password-toggle-show">
+                <img src="{{ 'password-hide.svg'| asset_url }}" alt="password-hide">
+              </span>
+              <span class="password-toggle-hide">
+                <img src="{{ 'password-show.svg'| asset_url }}" alt="password-show">
+              </span>
+          </div>
 
         </div> 
 
@@ -103,7 +142,14 @@
           <label for="{{ formId }}-password">Confirm Password<span class="red-label">*</span></label>
           <input required type="password" value=""  name="customer[confirm-password]" id="confirm-password" class="confirm password-splash-conf custom-check" />
           <span class="not-valid" style="display:none">Confirm password is mandatory</span>        
-          <span toggle="#RegisterForm-passwords" class="fa fa-fw fa-eye-slash field-icon toggle-password-conf"></span>
+          <div id="toggle-password" class="password-action">
+              <span class="password-toggle-show">
+                <img src="{{ 'password-hide.svg'| asset_url }}" alt="password-hide">
+              </span>
+              <span class="password-toggle-hide">
+                <img src="{{ 'password-show.svg'| asset_url }}" alt="password-show">
+              </span>
+          </div> 
           <span class="error-msg" style="display:none">Your password not matched.</span>
         </div>
 

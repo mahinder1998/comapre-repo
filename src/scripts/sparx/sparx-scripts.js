@@ -245,26 +245,39 @@ const SparxScripts = (() => {
       }); // Deepak
 
       $(document).ready(function () {
-        $(".toggle-password").click(function () {
-          $(this).toggleClass("fa-eye fa-eye-slash");
-          var input = $('.password-splash');
+        // $(".toggle-password").click(function () {
+        //   $(this).toggleClass("fa-eye fa-eye-slash");
+        //   var input = $('.password-splash');
 
-          if (input.attr("type") == "password") {
-            input.attr("type", "text");
-          } else {
-            input.attr("type", "password");
-          }
-        });
-        $(".toggle-password-conf").click(function () {
-          $(this).toggleClass("fa-eye fa-eye-slash");
-          var input = $('.password-splash-conf');
+        //   if (input.attr("type") == "password") {
+        //     input.attr("type", "text");
+        //   } else {
+        //     input.attr("type", "password");
+        //   }
+        // });
+        // $(".toggle-password-conf").click(function () {
+        //   $(this).toggleClass("fa-eye fa-eye-slash");
+        //   var input = $('.password-splash-conf');
 
-          if (input.attr("type") == "password") {
-            input.attr("type", "text");
-          } else {
-            input.attr("type", "password");
-          }
-        });
+        //   if (input.attr("type") == "password") {
+        //     input.attr("type", "text");
+        //   } else {
+        //     input.attr("type", "password");
+        //   }
+        // });
+
+        // hide show password 
+
+      $(".password-action").click(function () {
+        $(this).toggleClass("active");
+        let input = $(this).parent().find("input");
+        if (input.attr("type") == "password") {
+          input.attr("type", "text");
+        } else {
+          input.attr("type", "password");
+        } 
+      });
+
         var inputError = false;
         $(".password-splash-conf").on('keyup', function (event) {
           if (event.target.value != document.getElementById('RegisterForm-password').value) {
