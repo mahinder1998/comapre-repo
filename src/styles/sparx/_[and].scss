@@ -718,21 +718,12 @@ blockquote p {
     margin: 0;
     line-height: 20px;
 }
-.quote_box blockquote:before {
-    content: "\f10d";
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 60px;
-    font-style: italic;
+.left_colm.ab_quote blockquote>img {
+    width: 73px;
     position: absolute;
-    top: 0;
-    z-index: 1;
-    color: rgba(0, 0, 0, 0.2);
-    left: 0;
+    margin-left: -6px;
+    margin-top: -8px;
+    opacity: .2;
 }
 /* about page css end */
 
@@ -1082,7 +1073,7 @@ div#legend h3 {
 #TabbyPromo {
            margin: 15px 0px;
        }
-       #TabbyPromo {}
+       
 
        .styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__text--f30af {
         display: flex;
