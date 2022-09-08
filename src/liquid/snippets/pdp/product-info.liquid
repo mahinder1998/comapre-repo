@@ -290,8 +290,16 @@
 
 <!-- tamara code js end -->
 
+{% comment %}
+  <script src="{{ 'tabby-promo.js' | asset_url }}"></script>
+{% endcomment %}
 
-<script src="{{ 'tabby-promo.js' | asset_url }}"></script>
+<!-- tabby js file update -->
+
+<script src="https://checkout.tabby.ai/tabby-promo.js"></script>
+
+
+
 <script>
 {% if product.variants.size > 1 %}
   new TabbyPromo({
