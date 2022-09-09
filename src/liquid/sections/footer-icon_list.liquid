@@ -3,11 +3,14 @@
  {% for block in section.blocks %}   
     <div class="shipping-items">
       <div class="shipping-img">
-      	<img src="{{ block.settings.imgepic | img_url:'65px'}}"/>
+      	<img src="{{ block.settings.imgepic | img_url:'65px'}}" 
+              width="{{ block.settings.img_width }}px" 
+              height="{{ block.settings.img_height }}px" 
+        />
       </div>
       <div class="shipping-des">{{ block.settings.title }} </div>
     </div>
-  {% endfor %} 
+  {% endfor %}
     
     
   </div>
@@ -21,23 +24,32 @@
 	 "blocks": [
       {
         "type": "icon",
-		"name": "icon",
-        "settings": [
-		{
-          "type":"image_picker",
-          "id":"imgepic",
-          "label":"icon"
-          },
-          {
-            "type": "text",
-            "id": "title",
-            "label": "text"
+        "name": "icon",
+            "settings": [
+                {
+                  "type":"image_picker",
+                  "id":"imgepic",
+                  "label":"icon"
+                },
+                {
+                  "type": "text",
+                  "id": "title",
+                  "label": "text"
+                },
+                {
+                  "type": "text",
+                  "id": "img_width",
+                  "label": "Image Width: ",
+                  "default": "100"
+                },
+                {
+                  "type": "text",
+                  "id": "img_height",
+                  "label": "Image Height: ",
+                  "default": "100"
+                }
+            ]
           }
-          
-        ]
-      }
-
-      
     ]
   }
 {% endschema %}
