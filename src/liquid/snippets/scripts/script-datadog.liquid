@@ -6,18 +6,16 @@
         n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
         })(window,document,'script','https://www.datadoghq-browser-agent.com/datadog-rum-v4.js','DD_RUM')
         DD_RUM.onReady(function() {
-        DD_RUM.init({
-            applicationId: '5fe8202c-504a-489e-b000-fe00a5507850',
-            clientToken: 'pub4a66b672f78d659d70bf70c3c30e5a75',
-            site: 'datadoghq.eu',
-            service:'molton-brown-ae',
-            env:'production',
-            version: '1.0.0',
-            sampleRate: 40,
-            trackInteractions: true
-        });
-    
-        DD_RUM.startSessionReplayRecording();
+            DD_RUM.init({
+                applicationId: '5fe8202c-504a-489e-b000-fe00a5507850',
+                clientToken: 'pub4a66b672f78d659d70bf70c3c30e5a75',
+                site: 'datadoghq.eu',
+                service:'molton-brown-ae',
+                env:'production',
+                version: '1.0.0',
+                sampleRate: 40,
+                trackInteractions: true
+            });
         })
   </script>
 {% endif %}
