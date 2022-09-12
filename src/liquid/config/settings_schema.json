@@ -207,6 +207,21 @@
         "id": "privatesale_welcome_button_label_ar",
         "type": "text",
         "label": "CTA Button Text"
+      },
+      {
+        "name": "search",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Search"
+          },
+          {
+            "type": "checkbox",
+            "id": "predictive_search_enabled",
+            "label": "Search Prediction",
+            "default": true
+          }
+        ]
       }
     ]
   }

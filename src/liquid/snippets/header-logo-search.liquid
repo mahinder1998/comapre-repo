@@ -40,25 +40,28 @@
        <div class="tb-logo-last">
          <div class="mb-search-logo-flex">
             <div class="mb-search-flex">
-               <div class="search-input>">
-                  <form style="display: none;" action="{{ routes.search_url }}"> <input type="text" placeholder="Search"
-                     name="q" value="{{ search.terms | escape }}"> </form>
+               <div class="search-input">
+
+                  
 
                      <div id="searchbar" class="collapsed">
                         <div clsss="search-box">
                            <div class="sliding-panel-outer">
                               <div class="sliding-panel-inner">
-                                 <form action="{{ routes.search_url }}" method="get" role="search"
-                                 class="search-form search-page-form">
-
-                                 <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="search"
-                                 role="combobox" aria-autocomplete="list" aria-owns="predictive-search-results"
-                                 aria-expanded="false" aria-label="search" aria-haspopup="listbox"
-                                 class="search-form__input search-input" data-search-page-predictive-search-input
-                                 data-base-url="{{ routes.search_url }}" />
-
-                                 <input type="hidden" name="options[prefix]" value="last" aria-hidden="true" />
+                                 <form class="search desk_search" action="{{ routes.search_url }}">
+                                    <div class="input-rounded search">
+                                          <input type="text" class="dsk_search-input"
+                                             placeholder="{{section.settings.placeholder}}"
+                                             name="q"
+                                             value="{{ search.terms | escape }}" autocomplete="off">
+                                          <input type="hidden" name="type" value="product" />
+                                          <input type="hidden" name="options[unavailable_products]" value="hide" />
+                                          <input type="hidden" name="options[prefix]" value="last" />    
+                                          {% comment %}<input type="submit" class="search_button" value="Search">{% endcomment %}
+                                    </div>
+                                    <div class="search_result_container"></div>
                               </form>
+
                            </div>
                         </div>
 
