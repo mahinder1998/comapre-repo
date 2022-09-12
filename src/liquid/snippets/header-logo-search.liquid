@@ -24,11 +24,15 @@
 <section class="mb-top-logo">
    <div class="mb-tool-logo-flex">
       <div class="tb-logo-left">
-         <a class="mb-logo-2 mb-logo-2__imgbox" href="{{shop.url}}"><img
-            class="mb-logo-2__img"
-            src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232"
-            alt=""></a>
-            <a class="mb-burger-icon" href="#"><img class="lazy" data-src="{{ 'mb-icon-mob-nav.svg' | asset_url }}" width="23px" height="20px" alt=""></a>
+         <a class="mb-logo-2 mb-logo-2__imgbox" href="{{shop.url}}">
+            <img
+            class="mb-logo-2__img lazy"
+            src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_1x1.png?v=1623487232"
+            data-src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232"
+            alt="">
+         </a>
+         
+         <a class="mb-burger-icon" href="#"><img class="lazy" data-src="{{ 'mb-icon-mob-nav.svg' | asset_url }}" width="23px" height="20px" alt=""></a>
          </div>
          <div class="tb-logo-mid">
           {% if request.locale.iso_code == 'en' %}
