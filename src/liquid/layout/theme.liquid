@@ -7,6 +7,18 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="canonical" href="{{ canonical_url }}">
       <link rel="shortcut icon" href="{{ 'mb-favicon.png' | asset_url }}">
+
+      <link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://cdn.shopify.com/s/files/1/0575/8517/2679/t/40/assets/CenturyGothic.woff2?v=79435038297128845861662690447" />
+
+      <link rel="preload" as="style" href="https://cdn.shopify.com/s/files/1/0575/8517/2679/t/40/assets/boost-pfs-custom-sparx.css?v=50222765599397966331662690447" />
+      <link rel="preload" as="style" href="https://cdn.shopify.com/s/files/1/0575/8517/2679/t/40/assets/theme.css?v=161029311612312793811662706093" />
+      <link rel="preload" as="style" href="https://cdn.shopify.com/s/files/1/0575/8517/2679/t/40/assets/bundle.css?v=38030263151046594021662690447" />
+
+      <link rel="preload" as="script" href="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" />
+      <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" />
+      <link rel="preload" as="script" href="https://cdn.shopify.com/s/files/1/0575/8517/2679/t/40/assets/theme.js?v=137151697700891135871662690447" />
+      <link rel="preload" as="script" href="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver%2CIntersectionObserverEntry%2CMutationObserver" />
+
       {%- capture seo_title -%}
       {%- if request.page_type == 'search' and search.performed == true -%}
       {{ 'general.search.heading' | t: count: search.results_count }}: {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
@@ -45,9 +57,11 @@
   
       {{ content_for_header }}
   
-      <!-- Slick styles  -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      {% if template != "index" %}
+         <!-- Slick styles  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      {% endif %}
      
       <!-- MB Styles  -->
       {% if request.locale.iso_code == 'ar' %}  
@@ -107,11 +121,14 @@
   
       
       <!-- Axios  -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
-      <!-- Slick -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    <!-- Molton Brown script  -->
-      {% comment %} GSAP  {% endcomment %}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script> 
+      
+      {% if template != "index" %}
+          <!-- Slick -->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    <!-- Molton Brown script  -->
+          {% comment %} GSAP  {% endcomment %}
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+      {% endif %}
   
       <!-- Molton Brown Script  -->
       <script src="{{ 'theme.js' | asset_url }}"></script>
