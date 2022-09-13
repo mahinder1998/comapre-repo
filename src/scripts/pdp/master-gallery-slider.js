@@ -81,6 +81,7 @@ const MediaGallery = (() => {
       dots: false,
       arrows: true,
       fade: true,
+      lazyload: 'anticipated',
       prevArrow: $(
         ".pdp__media__master__slider__arrow.pdp__media__master__slider__arrow-prev"
       ),

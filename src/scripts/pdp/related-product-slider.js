@@ -5,6 +5,7 @@ const RelatedProductSlider = (() => {
                 slidesToShow: 5,
                 dots: false,
                 arrows: true,
+                lazyload: 'anticipated',
                 prevArrow: $('.pdp-like__slider__arrow.pdp-like__slider__arrow-prev'),
                 nextArrow: $('.pdp-like__slider__arrow.pdp-like__slider__arrow-next'),
                 responsive: [
