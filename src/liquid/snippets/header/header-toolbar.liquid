@@ -65,13 +65,13 @@
             <ul class="custom-selection" id="selection-store">
 
               <li>
-                <a href="{{section.settings.ksa_text_url | default: "https://molton-brown-ksa.myshopify.com/"}}" target="_blank">{% if section.settings.ksa_img != empty %}<img src="{{section.settings.ksa_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.ksa_text | default: "KSA"}} </a>
+                <a href="{{section.settings.ksa_text_url | default: "https://molton-brown-ksa.myshopify.com/"}}" target="_blank">{% if section.settings.ksa_img != empty %}<img class="lazy" src="{{section.settings.ksa_img | img_url: "1x1"}}" data-src="{{section.settings.ksa_img | img_url: "21x21"}}" alt="icon" width="21px" height="21px">{%endif%} {{section.settings.ksa_text | default: "KSA"}} </a>
               </li>
             </ul>
           </div>
         </li>
         <li class="uae-field">
-          <a href="{{section.settings.uae_text_url | default: "https://molton-brown-uae.myshopify.com/" }}" target="_blank">{% if section.settings.uae_img != empty %}<img src="{{section.settings.uae_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.uae_text | default: "UAE"}} </a>
+          <a href="{{section.settings.uae_text_url | default: "https://molton-brown-uae.myshopify.com/" }}" target="_blank">{% if section.settings.uae_img != empty %}<img class="lazy" src="{{section.settings.uae_img | img_url: "1x1"}}" data-src="{{section.settings.uae_img | img_url: "21x21"}}" alt="icon" width="21px" height="21px">{%endif%} {{section.settings.uae_text | default: "UAE"}} </a>
         </li>
 
 

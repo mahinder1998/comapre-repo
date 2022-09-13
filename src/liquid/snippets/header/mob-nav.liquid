@@ -59,7 +59,11 @@
     <li class="1 has-child-one mobile-nav__item border-bottom li-lvlone bold-mb">
       <div class="dropdown_custom_item custom-nav-country uae-field">
         <span class="mobile-nav__label "><a href="javascript:void(0);">{{section.settings.change_country_text | default: "Change Country"}} -</a></span>
-        <a href="{{section.settings.uae_text_url | default: "https://molton-brown-uae.myshopify.com/" }}" target="_blank">{% if section.settings.uae_img != empty %}<img src="{{section.settings.uae_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.uae_text | default: "UAE"}} </a>
+        <a href="{{section.settings.uae_text_url | default: "https://molton-brown-uae.myshopify.com/" }}" target="_blank">
+          {% if section.settings.uae_img != empty %}
+            <img class="lazy" src="{{section.settings.uae_img | img_url: "1x1"}}" data-src="{{section.settings.uae_img | img_url: "21x21"}}" alt="icon" width="21px" height="21px">
+        {%endif%} 
+        {{section.settings.uae_text | default: "UAE"}} </a>
       </div> 
       <div class="togglenewmob lvlonemob togglenewmob-wrap">
         <div class="mobile-nav__icon lvlonemob-chiv ">
@@ -68,7 +72,7 @@
       </div>
       <ul class="innercontent pad0 mobile-nav__dropdown   " data-parent="bath-and-body-4" data-level="2">
         <li class="child2_without_btn mobile-nav__item li-lvltwo">
-          <span class="mobile-nav__label lable_without_btn kas-fild"><a href="{{section.settings.ksa_text_url | default: "https://molton-brown-ksa.myshopify.com/"}}" target="_blank" second-lvl-sub="yes">{% if section.settings.ksa_img != empty %}<img src="{{section.settings.ksa_img | img_url: "21x21"}}" alt="icon" style="width:auto;">{%endif%} {{section.settings.ksa_text | default: "KSA"}} </a></span>
+          <span class="mobile-nav__label lable_without_btn kas-fild"><a href="{{section.settings.ksa_text_url | default: "https://molton-brown-ksa.myshopify.com/"}}" target="_blank" second-lvl-sub="yes">{% if section.settings.ksa_img != empty %}<img class="lazy" src="{{section.settings.ksa_img | img_url: "1x1"}}" data-src="{{section.settings.ksa_img | img_url: "21x21"}}" alt="icon" width="21px" height="21px">{%endif%} {{section.settings.ksa_text | default: "KSA"}} </a></span>
         </li>
       </ul>
     </li>
