@@ -45,6 +45,7 @@
       {%- if page_description -%}
       <meta name="description" content="{{ page_description | escape }}">
       {%- endif -%}    
+      {% include 'faq-Schema'%}
   
       {% include 'script-datadog' %}      
 
@@ -114,10 +115,6 @@
         {% if template == 'index' %}
           {% render 'private-sale' %}
         {% endif %}
-  
-        
-        {% section 'breadcrumbs-data' %} 
- 
 
         {{ content_for_layout }}
         {% section 'footer-icon_list' %}
