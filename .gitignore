@@ -1,5 +1,5 @@
 # Configuration file for themekit
-# config.yml
+config.yml
 
 # Test files 
 cypress 
@@ -58,6 +58,10 @@ web_modules/
 
 # Optional eslint cache
 .eslintcache
+
+# package-lock
+.package-lock.json
+package-lock.json
 
 # Microbundle cache
 .rpt2_cache/

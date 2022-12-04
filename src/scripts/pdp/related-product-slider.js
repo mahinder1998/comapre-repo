@@ -5,6 +5,7 @@ const RelatedProductSlider = (() => {
                 slidesToShow: 5,
                 dots: false,
                 arrows: true,
+                lazyload: 'anticipated',
                 prevArrow: $('.pdp-like__slider__arrow.pdp-like__slider__arrow-prev'),
                 nextArrow: $('.pdp-like__slider__arrow.pdp-like__slider__arrow-next'),
                 responsive: [
@@ -25,8 +26,8 @@ const RelatedProductSlider = (() => {
                     {
                       breakpoint: 480,
                       settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
+                        slidesToShow: 2,
+                        slidesToScroll: 2
                       }
                     }
                 ]
@@ -34,5 +35,6 @@ const RelatedProductSlider = (() => {
         }
     }
 })();
+
 
 export default RelatedProductSlider;

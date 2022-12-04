@@ -1,1 +1,12 @@
 {% section 'cart-template' %}
+
+{% if settings.is_privatesale and settings.privatesale_couponcode and settings.privatesale_couponcode != blank and customer %}
+    <script>
+        const coponCode = "{{ settings.privatesale_couponcode }}";
+        const checkoutButton = document.querySelector('#checkout-button');
+        checkoutButton.addEventListener('click', function(e){
+            e.preventDefault();
+            location.assign(`/checkout?discount=${coponCode}`);
+        });
+    </script>
+{% endif %}

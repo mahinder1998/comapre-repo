@@ -11,12 +11,11 @@ const Currency = (function () {
         var value = '';
         var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
 
-        // if (langify.locale.iso_code === "en") {
-        //     formatString = format || 'Dhs. {{amount}}';
-        // } else {
-        //     formatString = format || '{{amount}} ر.س';
-        // }
-        formatString = format || '{{amount}} AED';
+        if (langify.locale.iso_code === "en") {
+            formatString = format || '{{amount}} AED';
+        } else {
+            formatString = format || 'د.إ {{amount}}';
+        }
 
         function formatWithDelimiters(number, precision, thousands, decimal) {
             thousands = thousands || ',';
@@ -59,7 +58,8 @@ const Currency = (function () {
                 break;
         }
 
-        return formatString.replace(placeholderRegex, value);
+        const valueNumber = value ? value.substring(0, value.length-3) : null;
+        return formatString.replace(placeholderRegex, valueNumber);
     }
 
     return {

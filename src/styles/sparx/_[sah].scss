@@ -122,3 +122,168 @@
 }
 
 
+/* 26-july-2021 css start  */
+
+.contact_wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.contact-form-con.login-wrap select {
+    background-position: 98%;
+}
+
+.form-row-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-row-flex .form-group {
+    width: 50%;
+}
+
+.form-row-flex .form-group:nth-child(odd) {
+    padding-right: 15px;
+}
+
+.form-row-flex .form-group:nth-child(even) {
+    padding-left: 15px;
+}
+  
+.mobile-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.mobile-row .phone-area-div {
+    width: 50%;
+    padding-right: 7px;
+}
+
+.mobile-row .phone_number {
+    width: 50%;
+    padding-left: 7px;
+}  
+.count-text {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px 0 0;
+    font-size: 13px;
+}
+  
+.form-row textarea {
+    height: auto !important;
+  	padding: 10px;
+
+}
+
+.form-actions input.btn-ctm {
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}  
+
+.contact-info-wrap {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 30px 0 0;
+    text-align: center;
+}  
+.content-asset h5 {
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #000000;
+    font-weight: bold;
+}
+
+
+.contact-info-item {
+	padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.contact-info-item:last-child{
+	padding-bottom: 0px;
+}
+
+.icon-img img {
+    width: 16px!important;
+    margin-right: 10px;
+}
+
+span.float-right {
+    top: 0;
+    position: absolute;
+    right: 0;
+    font-size: 14px;
+}  
+
+
+
+/* media css start */
+
+@media all and (max-width: 749px){
+	.form-row-flex {
+        display: block;
+    }
+
+    .form-row-flex .form-group {
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .form-row-flex .form-group:nth-child(even) {
+        padding-left: 0;
+    }
+    .form-row-flex {
+        display: block;
+    }
+
+    .form-row-flex .form-group {
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .form-row-flex .form-group:nth-child(even) {
+        padding-left: 0;
+    }
+
+    .mobile-row {
+        display: block;
+    }
+
+    .mobile-row .phone-area-div {
+        width: 100%;
+        padding: 0;
+    }
+
+    .mobile-row .phone_number {
+        width: 100%;
+        padding: 0;
+        margin-top: 15px;
+    }
+    .contact-info-item {
+        flex-wrap: wrap;
+    }
+
+    .contact-info-item a {
+        font-size: 12px;
+    }
+
+}  
+.register-footer .form-group.not-valid>label{
+    color:#000000;    
+}
+.red-label, .red-label a{
+    color: red !important;
+}
+
+

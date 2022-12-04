@@ -1,5 +1,9 @@
 .pdp__info-mobile {
     margin-top: 30px;
+    h1{
+        font-size: 22px; 
+        font-weight:400;
+    }
 
     &__title {
         font-size: 22px;
@@ -36,6 +40,11 @@
         flex-direction: column;
     }
 
+    h1{
+        font-size: 22px; 
+        font-weight:400;
+    }
+
     &__media {
         width: 100%;
         // background-color: yellow;
@@ -67,7 +76,9 @@
         &__master {
             // background-color: purple;
             padding: 10px;
-            display: none;
+            // display: none;
+            opacity: 0;
+            visibility: hidden;
 
             &__inner {
                 position: relative;
@@ -103,6 +114,22 @@
                 }
             }
             &__slide {
+                position: relative;
+                &__video-playbox {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 60px;
+                    height: 60px;
+                    transform: translate(-50%, -50%);
+                    &__img {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
                 &__img {
                     width: 100%;
                     display: flex;
@@ -114,14 +141,32 @@
         
         &__thumbs {
             padding: 10px;
-            display: none;
-
+            // display: none;
+            opacity: 0;
+            visibility: hidden;
+            
             &__slider {
                 margin-left: -5px;
                 
             }
             &__slide {
+                position: relative;
                 margin-left: 5px;
+
+                &__video-playbox {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 40px;
+                    height: 40px;
+                    transform: translate(-50%, -50%);
+
+                    &__img {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
 
                 &.slick-current > img {
                     // border: 5px solid #eee;
@@ -164,12 +209,33 @@
         }
 
         &__price {
+            // background-color: red;
+            display: flex;
             margin-top: 40px;
-            font-weight: bold;
-            font-size: 22px;
-
+            justify-content: flex-start;
+            &.hide {display: none;}
             @media(max-width: 768px) {
-                text-align: center;
+                justify-content: center;
+            }
+
+            &__original {
+                font-weight: bold;
+                font-size: 22px;
+    
+                @media(max-width: 768px) {
+                    text-align: center;
+                }
+            }
+
+            &__compare {
+                margin-left: 0.8rem;
+                font-weight: bold;
+                font-size: 22px;
+                text-decoration: line-through;
+                &.hide {
+                    display: none;
+                }
+
             }
         }
 
@@ -216,6 +282,10 @@
         &__control {
             margin-top: 40px;
             display: flex;
+
+            &.hide {
+                display: none;
+            }
 
             @media(max-width: 768px) {
                 flex-direction: column;
@@ -458,7 +528,7 @@
 
         
         & > .slick-list {
-            margin-left: 10px;
+            margin-left: -10px;
         }
 
         &__wrapper {
@@ -520,8 +590,21 @@
 
             &__price {
                 margin-top: 10px;
-                font-weight: bold;
-                font-size: 14px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &__original {
+                    font-weight: bold;
+                    font-size: 14px;
+                }
+                
+                &__compare {
+                    margin-left: .8rem;
+                    font-weight: bold;
+                    font-size: 14px;
+                    text-decoration: line-through;
+                }
             }
 
         }
@@ -551,3 +634,11 @@
     }
 }
 
+.mcart-compare-price {
+    color: #716e6a;
+    text-decoration: line-through;
+}
+
+a.pdp-like__slider__item.false {
+    display: none !important;
+}

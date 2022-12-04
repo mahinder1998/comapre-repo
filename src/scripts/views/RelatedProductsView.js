@@ -30,23 +30,22 @@ class RelatedProductsView {
                 {
                   breakpoint: 480,
                   settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToShow: 2,
+                    slidesToScroll: 2
                   }
+                  
                 }
             ]
         });
     }
 
     render(prods) {
-        console.log(prods)
-        this._data = prods;
-        if(!this._data) return;
+
+        this._data = prods;        
+        if(!this._data || this._data.length < 1) return;
 
         this.parentElJQuery.slick('unslick')
-        this.parentEl.innerHTML = "";
-
-        console.log(this.parentEl)
+        this.parentEl.innerHTML = "";        
 
         const markup = this._generateMarkup();
         this.parentEl.insertAdjacentHTML('afterbegin', markup)
@@ -60,18 +59,38 @@ class RelatedProductsView {
         return this._data.map(prod => this._generateMarkupSlide(prod)).join('')
     }
 
-    _generateMarkupSlide(prod) {
-        return `
-            <a href="/products/${prod.handle}" class="pdp-like__slider__item">
-                <figure class="pdp-like__slider__item__imgbox">
-                    <img src="${prod.images[0]?.src}" alt="" class="pdp-like__slider__item__img"/>
-                </figure>
+    _getComparePrice(min, max) {
+      if(min >= max) {
+        return "";
+      }else {
+        return max ? Currency.formatMoney(max+"0") : "";
+      }
+    }
 
-                <div class="pdp-like__slider__item__title">${prod.title}</div>
-                <div class="pdp-like__slider__item__price">${Currency.formatMoney(prod.variants[0]?.price)}</div>
-            </a>
+    _generateMarkupSlide(prod) {
+        return `                     
+          <a href="/products/${prod.handle}" class="pdp-like__slider__item ${prod.variants?.availableForSale}">
+              <figure class="pdp-like__slider__item__imgbox">
+                  <img src="${prod.image?.originalSrc}" alt="${prod.image?.altText ? prod.image?.altText : ""}" class="pdp-like__slider__item__img"/>
+              </figure>
+
+              <div class="pdp-like__slider__item__title">${prod?.title}</div>
+              <div class="pdp-like__slider__item__price">
+                  <div class="pdp-like__slider__item__price__original">${prod?.productMinPrice ? Currency.formatMoney(prod?.productMinPrice + "0") : ""}</div>                
+                  <div class="pdp-like__slider__item__price__compare">${
+                    this._getComparePrice(prod?.productMinPrice, prod?.productMaxPrice)
+                  }</div>                
+              </div>
+          </a>
         `;
     }
+
+    addHandlerLoad(handler) {
+      window.addEventListener('load', handler);
+    }
+
 }
 
 export default new RelatedProductsView();
+
+

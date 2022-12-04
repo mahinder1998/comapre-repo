@@ -98,6 +98,279 @@ const HAR = (function () {
                 $("#my_order").parent().addClass("current");
                 $(".my_order").addClass("current");
             }
+
+            $(function() {
+                jQuery(".Home_slideshow").slick({
+                  speed: 1000,
+                  slidesToShow:1,
+                  //autoplay:true,
+                  //autoplaySpeed: 10000,   
+                  //slidesToScroll: 1,
+                  dots: true,
+                  arrows:false
+                });
+              
+              }); 
+              
+              
+              $(document).on("click", ".videoPoster", function(ev) {
+                "use strict";
+                ev.preventDefault();
+                videoStop();
+                var $poster = $(this).closest('.video-containerss');
+                videoPlay($poster);
+              });
+              
+              // play the targeted video (and hide the poster frame)
+              function videoPlay($wrapper) {
+                "use strict";
+                var $iframe = $wrapper.prev();
+                $wrapper.hide();
+                $wrapper.parent('.vides-padding').addClass("stopVid");
+              
+                $iframe.css('height',$wrapper.parent('.vides-padding').css('height'));
+                $iframe.show();
+                $iframe[0].play();
+              
+              }
+              
+              
+              function videoStop() {
+                "use strict";
+                $(".video-containerss").show();
+                $('.vides-padding').removeClass("stopVid");
+                $('.responsive-iframe').hide();
+                var elems1 = document.getElementsByClassName('responsive-iframe');
+                for(let i = 0; i < elems1.length; i++) {
+                  elems1[i].style.height = 0;
+                  elems1[i].pause(); 
+                  elems1[i].currentTime = 0;
+                }
+              }
+              
+              
+              $(".Home_slideshow").on("beforeChange", function(event,slick,currentSlide,nextSlide) 
+                                      {
+                videoStop();
+              })
+              
+              var elems1 = document.getElementsByClassName('responsive-iframe');
+              for(let i = 0; i < elems1.length; i++) {
+                elems1[i].onplay = function() {
+                  $('.Home_slideshow').slick('slickPause');
+                }
+              
+                elems1[i].onpause = function() {
+                  console.log("paused");
+                  $('.Home_slideshow').slick('slickPlay');
+                }
+              }
+              
+              
+              var parent = $('.vides-padding'),
+                  child = parent.children('.responsive-iframe');
+              
+              if (child.height() < parent.height()) {
+                parent.height(child.height());
+              }
+              
+              
+              $(document).ready(function() {
+                var divHeight = $('.iner-two').height(); 
+                $('.responsive-iframe').css('min-height', divHeight+'px');
+              });  
+              /**
+                 *
+                 *  Show/hide customer address forms
+                 *
+                 */
+              var address_list_container = document.getElementById('cus_address-list');
+              
+              var newAddressForm = document.getElementById('AddressNewForm');
+              var newAddressFormButton = document.getElementById('AddressNewButton');
+              
+              //     if (!newAddressForm) {
+              //       return;
+              //     }
+              
+              // Initialize observers on address selectors, defined in shopify_common.js
+              //     if (Shopify) {
+              //       // eslint-disable-next-line no-new
+              //       new Shopify.CountryProvinceSelector(
+              //         'AddressCountryNew',
+              //         'AddressProvinceNew',
+              //         {
+              //           hideElement: 'AddressProvinceContainerNew'
+              //         }
+              //       );
+              //     }
+              
+              /*
+                  // Initialize each edit form's country/province selector
+                  document
+                    .querySelectorAll('.address-country-option')
+                    .forEach(function(option) {
+                      var formId = option.dataset.formId;
+                      var countrySelector = 'AddressCountry_' + formId;
+                      var provinceSelector = 'AddressProvince_' + formId;
+                      var containerSelector = 'AddressProvinceContainer_' + formId;
+              
+                      // eslint-disable-next-line no-new
+                      new Shopify.CountryProvinceSelector(countrySelector, provinceSelector, {
+                        hideElement: containerSelector
+                      });
+                    });
+              */
+              // Toggle new/edit address forms
+              document.querySelectorAll('.address-new-toggle').forEach(function(button) {
+                button.addEventListener('click', function() {
+                  var isExpanded =
+                      newAddressFormButton.getAttribute('aria-expanded') === 'true';
+              
+                  newAddressForm.classList.toggle('hide');
+                  address_list_container.classList.toggle('show');
+                  newAddressFormButton.setAttribute('aria-expanded', !isExpanded);
+                  newAddressFormButton.focus();
+                });
+              });
+              
+              document.querySelectorAll('.address-edit-toggle').forEach(function(button) {
+                button.addEventListener('click', function(evt) {
+                  var formId = evt.target.dataset.formId;
+                  var editButton = document.getElementById('EditFormButton_' + formId);
+                  var editAddress = document.getElementById('EditAddress_' + formId);
+                  var isExpanded = editButton.getAttribute('aria-expanded') === 'true';
+              
+                  editAddress.classList.toggle('hide');
+                  editButton.setAttribute('aria-expanded', !isExpanded);
+                  editButton.focus();
+                });
+              });
+              
+              document.querySelectorAll('.address-delete').forEach(function(button) {
+                button.addEventListener('click', function(evt) {
+                  var target = evt.target.dataset.target;
+                  var confirmMessage = evt.target.dataset.confirmMessage;
+              
+                  // eslint-disable-next-line no-alert
+                  if (
+                    confirm(
+                      confirmMessage || 'Are you sure you wish to delete this address?'
+                    )
+                  ) {
+                    Shopify.postLink(target, {
+                      parameters: { _method: 'delete' }
+                    });
+                  }
+                });
+              });
+              
+              
+              
+              // custom filter code 27-07-2021
+              
+              $( document ).ready(function() {
+                if($(window).width()<=768) {
+                  $(document).on("click",".custom-boots h5 svg",function() {
+                    $(this).parents(".custom-boots").hide();		
+                      $(".boost-pfs-filter-sort-active").removeClass("boost-pfs-filter-sort-active");
+                      $(".boost-pfs-filter-filter-dropdown").hide();
+                  });
+                }
+              });
+              
+              $(document).ready(function() {
+  
+                this.Shopify = this.Shopify || {};
+              this.Shopify.theme = this.Shopify.theme || {};
+              /**
+                 *
+                 *  Show/hide customer address forms
+                 *
+                 */
+              var address_list_container = document.getElementById('cus_address-list');
+              
+              var newAddressForm = document.getElementById('AddressNewForm');
+              var newAddressFormButton = document.getElementById('AddressNewButton');
+              
+              
+                  // Initialize each edit form's country/province selector
+                  document
+                    .querySelectorAll('.address-country-option')
+                    .forEach(function(option) {
+                      var formId = option.dataset.formId;
+                      var countrySelector = 'AddressCountry_' + formId;
+                      var provinceSelector = 'AddressProvince_' + formId;
+                      var containerSelector = 'AddressProvinceContainer_' + formId;
+                  
+                    });
+              
+              // Toggle new/edit address forms
+              document.querySelectorAll('.address-new-toggle').forEach(function(button) {
+                button.addEventListener('click', function() {
+                  var isExpanded =
+                      newAddressFormButton.getAttribute('aria-expanded') === 'true';
+              
+                  newAddressForm.classList.toggle('hide');
+                  address_list_container.classList.toggle('show');
+                  newAddressFormButton.setAttribute('aria-expanded', !isExpanded);
+                  newAddressFormButton.focus();
+                });
+              });
+              
+              document.querySelectorAll('.address-edit-toggle').forEach(function(button) {
+                button.addEventListener('click', function(evt) {
+                  var formId = evt.target.dataset.formId;
+                  var editButton = document.getElementById('EditFormButton_' + formId);
+                  var editAddress = document.getElementById('EditAddress_' + formId);
+                  var isExpanded = editButton.getAttribute('aria-expanded') === 'true';
+              
+                  editAddress.classList.toggle('hide');
+                  editButton.setAttribute('aria-expanded', !isExpanded);
+                  editButton.focus();
+                });
+              });
+              
+              document.querySelectorAll('.address-delete').forEach(function(button) {
+                button.addEventListener('click', function(evt) {
+                  var target = evt.target.dataset.target;
+                  var confirmMessage = evt.target.dataset.confirmMessage;
+              
+                  // eslint-disable-next-line no-alert
+                  if (
+                    confirm(
+                      confirmMessage || 'Are you sure you wish to delete this address?'
+                    )
+                  ) {
+                    Shopify.postLink(target, {
+                      parameters: { _method: 'delete' }
+                    });
+                  }
+                });
+              });
+                
+                
+                $( "#view-order-d" ).click(function() {
+                  $( "a#my_order" ).click();
+                });
+                $( "#view-order-m" ).click(function() {
+                  $( "a#my_order" ).click();
+                });
+                
+                
+                  if($(window).width()<=768) {
+                  $(document).on("click",".custom-boots h5 svg",function() {
+                    $(this).parents(".custom-boots").hide();		
+                  $(".boost-pfs-filter-sort-active").removeClass("boost-pfs-filter-sort-active");
+                  $(".boost-pfs-filter-filter-dropdown").hide();
+                  });
+                }
+                
+                
+              });                 
+              
+          
+
         }
     }
 })();

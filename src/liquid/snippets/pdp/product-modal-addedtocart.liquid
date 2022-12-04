@@ -10,10 +10,15 @@
         <div class="pdpmodal-addedtocart__modal__title">This item has been<br> added to cart</div>
         <div class="pdpmodal-addedtocart__modal__body">
             <div class="pdpmodal-addedtocart__modal__body__media">
+              
+			{% if product.featured_image %}
+              <img src="{{ product.featured_image | img_url:'200x'}}" alt="" class="pdpmodal-addedtocart__modal__body__media__img">
+              {% else %}
                 <img src="//cdn.shopify.com/s/files/1/0571/5791/0700/products/test-image01_e1d6f1fe-fe85-414d-8266-8f1665e55e22_500x@2x.jpg?v=1626056109" alt="" class="pdpmodal-addedtocart__modal__body__media__img">
+              {% endif %}
             </div>
             <div class="pdpmodal-addedtocart__modal__body__content">
-                <div class="pdpmodal-addedtocart__modal__body__content__title">ksjflkajflke jfawksj efljaopj</div>
+                <h2 class="pdpmodal-addedtocart__modal__body__content__title">{{ product.title }}</h2>
                 <div class="pdpmodal-addedtocart__modal__body__content__qty">
                     <div class="pdpmodal-addedtocart__modal__body__content__qty__label">QTY: </div>
                     <div class="pdpmodal-addedtocart__modal__body__content__qty__value">1</div>
@@ -22,13 +27,18 @@
                     <div class="pdpmodal-addedtocart__modal__body__content__size__label">Size: </div>
                     <div class="pdpmodal-addedtocart__modal__body__content__size__value">100ml</div>
                 </div>
-                <div class="pdpmodal-addedtocart__modal__body__content__price">$300</div>
+                <div class="pdpmodal-addedtocart__modal__body__content__price">
+                    <div class="pdpmodal-addedtocart__modal__body__content__price__original"></div>
+                    <div class="pdpmodal-addedtocart__modal__body__content__price__compare"></div>
+                </div>
             </div>
         </div>
         <div class="pdpmodal-addedtocart__modal__control">
-            <div class="pdpmodal-addedtocart__modal__checkout">Cart</div>
+          <div class="pdpmodal-addedtocart__modal__checkout"><a href="/cart">Cart</a></div>
             <div class="pdpmodal-addedtocart__modal__continue">Continue shopping</div>
         </div>
     </div>
-
+<style>
+  .pdpmodal-addedtocart__modal__checkout a{color:#fff;}
+</style>
 {% endif %}

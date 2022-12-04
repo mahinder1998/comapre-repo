@@ -1,0 +1,78 @@
+variables:
+  NODE_IMAGE: node:14-alpine
+  
+stages:
+  - test
+  - deploy_develop
+  - deploy_production
+
+################################################################################ TESTS
+
+test:
+  stage: test
+  image: $NODE_IMAGE
+  script:
+    - npm install
+    - npm run build
+
+################################################################################ STAGING
+
+deploy_uae_develop:
+  stage: deploy_develop
+  environment:
+    name: development
+  only:
+    refs:
+      - develop
+  image: $NODE_IMAGE
+  script:
+    - npm install
+    - echo $UAE_DEV_SECRET | base64 -d > config.yml
+    - npm run build
+    - npm run deploy
+
+deploy_ksa_develop:
+  stage: deploy_develop
+  environment:
+    name: development
+  only:
+    refs:
+      - develop-ksa
+  image: $NODE_IMAGE
+  when: manual
+  script:
+    - npm install
+    - echo $KSA_DEV_SECRET | base64 -d > config.yml
+    - npm run build
+    - npm run deploy
+
+################################################################################ PRODUCTION
+
+deploy_uae_production:
+  stage: deploy_production
+  environment:
+    name: production
+  only:
+    refs:
+      - master
+  image: $NODE_IMAGE
+  script:
+    - npm install
+    - echo $UAE_PROD_SECRET | base64 -d > config.yml
+    - npm run build
+    - npm run deploy
+
+deploy_ksa_production:
+  stage: deploy_production
+  environment:
+    name: production
+  only:
+    refs:
+      - master-ksa
+  image: $NODE_IMAGE
+  when: manual
+  script:
+    - npm install
+    - echo $UAE_PROD_SECRET | base64 -d > config.yml
+    - npm run build
+    - npm run deploy

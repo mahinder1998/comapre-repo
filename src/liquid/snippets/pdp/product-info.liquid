@@ -1,13 +1,87 @@
 <div class="pdp__content">
-    <div class="pdp__content__title">{{ product.title }}</div>
+
+    <div class="hm-wraper">
+        
+            {% assign show_tag = true %}
+             {% if show_tag %}
+                {% if product.tags contains '50% OFF' %}
+                    <div class="product-tag home-desk_tp SALE">50% OFF</div>
+                {% assign show_tag = false %}
+                {% endif %}
+            {% endif %} 
+            
+            {% if show_tag %}
+                {% if product.tags contains 'PRIVATE SALE' %}
+                    <div class="product-tag home-desk_tp SALE">PRIVATE SALE</div>
+                {% assign show_tag = false %}
+                {% endif %}
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '300ml for 111AED' %}
+                    <div class="product-tag home-desk_tp tag_bg_color">300ml for 111AED</div>
+                {% assign show_tag = false %}
+                {% endif %}
+            {% endif %}
+
+             {% if show_tag %}
+            {% if product.tags contains 'sale' %}
+            <div class="product-tag home-desk_tp colored_sale">sale</div>
+                {% assign show_tag = false %}
+            {%endif%}
+                {%endif%}
+
+            {% if show_tag %}
+                {% if product.tags contains 'exclusively_online' %}
+                    <div class="product-tag home-desk_tp">Exclusively Online</div>
+                    {% assign show_tag = false %}
+                {%endif%}
+            {%endif%} 
+
+            {% if show_tag %}
+                {% if product.tags contains 'Limited Edition' %}
+                    <div class="product-tag home-desk_tp">Limited Edition</div>
+                    {% assign show_tag = false %}
+                {%endif%}
+            {%endif%}   
+            
+            {% if show_tag %}
+                {% if product.tags contains 'new' %}
+                    <div class="product-tag home-desk_tp">New</div>
+                {% assign show_tag = false %}
+                {% endif %}
+            {% endif %}
+            
+            {% if show_tag %}
+            {% if product.tags contains 'best-seller' %}
+            <div class="product-tag home-desk_tp">Best seller</div>
+            {% assign show_tag = false %}
+            {%endif%}
+            {% endif %}
+            
+            
+            
+           
+       
+        </div>
+
+    <h1 class="pdp__content__title">{{ product.title }}</h1>
     
     {% unless product.has_only_default_variant %}
         <div class="pdp__content__size">{{ product.options_with_values[0].selected_value }}</div>
     {% endunless %}
 
 
-    <!-- <div class="pdp__content__review-info">REVIEWS</div> -->
-    <div class="pdp__content__price">{{ current_variant.price | money}}</div>
+    <div class="pdp__content__price">
+        <div class="pdp__content__price__original">{% if current_variant.price <= 0 %}FREE{% else %}{{ current_variant.price | money}}{% endif %}</div>
+        
+        <div class="{% if current_variant.price <= 0 %}pdp__content__price__compare hide{% else %}pdp__content__price__compare{% endif %}">
+            {% if current_variant.compare_at_price and current_variant.compare_at_price > current_variant.price %}
+                {{ current_variant.compare_at_price | money}}
+            {% endif %}
+        </div>
+    </div>
+
 
     {% unless product.has_only_default_variant %}
         <div class="pdp__content__swatches">
@@ -24,9 +98,75 @@
         </div>
     {% endunless %}
 
+    <style>
+        .custom-tabby {
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 18px 0;
+        }
+            #TabbyPromo, #TabbyPromo2{
+              display:none;
+            }
+            #ct_payment_price {
+            font-weight: 700;
+        }
+            .ct-content {
+            font-size: 14px;
+            color: #292929;
+        }
+          .ct-learn {
+            display: flex;
+            margin-top: 5px;
+        }
+          .ct-learn #infoImg {
+            width: 17px;
+            margin-right: 5px;
+        }
+        {% if shop.locale == 'en' %}
 
+            {% else %}
+          .ct-learn span {
+            margin-right: 5px;
+        } 
+        .ct-learn #infoImg { margin-right:0px;}
+        {% endif %}
+          </style>
+        <div class="custom-tabby">
+          <div class="ct-content">
+            <div class="ct-price">
+                {% if shop.locale == 'en' %}
+                <span id="ct_payments">or 4 interest-free payments of </span>
+                {% else %}
+                <span id="ct_payments">أو قسمها على 4 دفعات شهرية بقيمة</span>
+                {% endif %}
+                <span id="ct_payment_price"></span>
+              </div>
+            <div class="ct-learn">
+                {% if shop.locale == 'en' %}
+                    <img id="infoImg" src="{{ 'info-icon.png'| asset_url }}"><span>Learn more</span>
+                    {% else %}
+                    <img id="infoImg" src="{{ 'info-icon.png'| asset_url }}"><span>لمعرفة المزيد</span>
+                    {% endif %}
+            </div>
+          </div>
+          <div class="ct-icon">
+            {% render 'icon-tabby' %}
+          </div>
+        </div>
+    <div class="tabby-section">
+    {% if product.variants.size > 1 %}
+        <div id="TabbyPromo"></div>   
+        {% else %}
+        <div id="TabbyPromo2"></div>  
+        {% endif %}
+    </div>
 
-    <div class="pdp__content__control">
+<div class="tamara-widget">
+    {% render 'tamara' %}
+</div>
+
+    <div class="{% if current_variant.price <= 0 %}pdp__content__control hide{% else %}pdp__content__control{% endif %}">
         <div class="pdp__content__control__qty">
             <div class="pdp__content__control__qty__prev">
                 <svg class="pdp__content__control__qty__next-icon" xmlns="http://www.w3.org/2000/svg" width="12.771" height="24.129" viewBox="0 0 12.771 24.129">
@@ -43,6 +183,7 @@
             </div>
         </div>
 
+ 
         {% if product.available %}
             <div 
                 class="pdp__content__control__add-to-cart-btn"
@@ -78,6 +219,255 @@
 
 </div>
 
+
+<!-- tamara code js start -->
+
+{% if request.locale.iso_code == 'ar' %} 
+<script>
+    function tamara_ar(){
+        setTimeout(function () {
+            let getPriceT = $('.pdp__content__price__original').text();
+
+            //console.log(getPriceT); 
+
+            var total_price_cart_t = getPriceT;
+            total_price_cart_t = total_price_cart_t.replace("د.إ ", "");
+            total_price_cart_t = total_price_cart_t.replace(/,/g, "");
+            total_price_cart_t = parseInt(total_price_cart_t);
+            //alert(myStr);
+
+            let finalPrice2 = (total_price_cart_t / 3).toFixed(2);
+
+
+            let getTamara = document.querySelector(".tamara-product-price");
+            getTamara.textContent = 'د.إ ' + finalPrice2;
+            // console.log("getTamara",getTamara);
+
+            $('.tamara-popup__moto').text('قسم فاتورتك على 3 دفعات بقيمة د.إ ' + finalPrice2 + ' بدون فوائد');
+
+        }, 1000);
+  }
+    tamara_ar();
+    $('.tamara-product-widget, .pdp__content__swatches>div').on('click', function(){
+        tamara_ar()
+    });
+
+
+</script>
+{% else %}
+<script>
+    function tamara_en(){
+        setTimeout(function () {
+            let getPriceT = $('.pdp__content__price__original').text();
+
+            //console.log(getPriceT);
+
+            var total_price_cart_t = getPriceT;
+            total_price_cart_t = total_price_cart_t.replace("AED ", "");
+            total_price_cart_t = total_price_cart_t.replace(/,/g, "");
+            total_price_cart_t = parseInt(total_price_cart_t);
+
+            //console.log(total_price_cart_t);
+
+            let finalPrice2 = (total_price_cart_t / 3).toFixed(2);
+
+            let getTamara = document.querySelector(".tamara-product-price");
+            getTamara.textContent = 'AED ' + finalPrice2;
+            // console.log("getTamara",getTamara);
+
+            $('.tamara-popup__moto').text('Split your bill into 3 payments of AED ' + finalPrice2 + ' interest-free');
+
+        }, 1000);
+}
+    tamara_en()
+    $('.tamara-product-widget, .pdp__content__swatches>div').on('click', function(){
+        tamara_en()
+    });
+
+</script>
+
+{% endif %}
+
+<!-- tamara code js end -->
+
+{% comment %}
+  <script src="{{ 'tabby-promo.js' | asset_url }}"></script>
+{% endcomment %}
+
+<!-- tabby js file update -->
+
+<script src="https://checkout.tabby.ai/tabby-promo.js"></script>
+
+
+
+<script>
+{% if product.variants.size > 1 %}
+  new TabbyPromo({
+    selector: '#TabbyPromo', // required, content of tabby Promo Snippet will be placed in element with that selector.
+    currency: 'AED', // required, currency of your product. AED|SAR|KWD|BHD|EGP only supported, with NO spaces or lowercase.
+    price: {{current_variant.price | money_without_currency | remove:','}}, // required, price or your product. 2 decimals max for AED|SAR|EGP and 3 decimals max for KWD|BHD supported.
+    installmentsCount: 4, // Optional - custom installments number for tabby promo snippet (if not downpayment + 3 installments)
+    source: 'product', // Optional, snippet placement; `product` for product page and `cart` for cart page
+    publicKey: 'pk_50d38c61-f2ee-4a6a-b60e-b03002fdf3be', // required, public key which identifies your account when communicating with tabby. Test or Production depending on the environment
+    merchantCode: 'sk_d5c968f4-168a-4442-9df1-747db3af8ad1'  // required
+  });
+{% else %}
+  
+      new TabbyPromo({
+        selector: '#TabbyPromo2', // required, content of tabby Promo Snippet will be placed in element with that selector.
+        currency: 'AED', // required, currency of your product. AED|SAR|KWD|BHD|EGP only supported, with NO spaces or lowercase.
+        price: {{ current_variant.price | money_without_currency | remove:',' }}, // required, price or your product. 2 decimals max for AED|SAR|EGP and 3 decimals max for KWD|BHD supported.
+        installmentsCount: 4, // Optional - custom installments number for tabby promo snippet (if not downpayment + 3 installments)
+        source: 'product', // Optional, snippet placement; `product` for product page and `cart` for cart page
+        publicKey: 'pk_50d38c61-f2ee-4a6a-b60e-b03002fdf3be', // required, public key which identifies your account when communicating with tabby. Test or Production depending on the environment
+        merchantCode: 'sk_d5c968f4-168a-4442-9df1-747db3af8ad1'  // required
+      }); 
+{% endif %} 
+
+</script>
+
+{% if request.locale.iso_code == 'ar' %}
+<script>
+
+    $(document).on("click",".styles__tabby-promo-wrapper--43068",function() {
+        setTimeout(function () {
+            let getPrice = $('.pdp__content__price__original').text();
+
+            var total_price_cart = getPrice;
+            total_price_cart = total_price_cart.replace(/,/g, "");
+            total_price_cart = parseInt(total_price_cart);
+            //alert(total_price_cart);
+            total_price_cart = parseInt(total_price_cart);
+            let finalPrice = (total_price_cart / 4).toFixed(2);
+            // $('#TabbyPromo span b').text(' '); 
+            //console.log('patel123', finalPrice);
+            $('#TabbyPromo span strong, #TabbyPromo span b').text(' ');
+            $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice + ' د.إ');
+        }, 600);
+      })
+
+
+    $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
+
+        setTimeout(function () {
+
+
+            let getPrice = $('.pdp__content__price__original').text();
+
+            var total_price_cart = getPrice;
+            total_price_cart = total_price_cart.replace("د.إ ", "");
+            total_price_cart = total_price_cart.replace(/,/g, "");
+            total_price_cart = parseInt(total_price_cart);
+            //alert(myStr);
+
+            let finalPrice = (total_price_cart / 4).toFixed(2);
+            finalPrice = " " + finalPrice;
+            // $('#TabbyPromo span b').text(' '); 
+            // console.log('patel123');
+            let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+            shadowSelection.firstChild.querySelector("strong").textContent = ' ';
+            shadowSelection.firstChild.querySelector("strong").textContent = finalPrice + ' د.إ';
+            shadowSelection.firstChild.querySelector("strong").style.marginLeft = "3px";
+            // $('#TabbyPromo span strong, #TabbyPromo span b').text(' '); 
+            // $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' د.إ'); 
+
+            document.getElementById("ct_payment_price").innerHTML = finalPrice + ' د.إ';
+
+
+
+            $('.styles__title--38ade span').text('Split in 4 interest-free payments of ' + finalPrice + ' د.إ');
+
+
+            $('.styles__tabby-promo__graph-with-titles--8a6da .styles__tabby-promo__graph-with-titles__item-text--bdcb7.styles__tabby-promo__graph-with-titles__item-text_big--b6da4 div:nth-child(1)').text(finalPrice + ' د.إ');
+        }, 1000);
+      });
+
+
+
+
+    $(".custom-tabby").on("click",function(){
+        let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+    $(shadowSelection).trigger( "click" );
+        });
+
+
+
+</script>
+{% else %}
+<script>
+
+    $(document).on("click",".styles__tabby-promo-wrapper--43068",function() {
+        setTimeout(function () {
+            let getPrice = $('.pdp__content__price__original').text();
+
+            var total_price_cart = getPrice;
+            total_price_cart = total_price_cart.replace(/,/g, "");
+            total_price_cart = parseInt(total_price_cart);
+            //alert(total_price_cart);
+            total_price_cart = parseInt(total_price_cart);
+            let finalPrice = (total_price_cart / 4).toFixed(2);
+            // $('#TabbyPromo span b').text(' '); 
+            //console.log('patel123', finalPrice);
+            $('#TabbyPromo span strong, #TabbyPromo span b').text(' ');
+            $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice + ' AED');
+        }, 600);
+      })
+
+
+    $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
+
+        setTimeout(function () {
+
+
+            let getPrice = $('.pdp__content__price__original').text();
+
+            var total_price_cart = getPrice;
+            total_price_cart = total_price_cart.replace("AED ", "");
+            total_price_cart = total_price_cart.replace(/,/g, "");
+            total_price_cart = parseInt(total_price_cart);
+            //alert(myStr);
+
+            let finalPrice = (total_price_cart / 4).toFixed(2);
+            finalPrice = " " + finalPrice;
+            // $('#TabbyPromo span b').text(' '); 
+            // console.log('patel123');
+            let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+            shadowSelection.firstChild.querySelector("strong").textContent = ' ';
+            shadowSelection.firstChild.querySelector("strong").textContent = finalPrice + ' AED';
+            shadowSelection.firstChild.querySelector("strong").style.marginLeft = "3px";
+            // $('#TabbyPromo span strong, #TabbyPromo span b').text(' '); 
+            // $('#TabbyPromo span strong, #TabbyPromo span b').text(finalPrice +' AED'); 
+
+            document.getElementById("ct_payment_price").innerHTML = finalPrice + ' AED';
+
+
+            $('.styles__title--38ade span').text('Split in 4 interest-free payments of ' + finalPrice + ' AED');
+
+
+
+
+            $('.styles__tabby-promo__graph-with-titles--8a6da .styles__tabby-promo__graph-with-titles__item-text--bdcb7.styles__tabby-promo__graph-with-titles__item-text_big--b6da4 div:nth-child(1)').text(finalPrice + ' AED');
+        }, 1000);
+      });
+
+
+
+
+    $(".custom-tabby").on("click",function(){
+        let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+    $(shadowSelection).trigger( "click" );
+        });
+
+
+
+</script>
+
+{% endif %}
 <style>
 
+  .styles__tabby-promo-snippet--54518.styles__tabby-promo-snippet_font_inherit--b7b35 { background:#f00}
+span.styles__tabby-promo-snippet__text--f30af {
+    display: flex !important;
+    flex-direction: column !important;
+}
 </style>
