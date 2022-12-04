@@ -58,7 +58,7 @@ deploy_uae_production:
   image: $NODE_IMAGE
   script:
     - npm install
-    - echo $UAE_PROD_SECRET | base64 -d > config.yml
+    - echo $UAE_DEV_SECRET | base64 -d > config.yml
     - npm run build
     - npm run deploy
 
