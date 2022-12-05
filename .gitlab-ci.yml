@@ -69,7 +69,6 @@ deploy_ksa_production:
     refs:
       - master-ksa
   image: $NODE_IMAGE
-  when: manual
   script:
     - npm install
     - echo $KSA_PROD_SECRET | base64 -d > config.yml
