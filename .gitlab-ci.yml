@@ -39,7 +39,6 @@ deploy_ksa_develop:
     refs:
       - develop-ksa
   image: $NODE_IMAGE
-  when: manual
   script:
     - npm install
     - echo $KSA_DEV_SECRET | base64 -d > config.yml
