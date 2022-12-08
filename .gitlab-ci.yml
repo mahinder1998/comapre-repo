@@ -39,7 +39,6 @@ deploy_ksa_develop:
     refs:
       - develop-ksa
   image: $NODE_IMAGE
-  when: manual
   script:
     - npm install
     - echo $KSA_DEV_SECRET | base64 -d > config.yml
@@ -70,9 +69,8 @@ deploy_ksa_production:
     refs:
       - master-ksa
   image: $NODE_IMAGE
-  when: manual
   script:
     - npm install
-    - echo $UAE_PROD_SECRET | base64 -d > config.yml
+    - echo $KSA_PROD_SECRET | base64 -d > config.yml
     - npm run build
     - npm run deploy

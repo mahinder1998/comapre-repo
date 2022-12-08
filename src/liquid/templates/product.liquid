@@ -44,18 +44,18 @@ window.dataLayer = window.dataLayer || [];
 window.dataLayer.push({
 event: 'Product Detail View',
 ecommerce: {
-currencyCode: '{{cart.currency.iso_code}}',
+currencyCode: "{{cart.currency.iso_code}}",
 detail: {
 actionField: {
-list: '{{collection.title}}'
+list: "{{collection.title}}"
 },
 products: [{
-id: '{{product.id}}',
-name: '{{product.handle}}',
-variant: '{{current_variant.sku}}',
-brand: '{{shop.name}}',
-category: '{{product.collections|map:"title"|json}}',
-price: '{{product.price | money_without_currency | remove: ","}}'
+id: "{{product.id}}",
+name: "{{product.handle}}",
+variant: "{{current_variant.sku}}",
+brand: "{{shop.name}}",
+category: "{{product.collections|map:"title"| join: " , " }}",
+price: "{{product.price | money_without_currency | remove: ","}}"
 }]
 }
 }
