@@ -13,7 +13,7 @@ var boostPFSFilterConfig = {
 	general: {
 		limit: boostPFSThemeConfig.custom.products_per_page,
 		/* Optional */
-		loadProductFirst: true,
+		loadProductFirst: false,
 		// Placeholder  
 		showPlaceholderProductList: true,
 		placeholderProductPerRow: 3,
@@ -110,6 +110,9 @@ var boostPFSFilterConfig = {
 		itemHtml = itemHtml.replace(/{{gridWidthClass}}/g, buildGridWidthClass(data));
 		// Add Label
 		itemHtml = itemHtml.replace(/{{itemLabels}}/g, buildLabels(data));
+
+       //Add Second Item Labels
+        itemHtml = itemHtml.replace(/{{itemSecondLabels}}/g, buildSecondLabels(data));
 		// Add TAG Label
 		itemHtml = itemHtml.replace(/{{itemTagLabels}}/g, buildTagLabels(data, false));
 		// Add Images
@@ -352,9 +355,28 @@ var boostPFSFilterConfig = {
 		return soldOutLabel + saleLabel;
 	}
 
+    function buildSecondLabels(data) {
+        var tagLabel = '';
+        if (data.tags) {
+          if (data.tags.indexOf("new") > -1){
+          	var preTagLabel = 'New';
+             tagLabel += preTagLabel;			
+        }else if (data.tags.indexOf("best-seller") > -1) {
+             var preTagLabel =  'Best seller';
+             tagLabel += preTagLabel;
+        }else {
+            tagLabel += 'SALE'
+        }
+        console.log(tagLabel)
+          return tagLabel;
+      }
+    }
+
 	// BUILD LABEL PRODUCT WITH TAGS
 	function buildTagLabels(data, showall) {
+          // console.log("Hello world1")
 		if (boostPFSThemeConfig.custom.show_label_by_tag) {
+           // console.log("Hello world2")
 			if (showall) {
 				var tagLabel = '';
 				if (data.tags) {
@@ -367,6 +389,7 @@ var boostPFSFilterConfig = {
 					}
 				}
 			} else {
+               console.log("Hello world3")
 				var tagLabel = '';
 				if (data.tags) {
 					// if(data.tags.indexOf("EXTRA10") > -1){
@@ -375,8 +398,18 @@ var boostPFSFilterConfig = {
                     // }
 					if (data.tags.indexOf("50% OFF") > -1){
 						var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '50% OFF');
-						tagLabel += preTagLabel;
-					  } 
+						// console.log(preTagLabel)
+                        tagLabel += preTagLabel;
+					  } else if(data.tags.indexOf("20% OFF") > -1) {
+                      	var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '20% OFF');
+                        tagLabel += preTagLabel;
+                      } else if(data.tags.indexOf("15% OFF") > -1) {
+                      	var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '15% OFF');
+                        tagLabel += preTagLabel;
+                      } else if(data.tags.indexOf("10% OFF") > -1) {
+                      	var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '10% OFF');
+                        tagLabel += preTagLabel;
+                      }
 					else if (data.tags.indexOf("PRIVATE SALE") > -1){
                       var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, 'PRIVATE SALE');
                       tagLabel += preTagLabel;
