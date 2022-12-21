@@ -16,6 +16,7 @@
             {{itemVendor}}
             {{itemReviews}}
             {{itemPrice}}
+            
             {{itemColorSwatches}}
             {{itemSizeSwatches}}
           </div>
@@ -30,6 +31,7 @@
     <div class="boost-pfs-filter-product-item-image">
         {{itemImages}}
         <div class="boost-pfs-filter-product-item-label">{{itemLabels}}{{itemTagLabels}}</div>
+       
     </div>
     <div class="boost-pfs-filter-product-bottom">
       <div class="boost-pfs-filter-product-bottom-inner">
@@ -84,20 +86,29 @@
 {% assign product_label_image_sale = section.settings.product_label_image_sale %}
 {% assign show_sale_percent = section.settings.show_sale_percent %}
 
-<span class="sale boost-pfs-filter-label">
-  {% if show_product_label_image %}
-  <img src="{{ product_label_image_sale | img_url: 'small' }}" alt="{{ product_label_image_sale.alt }}" />
-  {% else %}
-    {% if show_sale_percent %}
-      {% raw %}
-        {{salePercent}}
-      {% endraw %}
+<div class="hm-wraper" style="
+    text-align: center; display: none">
+  <span class="product-tag home-desk_tp" style="
+    padding: 5px;
+    width: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
+">
+    {% if show_product_label_image %}
+    <img src="{{ product_label_image_sale | img_url: 'small' }}" alt="{{ product_label_image_sale.alt }}" />
     {% else %}
-    {{ label_sale | default: 'Sale' }}
+      {% if show_sale_percent %}
+        {% raw %}
+          {{salePercent}}
+        {% endraw %}
+      {% else  %}
+        {% raw %}
+         {{itemSecondLabels}}
+        {% endraw %}
+      {% endif %}
     {% endif %}
-  {% endif %}
-</span>
-
+  </span>
+</div>
 
 {%- when 'tagLabelHtml' -%}
 {% raw %}
