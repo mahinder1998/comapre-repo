@@ -206,7 +206,7 @@
  
 {%- elsif template contains 'collection' and collection.handle -%}
     <span aria-hidden="true">/</span>
-    <span><a href="collection.url">{{ collection.title }}</a></span>
+    <span><a href="{{collection.url}}">{{ collection.title }}</a></span>
  
 {%- elsif template == 'blog' -%}
  
