@@ -2446,6 +2446,38 @@ ul.boost-pfs-filter-filter-dropdown a.boost-pfs-filter-sort-item-active:after{
   color: #000 !important;
   text-transform: uppercase;
 }
+/*4 jan plp copy icon*/
+#copy_url{
+  position: relative;
+}
+#copied {
+  position: absolute;
+  background: #d63a45;
+  color: #fff;
+  display: inline-block;
+  bottom: -24px;
+  min-width: max-content;
+  padding: 4px;
+  font-weight: 600;
+  transform: translateX(-50%);
+  left: 30px;
+  display: none;
+  &:after{
+    content: "";
+    display: inline-block;
+    transform: rotate(-135deg);
+    border-color: transparent;
+    left: 15px;
+    position: absolute;
+    top: -6px;
+    border-bottom-color: #d63a45;
+    border-style: solid;
+    border-width: 0 0 12px 12px;
+    height: 0;
+    width: 0;
+  }
+}
+/*4 jan plp copy icon*/
 @media only screen and (min-width: 768px) {
   .pdp .product-tag{
     display: inline-block; 
