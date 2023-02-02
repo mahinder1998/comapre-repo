@@ -5,24 +5,73 @@
 
    </div>
    <div class="product_desc">
-    {% comment %}
-    {% if product.tags contains 'new' %}
-    <div class="product-tag-mob">
-      <span>New</span>
-    </div>
-    {% endif %}
-    {% endcomment %}
-
-    <div class="hm-wraper">
+      <div class="hm-wraper">
      
+        
+
 
           {% assign show_tag = true %}
-          {% if show_tag %}
-                {% if product.tags contains '50% OFF' %}
-                    <div class="product-tag home-desk_tp SALE">50% OFF</div>
-                {% assign show_tag = false %}
+
+            {% if show_tag %}
+              {% if product.tags contains '10% OFF' %}
+                  <div class="product-tag home-desk_tp SALE percentage">10% OFF</div> 
+              {% assign show_tag = false %}
+              {% endif %}
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '15% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">15% OFF</div> 
+                    {% assign show_tag = false %}
+                {% endif %} 
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '20% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">20% OFF</div> 
+                    {% assign show_tag = false %}
+                {% endif %} 
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '25% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">25% OFF</div> 
+                {% endif %} 
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '30% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">30% OFF</div> 
+                    {% assign show_tag = false %}
+                {% endif %} 
+            {% endif %} 
+
+            {% if show_tag %}
+                {% if product.tags contains '35% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">35% OFF</div> 
+                {% endif %} 
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '40% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">40% OFF</div> 
+                    {% assign show_tag = false %}
                 {% endif %}
             {% endif %} 
+
+            {% if show_tag %}
+                {% if product.tags contains '45% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">45% OFF</div> 
+                    {% assign show_tag = false %}
+                {% endif %} 
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '50% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">50% OFF</div> 
+                    {% assign show_tag = false %}
+                {% endif %} 
+            {% endif %}
 
           {% if show_tag %}
                 {% if product.tags contains 'PRIVATE SALE' %}
