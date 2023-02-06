@@ -1,6 +1,6 @@
 {% render 'header-toolbar' %}
 {% render 'header-logo-search' %}
-{% include 'header-desktop-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered', bold_menu: section.settings.bold_menu %}
+{% include 'header-desktop-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered', bold_menu: section.settings.bold_menu,nav_color: section.settings.nav_color, menu_handle_color: section.settings.menu_handle_color %}
 {% render 'mob-nav' %}
 
 
@@ -120,8 +120,24 @@
     "type": "url",
     "id": "uae_text_url",
     "label": "UAE url"
+  },
+  {
+    "type": "header",
+    "content": "Menu color "
+  },
+  {
+    "type": "text",
+    "id": "menu_handle_color",
+    "label": "menu handle",
+    "info": "Note: only lowercase allow & '-' in the place of space."
+  },
+  {
+    "type": "color",
+    "id": "nav_color",
+    "label": "Menu color",
+      "default": "#780302"
   }
-
+  
 
     ],
     "blocks": [

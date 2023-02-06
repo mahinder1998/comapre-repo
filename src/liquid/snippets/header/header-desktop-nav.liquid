@@ -1,10 +1,18 @@
+{% assign nav_menu_color = section.settings.menu_handle_color %}
+<style>
+.nav-color-{{ nav_menu_color }} a{
+   color:{{section.settings.nav_color}} !important;
+ }
+</style>
+
 <nav class="mb-dt-nav-cont" role="navigation">
   <ul class="container ul-reset text-center">
     {%- for link in linklists.main-menu.links -%}
     {%- if link.links != blank -%} 
-	   <li class="droppable lvl-li-one has-subs" data-handle="{{ link.handle }}">
+    {% assign nav_menu_color = section.settings.menu_handle_color %}
+	   <li class="droppable lvl-li-one has-subs {% if nav_menu_color == link.handle %}nav-color-{{ nav_menu_color }} {% endif %}" data-handle="{{ link.handle }}">
     {%- else -%}
-       <li class="droppable lvl-li-one">
+       <li class="droppable lvl-li-one {% if nav_menu_color == link.handle %}nav-color-{{ nav_menu_color }} {% endif %}">
     {%- endif -%}
          
         <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
@@ -27,7 +35,7 @@
                   <ul class="sub-second-lvl">
                     {%- for grandchild_link in child_link.links -%}
                     {% assign boldmenu = '' %}       
- 						{% assign menu_handle = bold_menu | split: ',' %}
+ 					     	{% assign menu_handle = bold_menu | split: ',' %}
                     	{% for handle in menu_handle %}
                         	{% assign handle_down =  handle | downcase %}
                         		{% assign currentmenu = grandchild_link.handle | downcase %} 
