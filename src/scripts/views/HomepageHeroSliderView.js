@@ -22,3 +22,9 @@ class HomepageHeroSliderView {
 }
 
 export default new HomepageHeroSliderView();
+
+//  Return to Hompage script
+let return_hp = document.querySelector(".return_to_hp");
+return_hp.addEventListener('click',()=> {
+   document.querySelector(".mb-burger-icon").click();
+});
