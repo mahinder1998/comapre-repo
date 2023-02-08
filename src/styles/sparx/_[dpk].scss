@@ -2315,7 +2315,14 @@ ul.boost-pfs-filter-filter-dropdown a.boost-pfs-filter-sort-item-active:after{
   font-size: 14px;
   font-weight: 600;
 }
-
+@media only screen and (max-width: 749px) {
+  .tb-logo-last{
+    .mb-account-flex{
+      display: block;
+      margin-right: 5px;
+    }
+  } 
+}
 
 @media only screen and (max-width: 750px) {
   .custom-nav-country{
@@ -2357,6 +2364,9 @@ ul.boost-pfs-filter-filter-dropdown a.boost-pfs-filter-sort-item-active:after{
   .bold-mb .ly-breakpoint-1 .ly-flag-icon-ar,   .bold-mb .ly-breakpoint-1 .ly-flag-icon-en{
     display:none;
   }
+
+  
+
 }
 
 
