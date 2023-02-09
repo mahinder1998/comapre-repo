@@ -1,8 +1,9 @@
 {% assign nav_menu_color = section.settings.menu_handle_color %}
 <style>
-.nav-color-{{ nav_menu_color }} a{
-   color:{{section.settings.nav_color}} !important;
- }
+  .lvl-li-one.has-subs.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }},
+  .lvl-li-one.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }}{
+    color:{{section.settings.nav_color}} !important;
+  }
 </style>
 
 <nav class="mb-dt-nav-cont" role="navigation">
@@ -15,7 +16,7 @@
        <li class="droppable lvl-li-one {% if nav_menu_color == link.handle %}nav-color-{{ nav_menu_color }} {% endif %}">
     {%- endif -%}
          
-        <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
+        <a class="{{ nav_menu_color }}" href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
           {{ link.title }}
         </a>
 
