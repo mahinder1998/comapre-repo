@@ -479,6 +479,47 @@ $("document").ready(function(){
 
 // lp products js
 
+var rtlView =  Shopify.locale  == "ar" ?  true : false;
+// home product list slider js start 
+$( document ).ready(function() {
+  $('.grid-slider-five').slick({
+      slidesToShow: 4.999999,
+      dots: false,
+      arrows: true,
+      autoplaySpeed:1800,
+      autoplay:true,
+      rtl: rtlView,
+      centerMode: true,
+      lazyload: 'anticipated',
+      prevArrow: $('.pdp-like__slider__arrow.pdp-like__slider__arrow-prev'),
+      nextArrow: $('.pdp-like__slider__arrow.pdp-like__slider__arrow-next'),
+      slidesToScroll: 1,
+      responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+            }
+          },
+          {
+            breakpoint: 767,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+      ]
+  });
+});
+// home product list slider js end
 
     }
   };
