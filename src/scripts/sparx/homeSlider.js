@@ -84,10 +84,11 @@ const HomeSliderSparx = (function () {
 
 //header padding navigation
 
+window.onresize = function() {  
   let tabby = document.getElementById('shopify-section-header-top-tabby').offsetHeight;
   let header_section = document.getElementById('shopify-section-header').offsetHeight;
   let nav_padding = (tabby + header_section) - 1 ;
   document.getElementById('mb-mob-nav-cont').style.top = nav_padding + 'px' ;
-
+}
 export default HomeSliderSparx;
 
