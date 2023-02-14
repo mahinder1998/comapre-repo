@@ -248,9 +248,9 @@
                       {%- endif -%}
                       {%- for p in properties -%}
                           {% for block in section.blocks %}
-                           {% if p.last == block.settings.bundle_id %}
+                           {% if p.last contains block.settings.bundle_id %}
                              <span class="cart_bundle_label">{{ block.settings.bundle_label }}</span>
-                             {% endif %}
+                            {% endif %}
                           {% endfor %}
                       	{%- if p.first contains '_th_bundle_type' -%}
                              {% assign remove_qty = true %}  
