@@ -223,6 +223,11 @@ li.mobile-no {
 
 
 /* home product list slider css START */
+
+ul.grid-slider-five.desktop-view .slick-list.draggable{
+    direction:rtl;
+}
+
 .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-next.slick-arrow {
     left: auto;
     right: 0px;
@@ -237,22 +242,13 @@ li.mobile-no {
   
 @media(min-width:768px){
   .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-next.slick-arrow {
-      right: -25px;
+      right: 8px;
   }
   
   .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-prev.slick-arrow {
-      left: -25px;
+      left: 8px;
   }
 }
 
-@media(min-width:1024px){
-  .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-next.slick-arrow {
-      right: 0px;
-  }
-  
-  .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-prev.slick-arrow {
-      left: 0px;
-  }
-}
 
 /* home product list slider css end */
