@@ -336,12 +336,7 @@ ul.grid-slider-five.desktop-view {
 .product-grid-slider svg.pdp__media__master__slider__arrow-icon {
     padding:21px;
 }
-html[dir="rtl"] .product-grid-slider.pdp-like__slider__arrow-prev{
-    right: 0;
-}
-html[dir="rtl"] .product-grid-slider.pdp-like__slider__arrow-next{
-    left: 0;
-}
+
 @media(min-width:1024px){
     .product-grid-slider.pdp-like__slider__arrow-next {
         right: 0;
