@@ -219,3 +219,40 @@ li.mobile-no {
 .corporate-offer-items .feature-content {
     text-align: right;
 } 
+
+
+
+/* home product list slider css START */
+.product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-next.slick-arrow {
+    left: auto;
+    right: 0px;
+    transform: rotate(0deg);
+  }
+  
+  .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-prev.slick-arrow {
+    right: auto;
+    left: 0px;
+    transform: rotate(0deg);
+  }
+  
+@media(min-width:768px){
+  .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-next.slick-arrow {
+      right: -25px;
+  }
+  
+  .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-prev.slick-arrow {
+      left: -25px;
+  }
+}
+
+@media(min-width:1024px){
+  .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-next.slick-arrow {
+      right: 0px;
+  }
+  
+  .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-prev.slick-arrow {
+      left: 0px;
+  }
+}
+
+/* home product list slider css end */
