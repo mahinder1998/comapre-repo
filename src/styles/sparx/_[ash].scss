@@ -760,18 +760,19 @@ a.addqty > img, a.minusqty > img {
 }
 .store-img {
     width: 45px;
-}
+} 
 .store-desc {
     padding-left: 15px;
     display: flex;
     align-items: center;
-      justify-content: space-between;
-      width: calc(100% - 60px);
+    justify-content: space-between;
+    width: calc(100% - 60px);
 }
 .store-desc-left {
     font-size: 14px;
     line-height: 20px;
     color: #000000;
+    width: calc(100% - 30px);
 }
 
 .store-desc-left address {
