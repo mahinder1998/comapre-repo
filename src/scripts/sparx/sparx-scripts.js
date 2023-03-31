@@ -487,7 +487,7 @@ $( document ).ready(function() {
       dots: false,
       arrows: true,
       autoplaySpeed:1800,
-      autoplay:false,
+      autoplay:true,
       rtl: rtlView,
       centerMode: true,
       lazyload: 'anticipated',
