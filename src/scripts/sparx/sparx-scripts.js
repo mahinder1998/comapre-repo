@@ -487,7 +487,7 @@ $( document ).ready(function() {
       dots: false,
       arrows: true,
       autoplaySpeed:1800,
-      autoplay:true,
+      autoplay:false,
       rtl: rtlView,
       centerMode: true,
       lazyload: 'anticipated',
@@ -518,8 +518,25 @@ $( document ).ready(function() {
           }
       ]
   });
-});
+    document.querySelector(".hm-product-slider").style.opacity = 1;
+  });
 // home product list slider js end
+
+   /* home product slider loader starts */
+      document.onreadystatechange = function() {   
+        if (document.readyState !== "complete") {
+            document.querySelector(
+            ".hm-product-slider").style.visibility = "hidden";
+            document.querySelector(
+            ".loading-dots").style.visibility = "visible";
+        } else {
+            document.querySelector(
+            ".loading-dots").style.display = "none";
+            document.querySelector(
+            ".hm-product-slider").style.visibility = "visible";
+        }
+      }
+    /* home product slider loader ends*/
 
     }
   };
