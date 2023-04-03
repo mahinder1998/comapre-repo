@@ -1,12 +1,14 @@
 <section class="collection-wrap">
     <div class="page-width">
-      <div class="collection-block ">
+      <div class="collection-block hm-product-slider" style="opacity:0">
       {% if section.settings.heading != blank %}
           <div class="block-header">
             <h2>{{ section.settings.heading }}</h2>
           </div>
-      {% endif %}  	
-      <div class="slick-slider">
+      {% endif %} 
+      
+      {% render 'hm-slider-loader'%}
+      <div class="slick-slider"> 
          <ul class="grid-slider-five desktop-view slick-sliders"  {% if request.locale.iso_code == 'ar' %} dir="rtl"{%endif%}>
           {%- assign collection = collections[section.settings.collection_id] -%}
           {% assign pro_limit = section.settings.grid %}

@@ -339,10 +339,10 @@ ul.grid-slider-five.desktop-view {
 
 @media(min-width:1024px){
     .product-grid-slider.pdp-like__slider__arrow-next {
-        right: 0;
+        right: 20px;
    }
     .product-grid-slider.pdp-like__slider__arrow-prev {
-        left: 0;
+        left: 20px;
    }
 }
 @media(min-width:1240px){
@@ -354,7 +354,8 @@ ul.grid-slider-five.desktop-view {
    }
 }
 
-
-
+// .collection-wrap .slick-slider{
+//     opacity: 0;
+// }
 
 /* home product list slider css end */
