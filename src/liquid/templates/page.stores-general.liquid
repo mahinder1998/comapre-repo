@@ -2,7 +2,10 @@
    .store-list.hide-dists .is-dist-loc, .store-list.hide-stores .is-store-loc {
        display: none;
    }
-  </style>
+   .store-img-mb{
+      margin-top: 4px;
+   }
+  </style> 
    
    <div class="store_wrap">
       <div class="page_container">
@@ -221,6 +224,107 @@
                         </div>
                      </a>
                      </li>
+
+                     <!-- Molton Brown, The Galleria AlMaryah Island-->
+                     <li class="store-list-item is-store-loc" id="7">
+                         <a href="{{shop.url}}/pages/molton-brown-the-galleria-almaryah-island">
+                        <div class="store-img store-img-mb">
+                           {{ 'mb_logo_storefinder.png' | asset_url | img_tag }}
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Molton Brown, The Galleria AlMaryah Island, 
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    Abu Dhabi, 1st floor
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 2="" 876="" 1605="">+971 2 876 1605 </a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 10pm
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+                              {{ 'arrow-right.png' | asset_url | img_tag }}
+                           </div>
+                        </div>
+                     </a>
+                     </li>
+                     <!-- Molton Brown, Abu Dhabi, Yas Mall, Ground Floor-->
+                     <li class="store-list-item is-store-loc" id="8">
+                         <a href="{{shop.url}}/pages/molton-brown-abu-dhabi-yas-mall">
+                        <div class="store-img store-img-mb">
+                           {{ 'mb_logo_storefinder.png' | asset_url | img_tag }}
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Molton Brown, Abu Dhabi
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    Yas Mall, Ground Floor
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 2="" 565="" 0022="">+971 2 565 0022 </a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 10pm
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+                              {{ 'arrow-right.png' | asset_url | img_tag }}
+                           </div>
+                        </div>
+                     </a>
+                     </li>
+                     <!-- Molton Brown, Dubai,Dubai Hills Mall, Ground Floor,-->
+                     <li class="store-list-item is-store-loc" id="9">
+                         <a href="{{shop.url}}/pages/molton-brown-dubai-dubai-hills-mall">
+                        <div class="store-img store-img-mb">
+                           {{ 'mb_logo_storefinder.png' | asset_url | img_tag }}
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Molton Brown, Dubai
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    Dubai Hills Mall, Ground Floor
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 4="" 385="" 2504="">+971 4 385 2504 </a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 10pm
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+                              {{ 'arrow-right.png' | asset_url | img_tag }}
+                           </div>
+                        </div>
+                     </a>
+                     </li>
+
                   </ul>
                </div>
             </div>
@@ -231,9 +335,11 @@
       </div>
    </div>
    
-     
+    
    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD97Exq7AvYMeF6V2BYCirywp2fpKAkew&sensor=false">
    </script>
+  
+ 
    
    <script type="text/javascript">
    
@@ -333,7 +439,33 @@
               position: new google.maps.LatLng(25.2160919,55.4077522),
               type: 'store',
               icon: '{{"mb-stores-pin.png" | asset_img_url: "original"}}'
-           }
+           },
+
+
+         // Molton Brown, The Galleria AlMaryah Island
+         {
+            name: 'Molton Brown, The Galleria AlMaryah Island',
+            position: new google.maps.LatLng(24.5013014,54.3897024),
+            type: 'store',
+            icon: '{{"mb-stores-pin.png" | asset_img_url: "original"}}'
+         },
+
+         //Molton Brown, Abu Dhabi
+         {
+            name: 'Molton Brown, Abu Dhabi, Yas Mall',
+            position: new google.maps.LatLng(24.4888196,54.6086898),
+            type: 'store',
+            icon: '{{"mb-stores-pin.png" | asset_img_url: "original"}}'
+         },
+
+         //Molton Brown, Dubai
+         {
+            name: 'Molton Brown, Dubai,Dubai Hills Mall',
+            position: new google.maps.LatLng(25.1016938,55.2399376),
+            type: 'store',
+            icon: '{{"mb-stores-pin.png" | asset_img_url: "original"}}'
+         }
+
    
    
        ];
