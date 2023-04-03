@@ -39,7 +39,7 @@
       {%- endif -%}
       {%- assign escaped_page_title = page_title | escape -%}
       {%- unless escaped_page_title contains shop.name -%}
-      &ndash; {{ shop.name }}
+      &ndash; {% if request.locale.iso_code == "ar" -%}مولتون براون KSA{%- else -%}{{ shop.name }}{%- endif -%}
       {%- endunless -%}
       {%- endcapture -%}
       <title>{{ seo_title | strip }}</title>  
