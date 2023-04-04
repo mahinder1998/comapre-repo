@@ -1,106 +1,213 @@
 {% if settings.is_privatesale == false %}
-<div class="h">
-    <div class="h__slider">
-        {% for block in section.blocks %}
-                {% if block.type == 'image' %}
-                    {% render 'homepage-hero-slider-image' with { block: block.settings} %}
-                {% endif %}
 
-                {% if block.type == 'video' %}
-                    {% render 'homepage-hero-slider-video' with { block: block.settings} %}
-                {% endif %}
-        {% endfor %}
+  {% comment %}
+  slider banner css
+  {% endcomment %}<style>
+    .slide__inner_media {
+      padding-top: calc({{ section.blocks[0].settings.image_mobile_height }} / {{ section.blocks[0].settings.image_mobile_width }} * 100% );
+    }
+
+    @media(min-width: 768px) {
+      .slide__inner_media {
+        padding-top: calc({{ section.blocks[0].settings.image_desktop_height }} / {{ section.blocks[0].settings.image_desktop_width }} * 100% );
+      }
+      .h__slide__info-overlay {
+        background-color: {{ section.blocks[0].settings.banner_content_bg }}
+        ;
+      }
+      .h__slide__info-overlay__title {
+        color: {{ section.blocks[0].settings.title_color }}
+        ;
+      }
+      .h__slide__info-overlay__desc {
+        color: {{ section.blocks[0].settings.subtitle_color }}
+        ;
+      }
+      .h__slide__info-overlay__cta {
+        background-color: {{ section.blocks[0].settings.button_bg }}
+        ;
+        color: {{ section.blocks[0].settings.button_color }}
+      }
+
+
+    }
+  </style>
+
+  <div class="h">
+    <div class="h__slider">
+      {% for block in section.blocks %}
+        {% if block.type == 'image' %}
+          {% render 'homepage-hero-slider-image' with { block: block.settings} %}
+        {% endif %}
+
+        {% if block.type == 'video' %}
+          {% render 'homepage-hero-slider-video' with { block: block.settings} %}
+        {% endif %}
+      {% endfor %}
     </div>
-</div>
+  </div>
 {% endif %}
 
 
 {% schema %}
-{
+  {
     "name": "Homepage Hero Slider",
     "settings": [],
     "blocks": [
-        {
-            "name": "Image",
-            "type": "image",
-            "settings": [
-                {
-                    "type":"image_picker",
-                    "id":"image_desktop",
-                    "label":"Desktop Banner"
-                },
-                {
-                    "type":"image_picker",
-                    "id":"image_mobile",
-                    "label":"Mobile banner"
-                  },
-                  {
-                    "type":"text",
-                    "id":"title",
-                    "label":"Title"
-                  },
-                  {
-                    "type":"text",
-                    "id":"title_arabic",
-                    "label":"Title - Arabic"
-                  },
-                  {
-                    "type":"textarea",
-                    "id":"subtitle",
-                    "label":"Subtitle"
-                  },
-                  {
-                    "type":"textarea",
-                    "id":"subtitle_arabic",
-                    "label":"Subtitle - Arabic"
-                  },
-
-                  
-                  {
-                    "type":"text",
-                    "id":"button_text",
-                    "label":"Button Text"
-                  },
-                  {
-                    "type":"url",
-                    "id":"button_link",
-                    "label":"Button link"
-                  }
-            ]
-        },
-        {
-            "name": "Video",
-            "type": "video",
-            "settings": [
-                {
-                    "type":"image_picker",
-                    "id":"video_poster_image",
-                    "label":"Poster image"
-                },
-                {
-                    "type":"image_picker",
-                    "id":"video_poster_image_mobile",
-                    "label":"Poster image mobile"
-                },
-                {
-                    "type":"text",
-                    "id":"video_url_desktop",
-                    "label":"Desktop Video URL"
-                },
-                {
-                    "type":"text",
-                    "id":"video_url_mobile",
-                    "label":"Mobile Video URL"
-                }
-            ]
-        }
+      {
+        "name": "Image",
+        "type": "image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image_desktop",
+            "label": "Desktop Banner"
+          },
+          {
+            "type": "number",
+            "id": "image_desktop_width",
+            "label": "Desktop Banner Width",
+            "default": 2400
+          },
+          {
+            "type": "number",
+            "id": "image_desktop_height",
+            "label": "Desktop Banner Height",
+            "default": 800
+          },
+          {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Mobile banner"
+          }, {
+            "type": "number",
+            "id": "image_mobile_width",
+            "label": "Mobile Banner Width",
+            "default": 1000
+          }, {
+            "type": "number",
+            "id": "image_mobile_height",
+            "label": "Mobile Banner Height",
+            "default": 750
+          }, {
+            "type": "header",
+            "content": "Banner Content"
+          }, {
+            "type": "select",
+            "id": "content-position-english",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              }, {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "label": "Content Position"
+          }, {
+            "type": "color",
+            "id": "banner_content_bg",
+            "label": "Banner Content Background"
+          }, {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          }, {
+            "type": "text",
+            "id": "title_arabic",
+            "label": "Title - Arabic"
+          }, {
+            "type": "color",
+            "id": "title_color",
+            "label": "Title Color Desktop",
+            "default": "#fff"
+          }, {
+            "type": "textarea",
+            "id": "subtitle",
+            "label": "Subtitle"
+          }, {
+            "type": "textarea",
+            "id": "subtitle_arabic",
+            "label": "Subtitle - Arabic"
+          }, {
+            "type": "color",
+            "id": "subtitle_color",
+            "label": "Subtitle Color Desktop",
+            "default": "#fff"
+          }, {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text"
+          }, {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }, {
+            "type": "color",
+            "id": "button_bg",
+            "label": "button Background",
+            "default": "#000"
+          }, {
+            "type": "color",
+            "id": "button_color",
+            "label": "button Color",
+            "default": "#fff"
+          }
+        ]
+      }, {
+        "name": "Video",
+        "type": "video",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "video_poster_image",
+            "label": "Poster image"
+          },
+          {
+            "type": "number",
+            "id": "poster_image_width",
+            "label": "Poster Image Width",
+            "default": 2400
+          },
+          {
+            "type": "number",
+            "id": "poster_image_height",
+            "label": "Poster Image Height",
+            "default": 800
+          },
+          {
+            "type": "image_picker",
+            "id": "video_poster_image_mobile",
+            "label": "Poster image mobile"
+          }, {
+            "type": "number",
+            "id": "poster_image_mobile_width",
+            "label": "Poster Mobile Image Width",
+            "default": 1000
+          }, {
+            "type": "number",
+            "id": "poster_image_mobile_height",
+            "label": "Poster Mobile Image Height",
+            "default": 700
+          }, {
+            "type": "text",
+            "id": "video_url_desktop",
+            "label": "Desktop Video URL"
+          }, {
+            "type": "text",
+            "id": "video_url_mobile",
+            "label": "Mobile Video URL"
+          }
+        ]
+      }
     ],
     "presets": [
-        {
-            "name": "Homepage Hero Slider",
-            "category": "Homepage Sections"
-        }
+      {
+        "name": "Homepage Hero Slider",
+        "category": "Homepage Sections"
+      }
     ]
 
-}
+  }
 {% endschema %}

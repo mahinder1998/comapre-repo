@@ -30,6 +30,18 @@
         &__picture {
             width: 100%;
         }
+        &__media {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        &__url {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
 
         &__img {
             width: 100%;
@@ -38,18 +50,20 @@
             align-items: center;
         }
 
+        
+
         &__info-overlay {
             position: absolute;
             background-color: rgba(255, 255, 255, 0.334);
             top: 50%;
             transform: translateY(-50%);
-            right: 80px;
+            left: 80px;
             max-width: 300px;
             padding: 24px 42px;
             padding: 24px 42px;
             text-align: center;
             
-            @media(max-width: 768px) {
+            @media(max-width: 767px) {
                 position: static;
                 transform: none;
                 padding: 15px 15px 30px 15px;
@@ -106,19 +120,24 @@
             }
         }
 
+        &__info-overlay.position-right {
+            left: auto;
+            right: 80px;
+        }
+
         &__video {
             width: 100%;
             
             &.desktop {
                 display: block;
-                @media(max-width: 768px) {
+                @media(max-width: 767px) {
                     display: none;
                 }
             }
 
             &.mobile {
                 display: none;
-                @media(max-width: 768px) {
+                @media(max-width: 767px) {
                     display: block;
                 }
             }
@@ -134,3 +153,127 @@ html[lang="ar"] .h {
         }
     }
 }
+
+
+/* slider dots and arrows css */
+.h__slider{
+    .slick-dots {
+        bottom: 20px;
+        padding: 0;
+        margin: 0;
+        li {
+            width: 30px;
+            height: 4px;
+            margin: 0;
+            display: inline-flex;
+            padding: 0 3px;
+            button {
+                width: 24px;
+                height: 4px;
+                padding: 0;
+                margin: 0;
+                background-color: #ccc;
+                &:before {
+                    display: none;
+                }
+            }
+        }
+        li.slick-active button {
+            background-color: #333;
+            border-color: #333;
+            outline: solid 1px #333;
+            outline-offset: 1px;
+        }
+
+        @media(max-width: 768px) {
+            bottom: 0;
+        }
+    }
+
+    .slick-next,
+    .slick-prev
+    {
+        right: 0px;
+        z-index: 1;
+        &:before {
+            display: none;
+        }
+    }
+    .slick-prev{
+        right: auto;
+        left: 0px;
+    }
+    .slick-arrow {
+        border: 1px solid #c4c4c4;
+        background: #fff;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:after {
+            content: "";
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-top-width: 2px;
+            border-top-style: solid;
+            border-top-color: #000;
+            border-left-width: 2px;
+            border-left-style: solid;
+            border-left-color: #000;
+            box-sizing: border-box;
+        }
+    }
+    button.slick-next.slick-arrow:after {
+        transform: rotate(135deg);
+    }
+    button.slick-prev.slick-arrow:after {
+        transform: rotate(-45deg);
+    }
+    .h__slide:not(:first-child) {
+        display: none;
+    }
+    
+    
+}
+
+.h__slider.slick-initialized{
+    .slick-track .h__slide{
+        display: block;
+    }
+}
+
+
+html[lang="ar"]{
+    .h__slider{
+        .slick-arrow {
+            right: 0;
+            left: auto;
+        }
+        button.slick-next.slick-arrow {
+            left: 0;
+            right: auto;
+        }
+        button.slick-next.slick-arrow:after {
+            transform: rotate(-45deg);
+        }
+        button.slick-prev.slick-arrow:after {
+            transform: rotate(135deg);
+        }
+        ul.slick-dots {
+            display: flex;
+            justify-content: center;
+            flex-direction: row-reverse;
+        }
+    }
+}
+
+
+@media(min-width:768px) and (max-width:992px){
+    .h__slide__info-overlay {
+        max-width: calc(70%);
+    }
+}
+
+ 
