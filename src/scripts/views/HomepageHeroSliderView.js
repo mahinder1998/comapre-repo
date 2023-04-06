@@ -3,11 +3,11 @@ class HomepageHeroSliderView {
         jQuery(".h__slider").slick({
             speed: 1000,
             slidesToShow:1,
-            //autoplay:true,
-            //autoplaySpeed: 10000,   
-            //slidesToScroll: 1,
+            autoplay:true,
+            autoplaySpeed: 10000,   
+            slidesToScroll: 1,
             dots: true,
-            arrows:false
+            arrows:true
           });
     }
 
