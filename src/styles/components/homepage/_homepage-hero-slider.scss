@@ -36,6 +36,7 @@
             width: 100%;
             margin: 0;
             padding: 0;
+            height: 100%;
         }
         &__url {
             position: absolute;
@@ -276,4 +277,10 @@ html[lang="ar"]{
     }
 }
 
- 
+ @media(max-width:767px){
+    .h__slide__video.mobile {
+        min-height: 282px;
+        background: #000000;
+    }
+ }
+
