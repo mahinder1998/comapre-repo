@@ -270,3 +270,29 @@ ul.grid-slider-five.desktop-view .slick-list.draggable{
 
 
 /* home product list slider css end */
+
+
+
+/* home slider rtl css strat */
+.h__slider .slick-arrow {
+    right: 0;
+    left: auto;
+}
+.h__slider button.slick-next.slick-arrow {
+    left: 0;
+    right: auto;
+}
+.h__slider button.slick-next.slick-arrow:after {
+    transform: rotate(45deg);
+}
+.h__slider button.slick-prev.slick-arrow:after {
+    transform: rotate(-135deg);
+}
+.h__slider ul.slick-dots {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+
+/* home slider rtl css end */

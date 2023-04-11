@@ -2,46 +2,66 @@
 
   {% comment %}
   slider banner css
-  {% endcomment %}<style>
-    .slide__inner_media {
-      padding-top: calc({{ section.blocks[0].settings.image_mobile_height }} / {{ section.blocks[0].settings.image_mobile_width }} * 100% );
-    }
-
-    @media(min-width: 768px) {
-      .slide__inner_media {
-        padding-top: calc({{ section.blocks[0].settings.image_desktop_height }} / {{ section.blocks[0].settings.image_desktop_width }} * 100% );
-      }
-      .h__slide__info-overlay {
-        background-color: {{ section.blocks[0].settings.banner_content_bg }}
-        ;
-      }
-      .h__slide__info-overlay__title {
-        color: {{ section.blocks[0].settings.title_color }}
-        ;
-      }
-      .h__slide__info-overlay__desc {
-        color: {{ section.blocks[0].settings.subtitle_color }}
-        ;
-      }
-      .h__slide__info-overlay__cta {
-        background-color: {{ section.blocks[0].settings.button_bg }}
-        ;
-        color: {{ section.blocks[0].settings.button_color }}
+  {% endcomment %}{% for block in section.blocks %}
+    <style>
+      .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] {
+        padding-top: calc({{ block.settings.image_mobile_height }} / {{ block.settings.image_mobile_width }} * 100%);
       }
 
+      .h__slide__videowrap[data-count="{{ forloop.index }}"] {
+        padding-top: calc({{ block.settings.poster_image_mobile_height }} / {{ block.settings.poster_image_mobile_width }} * 100%);
+      }
+      .h__slide__videowrap {
+        position: relative;
+      }
 
-    }
-  </style>
+      .h__slide__videowrap .h__slide__videowrap__inner {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
 
+      @media(min-width: 768px) {
+
+        .h__slide__videowrap[data-count="{{ forloop.index }}"] {
+          padding-top: calc({{ block.settings.poster_image_height }} / {{ block.settings.poster_image_width }} * 100%);
+
+        }
+        .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] {
+          padding-top: calc({{ block.settings.image_desktop_height }} / {{ block.settings.image_desktop_width }} * 100%);
+        }
+        .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay {
+          background-color: {{ block.settings.banner_content_bg }}
+          ;
+        }
+        .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay__title {
+          color: {{ block.settings.title_color }}
+          ;
+        }
+        .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay__desc {
+          color: {{ block.settings.subtitle_color }}
+          ;
+        }
+        .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay__cta {
+          background-color: {{ block.settings.button_bg }}
+          ;
+          color: {{ block.settings.button_color }}
+        }
+
+
+      }
+    </style>
+  {% endfor %}
   <div class="h">
     <div class="h__slider">
       {% for block in section.blocks %}
         {% if block.type == 'image' %}
-          {% render 'homepage-hero-slider-image' with { block: block.settings} %}
+          {% render 'homepage-hero-slider-image' with { block: block.settings, count: forloop.index} %}
         {% endif %}
 
         {% if block.type == 'video' %}
-          {% render 'homepage-hero-slider-video' with { block: block.settings} %}
+          {% render 'homepage-hero-slider-video' with { block: block.settings, count: forloop.index} %}
         {% endif %}
       {% endfor %}
     </div>
@@ -189,7 +209,7 @@
             "type": "number",
             "id": "poster_image_mobile_height",
             "label": "Poster Mobile Image Height",
-            "default": 700
+            "default": 750
           }, {
             "type": "text",
             "id": "video_url_desktop",
