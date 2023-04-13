@@ -38,8 +38,8 @@
       &ndash; {{ 'general.meta.page' | t: page: current_page }}
       {%- endif -%}
       {%- assign escaped_page_title = page_title | escape -%}
-      {%- unless escaped_page_title contains shop.name -%}
-      &ndash; {{ shop.name }}
+      {%- unless escaped_page_title contains shop.name or escaped_page_title contains "مولتون براون الإمارات" -%}
+      &ndash; {% if request.locale.iso_code == "ar" -%}مولتون براون UAE{%- else -%}{{ shop.name }}{%- endif -%}
       {%- endunless -%}
       {%- endcapture -%}
       <title>{{ seo_title | strip }}</title>  
