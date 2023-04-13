@@ -42,7 +42,7 @@
             {% unless product.available %}
                         <span translatable class="spf-product__label spf-product__label-soldout">{{translation.product.sold_out | default: "Sold out"}}</span>
                                     {% endunless %}
-                        <a class="spf-product-card__image-wrapper" href="{{root_url}}{{ product.url | within: collection }}" style="padding-top:100%; padding-top:100%;">
+                        <a class="spf-product-card__image-wrapper" href="{{root_url}}{{ product.url }}" style="padding-top:100%; padding-top:100%;">
               {% if images_count > 0 %}
               {% for image in product.images %}
               <img
@@ -69,7 +69,7 @@
             {% endif %}
           </div>
 
-          <div class="spf-product__info">            <div class="h4 spf-product-card__title"><a translatable href="{{root_url}}{{ product.url | within: collection }}">{{product.title}}</a></div>
+          <div class="spf-product__info">            <div class="h4 spf-product-card__title"><a translatable href="{{root_url}}{{ product.url }}">{{product.title}}</a></div>
                                     <div class="spf-product-card__price-wrapper">
               {% if product_compare_at_price > product_price %}
               <span class="spf-product-card__oldprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_compare_at_price | money }}</span>
