@@ -389,7 +389,7 @@ var boostPFSFilterConfig = {
 					}
 				}
 			} else {
-               console.log("Hello world3")
+               //console.log("Hello world3")
 				var tagLabel = '';
 				if (data.tags) {
 					// if(data.tags.indexOf("EXTRA10") > -1){
@@ -398,12 +398,26 @@ var boostPFSFilterConfig = {
                     // }
 					if (data.tags.indexOf("50% OFF") > -1){
 						var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '50% OFF');
-						// console.log(preTagLabel)
                         tagLabel += preTagLabel;
-					  } else if(data.tags.indexOf("20% OFF") > -1) {
-                      	var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '20% OFF');
+					  } else if(data.tags.indexOf("45% OFF") > -1) {
+                      	var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '45% OFF');
                         tagLabel += preTagLabel;
-                      } else if(data.tags.indexOf("15% OFF") > -1) {
+					  } else if(data.tags.indexOf("40% OFF") > -1) {
+						var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '40% OFF');
+					  tagLabel += preTagLabel;
+					  } else if(data.tags.indexOf("35% OFF") > -1) {
+						var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '35% OFF');
+					  tagLabel += preTagLabel;
+					  } else if(data.tags.indexOf("30% OFF") > -1) {
+						var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '30% OFF');
+					  tagLabel += preTagLabel;
+					  }else if(data.tags.indexOf("25% OFF") > -1) {
+						var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '25% OFF');
+					  tagLabel += preTagLabel;
+                      } else if(data.tags.indexOf("20% OFF") > -1) {
+						var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '20% OFF');
+					  tagLabel += preTagLabel;
+					  }else if(data.tags.indexOf("15% OFF") > -1) {
                       	var preTagLabel = boostPFSTemplate.tagLabelHtml.replace(/{{labelTag}}/g, '15% OFF');
                         tagLabel += preTagLabel;
                       } else if(data.tags.indexOf("10% OFF") > -1) {
