@@ -402,7 +402,6 @@
 
 {% if request.locale.iso_code == 'ar' %}
 <script>
-
     $(document).on("click",".styles__tabby-promo-wrapper--43068",function() {
         setTimeout(function () {
             let getPrice = $('.pdp__content__price__original').text();
@@ -423,7 +422,13 @@
 
     $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
 
-        setTimeout(function () {
+        /*selecting tabby Element */
+        let tabyElement = Array.from(document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div")
+            .shadowRoot.querySelectorAll("span")).filter(el => {
+                let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
+               if(array.length > 0) return el;  
+            })[0]
+           setTimeout(function () {
 
 
             let getPrice = $('.pdp__content__price__original').text();
@@ -438,7 +443,7 @@
             finalPrice = " " + finalPrice;
             // $('#TabbyPromo span b').text(' '); 
             // console.log('patel123');
-            let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+            let shadowSelection = tabyElement;
             shadowSelection.firstChild.querySelector("strong").textContent = ' ';
             shadowSelection.firstChild.querySelector("strong").textContent = finalPrice + ' د.إ';
             shadowSelection.firstChild.querySelector("strong").style.marginLeft = "3px";
@@ -460,7 +465,13 @@
 
 
     $(".custom-tabby").on("click",function(){
-        let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+        /*selecting tabby Element */
+        let tabyElement = Array.from(document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div")
+            .shadowRoot.querySelectorAll("span")).filter(el => {
+                let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
+               if(array.length > 0) return el;  
+            })[0]
+        let shadowSelection = tabyElement;
     $(shadowSelection).trigger( "click" );
         });
 
@@ -489,7 +500,12 @@
 
 
     $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
-
+        /*selecting tabby Element */
+        let tabyElement = Array.from(document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div")
+        .shadowRoot.querySelectorAll("span")).filter(el => {
+            let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
+           if(array.length > 0) return el;  
+        })[0]
         setTimeout(function () {
 
 
@@ -505,7 +521,7 @@
             finalPrice = " " + finalPrice;
             // $('#TabbyPromo span b').text(' '); 
             // console.log('patel123');
-            let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+            let shadowSelection = tabyElement;
             shadowSelection.firstChild.querySelector("strong").textContent = ' ';
             shadowSelection.firstChild.querySelector("strong").textContent = finalPrice + ' AED';
             shadowSelection.firstChild.querySelector("strong").style.marginLeft = "3px";
@@ -528,7 +544,13 @@
 
 
     $(".custom-tabby").on("click",function(){
-        let shadowSelection = document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet__text--f30af");
+        /*selecting tabby Element */
+        let tabyElement = Array.from(document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div")
+        .shadowRoot.querySelectorAll("span")).filter(el => {
+            let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
+           if(array.length > 0) return el;  
+        })[0]
+        let shadowSelection = tabyElement;
     $(shadowSelection).trigger( "click" );
         });
 
