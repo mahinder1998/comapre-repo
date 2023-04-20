@@ -179,7 +179,7 @@
             cursor: pointer;
             padding: 18px 0;
         }
-            #TabbyPromo, #TabbyPromo2{
+            #TabbyPromo, #TabbyPromo2, .tabby-section {
               display:none;
             }
             #ct_payment_price {
@@ -229,11 +229,13 @@
           </div>
         </div>
     <div class="tabby-section">
-    {% if product.variants.size > 1 %}
-        <div id="TabbyPromo"></div>   
-        {% else %}
-        <div id="TabbyPromo2"></div>  
-        {% endif %}
+    {% if product.variants.size <= 1 %}
+        <div id="TabbyPromo1" class="tabbyProm" data-id="{{ product.selected_or_first_available_variant.id }}"></div>   
+    {% else %}
+        {% for variant in product.variants %}
+            <div id="TabbyPromo{{ forloop.index }}" class="tabbyProm" data-id="{{ variant.id }}"></div>  
+        {% endfor %}
+    {% endif %}
     </div>
 
 <div class="tamara-widget">
@@ -293,7 +295,7 @@
 
 </div>
 
-
+<script type="application/id+json"> {{ product.variants | json }}</script>
 <!-- tamara code js start -->
 
 {% if request.locale.iso_code == 'ar' %} 
@@ -375,9 +377,9 @@
 
 
 <script>
-{% if product.variants.size > 1 %}
+{% if product.variants.size <= 1 %}
   new TabbyPromo({
-    selector: '#TabbyPromo', // required, content of tabby Promo Snippet will be placed in element with that selector.
+    selector: '#TabbyPromo1', // required, content of tabby Promo Snippet will be placed in element with that selector.
     currency: 'AED', // required, currency of your product. AED|SAR|KWD|BHD|EGP only supported, with NO spaces or lowercase.
     price: {{current_variant.price | money_without_currency | remove:','}}, // required, price or your product. 2 decimals max for AED|SAR|EGP and 3 decimals max for KWD|BHD supported.
     installmentsCount: 4, // Optional - custom installments number for tabby promo snippet (if not downpayment + 3 installments)
@@ -386,16 +388,17 @@
     merchantCode: 'sk_d5c968f4-168a-4442-9df1-747db3af8ad1'  // required
   });
 {% else %}
-  
+  {% for variant in product.variants %}
       new TabbyPromo({
-        selector: '#TabbyPromo2', // required, content of tabby Promo Snippet will be placed in element with that selector.
+        selector: '#TabbyPromo{{ forloop.index }}', // required, content of tabby Promo Snippet will be placed in element with that selector.
         currency: 'AED', // required, currency of your product. AED|SAR|KWD|BHD|EGP only supported, with NO spaces or lowercase.
-        price: {{ current_variant.price | money_without_currency | remove:',' }}, // required, price or your product. 2 decimals max for AED|SAR|EGP and 3 decimals max for KWD|BHD supported.
+        price: {{ variant.price | money_without_currency | remove:',' }}, // required, price or your product. 2 decimals max for AED|SAR|EGP and 3 decimals max for KWD|BHD supported.
         installmentsCount: 4, // Optional - custom installments number for tabby promo snippet (if not downpayment + 3 installments)
         source: 'product', // Optional, snippet placement; `product` for product page and `cart` for cart page
         publicKey: 'pk_50d38c61-f2ee-4a6a-b60e-b03002fdf3be', // required, public key which identifies your account when communicating with tabby. Test or Production depending on the environment
         merchantCode: 'sk_d5c968f4-168a-4442-9df1-747db3af8ad1'  // required
-      }); 
+      });
+  {% endfor %} 
 {% endif %} 
 
 </script>
@@ -421,13 +424,16 @@
 
 
     $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
-
         /*selecting tabby Element */
-        let tabyElement = Array.from(document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div")
-            .shadowRoot.querySelectorAll("span")).filter(el => {
-                let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
-               if(array.length > 0) return el;  
-            })[0]
+        let variantsData = JSON.parse('{{ product.variants | json }}');
+        let currentSelectedOptionValue = Array.from($(".pdp__content__swatches .pdp__content__swatches__item.active")).map(el => el.dataset.option);
+        let selectedVariant = currentSelectedOptionValue.length > 0 ? variantsData.find(el => el.options.length == currentSelectedOptionValue.length && el.options.every(el => currentSelectedOptionValue.indexOf(el) != -1)) : variantsData[0];
+        /*selecting tabby Element */
+        let tabyElement = Array.from(document.querySelector(`#TabbyPromo1[data-id='${selectedVariant.id}'] div div, #TabbyPromo2[data-id='${selectedVariant.id}'] div div`)
+        .shadowRoot.querySelectorAll("span")).filter(el => {
+            let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
+           if(array.length > 0) return el;  
+        })[0]
            setTimeout(function () {
 
 
@@ -465,12 +471,15 @@
 
 
     $(".custom-tabby").on("click",function(){
+        let variantsData = JSON.parse('{{ product.variants | json }}');
+        let currentSelectedOptionValue = Array.from($(".pdp__content__swatches .pdp__content__swatches__item.active")).map(el => el.dataset.option);
+        let selectedVariant = currentSelectedOptionValue.length > 0 ? variantsData.find(el => el.options.length == currentSelectedOptionValue.length && el.options.every(el => currentSelectedOptionValue.indexOf(el) != -1)) : variantsData[0];
         /*selecting tabby Element */
-        let tabyElement = Array.from(document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div")
-            .shadowRoot.querySelectorAll("span")).filter(el => {
-                let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
-               if(array.length > 0) return el;  
-            })[0]
+        let tabyElement = Array.from(document.querySelector(`#TabbyPromo1[data-id='${selectedVariant.id}'] div div, #TabbyPromo2[data-id='${selectedVariant.id}'] div div`)
+        .shadowRoot.querySelectorAll("span")).filter(el => {
+            let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
+           if(array.length > 0) return el;  
+        })[0]
         let shadowSelection = tabyElement;
     $(shadowSelection).trigger( "click" );
         });
@@ -501,7 +510,11 @@
 
     $('.product-form__controls-group, #TabbyPromo, .pdp__content__swatches div, .custom-tabby').on('click', function(){
         /*selecting tabby Element */
-        let tabyElement = Array.from(document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div")
+        let variantsData = JSON.parse('{{ product.variants | json }}');
+        let currentSelectedOptionValue = Array.from($(".pdp__content__swatches .pdp__content__swatches__item.active")).map(el => el.dataset.option);
+        let selectedVariant = currentSelectedOptionValue.length > 0 ? variantsData.find(el => el.options.length == currentSelectedOptionValue.length && el.options.every(el => currentSelectedOptionValue.indexOf(el) != -1)) : variantsData[0];
+        /*selecting tabby Element */
+        let tabyElement = Array.from(document.querySelector(`#TabbyPromo1[data-id='${selectedVariant.id}'] div div, #TabbyPromo2[data-id='${selectedVariant.id}'] div div`)
         .shadowRoot.querySelectorAll("span")).filter(el => {
             let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
            if(array.length > 0) return el;  
@@ -544,8 +557,11 @@
 
 
     $(".custom-tabby").on("click",function(){
+        let variantsData = JSON.parse('{{ product.variants | json }}');
+        let currentSelectedOptionValue = Array.from($(".pdp__content__swatches .pdp__content__swatches__item.active")).map(el => el.dataset.option);
+        let selectedVariant = currentSelectedOptionValue.length > 0 ? variantsData.find(el => el.options.length == currentSelectedOptionValue.length && el.options.every(el => currentSelectedOptionValue.indexOf(el) != -1)) : variantsData[0];
         /*selecting tabby Element */
-        let tabyElement = Array.from(document.querySelector("#TabbyPromo div div, #TabbyPromo2 div div")
+        let tabyElement = Array.from(document.querySelector(`#TabbyPromo1[data-id='${selectedVariant.id}'] div div, #TabbyPromo2[data-id='${selectedVariant.id}'] div div`)
         .shadowRoot.querySelectorAll("span")).filter(el => {
             let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
            if(array.length > 0) return el;  
