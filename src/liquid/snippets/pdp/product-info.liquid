@@ -553,9 +553,6 @@
         }, 1000);
       });
 
-
-
-
     $(".custom-tabby").on("click",function(){
         let variantsData = JSON.parse('{{ product.variants | json }}');
         let currentSelectedOptionValue = Array.from($(".pdp__content__swatches .pdp__content__swatches__item.active")).map(el => el.dataset.option);

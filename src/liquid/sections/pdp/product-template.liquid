@@ -67,7 +67,6 @@
   })
 </script>
 {% else %}
-
 <script>
   const observer = new MutationObserver((mutationRecords) => {       
     let variantsData = JSON.parse('{{ product.variants | json }}');
