@@ -63,7 +63,8 @@
     }
   });
   observer.observe(document.querySelector("#TabbyPromo1, #TabbyPromo2"), {
-    childList: true
+    childList: true,
+    subtree: true,
   })
 </script>
 {% else %}
