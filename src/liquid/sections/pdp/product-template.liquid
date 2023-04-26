@@ -29,7 +29,7 @@
     })[0] : null;  
     if(shadowSelection){
 
-      let contentShowdowSelection = document.querySelector("#TabbyPromo1 div div, #TabbyPromo2 div div").shadowRoot.querySelector(".styles__tabby-promo-snippet--54518");
+      let contentShowdowSelection = shadowSelection;
       shadowSelection.style.display = "flex";
       shadowSelection.style.flexDirection = "column";
       shadowSelection.style.direction = "rtl";
@@ -67,7 +67,7 @@
     subtree: true,
   })
 </script>
-{% else %}
+{% else %}  
 <script>
   const observer = new MutationObserver((mutationRecords) => {       
     let variantsData = JSON.parse('{{ product.variants | json }}');

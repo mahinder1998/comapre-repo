@@ -429,11 +429,11 @@
         let currentSelectedOptionValue = Array.from($(".pdp__content__swatches .pdp__content__swatches__item.active")).map(el => el.dataset.option);
         let selectedVariant = currentSelectedOptionValue.length > 0 ? variantsData.find(el => el.options.length == currentSelectedOptionValue.length && el.options.every(el => currentSelectedOptionValue.indexOf(el) != -1)) : variantsData[0];
         /*selecting tabby Element */
-        let tabyElement = Array.from(document.querySelector(`#TabbyPromo1[data-id='${selectedVariant.id}'] div div, #TabbyPromo2[data-id='${selectedVariant.id}'] div div`)
+        let tabyElement = Array.from(document.querySelector(`.tabbyProm[data-id='${selectedVariant.id}'] div div`)
         .shadowRoot.querySelectorAll("span")).filter(el => {
             let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
            if(array.length > 0) return el;  
-        })[0]
+        })[0];
            setTimeout(function () {
 
 
@@ -475,7 +475,7 @@
         let currentSelectedOptionValue = Array.from($(".pdp__content__swatches .pdp__content__swatches__item.active")).map(el => el.dataset.option);
         let selectedVariant = currentSelectedOptionValue.length > 0 ? variantsData.find(el => el.options.length == currentSelectedOptionValue.length && el.options.every(el => currentSelectedOptionValue.indexOf(el) != -1)) : variantsData[0];
         /*selecting tabby Element */
-        let tabyElement = Array.from(document.querySelector(`#TabbyPromo1[data-id='${selectedVariant.id}'] div div, #TabbyPromo2[data-id='${selectedVariant.id}'] div div`)
+        let tabyElement = Array.from(document.querySelector(`.tabbyProm[data-id='${selectedVariant.id}'] div div`)
         .shadowRoot.querySelectorAll("span")).filter(el => {
             let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
            if(array.length > 0) return el;  
@@ -514,7 +514,7 @@
         let currentSelectedOptionValue = Array.from($(".pdp__content__swatches .pdp__content__swatches__item.active")).map(el => el.dataset.option);
         let selectedVariant = currentSelectedOptionValue.length > 0 ? variantsData.find(el => el.options.length == currentSelectedOptionValue.length && el.options.every(el => currentSelectedOptionValue.indexOf(el) != -1)) : variantsData[0];
         /*selecting tabby Element */
-        let tabyElement = Array.from(document.querySelector(`#TabbyPromo1[data-id='${selectedVariant.id}'] div div, #TabbyPromo2[data-id='${selectedVariant.id}'] div div`)
+        let tabyElement = Array.from(document.querySelector(`.tabbyProm[data-id='${selectedVariant.id}'] div div`)
         .shadowRoot.querySelectorAll("span")).filter(el => {
             let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
            if(array.length > 0) return el;  
@@ -558,7 +558,7 @@
         let currentSelectedOptionValue = Array.from($(".pdp__content__swatches .pdp__content__swatches__item.active")).map(el => el.dataset.option);
         let selectedVariant = currentSelectedOptionValue.length > 0 ? variantsData.find(el => el.options.length == currentSelectedOptionValue.length && el.options.every(el => currentSelectedOptionValue.indexOf(el) != -1)) : variantsData[0];
         /*selecting tabby Element */
-        let tabyElement = Array.from(document.querySelector(`#TabbyPromo1[data-id='${selectedVariant.id}'] div div, #TabbyPromo2[data-id='${selectedVariant.id}'] div div`)
+        let tabyElement = Array.from(document.querySelector(`.tabbyProm[data-id='${selectedVariant.id}'] div div`)
         .shadowRoot.querySelectorAll("span")).filter(el => {
             let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
            if(array.length > 0) return el;  
