@@ -54,13 +54,8 @@
         
 
         &__info-overlay {
-            position: absolute;
             background-color: rgba(255, 255, 255, 0.334);
-            top: 50%;
-            transform: translateY(-50%);
-            left: 80px;
-            max-width: 300px;
-            padding: 24px 42px;
+            max-width: 100%;
             padding: 24px 42px;
             text-align: center;
             
@@ -271,11 +266,6 @@ html[lang="ar"]{
 }
 
 
-@media(min-width:768px) and (max-width:992px){
-    .h__slide__info-overlay {
-        max-width: calc(70%);
-    }
-}
 
  @media(max-width:767px){
     .h__slide__video.mobile {
@@ -284,3 +274,13 @@ html[lang="ar"]{
     }
  }
 
+
+ @media(min-width:992px){
+    .h__slide__info-overlay{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 80px;
+        max-width: 300px;
+    }
+ } 
