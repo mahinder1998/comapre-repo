@@ -274,12 +274,28 @@
     margin-top: 70px;
 }
 .shipping-grid {
-    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 110px;
-    max-width: 480px;
+    grid-template-columns: repeat(2, 1fr);
+    @media(min-width: 750px){
+        margin: 0 auto;
+        grid-column-gap: 80px;
+        grid-template-columns: repeat(4, 1fr);        
+        max-width: 900px;
+    }
+    .shipping-items{
+        .shipping-des{
+            max-width: 130px;
+            margin: 0 auto;
+        }
+    }
 }
+// .shipping-grid {
+//     margin: 0 auto;
+//     display: grid;
+//     grid-template-columns: repeat(3, 1fr);
+//     grid-column-gap: 110px;
+//     max-width: 480px;
+// }
 .shipping-grid .shipping-items {
     text-align: center;
 }
