@@ -82,14 +82,22 @@
 
     
     <!--mobile langify -->
-
+    {% assign nav_menu_color = section.settings.menu_handle_color %}
+    <style>
+      span.mobile-nav__label.nav-color-{{mob_menu_handle_color}} > a,
+      li.no-child-one.mobile-nav__item.nav-color-{{mob_menu_handle_color}}>a{
+        color: {{ section.settings.nav_color}}
+         !important;
+      }
+    </style>
+    
     {%- for link in linklists.main-menu.links -%}
     {%- assign outerLoopIndex = forloop.index -%}
     {% if link.links != blank %}
     {% capture child_list_handle %}{{ link.handle }}-{{ outerLoopIndex }}{% endcapture %}
     <li class="1 has-child-one mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvlone {% for childlink in link.links %}{% if childlink.current %}has-2ndd{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %} {% if grandchildlink.current %} has-thirdd {% endif %} {% endfor %}{% endfor %}">
       <div class="dropdown_custom_item">
-        <span class="mobile-nav__label {% for childlink in link.links %}{% if childlink.current %}bold{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} bold{% endif %}{% endfor %}{% endfor %}"><a href="{{ link.url }}" {% if link.current %} nav-lvl-a="ok" aria-current="page"{% endif %}>{{ link.title | escape }}</a></span>
+        <span class="mobile-nav__label {% if mob_menu_handle_color == link.handle %}nav-color-{{ section.settings.menu_handle_color }} {% endif %}{% for childlink in link.links %}{% if childlink.current %}bold{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} bold{% endif %}{% endfor %}{% endfor %}"><a href="{{ link.url }}" {% if link.current %} nav-lvl-a="ok" aria-current="page"{% endif %}>{{ link.title | escape }}</a></span>
       </div> 
         <div class="togglenewmob lvlonemob togglenewmob-wrap">
             <div class="mobile-nav__icon lvlonemob-chiv {% for childlink in link.links %}{% if childlink.current %}mobchiv-up{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} mobchiv-up{% endif %}{% endfor %}{% endfor %}">
@@ -149,7 +157,7 @@
       </ul>
     </li>
     {% else %}
-    <li class="no-child-one mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvlone">
+    <li class="no-child-one mobile-nav__item {% if mob_menu_handle_color == link.handle %}nav-color-{{ section.settings.menu_handle_color }}{% endif %}{% unless forloop.last %} border-bottom{% endunless %} li-lvlone">
       <a href="{{ link.url }}"
          class="mobile-nav__link{% if link.active %} mobile-nav__link--active{% endif %}"
          {% if link.current %} nav-lvl-one aria-current="page"{% endif %}
