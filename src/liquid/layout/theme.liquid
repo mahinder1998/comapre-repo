@@ -5,6 +5,9 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=Edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      {% if search.results.size == 0 %}
+           <meta name="robots" content="noindex,nofollow">
+      {% endif %} 
       <link rel="canonical" href="{{ canonical_url }}">
       <link rel="shortcut icon" href="{{ 'mb-favicon.png' | asset_url }}">
 
