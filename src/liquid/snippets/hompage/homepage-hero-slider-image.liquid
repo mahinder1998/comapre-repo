@@ -13,7 +13,7 @@
         >
       </picture>
     </div>
-    <div class="h__slide__info-overlay {% if block.content-position-english == 'right'  %} position-right {%endif%}">
+    <div class="h__slide__info-overlay {% if block.content-position-english == 'right'  %} position-right {%endif%}{% if shop.locale == 'ar' %} {% if block.content-position-arabic == 'right'  %}ar-position-right{%endif%}{% endif %}">
       <div class="h__slide__info-overlay__title">
         {% if shop.locale == 'ar' %}
           {{ block.title_arabic }}

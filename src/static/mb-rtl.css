@@ -296,3 +296,11 @@ ul.grid-slider-five.desktop-view .slick-list.draggable{
 
 
 /* home slider rtl css end */
+
+.h__slide__info-overlay.ar-position-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 80px;
+    max-width: 300px;
+} 
