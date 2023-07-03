@@ -10,10 +10,11 @@
   <ul class="container ul-reset text-center">
     {%- for link in linklists.main-menu.links -%}
     {%- if link.links != blank -%} 
+    
     {% assign nav_menu_color = section.settings.menu_handle_color %}
 	   <li class="droppable lvl-li-one has-subs {% if nav_menu_color == link.handle %}nav-color-{{ nav_menu_color }} {% endif %}" data-handle="{{ link.handle }}">
     {%- else -%}
-       <li class="droppable lvl-li-one {% if nav_menu_color == link.handle %}nav-color-{{ nav_menu_color }} {% endif %}">
+       <li class="droppable lvl-li-one  {% if nav_menu_color == link.handle %}nav-color-{{ nav_menu_color }} {% endif %}" >
     {%- endif -%}
          
         <a class="{{ nav_menu_color }}" href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
@@ -24,15 +25,12 @@
         <div class='mega-menu'>
          <div class="container cf">
           <ul class="ul-reset sub-first-lvl">                       
-            {%- for child_link in link.links -%}
-            
-            
+            {%- for child_link in link.links -%} 
              {%- if child_link.links != blank -%}
               <li class="lvl-li-two lvl2-w-subs">
                 <a class="lvl-one-link" href="{{ child_link.url }}" {% if child_link.active %}aria-current="page"{% endif %}>
                   <b>{{ child_link.title }}</b>
                 </a>
-                
                   <ul class="sub-second-lvl">
                     {%- for grandchild_link in child_link.links -%}
                     {% assign boldmenu = '' %}       
