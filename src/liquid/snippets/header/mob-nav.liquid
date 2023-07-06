@@ -132,11 +132,12 @@
         {% if block.type == "menu_color" %}
           {% assign color_class = blank %}
           {% assign nav_menu_color = block.settings.target_handle %}
-          
+
           {% if nav_menu_color == link.handle %}
             <style>
               span.mobile-nav__label.nav-color-{{ nav_menu_color}}> a, li.no-child-one.mobile-nav__item.nav-color-{{ nav_menu_color}}> a > span {
-                color: {{ block.settings.menu_color}} !important;
+                color: {{ block.settings.menu_color}}
+                 !important;
               }
             </style>
             {% assign color_class = link.handle %}
@@ -168,7 +169,6 @@
             class="innercontent pad0 mobile-nav__dropdown {% for childlink in link.links %}{% if childlink.current %}show{% endif %}{% endfor %} {% for childlink in link.links %}{% for grandchildlink in childlink.links %} {% if grandchildlink.current %}show{% endif %}{% endfor %}{% endfor %}"
             data-parent="{{ child_list_handle }}"
             data-level="2">
-
             {% for childlink in link.links %}
               {% if childlink.links != blank and childlink.title != "All products" %}
                 <li class="child2_without_btn mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvltwo">
