@@ -125,33 +125,22 @@
 
 
     <!--mobile langify -->
-
+    {% assign nav_menu_color = section.settings.menu_handle_color %}
+    <style>
+      span.mobile-nav__label.nav-color-{{ mob_menu_handle_color}}> a, li.no-child-one.mobile-nav__item.nav-color-{{ mob_menu_handle_color}}> a {
+        color: {{ section.settings.nav_color}}
+         !important;
+      }
+    </style>
 
     {%- for link in linklists.main-menu.links -%}
-      {% for block in section.blocks %}
-        {% if block.type == "menu_color" %}
-          {% assign color_class = blank %}
-          {% assign nav_menu_color = block.settings.target_handle %}
-
-          {% if nav_menu_color == link.handle %}
-            <style>
-              span.mobile-nav__label.nav-color-{{ nav_menu_color}}> a, li.no-child-one.mobile-nav__item.nav-color-{{ nav_menu_color}}> a > span {
-                color: {{ block.settings.menu_color}}
-                 !important;
-              }
-            </style>
-            {% assign color_class = link.handle %}
-            {% break %}
-          {% endif %}
-        {% endif %}
-      {% endfor %}
       {%- assign outerLoopIndex = forloop.index -%}
       {% if link.links != blank %}
         {% capture child_list_handle %}
           {{ link.handle }}-{{ outerLoopIndex }}{% endcapture %}
         <li class="1 has-child-one mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvlone {% for childlink in link.links %}{% if childlink.current %}has-2ndd{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %} {% if grandchildlink.current %} has-thirdd {% endif %} {% endfor %}{% endfor %}">
           <div class="dropdown_custom_item">
-            <span class="mobile-nav__label {% if color_class != blank %} nav-color-{{ color_class }} {% endif %}{% for childlink in link.links %}{% if childlink.current %}bold{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} bold{% endif %}{% endfor %}{% endfor %}">
+            <span class="mobile-nav__label {% if mob_menu_handle_color == link.handle %}nav-color-{{ section.settings.menu_handle_color }} {% endif %}{% for childlink in link.links %}{% if childlink.current %}bold{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} bold{% endif %}{% endfor %}{% endfor %}">
               <a
                 href="{{ link.url }}"
                 {% if link.current %}
@@ -169,6 +158,7 @@
             class="innercontent pad0 mobile-nav__dropdown {% for childlink in link.links %}{% if childlink.current %}show{% endif %}{% endfor %} {% for childlink in link.links %}{% for grandchildlink in childlink.links %} {% if grandchildlink.current %}show{% endif %}{% endfor %}{% endfor %}"
             data-parent="{{ child_list_handle }}"
             data-level="2">
+
             {% for childlink in link.links %}
               {% if childlink.links != blank and childlink.title != "All products" %}
                 <li class="child2_without_btn mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvltwo">
@@ -241,7 +231,7 @@
           </ul>
         </li>
       {% else %}
-        <li class="no-child-one mobile-nav__item {% if color_class != blank %}nav-color-{{ color_class }}{% endif %}{% unless forloop.last %} border-bottom{% endunless %} li-lvlone">
+        <li class="no-child-one mobile-nav__item {% if mob_menu_handle_color == link.handle %}nav-color-{{ section.settings.menu_handle_color }}{% endif %}{% unless forloop.last %} border-bottom{% endunless %} li-lvlone">
           <a
             href="{{ link.url }}"
             class="mobile-nav__link{% if link.active %} mobile-nav__link--active{% endif %}"
