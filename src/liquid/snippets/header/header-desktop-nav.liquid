@@ -1,19 +1,26 @@
-{% assign nav_menu_color = section.settings.menu_handle_color %}
-<style>
-  .lvl-li-one.has-subs.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }},
-  .lvl-li-one.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }}{
-    color:{{section.settings.nav_color}} !important;
-  }
-</style>
-
 <nav class="mb-dt-nav-cont" role="navigation">
   <ul class="container ul-reset text-center">
     {%- for link in linklists.main-menu.links -%}
+      {% for block in section.blocks %}
+        {% if block.type == "menu_color" %}
+        {% assign color_class =   blank   %}
+        {% assign nav_menu_color = block.settings.target_handle  %}
+        {% if nav_menu_color ==  link.handle %}
+            <style>
+              .lvl-li-one.has-subs.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }},
+              .lvl-li-one.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }}{
+                color:{{block.settings.menu_handle_color}} !important;
+              }
+          </style>
+          {% assign color_class =  link.handle   %}
+          {% break %}
+        {% endif %}
+        {% endif %}
+       {% endfor %}
     {%- if link.links != blank -%} 
-    {% assign nav_menu_color = section.settings.menu_handle_color %}
-	   <li class="droppable lvl-li-one has-subs {% if nav_menu_color == link.handle %}nav-color-{{ nav_menu_color }} {% endif %}" data-handle="{{ link.handle }}">
+	   <li class="droppable lvl-li-one has-subs {% if color_class != blank %}nav-color-{{ nav_menu_color }} {% endif %}" data-handle="{{ link.handle }}">
     {%- else -%}
-       <li class="droppable lvl-li-one {% if nav_menu_color == link.handle %}nav-color-{{ nav_menu_color }} {% endif %}">
+       <li class="droppable lvl-li-one {% if color_class != blank %}nav-color-{{ nav_menu_color }} {% endif %}">
     {%- endif -%}
          
         <a class="{{ nav_menu_color }}" href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
