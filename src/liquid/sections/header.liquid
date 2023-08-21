@@ -98,19 +98,6 @@
         "type": "url",
         "id": "uae_text_url",
         "label": "UAE url"
-      }, {
-        "type": "header",
-        "content": "Menu color "
-      }, {
-        "type": "text",
-        "id": "menu_handle_color",
-        "label": "menu handle",
-        "info": "Note: only lowercase allow & '-' in the place of space."
-      }, {
-        "type": "color",
-        "id": "nav_color",
-        "label": "Menu color",
-        "default": "#780302"
       }
 
 
@@ -200,7 +187,24 @@
 
 
         ]
+      }, {
+        "name": "Menu color",
+        "type": "menu_color",
+        "settings": [
+          {
+            "type": "text",
+            "id": "target_handle",
+            "label": "Target Nav item",
+            "info": "Note: only lowercase allow & '-' in the place of space."
+          }, {
+            "type": "color",
+            "id": "menu_handle_color",
+            "label": "Menu color",
+            "default": "#780302"
+          }
+        ]
       }
+
 
 
     ]
