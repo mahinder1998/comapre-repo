@@ -790,9 +790,11 @@ li.lvl-li-two {
 
 .mega-menu a.lvl-one-link {
     text-transform: uppercase;
-    text-shadow: 0 0 black;
 }
 
+.lvl-li-three.show_bold_menu a {
+    text-shadow: 0 0 #000;
+}
 /*megamenu laypout css  */
 
 
