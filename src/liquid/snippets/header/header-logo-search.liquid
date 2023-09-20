@@ -25,15 +25,15 @@
 <section class="mb-top-logo">
   <div class="mb-tool-logo-flex">
    <div class="tb-logo-left">
-    <a class="mb-logo-2 mb-logo-2__imgbox" href="#">
-     <img 
-        class="mb-logo-2__img lazy"   
-        data-src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232" 
-        src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_1x1.png?v=1623487232" 
-        alt=""
-    >
-    
- </a>
+    {% if request.locale.iso_code == 'en' %}
+    <a class="mb-logo-2 mb-logo-2__imgbox jjj" href="{{shop.url}}">
+        <img class="mb-logo-2__img lazy" width="116" src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_1x1.png?v=1623487232" data-src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232" alt="">
+    </a>
+    {% else %}
+    <a class="mb-logo-2 mb-logo-2__imgbox" href="/ar">
+        <img class="mb-logo-2__img lazy" width="116" src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_1x1.png?v=1623487232" data-src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232" alt="">
+    </a>
+    {% endif %}
  <a class="mb-burger-icon" href="#">
     <img src="{{ 'mb-icon-mob-nav.svg' | asset_url }}" width="23px" height="20px" alt="" >
 </a>
