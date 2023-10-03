@@ -301,7 +301,7 @@ ul.grid-slider-five.desktop-view .slick-list.draggable{
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        left: 80px;
+        right: 80px;
         max-width: 300px;
     } 
 }
