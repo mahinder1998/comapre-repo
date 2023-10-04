@@ -305,3 +305,16 @@ ul.grid-slider-five.desktop-view .slick-list.draggable{
         max-width: 300px;
     } 
 }
+
+/* slider arrow direction fixes */
+.h__slider button.slick-prev.slick-arrow {
+    left: 0;
+    right: auto;
+    transform: inherit;
+}
+
+.h__slider button.slick-next.slick-arrow {
+    right: 0;
+    left: auto;
+    transform: inherit;
+}
