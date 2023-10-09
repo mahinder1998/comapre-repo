@@ -87,3 +87,9 @@ padding: 0 15px;
   line-height: 26px;
   font-size: 12px;
 }
+
+
+.boost-pfs-filter-product-item .yotpo-bottomline.star-clickable{
+  float: none !important;
+  justify-content: center;
+}

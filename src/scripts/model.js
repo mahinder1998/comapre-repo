@@ -16,7 +16,8 @@ export const getAllProductsWithType = async (language, type) => {
                     title                                          
                     handle
                     productType
-                    totalInventory    
+                    totalInventory
+                    id   
                     
                     variants(first: 10) {
                       edges {
@@ -54,7 +55,7 @@ export const getAllProductsWithType = async (language, type) => {
       "Content-Type" : "application/json",
       "X-Shopify-Storefront-Access-Token" : "262dbacef9d26e53dfff834b460386d6",
       "Accept-Language": language
-    }});
+    }}); 
 
     const getProductsResultData = getProductsResult.data;
     if(!getProductsResultData) {
@@ -67,6 +68,7 @@ export const getAllProductsWithType = async (language, type) => {
             "productType": edge?.node?.productType,
             "productAvailableForSale": edge?.node?.availableForSale,                                     
             "title": edge?.node?.title,
+            "id": edge?.node?.id,
             "handle": edge?.node?.handle,
             "image": edge?.node?.images?.edges[0]?.node,
             "variants": edge?.node?.variants?.edges[0]?.node,
