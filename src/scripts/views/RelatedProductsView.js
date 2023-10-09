@@ -47,6 +47,8 @@ class RelatedProductsView {
 
     const markup = this._generateMarkup();
     this.parentEl.insertAdjacentHTML("afterbegin", markup);
+    let api = new Yotpo.API(window.yotpo);  api.refreshWidgets();
+    console.log('recomendation loaded')
   }
 
   _clean() {
@@ -66,6 +68,14 @@ class RelatedProductsView {
   }
 
   _generateMarkupSlide(prod) {
+    var inputString = prod?.id;
+    var regex = /(\d+)/;
+    var match = inputString.match(regex);
+    if (match) {
+      var productIdNumber = match[0];
+    } else {
+      console.log("No number found in the string");
+    }
     return `                     
           <a href="/products/${prod.handle}" class="pdp-like__slider__item ${
       prod.variants?.availableForSale
@@ -88,6 +98,9 @@ class RelatedProductsView {
                     prod?.productMaxPrice
                   )}</div>                
               </div>
+              <div class="review-rating-widgets">
+              <div class="yotpo bottomLine" data-product-id="${productIdNumber}"></div>
+                </div>
           </a>
         `;
   }

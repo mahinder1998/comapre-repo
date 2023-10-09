@@ -124,5 +124,14 @@
     <div class="product_price">
       {% render 'price' , product: product %}
     </div>
+     {% comment %}
+        Review rating start
+    {% endcomment %}
+    <div class="review-rating-widgets">
+    <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+    </div>
+    {% comment %}
+        Review rating end
+    {% endcomment %}
   </div>
 </div>  

@@ -61,3 +61,16 @@
   }
   });</script>
 {% comment %}{% include 'wiser_related' %}{% include 'wiser_recommended' %}{% include 'wiser_alsobought' %}{% include 'wiser_recentview' %}{% include 'wiser_topselling' %}{% include 'wiser_trending' %}{% include 'wiser_newarrivals' %}{% include 'wiser_featured' %}{% include 'wiser_recent_related' %}{% endcomment %}
+
+<!-- review rating section -->
+<div
+  class="yotpo yotpo-main-widget"
+  data-product-id="{{ product.id }}"
+  data-name="{{ product.title | escape }}"
+  data-url="{{ shop.url }}{{ product.url }}"
+  data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+  data-price="{{ variant.price | money_without_currency }}"
+  data-currency="{{ shop.currency }}"
+  data-description="{{ product.description | escape }}"></div>
+
+<!-- end review rating section -->

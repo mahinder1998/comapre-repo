@@ -1403,3 +1403,116 @@ padding-left: 0 !important;
 }
 
 //tamara css end
+
+//  review rating css start
+
+.yotpo .yotpo-icon-default-empty-star:before,.yotpo .yotpo-icon-empty-star:before {
+  color: #000
+}
+
+.yotpo .yotpo-logo-link-new>* {
+  color: #000
+}
+
+.yotpo .yotpo-icon-default-star:before,.yotpo .yotpo-icon-star:before {
+  color: #000 !important
+}
+
+.yotpo .yotpo-icon-write-no-frame:before {
+  color: #000 !important
+}
+
+.main-widget .bottom-line-items {
+  text-align: left;
+  margin-bottom: 10px
+}
+
+div.yotpo .yotpo-label-container {
+  text-align: left;
+  padding: 0 10px;
+  border-top: none;
+  position: relative
+}
+
+div.yotpo .yotpo-logo-link-new>* {
+  color: #000
+}
+
+.yotpo .yotpo-label-container .yotpo-logo-line {
+  border-bottom: 1px solid #e3e3e3;
+  position: absolute;
+  top: 10px;
+  width: calc(100% - 20px);
+  z-index: 1
+}
+
+.yotpo .yotpo-label-container a.yotpo-logo-link-new {
+  position: relative;
+  background-color: #fff !important;
+  z-index: 2
+}
+
+div.yotpo .primary-color-btn,div.yotpo input[type=button].primary-color-btn,div.yotpo .primary-color-btn:hover,div.yotpo input[type=button].primary-color-btn:hover {
+  background: #000
+}
+
+div.write-question-review-buttons-container .write-review-button {
+  background: #6a6c77;
+  padding: 6px 11px !important
+}
+
+.yotpo .yotpo-icon-write-no-frame:before {
+  content: "";
+  color: #fff !important
+}
+
+div.write-question-review-buttons-container .write-question-review-button .write-question-review-button-text {
+  color: #fff;
+  font-weight: normal;
+  text-transform: uppercase
+}
+
+div.write-question-review-buttons-container .write-review-button:hover {
+  background: #6a6c77 !important;
+  border-color: #6a6c77
+}
+
+.yotpo.bottomLine.yotpo-small {
+  text-align: right
+}
+
+html[dir=rtl] .yotpo .pull-left {
+  text-align: right;
+  float: right
+}
+
+div.yotpo a {
+  color: #000 !important
+}
+
+div.yotpo a:hover {
+  color: #333 !important;
+  text-decoration: none !important
+}
+
+.yotpo.yotpo-main-widget {
+  margin-top: 40px !important;
+}
+.review-rating-widgets {
+  margin: 10px 0;
+}
+.product_card .review-rating-widgets .yotpo .pull-left {
+  float: none !important;
+  justify-content: center;
+}
+.yotpo .yotpo-bottomline .yotpo-icon-star, .yotpo .yotpo-bottomline .yotpo-icon-half-star, .yotpo .yotpo-bottomline .yotpo-icon-empty-star {
+  color:#000!important
+  }
+  .product-recommendations .review-rating-widgets .standalone-bottomline {
+    display: flex;
+    justify-content: center;
+}
+.boost-pfs-filter-product-item-grid .boost-pfs-filter-product-item-inner {
+  height: auto !important;
+}
+//  review rating css end
