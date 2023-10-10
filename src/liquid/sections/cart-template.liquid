@@ -249,7 +249,7 @@
           <span class="cart-subtotal__price">Free</span>
         </div>
         <div class="shipping-day">
-          <p>Free Shipping within 5-7 days</p>
+          {{section.settings.free_shipping_text}}
         </div>
         <div colspan="5" class="total_vat">
         <h4 class="flex-bet">
@@ -576,6 +576,12 @@ document.querySelector('#CartNote').value = el.value;
       "type": "checkbox",
       "id": "enable_gift_message",
       "label": "Enable Gift Box & Message"
+    },
+    {
+      "type": "textarea",
+      "id": "free_shipping_text",
+      "label": "free shipping text",
+      "default": "<p>Free Shipping within 5-7 days</p>"
     },
     {
       "type": "header",
