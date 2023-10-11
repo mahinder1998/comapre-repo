@@ -368,8 +368,8 @@
 
             &__notify-me-btn {
                 margin-left: 20px;
-                background-color: white;
-                color: black;
+                background-color: #000;
+                color: #fff;
                 font-size: 14px;
                 width: 100%;
                 height: 44px;
@@ -378,12 +378,7 @@
                 place-items: center;
                 cursor: pointer;
                 border: 1px solid #b7b7b7;
-                
-                background-color: #eee;
-                color: grey;
                 border: 1px solid #eee;
-                cursor: not-allowed;
-                
                 @media(max-width: 768px) {
                     margin-top: 30px;
                     margin-left: 0;

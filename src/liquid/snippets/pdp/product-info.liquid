@@ -284,15 +284,14 @@
                 data-id="{{ current_variant.id }}"
             >Out of stock</div>
         {% else %}
-            {% comment %} <div 
-                style="display: none;"
-                class="pdp__content__control__add-to-cart-btn"
-                data-id="{{ current_variant.id }}"
-            >Add to cart</div> {% endcomment %}
+            {% comment %}Notify Me Btn{% endcomment %}
             <div 
                 class="pdp__content__control__notify-me-btn"
                 data-id="{{ current_variant.id }}"
-            >Out of stock</div>
+            >Notify Me When Available</div>
+            <a href="#" class="BIS_trigger notify_me-btn" style="display:none" data-product-data="{{ product | json | escape }}">
+                {{ 'Notify Me' }}
+                    </a>
         {% endif %}
     </div>
 
@@ -598,4 +597,10 @@ span.styles__tabby-promo-snippet__text--f30af {
             document.getElementById("copied").style.display="none"
         },1000);
       }
+
+      // Notify Me functionality  //
+        let notifyMeBtn = document.querySelector(".pdp__content__control__notify-me-btn");
+        notifyMeBtn.addEventListener("click",()=>{
+            document.querySelector(".BIS_trigger.notify_me-btn").click();
+        });
 </script>
