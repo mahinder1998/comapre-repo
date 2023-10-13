@@ -275,14 +275,17 @@
                 class="pdp__content__control__add-to-cart-btn"
                 data-id="{{ current_variant.id }}"
             >
-                <div class="pdp__content__control__add-to-cart-btn__label">Add to Cart</div>
+                <div class="pdp__content__control__add-to-cart-btn__label ----">Add to Cart</div>
                 <div class="pdp__content__control__add-to-cart-btn__loading" style="display:none;">Loading...</div>
             </div>
             <div 
                 style="display: none;"
                 class="pdp__content__control__notify-me-btn"
                 data-id="{{ current_variant.id }}"
-            >Out of stock</div>
+            >Notify Me When Available</div>
+            <a href="#" class="BIS_trigger notify_me-btn" style="display:none" data-product-data="{{ product | json | escape }}">
+                {{ 'Notify Me' }}
+                    </a>
         {% else %}
             {% comment %}Notify Me Btn{% endcomment %}
             <div 
