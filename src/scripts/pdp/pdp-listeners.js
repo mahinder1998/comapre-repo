@@ -417,6 +417,7 @@ const PDPListeners = (function () {
                 //Change data-id on CTAButtons;
                 document.querySelector('.pdp__content__control__add-to-cart-btn') ? document.querySelector('.pdp__content__control__add-to-cart-btn').dataset.id = selectedVariant.id : null;
                 document.querySelector('.pdp__content__control__notify-me-btn') ? document.querySelector('.pdp__content__control__notify-me-btn').dataset.id = selectedVariant.id : null;
+                document.querySelector('.pdp_notify_button') ? document.querySelector('.pdp_notify_button').dataset.id = selectedVariant.id : null;
 
 
                 //Update the Sliders.
@@ -535,12 +536,17 @@ const PDPListeners = (function () {
                 const ctaAddToCart = document.querySelector('.pdp__content__control__add-to-cart-btn');
                 const ctaNotifyMe = document.querySelector('.pdp__content__control__notify-me-btn');
 
+                const ctaNotifyMeApp =  document.querySelector('.pdp_notify_button');
+
+
                 if (selectedVariant.available) {
                     ctaNotifyMe.style.display = "none";
                     ctaAddToCart.style.display = "grid";
+                    ctaNotifyMeApp.style.display = "none";
                 } else {
                     ctaAddToCart.style.display = "none";
-                    ctaNotifyMe.style.display = "grid"
+                    ctaNotifyMe.style.display = "grid";
+                    ctaNotifyMeApp.style.display = "flex";
                 }
             });
         })
