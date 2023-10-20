@@ -368,16 +368,15 @@
 
             &__notify-me-btn {
                 margin-left: 20px;
-                background-color: #000;
-                color: #fff;
+                background-color: #eee;
+                color: gray;
                 font-size: 14px;
                 width: 100%;
                 height: 44px;
                 text-transform: uppercase;
                 display: grid;
                 place-items: center;
-                cursor: pointer;
-                border: 1px solid #b7b7b7;
+                cursor: not-allowed;
                 border: 1px solid #eee;
                 @media(max-width: 768px) {
                     margin-top: 30px;
@@ -636,4 +635,28 @@
 
 a.pdp-like__slider__item.false {
     display: none !important;
+}
+
+.pdp_notify_button{
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    width: 100%;
+    height: 44px;
+    text-transform: uppercase;
+    display: flex;
+    cursor: pointer;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.pdp_notify_button a{
+    color: #fff   ;
+}
+.pdp_notify_button.hide {
+    display: none;
+}
+
+button#BIS_trigger {
+    display: none;
 }

@@ -282,21 +282,23 @@
                 style="display: none;"
                 class="pdp__content__control__notify-me-btn"
                 data-id="{{ current_variant.id }}"
-            >Notify Me When Available</div>
-            <a href="#" class="BIS_trigger notify_me-btn" style="display:none" data-product-data="{{ product | json | escape }}">
-                {{ 'Notify Me' }}
-                    </a>
+            >Out of stock</div>
         {% else %}
             {% comment %}Notify Me Btn{% endcomment %}
             <div 
                 class="pdp__content__control__notify-me-btn"
                 data-id="{{ current_variant.id }}"
-            >Notify Me When Available</div>
-            <a href="#" class="BIS_trigger notify_me-btn" style="display:none" data-product-data="{{ product | json | escape }}">
-                {{ 'Notify Me' }}
-                    </a>
+            >Out of stock</div>
         {% endif %}
     </div>
+    
+    <div class="pdp_notify_button {% if product.selected_or_first_available_variant.available %}hide {% endif %}" data="{{product.selected_or_first_available_variant.available}}">
+        <a href="#" class="BIS_trigger notify_me-btn"  data-product-data="{{ product | json | escape }}">
+             Notify me when available 
+        </a>
+    </div>
+  
+
 
     <div class="pdp__content__error">
         <div class="pdp__content__error__text">There was an errro adding product to the cart.</div>
@@ -602,7 +604,7 @@ span.styles__tabby-promo-snippet__text--f30af {
       }
 
       // Notify Me functionality  //
-        let notifyMeBtn = document.querySelector(".pdp__content__control__notify-me-btn");
+        let notifyMeBtn = document.querySelector(".pdp_notify_button");
         notifyMeBtn.addEventListener("click",()=>{
             document.querySelector(".BIS_trigger.notify_me-btn").click();
         });
