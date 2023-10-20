@@ -1515,4 +1515,15 @@ div.yotpo a:hover {
 .boost-pfs-filter-product-item-grid .boost-pfs-filter-product-item-inner {
   height: auto !important;
 }
+
+@media all and (max-width:768px){
+  .pdp__content .review-rating-widgets .yotpo .pull-left {
+    float: none;
+    justify-content:center
+  }
+}
+
 //  review rating css end
+
+
+

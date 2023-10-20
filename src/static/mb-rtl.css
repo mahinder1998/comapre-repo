@@ -318,3 +318,10 @@ ul.grid-slider-five.desktop-view .slick-list.draggable{
     left: auto;
     transform: inherit;
 }
+
+
+
+.pdp__content .review-rating-widgets .yotpo .pull-left {
+    float: none;
+    direction: rtl;
+}
