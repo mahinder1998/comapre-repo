@@ -30,25 +30,29 @@
         <source src="{{ block.video_url_mobile }}" type="video/ogg">
         <source src="{{ block.video_url_mobile }}" type="video/webm">
       </video>
-      <div class="h__slide__info-overlay {% if block.content-position-english == 'right'  %} position-right {%endif%} {% if shop.locale == 'ar' %} {% if block.content-position-ar %} ar-position-right{% endif %}{% endif %}">
-        <div class="h__slide__info-overlay__title">
-          {% if shop.locale == 'ar' %}
-            {{ block.title_arabic }}
-          {% else %}
-            {{ block.title -}}
-          {%- endif %}
-        </div>
-        <div class="h__slide__info-overlay__desc">
-          {% if shop.locale == 'ar' %}
-            {{ block.subtitle_arabic }}
-          {% else %}
-            {{ block.subtitle -}}
-          {%- endif %}
-        </div>
-        {% unless block.button_text == blank or block.button_link == blank %}
-          <a href="{{ block.button_link }}" class="h__slide__info-overlay__cta">{{ block.button_text }}</a>
-        {% endunless %}
+     <div class='h__slide__info-overlay
+      {% if block.content-position-english == 'right' %}
+        position-right {% else %}position-left{% endif %}
+      {% if shop.locale == 'ar' %}
+        {% if block.content-position-ar == 'left' %}
+          ar-position-left {% else %}ar-position-right{% endif %}
+      {% endif %}'>
+      <div class="h__slide__info-overlay__title">
+        {% if shop.locale == 'ar' %}
+          {{ block.title_arabic }}
+        {% else %}
+          {{ block.title }}{% endif %}
       </div>
+      <div class="h__slide__info-overlay__desc">
+        {% if shop.locale == 'ar' %}
+          {{ block.subtitle_arabic }}
+        {% else %}
+          {{ block.subtitle }}{% endif %}
+      </div>
+      {% unless block.button_text == blank or block.button_link == blank %}
+        <a href="{{ block.button_link }}" class="h__slide__info-overlay__cta">{{ block.button_text }}</a>
+      {% endunless %}
+    </div>
     </div>
   </div>
 </div>

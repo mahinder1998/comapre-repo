@@ -279,8 +279,14 @@ ul.grid-slider-five.desktop-view .slick-list.draggable{
     left: auto;
 }
 .h__slider button.slick-next.slick-arrow {
+    left: auto;
+    right: 0;
+    transform: scale(1);
+}
+.h__slider button.slick-prev.slick-arrow {
     left: 0;
     right: auto;
+    transform: scale(1);
 }
 .h__slider button.slick-next.slick-arrow:after {
     transform: rotate(45deg);
@@ -293,7 +299,9 @@ ul.grid-slider-five.desktop-view .slick-list.draggable{
     justify-content: center;
     flex-direction: row-reverse;
 }
-
+.h__slider .slick-list.draggable{
+    direction:ltr;
+}
 
 /* home slider rtl css end */
 @media(min-width:768px){
@@ -303,7 +311,15 @@ ul.grid-slider-five.desktop-view .slick-list.draggable{
         transform: translateY(-50%);
         right: 80px;
         max-width: 300px;
-    } 
+    }
+    .h__slide__info-overlay.position-left.ar-position-left {
+        left: 80px;
+        right: auto;
+    }
+    .h__slide__info-overlay.position-right.ar-position-right{
+        right: 80px;
+        left: auto;
+    }
 }
 
 /* slider arrow direction fixes */
