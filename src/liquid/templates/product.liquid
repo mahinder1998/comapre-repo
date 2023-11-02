@@ -1,5 +1,7 @@
 {% section 'product-template' %}
 
+{% section 'cart-json' %}
+
 {% assign current_variant = product.selected_or_first_available_variant %}
 
 <script type="application/ld+json">
@@ -59,7 +61,8 @@
   }]
   }
   }
-  });</script>
+  });
+</script>
 {% comment %}{% include 'wiser_related' %}{% include 'wiser_recommended' %}{% include 'wiser_alsobought' %}{% include 'wiser_recentview' %}{% include 'wiser_topselling' %}{% include 'wiser_trending' %}{% include 'wiser_newarrivals' %}{% include 'wiser_featured' %}{% include 'wiser_recent_related' %}{% endcomment %}
 
 <!-- review rating section -->
@@ -71,6 +74,7 @@
   data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
   data-price="{{ variant.price | money_without_currency }}"
   data-currency="{{ shop.currency }}"
-  data-description="{{ product.description | escape }}"></div>
+  data-description="{{ product.description | escape }}"
+></div>
 
 <!-- end review rating section -->
