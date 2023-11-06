@@ -343,52 +343,49 @@ const PDPListeners = (function () {
               }
 
               // Update the mincart.
-              Cart.getState()
-                .then((cart) => {
-                  if (document.querySelector(".mini-cart-list")) {
-                    document.querySelector(".mini-cart-list").innerHTML = "";
-                  }
-                  cart?.items.forEach((item) =>
-                    renderItemtoMinicart(item, oComparePrice)
-                  );
+              let cartData = stringToHTML(responseData?.sections["cart-json"]);
 
-                  // Hide no cart
-                  if (
-                    !document
-                      .querySelector(".cartempty_text")
-                      .classList.contains("hide")
-                  ) {
-                    document
-                      .querySelector(".cartempty_text")
-                      .classList.add("hide");
-                  }
+              let cartJSON = JSON.parse(
+                cartData.querySelector("#cartJson").textContent
+              );
 
-                  // cart title
-                  if (
-                    document
-                      .querySelector(".mini-cart-title")
-                      .classList.contains("hide")
-                  ) {
-                    document
-                      .querySelector(".mini-cart-title")
-                      .classList.remove("hide");
-                  }
+              if (document.querySelector(".mini-cart-list")) {
+                document.querySelector(".mini-cart-list").innerHTML = "";
+              }
+              cartJSON?.items.forEach((item) =>
+                renderItemtoMinicart(item, oComparePrice)
+              );
 
-                  // Show the cart buttton
-                  if (
-                    document
-                      .querySelector(".mcart-go-cart")
-                      .classList.contains("hide")
-                  ) {
-                    document
-                      .querySelector(".mcart-go-cart")
-                      .classList.remove("hide");
-                  }
-                })
-                .catch((error) => {
-                  console.log("Error on current cart fetch.");
-                  console.log(error);
-                });
+              // Hide no cart
+              if (
+                !document
+                  .querySelector(".cartempty_text")
+                  .classList.contains("hide")
+              ) {
+                document.querySelector(".cartempty_text").classList.add("hide");
+              }
+
+              // cart title
+              if (
+                document
+                  .querySelector(".mini-cart-title")
+                  .classList.contains("hide")
+              ) {
+                document
+                  .querySelector(".mini-cart-title")
+                  .classList.remove("hide");
+              }
+
+              // Show the cart buttton
+              if (
+                document
+                  .querySelector(".mcart-go-cart")
+                  .classList.contains("hide")
+              ) {
+                document
+                  .querySelector(".mcart-go-cart")
+                  .classList.remove("hide");
+              }
 
               // Reset counter
               resetCount();
@@ -410,7 +407,6 @@ const PDPListeners = (function () {
               hideLoaderAddToCartButton();
 
               // update cart-json section data on PDP
-              let cartData = stringToHTML(responseData.sections["cart-json"]);
               document.querySelector("#shopify-section-cart-json").innerHTML =
                 cartData.querySelector("#shopify-section-cart-json").innerHTML;
             })
