@@ -4,12 +4,22 @@
   {% endcomment %}
   {%- for block in section.blocks %}
     <style>
+      .h__slide__videowrap[data-count="{{ forloop.index }}"] .h__slideVideo__media__wrapper{
+        position: relative;
+        height: initial;
+      }
       .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] {
         padding-top: calc({{ block.settings.image_mobile_height }} / {{ block.settings.image_mobile_width }} * 100%);
+        {% if block.settings.no_content %}
+        margin-bottom:25px;
+        {% endif %}
       }
 
       .h__slide__videowrap[data-count="{{ forloop.index }}"] {
         padding-top: calc({{ block.settings.poster_image_mobile_height }} / {{ block.settings.poster_image_mobile_width }} * 100%);
+        {% if block.settings.no_content %}
+        margin-bottom:25px;
+        {% endif %}
       }
       .h__slide__videowrap {
         position: relative;
@@ -38,13 +48,16 @@
         color: {{ block.settings.button_color_mob }}
       }
       @media(min-width: 768px) {
-
+        .h__slide__videowrap[data-count="{{ forloop.index }}"] .h__slideVideo__media__wrapper{
+          height: 100%;
+        }
         .h__slide__videowrap[data-count="{{ forloop.index }}"] {
           padding-top: calc({{ block.settings.poster_image_height }} / {{ block.settings.poster_image_width }} * 100%);
-
+          margin-bottom:0;
         }
         .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] {
           padding-top: calc({{ block.settings.image_desktop_height }} / {{ block.settings.image_desktop_width }} * 100%);
+          margin-bottom:0;
         }
         .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay,.h__slide__videowrap[data-count="{{ forloop.index }}"] .h__slide__info-overlay{
           background-color: {{ block.settings.banner_content_bg }}
@@ -127,6 +140,12 @@
         {
           "type": "header",
           "content": "Banner Content"
+        },
+        {
+          "type": "checkbox",
+          "id": "no_content",
+          "label": "No Content",
+          "default": false
         },
         {
           "type": "select",
@@ -299,6 +318,12 @@
         {
           "type": "header",
           "content": "Banner Content"
+        },
+        {
+          "type": "checkbox",
+          "id": "no_content",
+          "label": "No Content",
+          "default": false
         },
         {
           "type": "select",

@@ -55,7 +55,7 @@ const controlRelatedProducts = async () => {
 };
 
 const controlHomepageHeroBannerVideos = (e) => {
-  const parentEl = e.target.closest(".h__slide__inner");
+  const parentEl = e.target.closest(".h__slide__inner > div");
   const allChildren = parentEl ? Array.from(parentEl.children) : null;
   if (!allChildren || allChildren.length < 1) return;
   const allVideoChildrens = allChildren.filter(
