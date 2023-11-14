@@ -12,7 +12,15 @@
           width="100%"
           muted
           preload="metadata"
-          poster="{{ block.video_poster_image | img_url: '500x', scale: 2 }}"
+          {% unless block.no_content %}
+            poster="{{ block.video_poster_image | img_url: '500x', scale: 2 }}"
+          {% else %}
+            {% if request.locale.iso_code == 'ar' %}
+              poster="{{ block.video_poster_image_ar | img_url: '500x', scale: 2 }}"
+            {% else %}
+              poster="{{ block.video_poster_image | img_url: '500x', scale: 2 }}"
+            {% endif %}
+          {% endunless %}
         >
           <source src="{{ block.video_url_desktop }}" type="video/mp4">
           <source src="{{ block.video_url_desktop }}" type="video/ogg">
@@ -24,7 +32,15 @@
           width="100%"
           muted
           preload="metadata"
-          poster="{{ block.video_poster_image_mobile | img_url: '500x', scale: 2 }}"
+          {% unless block.no_content %}
+            poster="{{ block.video_poster_image_mobile | img_url: '500x', scale: 2 }}"
+          {% else %}
+            {% if request.locale.iso_code == 'ar' %}
+              poster="{{ block.video_poster_image_mobile_ar | img_url: '500x', scale: 2 }}"
+            {% else %}
+              poster="{{ block.video_poster_image_mobile | img_url: '500x', scale: 2 }}"
+            {% endif %}
+          {% endunless %}
         >
           <source src="{{ block.video_url_mobile }}" type="video/mp4">
           <source src="{{ block.video_url_mobile }}" type="video/ogg">
