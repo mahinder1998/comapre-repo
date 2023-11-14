@@ -4,14 +4,36 @@
       {% unless block.button_text == blank or block.button_link == blank %}
         <a href="{{ block.button_link }}" class="h__slide__url"></a>
       {% endunless %}
-      <picture class="h__slide__picture">
-        <source media="(min-width:768px)" srcset="{{ block.image_desktop | img_url: '800x', scale: 2 }}">
-        <img
-          class="h__slide__img"
-          src="{{ block.image_mobile | img_url: '500x', scale: 2 }}"
-          alt=""
-        >
-      </picture>
+      {% unless block.no_content %}
+        <picture class="h__slide__picture">
+          <source media="(min-width:768px)" srcset="{{ block.image_desktop | img_url: '800x', scale: 2 }}">
+          <img
+            class="h__slide__img"
+            src="{{ block.image_mobile | img_url: '500x', scale: 2 }}"
+            alt=""
+          >
+        </picture>
+      {% else %}
+        {% if request.locale.iso_code == 'ar' %}
+          <picture class="h__slide__picture">
+            <source media="(min-width:768px)" srcset="{{ block.image_desktop_ar | img_url: '800x', scale: 2 }}">
+            <img
+              class="h__slide__img"
+              src="{{ block.image_mobile_ar | img_url: '500x', scale: 2 }}"
+              alt=""
+            >
+          </picture>
+        {% else %}
+          <picture class="h__slide__picture">
+            <source media="(min-width:768px)" srcset="{{ block.image_desktop | img_url: '800x', scale: 2 }}">
+            <img
+              class="h__slide__img"
+              src="{{ block.image_mobile | img_url: '500x', scale: 2 }}"
+              alt=""
+            >
+          </picture>
+        {% endif %}
+      {% endunless %}
     </div>
     {% unless block.no_content %}
       <div
