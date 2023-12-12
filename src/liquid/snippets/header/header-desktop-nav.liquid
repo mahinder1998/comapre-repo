@@ -18,9 +18,9 @@
         {% endif %}
        {% endfor %}
     {%- if link.links != blank -%} 
-	   <li class="droppable lvl-li-one has-subs {% if color_class != blank %}nav-color-{{ nav_menu_color }} {% endif %}" data-handle="{{ link.handle }}">
+	   <li class="droppable lvl-li-one has-subs {% if color_class != blank %}nav-color-{{ nav_menu_color }} {% endif %}" data-handle="{{ link.handle }}" data-class="{{ color_class }}" data-nav_menu_color="{{ nav_menu_color }}">
     {%- else -%}
-       <li class="droppable lvl-li-one {% if color_class != blank %}nav-color-{{ nav_menu_color }} {% endif %}">
+       <li class="droppable lvl-li-one {% if color_class != blank %}nav-color-{{ nav_menu_color }} {% endif %}" data-handle="{{ link.handle }}" data-class="{{ color_class }}" data-nav_menu_color="{{ nav_menu_color }}">
     {%- endif -%}
          
         <a class="{{ nav_menu_color }}" href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
