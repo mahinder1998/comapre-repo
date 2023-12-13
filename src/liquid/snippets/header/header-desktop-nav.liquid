@@ -71,9 +71,18 @@
 
             {%- endfor -%}
    <div class="right_img_desk">                          
-   {% for block in section.blocks %} 
-            {% assign block_menu = block.settings.navigation_text %}
-            {% if block_menu == link.handle %}
+   {% for block in section.blocks %}
+
+    {%- if shop.locale == 'ar' -%}
+      {% assign link_title = link.title %}
+      {% assign block_menu = block.settings["navigation_text-AR"] %}
+    {%- else -%}
+      {% assign link_title = link.title | upcase %}
+      {% assign block_menu = block.settings.navigation_text | upcase %}
+    {%- endif -%}
+
+          
+            {% if block_menu == link_title %}
             	{% if block.settings.imgepic %}
                       <li class="featured-block">
                         <div class="mg-mnu-ftimg-cont">
