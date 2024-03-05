@@ -4,8 +4,10 @@
       {% for block in section.blocks %}
         {% if block.type == "menu_color" %}
         {% assign color_class =   blank   %}
-        {% assign nav_menu_color = block.settings.target_handle  %}
-        {% if nav_menu_color ==  link.handle %}
+        {% assign link_title = link.title |  downcase | replace: ' ', '-'  %}
+        {% assign nav_menu_color = block.settings.target_handle  |  downcase | replace: ' ', '-' %}
+        {% assign nav_menu_color_ar = block.settings.target_handle_ar |  downcase | replace: ' ', '-' %}
+        {% if nav_menu_color ==  link_title or nav_menu_color_ar == link_title %}
             <style>
               .lvl-li-one.has-subs.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }},
               .lvl-li-one.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }}{
