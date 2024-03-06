@@ -1,6 +1,7 @@
 <nav class="mb-dt-nav-cont" role="navigation">
   <ul class="container ul-reset text-center">
     {%- for link in linklists.main-menu.links -%}
+      {% assign color_available = false %}
       {% for block in section.blocks %}
         {% if block.type == "menu_color" %}
         {% assign color_class =   blank   %}
@@ -8,13 +9,15 @@
         {% assign nav_menu_color = block.settings.target_handle  |  downcase | replace: ' ', '-' %}
         {% assign nav_menu_color_ar = block.settings.target_handle_ar |  downcase | replace: ' ', '-' %}
         {% if nav_menu_color ==  link_title or nav_menu_color_ar == link_title %}
-            <style>
+            {% comment %} <style>
               .lvl-li-one.has-subs.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }},
               .lvl-li-one.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }}{
                 color:{{block.settings.menu_handle_color}} !important;
               }
-          </style>
-          {% assign color_class =  link.handle   %}
+          </style> {% endcomment %}
+          {% assign color_value = block.settings.menu_handle_color %}
+          {% assign color_available = true %}
+          {% assign color_class = blank %}
           {% break %}
         {% endif %}
         {% endif %}
@@ -25,7 +28,11 @@
        <li class="droppable lvl-li-one {% if color_class != blank %}nav-color-{{ nav_menu_color }} {% endif %}" data-handle="{{ link.handle }}" data-class="{{ color_class }}" data-nav_menu_color="{{ nav_menu_color }}">
     {%- endif -%}
          
-        <a class="{{ nav_menu_color }}" href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
+        <a 
+        {%if color_available%}
+          style="color: {{color_value}}!important;"
+        {% endif %}
+        class="{{ nav_menu_color }}" href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
           {{ link.title }}
         </a>
 
