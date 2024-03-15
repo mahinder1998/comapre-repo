@@ -446,7 +446,8 @@ updateCartInfo(cartString){
 let parser = new DOMParser();
 let cartHtml = parser.parseFromString(cartString,"text/html")
 document.querySelector('#shopify-section-{{ section.id }}').innerHTML = cartHtml.querySelector('#shopify-section-{{ section.id }}').innerHTML;
-}
+window.th_product_bundle_js_define ? window.reloadBundle() :"";
+} 
 
 {% if section.settings.enable_gwp_content %}
 // GWP update

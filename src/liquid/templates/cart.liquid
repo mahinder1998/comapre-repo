@@ -11,3 +11,22 @@
   </script>
 {% endif %}
 {% include 'wiser_related' %}{% include 'wiser_recommended' %}{% include 'wiser_trending' %}{% include 'wiser_recentview' %}{% include 'wiser_newarrivals' %}{% include 'wiser_featured' %}{% include 'wiser_topselling' %}{% include 'wiser_recent_related' %}
+
+<script>
+   async function updateBundleScript(){
+    let scriptContent;
+    try{
+      scriptContent = await fetch("https://cdn.shopify.com/extensions/8bc98db9-0586-4108-8224-7a0927e9d990/rebolt-bundle-products-14/assets/th-pb-script.min.js?shop=molton-brown-uae.myshopify.com&v=20240311134309").then(res => res.text()).then(content => content);
+    }catch(err){
+      console.log(err);
+    }
+    if(scriptContent){
+      let newScript = document.createElement("script");
+     scriptContent = scriptContent.replace(`if (void 0 === window.th_product_bundle_js_define) {","if (void 0 === window.th_product_bundle_js_define) {document.querySelectorAll(".th_cart_total_price").forEach(el => el.innerHTML = "Loading...");`)
+     let updatedScriptContent = `window.reloadBundle = () => {window.th_product_bundle_js_define = undefined;${scriptContent};console.log("new script loaded in this case")}`;
+     newScript.innerHTML = updatedScriptContent;
+     document.body.appendChild(newScript);
+    }
+   }
+  updateBundleScript()
+</script> 
