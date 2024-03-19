@@ -31,7 +31,7 @@
   }
 </style>
 {% if cart.item_count > 0 %}
-  <section id="cart-container" class="padding_lg {{ section.id }}" data-itemCount="{{ cart.item_count }}">
+  <section id="cart-container" class="padding_lg {{ section.id }} cart-count" data-itemCount="{{ cart.item_count }}">
     <h1 class="cart-title">Your Cart</h1>
     <form action="/cart" method="post" id="cartform">
       <div class="cart-body">
@@ -424,7 +424,7 @@
     </form>
   </section>
 {% else %}
-  <section class="empty-section">
+  <section class="empty-section cart-count" data-itemCount="{{ cart.item_count }}">
     <h1 class="cart-title">Your Cart</h1>
     <div class="page-container">
       <p>Your cart is empty!</p>
@@ -552,7 +552,7 @@
   document.querySelector('#shopify-section-{{ section.id }}').innerHTML = cartHtml.querySelector('#shopify-section-{{ section.id }}').innerHTML;
 
   //update header cart item count
-  document.querySelector(".mcart-count").innerHTML = cartHtml.querySelector("#cart-container").dataset.itemcount;
+  document.querySelector(".mcart-count").innerHTML = cartHtml.querySelector(".cart-count")?.dataset?.itemcount;
 
   window.th_product_bundle_js_define ? window.reloadBundle() :"";
   }
