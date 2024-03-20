@@ -93,16 +93,9 @@ const PDPListeners = (function () {
     compare_price,
     size
   ) {
-    if (
-      title &&
-      document.querySelector(
-        ".pdpmodal-addedtocart__modal__body__content__title"
-      )
-    ) {
-      document.querySelector(
-        ".pdpmodal-addedtocart__modal__body__content__title"
-      ).innerHTML = title;
-    }
+    // if (title && document.querySelector('.pdpmodal-addedtocart__modal__body__content__title')) {
+    //     document.querySelector('.pdpmodal-addedtocart__modal__body__content__title').innerHTML = title;
+    // }
 
     if (
       image &&
@@ -295,6 +288,7 @@ const PDPListeners = (function () {
               return;
             }
           }
+
           // Add item to the cart.
           let formData = {
             items: [
@@ -305,7 +299,7 @@ const PDPListeners = (function () {
             ],
             sections: "cart-json",
           };
-          //Cart.addItem(variantId, { quantity: quantity })
+
           await fetch("/cart/add.js", {
             method: "POST",
             headers: {
@@ -317,6 +311,7 @@ const PDPListeners = (function () {
             .then(async (res) => {
               let responseData = res;
               res = res.items[0];
+              console.log("res", res);
 
               const handle = res?.handle;
               const title = res.product_title;
@@ -461,7 +456,11 @@ const PDPListeners = (function () {
       document
         .querySelector(".pdpmodal-addedtocart__modal__checkout")
         .addEventListener("click", function () {
-          location.assign("/cart");
+          if (Shopify.routes.root) {
+            location.assign(Shopify.routes.root + "cart");
+          } else {
+            location.assign("/cart");
+          }
         });
     }
 
@@ -618,10 +617,11 @@ const PDPListeners = (function () {
 
           //Update the Sliders.
           const medias = window.objectData.product.media;
-          const meidaFilterText = `_${selectedOption}_`;
+          const meidaFilterText = `__${selectedOption}__`;
           const selectedImages = medias.filter(
             (item) => item.alt && item.alt.includes(meidaFilterText)
           );
+          // console.log(selectedImages)
 
           let masterGalleryHTMLString = "";
 
@@ -680,6 +680,19 @@ const PDPListeners = (function () {
 
             document.querySelector(".pdp__media__master__slider").innerHTML =
               masterGalleryHTMLString;
+
+            if (document.querySelector(".pdp__media__thumbs__slider")) {
+              if (selectedImages?.length < 2) {
+                document.querySelector(
+                  ".pdp__media__thumbs__slider"
+                ).style.display = "none";
+              } else {
+                document.querySelector(
+                  ".pdp__media__thumbs__slider"
+                ).style.display = "block";
+              }
+            }
+
             document.querySelector(".pdp__media__thumbs__slider").innerHTML =
               thumbsGalleryHTMLString;
 
@@ -741,17 +754,16 @@ const PDPListeners = (function () {
           const ctaNotifyMe = document.querySelector(
             ".pdp__content__control__notify-me-btn"
           );
-
           const ctaNotifyMeApp = document.querySelector(".pdp_notify_button");
 
           if (selectedVariant.available) {
-            ctaNotifyMe.style.display = "none";
-            ctaAddToCart.style.display = "grid";
-            ctaNotifyMeApp.style.display = "none";
+            if (ctaNotifyMe) ctaNotifyMe.style.display = "none";
+            if (ctaAddToCart) ctaAddToCart.style.display = "grid";
+            if (ctaNotifyMeApp) ctaNotifyMeApp.style.display = "none";
           } else {
-            ctaAddToCart.style.display = "none";
-            ctaNotifyMe.style.display = "grid";
-            ctaNotifyMeApp.style.display = "flex";
+            if (ctaAddToCart) ctaAddToCart.style.display = "none";
+            if (ctaNotifyMe) ctaNotifyMe.style.display = "grid";
+            if (ctaNotifyMeApp) ctaNotifyMeApp.style.display = "flex";
           }
         });
       });
